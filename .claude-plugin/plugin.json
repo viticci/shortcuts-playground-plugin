@@ -1,0 +1,37 @@
+{
+  "name": "shortcuts-playground",
+  "version": "1.0.0",
+  "description": "Build, validate, sign, and archive macOS/iOS Shortcuts directly from Claude Code. Ships a full Shortcuts knowledge base, a Craig Loop validator, a build agent, and a PostToolUse hook that auto-validates every .xml/.shortcut file as it is written.",
+  "author": {
+    "name": "Federico Viticci",
+    "email": "viticci@macstories.net",
+    "url": "https://www.macstories.net"
+  },
+  "homepage": "https://www.macstories.net",
+  "repository": "https://github.com/viticci/shortcuts-playground-plugin",
+  "license": "MIT",
+  "keywords": [
+    "shortcuts",
+    "macos",
+    "ios",
+    "automation",
+    "apple",
+    "macstories",
+    "plist",
+    "workflow"
+  ],
+  "userConfig": {
+    "output_dir": {
+      "type": "directory",
+      "title": "Shortcuts Playground output directory",
+      "description": "Directory where unsigned XML archives and signed .shortcut files are written. Example: /Users/you/Documents/Shortcuts Playground. Leave blank to fall back to ~/Documents/Shortcuts Playground.",
+      "sensitive": false
+    },
+    "signing_mode": {
+      "type": "string",
+      "title": "Default shortcuts sign mode",
+      "description": "Default mode passed to `shortcuts sign`. Use `anyone` to distribute publicly or `people-who-know-me` to restrict to your contacts. Leave blank for `anyone`.",
+      "sensitive": false
+    }
+  }
+}

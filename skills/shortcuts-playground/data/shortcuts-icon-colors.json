@@ -1,0 +1,107 @@
+[
+  {
+    "name": "Red",
+    "hex": "#F36F74",
+    "value": 4282601983,
+    "aliases": [4282601983, -12365313],
+    "synonyms": ["red", "urgent", "alert", "danger", "error", "critical", "stop"]
+  },
+  {
+    "name": "Orange",
+    "hex": "#FF8E73",
+    "value": 4251333119,
+    "aliases": [4251333119, -43634177],
+    "synonyms": ["orange", "warning", "caution", "attention"]
+  },
+  {
+    "name": "Yellow",
+    "hex": "#F8AE5F",
+    "value": 4271458815,
+    "aliases": [4271458815, -23508481],
+    "synonyms": ["yellow", "bright", "sunny"]
+  },
+  {
+    "name": "Gold",
+    "hex": "#E8CA45",
+    "value": 4274264319,
+    "aliases": [4274264319, -20702977],
+    "synonyms": ["gold", "amber", "money", "finance", "budget", "premium"]
+  },
+  {
+    "name": "Green",
+    "hex": "#53CD6B",
+    "value": 4292093695,
+    "aliases": [4292093695, -2873601],
+    "synonyms": ["green", "success", "healthy", "health", "nature", "eco"]
+  },
+  {
+    "name": "Teal",
+    "hex": "#57CFB4",
+    "value": 431817727,
+    "aliases": [431817727, -3863149569],
+    "synonyms": ["teal", "turquoise", "mint", "aqua"]
+  },
+  {
+    "name": "Cyan",
+    "hex": "#5ACCDE",
+    "value": 1440408063,
+    "aliases": [1440408063, -2854559233],
+    "synonyms": ["cyan", "sky", "light blue"]
+  },
+  {
+    "name": "Blue",
+    "hex": "#24BAF7",
+    "value": 463140863,
+    "aliases": [463140863, -3831826433],
+    "synonyms": ["blue", "ocean", "travel", "info"]
+  },
+  {
+    "name": "Navy",
+    "hex": "#5874CA",
+    "value": 946986751,
+    "aliases": [946986751, -3347980545],
+    "synonyms": ["navy", "indigo", "deep blue", "professional"]
+  },
+  {
+    "name": "Purple",
+    "hex": "#9164C7",
+    "value": 2071128575,
+    "aliases": [2071128575, -2223838721],
+    "synonyms": ["purple", "violet", "creative", "magic", "ai"]
+  },
+  {
+    "name": "Lavender",
+    "hex": "#C085E6",
+    "value": 3679049983,
+    "aliases": [3679049983, -615917313],
+    "synonyms": ["lavender", "lilac", "pastel purple", "soft purple"]
+  },
+  {
+    "name": "Pink",
+    "hex": "#F694D8",
+    "value": 3980825855,
+    "aliases": [3980825855, -314141441],
+    "synonyms": ["pink", "rose", "magenta", "social", "love"]
+  },
+  {
+    "name": "Gray",
+    "hex": "#9099A3",
+    "value": 255,
+    "aliases": [255, -4294967041],
+    "synonyms": ["gray", "grey", "neutral", "system", "utility"]
+  },
+  {
+    "name": "Sage",
+    "hex": "#9DA79D",
+    "value": 3031607807,
+    "aliases": [3031607807, -1263359489],
+    "synonyms": ["sage", "muted green", "soft green"]
+  },
+  {
+    "name": "Tan",
+    "hex": "#A49995",
+    "value": 2846468607,
+    "aliases": [2846468607, -1448498689],
+    "synonyms": ["tan", "beige", "brown"]
+  }
+]

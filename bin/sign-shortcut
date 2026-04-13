@@ -1,0 +1,98 @@
+#!/usr/bin/env bash
+# shortcuts-playground: Archive + sign a Shortcuts plist in one step.
+#
+# Usage:
+#   sign-shortcut <input.xml> [--name "Final Name"] [--mode anyone|people-who-know-me] [--output-dir DIR]
+#
+# Behaviour:
+#   1. Archives the unsigned XML to "$OUTPUT_DIR/$(date +%F)/<name>-<HHMMSS>.xml"
+#   2. Copies it to "$OUTPUT_DIR/<name>.shortcut"
+#   3. Runs `shortcuts sign --mode <mode> --input ... --output ...` in-place
+#
+# Defaults:
+#   --mode        : $CLAUDE_PLUGIN_OPTION_SIGNING_MODE, else "anyone"
+#   --output-dir  : $CLAUDE_PLUGIN_OPTION_OUTPUT_DIR, else "$HOME/Documents/Shortcuts Playground"
+#   --name        : basename of the input file without extension
+
+set -euo pipefail
+
+INPUT=""
+NAME=""
+MODE="${CLAUDE_PLUGIN_OPTION_SIGNING_MODE:-anyone}"
+OUTPUT_DIR="${CLAUDE_PLUGIN_OPTION_OUTPUT_DIR:-$HOME/Documents/Shortcuts Playground}"
+
+usage() {
+  cat <<'USAGE' >&2
+Usage: sign-shortcut <input.xml> [--name NAME] [--mode anyone|people-who-know-me] [--output-dir DIR]
+USAGE
+  exit 64
+}
+
+while [ $# -gt 0 ]; do
+  case "$1" in
+    --name)
+      [ $# -ge 2 ] || usage
+      NAME="$2"
+      shift 2
+      ;;
+    --mode)
+      [ $# -ge 2 ] || usage
+      MODE="$2"
+      shift 2
+      ;;
+    --output-dir)
+      [ $# -ge 2 ] || usage
+      OUTPUT_DIR="$2"
+      shift 2
+      ;;
+    -h|--help)
+      usage
+      ;;
+    *)
+      if [ -z "$INPUT" ]; then
+        INPUT="$1"
+        shift
+      else
+        printf 'Unexpected argument: %s\n' "$1" >&2
+        usage
+      fi
+      ;;
+  esac
+done
+
+if [ -z "$INPUT" ]; then
+  usage
+fi
+
+if [ ! -f "$INPUT" ]; then
+  printf 'Input file not found: %s\n' "$INPUT" >&2
+  exit 2
+fi
+
+if [ "$MODE" != "anyone" ] && [ "$MODE" != "people-who-know-me" ]; then
+  printf 'Invalid --mode: %s (expected "anyone" or "people-who-know-me")\n' "$MODE" >&2
+  exit 64
+fi
+
+if [ -z "$NAME" ]; then
+  BASENAME="$(basename "$INPUT")"
+  NAME="${BASENAME%.*}"
+fi
+
+DATE_STAMP="$(date +%F)"
+TIME_STAMP="$(date +%H%M%S)"
+ARCHIVE_DIR="$OUTPUT_DIR/$DATE_STAMP"
+ARCHIVE_FILE="$ARCHIVE_DIR/${NAME}-${TIME_STAMP}.xml"
+SIGNED_PATH="$OUTPUT_DIR/${NAME}.shortcut"
+
+mkdir -p "$ARCHIVE_DIR"
+mkdir -p "$OUTPUT_DIR"
+
+cp "$INPUT" "$ARCHIVE_FILE"
+cp "$INPUT" "$SIGNED_PATH"
+
+# Sign in-place. `shortcuts sign` writes a new file; we pass the same path for
+# input and output which is the documented pattern for overwriting.
+shortcuts sign --mode "$MODE" --input "$SIGNED_PATH" --output "$SIGNED_PATH"
+
+printf '{"archive":"%s","signed":"%s","mode":"%s"}\n' "$ARCHIVE_FILE" "$SIGNED_PATH" "$MODE"

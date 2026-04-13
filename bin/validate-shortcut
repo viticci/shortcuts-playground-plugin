@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+# shortcuts-playground: Craig Loop preflight validator wrapper.
+# Usage: validate-shortcut <file.xml|file.shortcut>
+set -u
+
+PLUGIN_ROOT="${CLAUDE_PLUGIN_ROOT:-}"
+if [ -z "$PLUGIN_ROOT" ]; then
+  PLUGIN_ROOT="$(cd "$(dirname "$0")/.." && pwd)"
+fi
+
+PY="${SHORTCUTS_PLAYGROUND_PYTHON:-python3}"
+if ! command -v "$PY" >/dev/null 2>&1; then
+  printf 'shortcuts-playground: python3 not found on PATH. Install Python 3.10+ or set SHORTCUTS_PLAYGROUND_PYTHON.\n' >&2
+  exit 127
+fi
+
+if ! "$PY" -c 'import sys; sys.exit(0 if sys.version_info >= (3, 10) else 1)'; then
+  printf 'shortcuts-playground: %s is older than 3.10; the validator uses PEP 604 syntax. Set SHORTCUTS_PLAYGROUND_PYTHON to a 3.10+ interpreter (e.g. /opt/homebrew/bin/python3).\n' "$PY" >&2
+  exit 2
+fi
+
+exec "$PY" "$PLUGIN_ROOT/skills/shortcuts-playground/scripts/validate_shortcut.py" "$@"
