@@ -29,33 +29,59 @@ Writing valid Shortcuts plists by hand — even with an LLM — is miserable. Th
 
 ## Installation
 
-### Option A — during development: `--plugin-dir`
+This repo contains **only the plugin** (manifest + skill + agent + commands + hooks + bin). To install it, you'll add it to a Claude Code marketplace that references this directory, then install from that marketplace. Three options, ordered from quickest to most-durable:
+
+### Option A — quickest: `--plugin-dir` (for a single session)
 
 ```bash
 claude --plugin-dir /path/to/shortcuts-playground-plugin
 ```
 
-Inside the session, ask for a shortcut. Iterate. Run `/reload-plugins` to pick up changes without restarting Claude.
+Inside the session, ask for a shortcut or run `/shortcuts-playground:build <brief>`. Run `/reload-plugins` after source edits. The plugin only exists for the life of that session.
 
-### Option B — install from a local directory as a marketplace
+### Option B — local dev marketplace (for ongoing local development)
 
-You can use the plugin's own directory as a single-plugin marketplace, no git remote required:
-
-```bash
-claude plugin marketplace add /path/to/shortcuts-playground-plugin
-claude plugin install shortcuts-playground@shortcuts-playground
-```
-
-### Option C — install from a git-backed marketplace
-
-Once this plugin is published to a git-hosted marketplace:
+Create a separate marketplace directory that references this plugin repo via a symlink. The marketplace is its own git repo and points at `./shortcuts-playground-plugin` (which is a symlink to wherever you cloned this repo):
 
 ```bash
-claude plugin marketplace add https://github.com/<owner>/shortcuts-playground-plugin
-claude plugin install shortcuts-playground@shortcuts-playground
+mkdir -p ~/Projects/shortcuts-playground-dev-marketplace/.claude-plugin
+cd ~/Projects/shortcuts-playground-dev-marketplace
+
+# Symlink the plugin into the marketplace directory
+ln -s /path/to/shortcuts-playground-plugin shortcuts-playground-plugin
+
+# Write marketplace.json
+cat > .claude-plugin/marketplace.json <<'JSON'
+{
+  "name": "shortcuts-playground-dev",
+  "owner": { "name": "Your Name" },
+  "metadata": {
+    "description": "Local dev marketplace for the Shortcuts Playground plugin.",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    { "source": "./shortcuts-playground-plugin" }
+  ]
+}
+JSON
+
+# Register + install
+claude plugin marketplace add ~/Projects/shortcuts-playground-dev-marketplace
+claude plugin install shortcuts-playground@shortcuts-playground-dev
 ```
 
-Installation scopes (pick one for either option):
+Source edits propagate through the symlink — Claude Code reads files in-place for directory-sourced marketplaces, so iteration is instant. Run `claude plugin update shortcuts-playground@shortcuts-playground-dev` only when you want the cache to resync (e.g., after a version bump).
+
+### Option C — install from a public git-backed marketplace
+
+Once a marketplace referencing this plugin is published (e.g., as a separate git repo):
+
+```bash
+claude plugin marketplace add https://github.com/<owner>/<marketplace-repo>
+claude plugin install shortcuts-playground@<marketplace-name>
+```
+
+Installation scopes (for either Option B or C):
 - `--scope user` (default): install for your user, available across every project.
 - `--scope project`: install for the current project (shared with teammates via `.claude/settings.json`).
 - `--scope local`: install for the current project only, gitignored.
@@ -162,8 +188,7 @@ shortcuts-playground-selftest
 ```
 shortcuts-playground-plugin/
 ├── .claude-plugin/
-│   ├── plugin.json              # plugin manifest (name, version, userConfig)
-│   └── marketplace.json         # single-plugin marketplace manifest
+│   └── plugin.json              # plugin manifest (name, version, userConfig)
 ├── skills/
 │   └── shortcuts-playground/    # complete Shortcuts knowledge base
 │       ├── SKILL.md
