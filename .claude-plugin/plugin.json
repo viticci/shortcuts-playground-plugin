@@ -1,6 +1,6 @@
 {
   "name": "shortcuts-playground",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "Build, validate, sign, and archive macOS/iOS Shortcuts directly from Claude Code. Ships a full Shortcuts knowledge base, a Craig Loop validator, a build agent, and a PostToolUse hook that auto-validates every .xml/.shortcut file as it is written.",
   "author": {
     "name": "Federico Viticci",

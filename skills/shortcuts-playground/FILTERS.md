@@ -370,11 +370,129 @@ Find screenshots taken today:
 | Property | Type | Values |
 |----------|------|--------|
 | `Title` | String | Reminder title |
-| `Is Completed` | Boolean | true/false |
+| `Is Completed` | Boolean | `{ Bool: <true/false> }` — no `Unit` key (Reminders Boolean filters don't use it) |
+| `Is Flagged` | Boolean | Same shape as Is Completed |
 | `Priority` | Enumeration | `None`, `Low`, `Medium`, `High` |
 | `Due Date` | Date | Use date operators (1000–1003) |
 | `Creation Date` | Date | Use date operators |
 | `List` | Enumeration | List names — match via operator `4` with `Values.Enumeration` |
+
+⚠️ **Reminders Boolean filters skip `Unit: 4`.** Photos Boolean filters (e.g. `Is a Screenshot`) do require `Values = { Bool: <true/false>, Unit: 4 }`. Reminders Boolean filters use `Values = { Bool: <true/false> }` only — no `Unit` field. Verified against an Apple-built sample.
+
+**"Is Completed = Yes" (find completed reminders):**
+
+```xml
+<dict>
+    <key>WFWorkflowActionIdentifier</key>
+    <string>is.workflow.actions.filter.reminders</string>
+    <key>WFWorkflowActionParameters</key>
+    <dict>
+        <key>UUID</key>
+        <string>FIND-COMPLETED-UUID</string>
+        <key>WFContentItemFilter</key>
+        <dict>
+            <key>Value</key>
+            <dict>
+                <key>WFActionParameterFilterPrefix</key>
+                <integer>1</integer>
+                <key>WFActionParameterFilterTemplates</key>
+                <array>
+                    <dict>
+                        <key>Operator</key>
+                        <integer>4</integer>
+                        <key>Property</key>
+                        <string>Is Completed</string>
+                        <key>Removable</key>
+                        <true/>
+                        <key>Values</key>
+                        <dict>
+                            <key>Bool</key>
+                            <true/>
+                        </dict>
+                    </dict>
+                </array>
+                <key>WFContentPredicateBoundedDate</key>
+                <false/>
+            </dict>
+            <key>WFSerializationType</key>
+            <string>WFContentPredicateTableTemplate</string>
+        </dict>
+    </dict>
+</dict>
+```
+
+**"Is Completed = No" (find incomplete reminders):** same action, same structure, only `Values.Bool` flips to `<false/>`.
+
+### Find vs Filter: `WFContentItemInputParameter`
+
+Shortcuts.app shows two variants in the UI:
+- **"Find X where"** — queries the system's content database for the type (e.g., all reminders, all photos) matching the filter.
+- **"Filter X where"** — applies the filter to the output of a preceding action, trimming down an already-collected list.
+
+Both variants use the **same action identifier** (`is.workflow.actions.filter.<type>`). The difference is the presence of `WFContentItemInputParameter`:
+
+- **Find** = no `WFContentItemInputParameter`. The filter operates on the system database.
+- **Filter** = `WFContentItemInputParameter` set to a token attachment wrapping the previous action's `ActionOutput` (typically with `OutputName` matching the type — e.g., `"Reminders"`, `"Photos"`, `"Files"`).
+
+**Chained "Filter Reminders where Is Completed = No" on the output of a preceding "Find Reminders where Is Completed = Yes":**
+
+```xml
+<dict>
+    <key>WFWorkflowActionIdentifier</key>
+    <string>is.workflow.actions.filter.reminders</string>
+    <key>WFWorkflowActionParameters</key>
+    <dict>
+        <key>UUID</key>
+        <string>FILTER-INCOMPLETE-UUID</string>
+        <key>WFContentItemFilter</key>
+        <dict>
+            <key>Value</key>
+            <dict>
+                <key>WFActionParameterFilterPrefix</key>
+                <integer>1</integer>
+                <key>WFActionParameterFilterTemplates</key>
+                <array>
+                    <dict>
+                        <key>Operator</key>
+                        <integer>4</integer>
+                        <key>Property</key>
+                        <string>Is Completed</string>
+                        <key>Removable</key>
+                        <true/>
+                        <key>Values</key>
+                        <dict>
+                            <key>Bool</key>
+                            <false/>
+                        </dict>
+                    </dict>
+                </array>
+                <key>WFContentPredicateBoundedDate</key>
+                <false/>
+            </dict>
+            <key>WFSerializationType</key>
+            <string>WFContentPredicateTableTemplate</string>
+        </dict>
+        <key>WFContentItemInputParameter</key>
+        <dict>
+            <key>Value</key>
+            <dict>
+                <key>OutputName</key>
+                <string>Reminders</string>
+                <key>OutputUUID</key>
+                <string>PREVIOUS-FILTER-REMINDERS-UUID</string>
+                <key>Type</key>
+                <string>ActionOutput</string>
+            </dict>
+            <key>WFSerializationType</key>
+            <string>WFTextTokenAttachment</string>
+        </dict>
+    </dict>
+</dict>
+```
+
+The same `WFContentItemInputParameter` chaining pattern applies to `filter.photos`, `filter.files`, `filter.notes`, `filter.calendarevents`, and every other `filter.*` action — wire it to a previous action's output via `Type=ActionOutput` and the filter becomes a "Filter X" instead of a "Find X".
+
+**Reminders-specific filter example (verified from an Apple-built sample). Any-are-true OR of: List is "Reminders" OR Due Date is today OR Due Date is between a literal date and Current Date:**
 
 **Reminders-specific filter example (verified from an Apple-built sample). Any-are-true OR of: List is "Reminders" OR Due Date is today OR Due Date is between a literal date and Current Date:**
 

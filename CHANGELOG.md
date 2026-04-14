@@ -2,6 +2,17 @@
 
 All notable changes to the Shortcuts Playground plugin are documented in this file. The skill-level changelog lives at `skills/shortcuts-playground/CHANGELOG.md`.
 
+## [1.4.1] — 2026-04-14
+
+### Added (docs-only patch, verified against a second Apple-built sample)
+
+Federico provided `Reminders Complete.xml` covering the `Is Completed` filter in both its Find and Filter forms. Two new patterns landed in the docs as a result:
+
+- **`skills/shortcuts-playground/FILTERS.md`** — expanded the Reminders Boolean filter section with verbatim templates for `Is Completed = Yes` and `Is Completed = No`. Documented the key distinction that **Reminders Boolean filters do NOT need `Unit: 4`** — that's a Photos-filter requirement and does not apply to Reminders. Added a new top-level section **"Find vs Filter: `WFContentItemInputParameter`"** explaining that `is.workflow.actions.filter.<type>` covers both UI variants; the presence of `WFContentItemInputParameter` (wrapping a previous action's `ActionOutput`) turns a "Find" into a chained "Filter" that operates on upstream output instead of the system database. Applies uniformly to `filter.photos`, `filter.files`, `filter.notes`, `filter.calendarevents`, etc. — not just Reminders.
+- **`skills/shortcuts-playground/PARAMETER_TYPES.md`** — added a cross-reference from the Reminders schema section to the new FILTERS.md Is-Completed template and Find-vs-Filter section. Flags the "Reminders drop `Unit`, Photos require it" Boolean divergence.
+
+No code, validator, agent, or command changes in this patch — it's pure documentation closing the gap that the v1.4.0 Rescheduler build exposed (the agent correctly refused to guess a Boolean filter schema for Is Completed because it wasn't documented).
+
 ## [1.4.0] — 2026-04-14
 
 ### Fixed — all the blockers surfaced by session 5174fcb1

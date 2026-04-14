@@ -788,6 +788,10 @@ The filter action uses a `WFContentItemFilter` dict wrapping a `WFContentPredica
 
 ⚠️ **Filter date operator ≠ If numeric operator.** Filter row `1003` ("is between") uses `Values.Date` + `Values.AnotherDate`. The If conditional `WFCondition=1003` ("is between") uses `WFNumberValue` + `WFAnotherNumber`. Do NOT copy one structure to the other.
 
+**Boolean filter rows for Reminders** (`Is Completed`, `Is Flagged`): use `Operator = 4` and `Values = { Bool: <true/false> }`. No `Unit` field — that's a Photos-specific requirement that does NOT apply to Reminders. See [FILTERS.md → Reminders Boolean filter](FILTERS.md#reminders-wfremindercontentitem) for verbatim templates for "Is Completed = Yes" and "Is Completed = No".
+
+**"Find Reminders" vs "Filter Reminders"** are the same action identifier — add `WFContentItemInputParameter` wrapping a previous action's `ActionOutput` (with `OutputName = "Reminders"`) to turn a Find into a chained Filter. See [FILTERS.md → Find vs Filter](FILTERS.md#find-vs-filter-wfcontentiteminputparameter).
+
 **Verbatim template (Find Reminders where List is Reminders, AND Due Date is between today and Current Date — Any-are-true in the sample):**
 
 ```xml
