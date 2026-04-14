@@ -47,6 +47,20 @@ ALLOW_EMPTY_STRING_KEYS = {
     "WFReplaceTextReplace",
 }
 
+# Matches a UUID where every hex character is the same — e.g.
+# 11111111-1111-1111-1111-111111111111 or AAAAAAAA-AAAA-AAAA-AAAA-AAAAAAAAAAAA.
+# These are placeholder sequences that agents used to produce instead of real
+# random UUIDs. They're formally valid (36 chars, right shape, uppercase) but
+# break cross-shortcut uniqueness and are a tell that the generator cheated.
+# The agent prompt now requires uuidgen; this regex is the backstop.
+#
+# Segment lengths: 8-4-4-4-12 hex characters. Backreference counts after the
+# initial capture: 7 + 4 + 4 + 4 + 12 = 31 more chars matching the captured
+# hex char, 32 total, plus 4 dashes = 36-char UUID.
+REPEATING_UUID_RE = re.compile(
+    r"\b([0-9A-F])\1{7}-\1{4}-\1{4}-\1{4}-\1{12}\b"
+)
+
 # Verified against an Apple-built sample shortcut covering all condition codes.
 # All conditional codes use explicit WFInput as a Type=Variable wrapper. There
 # is no "implicit input" mode; the previously documented numeric-implicit pattern
@@ -2269,6 +2283,29 @@ def main() -> int:
         return 1
 
     errors, first_error = validate(plist, allowed_ids, allowed_glyph_ids, allowed_icon_colors)
+
+    # Repeating-hex UUID check (agent placeholder detection). Runs on the raw
+    # file text so we catch UUIDs in WFWorkflowActionParameters.UUID,
+    # OutputUUID references, GroupingIdentifier, and anywhere else a repeating
+    # placeholder could hide. Deduplicated so we surface each offending UUID
+    # once with a single remediation hint.
+    try:
+        raw_text = shortcut_path.read_text(encoding="utf-8")
+    except (OSError, UnicodeDecodeError):
+        raw_text = ""
+    repeating_uuids = sorted({
+        match.group(0) for match in REPEATING_UUID_RE.finditer(raw_text)
+    })
+    if repeating_uuids:
+        examples = ", ".join(repeating_uuids[:3])
+        more = f" (+{len(repeating_uuids) - 3} more)" if len(repeating_uuids) > 3 else ""
+        errors.append(
+            f"Found {len(repeating_uuids)} repeating-hex placeholder UUID(s): {examples}{more}. "
+            f"Every action UUID must be generated via `uuidgen | tr '[:lower:]' '[:upper:]'`, "
+            f"not hand-picked sequences. Re-mint ALL offending UUIDs and update every "
+            f"OutputUUID / GroupingIdentifier reference to match."
+        )
+
     if errors:
         print("Validation failed:\n")
         if first_error:

@@ -366,7 +366,11 @@ Prefer wording like `- Input uses the text output from the Text action above` an
 
 ## Key Rules
 
-1. **UUIDs must be uppercase**: `A1B2C3D4-E5F6-7890-ABCD-EF1234567890`
+1. **UUIDs must be uppercase and generated via `uuidgen`, not hand-picked.** Before emitting a shortcut, run a single Bash call to generate all the UUIDs you'll need:
+    ```bash
+    for i in $(seq 1 <N>); do uuidgen | tr '[:lower:]' '[:upper:]'; done
+    ```
+    Where `<N>` is the number of action UUIDs the shortcut requires (one per action that produces output or is referenced by downstream actions). Assign each output line to a specific action in your working map, then paste them into the plist. **Never use sequential placeholders** like `11111111-1111-1111-1111-111111111111`, `AAAAAAAA-AAAA-AAAA-AAAA-AAAAAAAAAAAA`, or any other pattern where every hex character is the same — the validator rejects repeating-hex UUIDs as a hard error. Valid example shape: `7F3A4E91-C2D8-4B56-BE5A-0242AC120002`.
 2. **WFControlFlowMode is an integer**: Use `<integer>0</integer>` not `<string>0</string>`
 3. **Range keys use format**: `{position, length}` - e.g., `{0, 1}` for first character
 4. **The placeholder character**: `` (U+FFFC) marks where variables are inserted
