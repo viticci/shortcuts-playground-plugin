@@ -1,25 +1,34 @@
 ---
 name: shortcuts-playground
-description: Build, validate, sign, and archive macOS/iOS Shortcuts by creating plist files. Use when asked to create shortcuts, automate workflows, build .shortcut files, or generate Shortcuts plists. Covers WF actions, AppIntents, third-party actions, variable references, and control flow using bundled ToolKit v63 metadata with optional local ToolKit expansion.
+description: Build, validate, sign, archive, and REMIX macOS/iOS Shortcuts by creating plist files. Use when asked to create, modify, or remix shortcuts; automate workflows; build .shortcut files; or generate Shortcuts plists. Covers WF actions, AppIntents, third-party actions, variable references, and control flow using bundled ToolKit v63 metadata with optional local ToolKit expansion.
 effort: max
 allowed-tools: Read, Write, Edit, Bash, Glob, Grep
 ---
 
 # Shortcuts Playground
 
-Generate valid `.shortcut` files that can be signed and imported into Apple's Shortcuts app.
+Generate valid `.shortcut` files that can be signed and imported into Apple's Shortcuts app. The plugin supports two workflows — building new shortcuts from scratch AND remixing existing XML shortcuts with a natural-language diff.
+
+**Two slash commands / two specialized agents:**
+
+| Command | Agent | Purpose |
+|---------|-------|---------|
+| `/shortcuts-playground:build <brief>` | `shortcut-builder` | Create a new shortcut from scratch based on a natural-language brief. |
+| `/shortcuts-playground:remix <path-to-xml> <idea>` | `shortcut-remixer` | Apply a surgical diff to an existing unsigned `.xml` shortcut. Preserves UUIDs, icon, metadata, and every action the user didn't ask to touch. |
+
+Both commands share the same skill docs, the same validator, the same `PostToolUse` auto-validation hook, and the same `sign-shortcut` archive-and-sign pipeline. The only difference is the starting point (empty plist vs. an existing source XML).
 
 **Plugin-provided commands.** When this skill is active, three wrapper commands are on the Bash `PATH`:
 
 | Command | Purpose |
 |---------|---------|
-| `resolve-icon` | Pick a Shortcuts glyph + color from a natural-language prompt (required step 5 below). |
+| `resolve-icon` | Pick a Shortcuts glyph + color from a natural-language prompt (required step 5 in the build workflow; skipped for remixes, which preserve the source icon). |
 | `validate-shortcut` | Run the Craig Loop preflight validator against a `.xml`/`.shortcut` file. |
 | `sign-shortcut` | Archive the unsigned XML, sign with `shortcuts sign`, and write the final `.shortcut` to the configured output directory. |
 
 Prefer these wrappers over calling the underlying `python3 scripts/*.py` files directly — they work from any working directory and respect plugin configuration.
 
-**Auto-validation hook.** A `PostToolUse` hook fires on every `Write`/`Edit` that produces a Shortcuts plist file and runs `validate-shortcut` automatically. Do not skip the Craig Loop when the hook reports errors — it already ran the validator for you, so read the errors and fix them before retrying.
+**Auto-validation hook.** A `PostToolUse` hook fires on every `Write`/`Edit` that produces a Shortcuts plist file and runs `validate-shortcut` automatically. Do not skip the Craig Loop when the hook reports errors — it already ran the validator for you, so read the errors and fix them before retrying. The hook applies to BOTH the builder and the remixer; neither agent needs to invoke `validate-shortcut` manually for edits it just made.
 
 **Mandatory**: Follow the guidelines in [BEST_PRACTICES.md](BEST_PRACTICES.md) for every shortcut.
 If guidance here conflicts with [BEST_PRACTICES.md](BEST_PRACTICES.md), follow `BEST_PRACTICES.md`.

@@ -2,6 +2,91 @@
 
 All notable changes to the Shortcuts Playground plugin are documented in this file. The skill-level changelog lives at `skills/shortcuts-playground/CHANGELOG.md`.
 
+## [1.5.0] — 2026-04-14
+
+### Added — Remix workflow (new command + new agent)
+
+You can now apply a natural-language diff to an existing unsigned `.xml` Shortcuts plist. This is the plugin port of the "remix mode" Federico used to drive manually from a companion Shortcuts shortcut.
+
+**New slash command: `/shortcuts-playground:remix <absolute-path-to-xml> <remix idea>`.**
+
+Point it at an absolute path to an unsigned `.xml` file plus a natural-language description of what to change. It delegates to a new `shortcut-remixer` agent that applies a **surgical diff**: existing UUIDs preserved, icon preserved, client-version metadata preserved, every action the user didn't ask to touch left verbatim.
+
+**New agent: `agents/shortcut-remixer.md`.**
+
+Mirrors the `shortcut-builder` agent on step 0 (resolve `CLAUDE_PLUGIN_OPTION_OUTPUT_DIR` first) and step 11 (mandatory verify-before-report), but has its own workflow in between:
+
+1. Parse `$ARGUMENTS` into source path + remix idea. Look for an absolute path ending in `.xml` (quoted or unquoted, with spaces permitted). If no path found, escalate immediately — never guess, never grep.
+2. Source validation: (a) file exists and is readable, (b) extension is `.xml` (NOT `.shortcut`), (c) first 4 bytes are NOT `AEA1`, (d) contains `WFWorkflowActions`. If any check fails, escalate with the specific reason.
+3. Read the full source XML.
+4. Run `validate-shortcut` on the source as a baseline. Pre-existing issues are informational — the remixer does NOT fix anything the user didn't ask to fix.
+5. Read only the skill reference files needed for the specific diff (budget: 8 total Read/Grep/Glob calls).
+6. Plan the diff: add / modify / remove, with UUIDs.
+7. Determine the new shortcut name (explicit user rename, or `<source stem> Remix`).
+8. Write a verbatim copy of the source to `<OUTPUT_DIR>/drafts/<new name>.xml` — this gives `Edit` stable anchors.
+9. Apply the diff via `Edit` calls. Each `Edit` triggers the `PostToolUse` hook which re-runs the validator. Fix errors the remixer introduced; leave pre-existing errors alone unless they block signing.
+10. Archive + sign via `sign-shortcut`.
+11. Verify the signed file exists via `ls -la`, then report: signed path, archive path, source path, one-paragraph diff summary, and any caveats.
+
+**The same `PostToolUse` auto-validate hook fires for both agents.** The hook's matcher is `Write|Edit` — it's agent-agnostic and tool-specific. Every `Write` and `Edit` the remixer performs on the draft XML triggers the validator automatically, just like the builder. Verified with an ephemeral trace during end-to-end testing (trace removed before commit).
+
+### Preservation rules (hard-coded in the remixer system prompt)
+
+- Never regenerate UUIDs for actions the user didn't explicitly ask to modify. Only new actions get new UUIDs.
+- Never change `WFWorkflowIcon` — the source's icon is preserved. (The `resolve-icon` step is skipped for remixes.)
+- Never change `WFWorkflowClientVersion`, `WFWorkflowMinimumClientVersion`, `WFWorkflowMinimumClientVersionString`, `WFWorkflowInputContentItemClasses`, `WFWorkflowOutputContentItemClasses`, or `WFWorkflowTypes`. The source is the source.
+- Never rename (`WFWorkflowName`) unless the user explicitly asks for a new name.
+- Never overwrite the source file. The remix writes to a new path under `<OUTPUT_DIR>/drafts/` with a new name (default `<source stem> Remix`).
+- Never reformat unrelated XML. The diff is surgical, not a reflow.
+- Never "clean up" pre-existing issues in the source that the user didn't mention.
+
+### Escalation paths (verified end-to-end)
+
+The remixer escalates to the orchestrator — which relays verbatim to the user — in these cases:
+
+- **No source path in `$ARGUMENTS`.** The agent echoes the input verbatim and lists three options (re-run with a path prefix, export unsigned XML, or provide the display name). It does NOT search the filesystem. Verified T1.
+- **Source is a signed `.shortcut` file** (detected via `.shortcut` extension or `AEA1` magic bytes). The agent asks the user to export unsigned XML instead. Verified T2.
+- **Source doesn't exist, is unreadable, or isn't a Shortcuts plist** (missing `WFWorkflowActions`). The agent reports the specific reason.
+- **Remix requires an undocumented parameter schema**, a ToolKit-only identifier, or a third-party action. Same escalation gates as the builder.
+
+### Shortcuts → SSH integration
+
+If you're driving the plugin from an iOS/iPadOS Shortcuts shortcut over SSH:
+
+```bash
+ssh viticci@mac-studio.tailc0622.ts.net \
+  'CLAUDE_PLUGIN_OPTION_OUTPUT_DIR="/Users/viticci/Agent/Shortcuts Playground" \
+   claude -p --dangerously-skip-permissions \
+   "/shortcuts-playground:remix /absolute/path/to/source.xml [remix idea]"'
+```
+
+Same env-var pattern as `/build`. Pair with an "end your message with `SIGNED: <path>`" contract if you want the client-side Shortcut to grep the absolute path out of the response.
+
+### Changed
+
+- **`skills/shortcuts-playground/SKILL.md`**: top-of-file block updated to list both slash commands + both agents. Skill description string updated to include "REMIX" in the trigger keywords so auto-invocation catches remix intent too.
+- **`README.md`**: "What's in the box" table now lists both agents and both slash commands. New "Remix an existing shortcut" section under Usage. Directory layout diagram reflects the new `agents/shortcut-remixer.md` and `commands/remix.md` files.
+
+### Verified (test matrix, 4/4 green)
+
+- **T1 — no-path escalation:** `/shortcuts-playground:remix add a Show Notification at the start` (no path in args). **Result:** agent immediately escalated with re-run instructions listing three options. Zero file reads, zero grep, zero hook invocations. Trace log empty — the agent performed no `Write`/`Edit` operations.
+- **T2 — signed-file escalation:** `/shortcuts-playground:remix /Users/viticci/Agent/Shortcuts Playground/Rescheduler V14.shortcut add a notification at the start`. **Result:** agent detected the `.shortcut` extension / `AEA1` magic bytes, escalated asking the user to export unsigned XML first, and suggested the specific re-run path pattern. Trace log still empty — no hook invocations.
+- **T3 — successful remix end-to-end:** `/shortcuts-playground:remix /Users/viticci/Agent/Shortcuts Playground/drafts/Rescheduler V14.xml add a Show Notification action at the very start… Name the remix Rescheduler V14 Notified.` **Result:**
+  - Signed output at `~/Documents/Shortcuts Playground/Rescheduler V14 Notified.shortcut`, AEA1 magic confirmed.
+  - Archive XML at `~/Documents/Shortcuts Playground/2026-04-14/Rescheduler V14 Notified-142753.xml`, validator-clean.
+  - **All 10 source UUIDs preserved** (exact diff: no source UUIDs missing from the remix).
+  - **Exactly 1 new UUID added** for the new notification action.
+  - **Icon preserved**: glyph `61464`, start color `3031607807` (unchanged byte-for-byte).
+  - **`WFWorkflowName` updated to "Rescheduler V14 Notified"** per the user's explicit rename.
+  - **Leading Comment block**: index 0 contains the remix description ("Rescheduler V14 Notified — Remixed from Rescheduler V14. Added a Show Notification action at the very start…"), index 1 contains the disclaimer with "Remixed via /shortcuts-playground:remix." suffix. Source's original description Comment preserved at index 3 verbatim.
+  - **New notification action** inserted at index 2 (first executable position after the leading Comments). Source's own trailing confirmation notification (unrelated to the new one) preserved at the tail.
+  - **Action count**: 16 (source) → 17 (remix), +1 new action.
+- **T4 — hook fires during remix:** ephemeral trace added to `hooks/auto-validate.sh` during the T3 test run. **Result:** hook fired 5 times across the remix flow (1 initial `Write` of the verbatim source copy + 4 subsequent `Edit` calls for the comment updates, name update, and notification insertion). Each invocation logged the correct absolute path of the draft file. Trace reverted before commit — `hooks/auto-validate.sh` is now back to its pre-test state.
+
+### Known issue flagged (not a v1.5.0 regression)
+
+- **Placeholder UUIDs.** Both `shortcut-builder` and `shortcut-remixer` are producing sequential-placeholder UUIDs (`11111111-1111-1111-1111-111111111111`, `22222222-…`, etc.) instead of `uuidgen`-random values. This was already present in the v1.4.0 `Rescheduler V14.xml` build output — the remixer in this release just preserved the existing pattern. Functionally valid (unique within each file, correct format, uppercase), but not ideal for long-term uniqueness across multiple shortcuts in the same library. Fix will land as a follow-up patch by tightening the UUID-generation rule in both agent system prompts to require `uuidgen` output rather than placeholder sequences.
+
 ## [1.4.1] — 2026-04-14
 
 ### Added (docs-only patch, verified against a second Apple-built sample)

@@ -14,11 +14,12 @@ Writing valid Shortcuts plists by hand — even with an LLM — is miserable. Th
 
 | Component | Path | Purpose |
 |-----------|------|---------|
-| **Skill** | `skills/shortcuts-playground/` | The complete 12k-line Shortcuts knowledge base: action identifiers, wiring rules, 55 `BEST_PRACTICES.md` entries, golden example XMLs, ToolKit v63 metadata. Claude loads it automatically when you ask for a shortcut. |
-| **Agent** | `agents/shortcut-builder.md` | `shortcut-builder` — a specialized agent that owns the full design → build → validate → sign → archive loop. Keeps the main thread free of the knowledge base's context cost. |
-| **Hook** | `hooks/hooks.json` + `hooks/auto-validate.sh` | `PostToolUse` hook that runs the Craig Loop validator on every `Write`/`Edit` producing a Shortcuts plist. Exit code 2 + stderr feeds validator output back into Claude's context so the model can iterate. |
+| **Skill** | `skills/shortcuts-playground/` | The complete 12k-line Shortcuts knowledge base: action identifiers, wiring rules, 56 `BEST_PRACTICES.md` entries, golden example XMLs, ToolKit v63 metadata. Claude loads it automatically when you ask for a shortcut. |
+| **Build agent** | `agents/shortcut-builder.md` | `shortcut-builder` — specialized agent that owns the full design → build → validate → sign → archive loop for new shortcuts. |
+| **Remix agent** | `agents/shortcut-remixer.md` | `shortcut-remixer` — specialized agent that applies a surgical natural-language diff to an existing unsigned XML shortcut. Preserves UUIDs, icon, metadata, and every action the user didn't ask to touch. |
+| **Hook** | `hooks/hooks.json` + `hooks/auto-validate.sh` | `PostToolUse` hook that runs the Craig Loop validator on every `Write`/`Edit` producing a Shortcuts plist — applies to BOTH agents. Exit code 2 + stderr feeds validator output back into Claude's context so the model can iterate. |
 | **CLI** | `bin/validate-shortcut`, `bin/resolve-icon`, `bin/sign-shortcut`, `bin/shortcuts-playground-selftest` | Bare commands added to Claude's Bash `PATH` whenever the plugin is enabled. Work from any working directory. |
-| **Slash command** | `commands/build.md` | `/shortcuts-playground:build <brief>` — explicit entry point that delegates to the `shortcut-builder` agent. Pass any natural-language brief as `$ARGUMENTS`. |
+| **Slash commands** | `commands/build.md`, `commands/remix.md` | `/shortcuts-playground:build <brief>` — create from scratch. `/shortcuts-playground:remix <path> <idea>` — diff an existing unsigned `.xml` file. |
 | **User config** | `plugin.json` → `userConfig` | `output_dir` (archive root) and `signing_mode` (`anyone` or `people-who-know-me`). See [Configuration](#configuration) for how to set these. |
 
 ## Requirements
@@ -137,7 +138,9 @@ If none of these are set, the plugin falls back to `~/Documents/Shortcuts Playgr
 
 ## Usage
 
-Two entry points, same result.
+Two workflows, two commands: **build** (from scratch) and **remix** (diff an existing XML).
+
+### Build a new shortcut
 
 **Natural language (auto-invocation).** Just describe what you want:
 
@@ -155,7 +158,7 @@ Claude's skill auto-invocation picks up the Shortcuts intent and delegates to th
 
 Everything after `:build` becomes the brief passed to the agent. Useful when you want to make sure the agent is invoked (for example, inside a long conversation where Claude might not auto-route).
 
-Either path does the same thing — the agent:
+Either path does the same thing — the `shortcut-builder` agent:
 1. Reads the skill's `SKILL.md` and the relevant reference files.
 2. Designs the action list and picks UUIDs.
 3. Runs `resolve-icon --prompt "<your request>"` to choose a glyph + color.
@@ -164,6 +167,31 @@ Either path does the same thing — the agent:
 6. The agent edits until the validator passes (max 5 fix iterations).
 7. Runs `sign-shortcut` to archive the unsigned XML and produce a signed `.shortcut`.
 8. Returns the paths so you can open the signed file in Shortcuts.app.
+
+### Remix an existing shortcut
+
+When you already have a shortcut and want to apply small changes, use `/shortcuts-playground:remix`. Pass an **absolute path to an unsigned `.xml` file** (NOT a signed `.shortcut` — those are AEA1 encrypted archives) plus a natural-language description of what to change:
+
+```
+/shortcuts-playground:remix /Users/you/Documents/Shortcuts Playground/drafts/Weather.xml add a notification at the start saying "Fetching weather"
+```
+
+The `shortcut-remixer` agent:
+1. Parses the command input into a source path + a remix idea.
+2. Validates the source (exists, `.xml` not `.shortcut`, first bytes aren't `AEA1`, contains `WFWorkflowActions`). If any check fails, it escalates with a specific reason — it never guesses.
+3. Reads the full source and baselines it against the validator (pre-existing issues in the source are informational, not fixed unless they block signing).
+4. Loads relevant skill reference files for the diff you asked for.
+5. Plans a surgical diff: which actions to add, modify, or remove. Preserves every other action verbatim. Preserves UUIDs, `WFWorkflowIcon`, client-version fields, and `WFWorkflowName` (unless you explicitly renamed it).
+6. Writes the draft to `output_dir/drafts/<source stem> Remix.xml` (or your explicit name).
+7. Runs the Craig Loop via the same `PostToolUse` hook that the builder uses.
+8. Archives + signs via `sign-shortcut`, then verifies the signed file exists.
+9. Reports: signed path, archive path, source path, and a one-paragraph diff summary of what changed.
+
+**Key remix rules:**
+- The source is **never overwritten**. The remix writes to a new name so your original stays intact.
+- Signed `.shortcut` files **cannot be remixed directly** — export them as unsigned XML first (Shortcuts.app → Share → Copy → paste into a `.xml` file).
+- If you don't provide an absolute path, the agent immediately escalates with instructions on how to provide one. It doesn't search your filesystem for "a shortcut that looks like" your intent.
+- The remix output carries the "Shortcuts generated by Shortcuts Playground" disclaimer Comment in its leading actions — your source's existing top-level comments are preserved below.
 
 ### Manual commands
 
@@ -201,9 +229,11 @@ shortcuts-playground-plugin/
 │       ├── golden-shortcuts/    # 19 curated example XMLs
 │       └── scripts/             # Python implementations
 ├── agents/
-│   └── shortcut-builder.md      # specialized build agent
+│   ├── shortcut-builder.md      # build-from-scratch agent
+│   └── shortcut-remixer.md      # diff-an-existing-XML agent
 ├── commands/
-│   └── build.md                 # /shortcuts-playground:build slash command
+│   ├── build.md                 # /shortcuts-playground:build slash command
+│   └── remix.md                 # /shortcuts-playground:remix slash command
 ├── hooks/
 │   ├── hooks.json               # PostToolUse config
 │   └── auto-validate.sh         # Craig Loop hook runner
