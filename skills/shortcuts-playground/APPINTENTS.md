@@ -142,6 +142,10 @@ Examples:
 
 ### Reminders (36 actions)
 
+⚠️ **For editing an existing reminder's properties (Due Date, Title, Notes, Priority, Is Completed, Is Flagged, List, Subtasks, URL, Tags, Images, Parent Reminder, When Messaging Person), DO NOT use `com.apple.reminders.UpdateReminderAppIntent`.** Its parameter schema is not published and may change between OS releases. Instead, use the classic WorkflowKit action `is.workflow.actions.setters.reminders` — its schema is fully documented in [PARAMETER_TYPES.md → Reminders — Filter & Setter Schemas](PARAMETER_TYPES.md#reminders--filter--setter-schemas-definitive) and verified against an Apple-built sample.
+
+The AppIntents below exist in the allowlist for completeness (for actions like `CompleteReminderAppIntent` that have no WF equivalent), but **prefer the WF-action path** for any editing workflow.
+
 | Identifier | Title |
 |------------|-------|
 | `com.apple.reminders.AddOrRemoveTagsAppIntent` | Add or Remove Tags |

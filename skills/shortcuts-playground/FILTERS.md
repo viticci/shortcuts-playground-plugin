@@ -131,6 +131,38 @@ The `is in the last` operator (1001) requires Number and Unit:
 </dict>
 ```
 
+### "Is Between" Date Filter (verified against an Apple-built sample)
+
+The `is between` operator (1003), **for date properties**, uses two value keys: `Date` for the lower bound (literal ISO date) and `AnotherDate` for the upper bound (token attachment, commonly `{Type: "CurrentDate"}` or another date variable):
+
+```xml
+<dict>
+    <key>Operator</key>
+    <integer>1003</integer>
+    <key>Property</key>
+    <string>Due Date</string>
+    <key>Removable</key>
+    <true/>
+    <key>Values</key>
+    <dict>
+        <key>Date</key>
+        <date>2026-04-13T09:54:12Z</date>
+        <key>AnotherDate</key>
+        <dict>
+            <key>Value</key>
+            <dict>
+                <key>Type</key>
+                <string>CurrentDate</string>
+            </dict>
+            <key>WFSerializationType</key>
+            <string>WFTextTokenAttachment</string>
+        </dict>
+    </dict>
+</dict>
+```
+
+⚠️ **Date filter `1003` ≠ numeric If conditional `1003`.** The If conditional version uses `WFNumberValue` + `WFAnotherNumber`. Filter-table version uses `Values.Date` + `Values.AnotherDate`. Do NOT copy one structure into the other.
+
 ### Enumeration Filter (e.g., Media Type)
 
 **IMPORTANT**: Media Type only accepts: `Image`, `Video`, `Live Photo`
@@ -340,9 +372,91 @@ Find screenshots taken today:
 | `Title` | String | Reminder title |
 | `Is Completed` | Boolean | true/false |
 | `Priority` | Enumeration | `None`, `Low`, `Medium`, `High` |
-| `Due Date` | Date | Use date operators |
+| `Due Date` | Date | Use date operators (1000–1003) |
 | `Creation Date` | Date | Use date operators |
-| `List` | Enumeration | List names |
+| `List` | Enumeration | List names — match via operator `4` with `Values.Enumeration` |
+
+**Reminders-specific filter example (verified from an Apple-built sample). Any-are-true OR of: List is "Reminders" OR Due Date is today OR Due Date is between a literal date and Current Date:**
+
+```xml
+<dict>
+    <key>WFWorkflowActionIdentifier</key>
+    <string>is.workflow.actions.filter.reminders</string>
+    <key>WFWorkflowActionParameters</key>
+    <dict>
+        <key>UUID</key>
+        <string>FIND-REMINDERS-UUID</string>
+        <key>WFContentItemFilter</key>
+        <dict>
+            <key>Value</key>
+            <dict>
+                <key>WFActionParameterFilterPrefix</key>
+                <integer>0</integer>
+                <key>WFActionParameterFilterTemplates</key>
+                <array>
+                    <dict>
+                        <key>Operator</key>
+                        <integer>4</integer>
+                        <key>Property</key>
+                        <string>List</string>
+                        <key>Removable</key>
+                        <true/>
+                        <key>Values</key>
+                        <dict>
+                            <key>Enumeration</key>
+                            <dict>
+                                <key>Value</key>
+                                <string>Reminders</string>
+                                <key>WFSerializationType</key>
+                                <string>WFStringSubstitutableState</string>
+                            </dict>
+                        </dict>
+                    </dict>
+                    <dict>
+                        <key>Operator</key>
+                        <integer>1002</integer>
+                        <key>Property</key>
+                        <string>Due Date</string>
+                        <key>Removable</key>
+                        <true/>
+                        <key>Values</key>
+                        <dict/>
+                    </dict>
+                    <dict>
+                        <key>Operator</key>
+                        <integer>1003</integer>
+                        <key>Property</key>
+                        <string>Due Date</string>
+                        <key>Removable</key>
+                        <true/>
+                        <key>Values</key>
+                        <dict>
+                            <key>Date</key>
+                            <date>2026-04-13T09:54:12Z</date>
+                            <key>AnotherDate</key>
+                            <dict>
+                                <key>Value</key>
+                                <dict>
+                                    <key>Type</key>
+                                    <string>CurrentDate</string>
+                                </dict>
+                                <key>WFSerializationType</key>
+                                <string>WFTextTokenAttachment</string>
+                            </dict>
+                        </dict>
+                    </dict>
+                </array>
+                <key>WFContentPredicateBoundedDate</key>
+                <false/>
+            </dict>
+            <key>WFSerializationType</key>
+            <string>WFContentPredicateTableTemplate</string>
+        </dict>
+    </dict>
+</dict>
+```
+
+For the editing side (`is.workflow.actions.setters.reminders`), see [PARAMETER_TYPES.md → Reminders — Filter & Setter Schemas](PARAMETER_TYPES.md#reminders--filter--setter-schemas-definitive) for the complete list of property names and their value keys.
 
 ---
 

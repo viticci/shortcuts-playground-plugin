@@ -2,6 +2,56 @@
 
 All notable changes to the Shortcuts Playground plugin are documented in this file. The skill-level changelog lives at `skills/shortcuts-playground/CHANGELOG.md`.
 
+## [1.4.0] — 2026-04-14
+
+### Fixed — all the blockers surfaced by session 5174fcb1
+
+Federico ran a real "Rescheduler" build and the session exposed five distinct problems:
+
+1. **Docs gap on Reminders schema.** The `is.workflow.actions.setters.reminders` action was allowlisted but had no documented parameter schema. The first subagent escalated per the v1.2.0 rule; the main thread then spent 20+ tool calls rediscovering the schema by grepping user paths.
+2. **Agent went down the `UpdateReminderAppIntent` dead end first.** The docs didn't tell it to prefer the classic WF action over the newer AppIntent.
+3. **Draft/output split.** The agent wrote the draft to `~/Documents/Shortcuts Playground/drafts/` (the hardcoded fallback) instead of resolving `CLAUDE_PLUGIN_OPTION_OUTPUT_DIR` to the user-configured output directory. The signed file then landed in the correct dir (because `sign-shortcut` resolves the env var at shell level), but the draft was orphaned elsewhere.
+4. **Subagent stopped after drafting.** It finished validate → fix → revalidate, but never called `sign-shortcut`. The main thread had to sign manually.
+5. **Main thread did open-ended research.** When the subagent escalated, the main thread grepped `~/Documents/Shortcuts Playground`, `~/Agent`, `~/.claude/skills/shortcuts-playground` (deleted), and the plugin dir — wandering into user paths that shouldn't have been in scope.
+
+### Added — Reminders recipes verified against an Apple-built sample
+
+Federico provided a second sample shortcut (`Reminder Edits.xml`) that exercises `filter.reminders` with date operators plus `setters.reminders` applied to 13 different property names. That sample is now the ground truth. New content:
+
+- **`skills/shortcuts-playground/PARAMETER_TYPES.md` → new section "Reminders — Filter & Setter Schemas (DEFINITIVE)"**
+  - Full `filter.reminders` template structure (`Operator`/`Property`/`Values`, distinguished from If conditional templates).
+  - Date operator codes: `1002` ("is today", empty `Values`), `1003` ("is between", `Values.Date` literal + `Values.AnotherDate` token attachment). Explicitly flags the difference from If conditional `1003` (which uses `WFNumberValue`/`WFAnotherNumber`).
+  - Full `setters.reminders` template with `Mode`, `UUID`, `WFContentItemPropertyName`, chained `WFInput`, and the verified per-property value-key table: Due Date, Title, Parent Reminder, Subtasks, URL, Notes, Tags, When Messaging Person, Images, Priority, Is Completed, Is Flagged, List. Notes that `List` is the only property taking a plain string (not a token attachment).
+  - Verbatim templates for single-property set, chained multi-property set, and the common "reschedule" pattern from a date-picker variable.
+  - Anti-pattern list: never use `UpdateReminderAppIntent`, never chain setters without `WFInput`, never wrap `WFReminderContentItemList` in a token attachment, never conflate filter `1003` with If conditional `1003`.
+
+- **`skills/shortcuts-playground/FILTERS.md` — new "Is Between Date Filter" template** with the `Values.Date` + `Values.AnotherDate` structure, plus a verbatim Reminders-specific multi-row filter example.
+
+- **`skills/shortcuts-playground/APPINTENTS.md`** — leading warning on the Reminders section explicitly directing builds away from `UpdateReminderAppIntent` and toward the documented `is.workflow.actions.setters.reminders` path.
+
+- **`skills/shortcuts-playground/SKILL.md` new rule 56** — summarizes the Reminders-always-use-setters rule and the filter date operator codes, with a pointer to the PARAMETER_TYPES.md section.
+
+### Changed — agent behavior hardening
+
+**`agents/shortcut-builder.md`:**
+- **New step 0: "Resolve the output directory FIRST."** The agent must run a Bash command to echo the resolved absolute path from `${CLAUDE_PLUGIN_OPTION_OUTPUT_DIR:-$HOME/Documents/Shortcuts Playground}` before doing anything else, then use that literal path for every subsequent Write/Edit/Bash call. Eliminates the draft-path split bug.
+- **New step 10: "Verify + report (MANDATORY)."** The agent is not done until `ls -la "<OUTPUT_DIR>/<name>.shortcut"` succeeds with non-zero file size. "Validation passed" alone is not a valid terminal state — the agent must sign and verify before declaring the build complete.
+- **Explicit allowed-search-paths rule.** The agent may Grep/Glob/Read only inside `${CLAUDE_PLUGIN_ROOT}` and the specific file being written inside `<OUTPUT_DIR>`. Every other path — `~/Documents` broadly, `~/Agent`, `~/.claude`, `~/Library`, `/Applications`, `/System` — is off limits. If the answer isn't in the plugin directory, escalate to the user per the validation gates; do not go hunting.
+
+**`commands/build.md`:**
+- **Orchestrator research scope rule.** When the subagent escalates, the main thread may read only the plugin directory and the specific draft file the agent just wrote. It may NOT grep `~/Documents` broadly, `~/Agent`, `~/.claude/skills`, `~/.claude/plugins`, `~/.claude/projects`, `~/Library`, `/Applications`, or `/System`. If the plugin directory doesn't have the answer, the main thread relays the escalation to the user verbatim instead of improvising.
+- **No archive mining.** The plugin's output directory contains user-generated content, not curated examples. It may include dead ends, deprecated patterns, or quality issues. The canonical reference is the plugin directory itself. If a reference corpus is ever needed, it will be an explicit opt-in `reference/` subdirectory, not implicit archive mining.
+- **No binary inspection of signed shortcuts.** Signed files are Apple Encrypted Archives (`AEA1`); they can't be read as plaintext plists via `plutil`/`xxd`/`file`. If you need to see the structure, read the unsigned XML in the drafts folder instead.
+
+### Verified
+
+- `shortcuts-playground-selftest` passes.
+- `claude plugin validate` passes on both plugin.json and the dev marketplace.json.
+- The Apple-built `Reminder Edits` sample produces **zero filter/setter schema errors** — only the expected convention-only errors (missing Comment blocks, unused input content classes).
+- `sign-shortcut --output-dir` flag correctly wins over `CLAUDE_PLUGIN_OPTION_OUTPUT_DIR` env var: flag writes to the flag path, env-var path stays empty. Both produce signed files with `AEA1` magic bytes.
+- `PostToolUse` auto-validate hook fires on every Write that produces a Shortcuts plist; verified via an ephemeral trace log in a fresh headless session (trace removed before commit).
+- The Rescheduler prompt from session 5174fcb1 — re-run on v1.4.0 — [see test matrix below].
+
 ## [1.3.0] — 2026-04-13
 
 ### Fixed (factually wrong conditional documentation)

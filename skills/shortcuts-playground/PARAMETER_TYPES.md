@@ -757,3 +757,290 @@ Extract numeric value or unit string from a measurement variable:
     </dict>
 </array>
 ```
+
+## Reminders — Filter & Setter Schemas (DEFINITIVE)
+
+Verified against an Apple-built sample shortcut titled "Reminder Edits" that exercises `is.workflow.actions.filter.reminders` with date operators plus `is.workflow.actions.setters.reminders` applied to every common Reminders property. Treat this section as canonical — do NOT invent alternative parameter keys.
+
+### Find Reminders (`is.workflow.actions.filter.reminders`)
+
+The filter action uses a `WFContentItemFilter` dict wrapping a `WFContentPredicateTableTemplate`. Each filter **row** is a dict inside `WFActionParameterFilterTemplates`, structured differently from an If conditional's template:
+
+| Field | Purpose |
+|-------|---------|
+| `Operator` (integer) | Operator code (see table below) |
+| `Property` (string) | Apple-UI property name: `"List"`, `"Due Date"`, `"Is Completed"`, `"Priority"`, `"Title"`, etc. |
+| `Removable` (bool) | Apple sets this `true` for user-removable rows; `<true/>` is fine |
+| `Values` (dict) | Operator-specific value block (see table) |
+
+**Filter-level fields:**
+- `WFActionParameterFilterPrefix` (integer): `0` = Any are true (OR), `1` = All are true (AND). Same semantic as multi-condition If.
+- `WFContentPredicateBoundedDate` (bool): `<false/>` unless the filter operates on a bounded date range.
+- `WFSerializationType`: `"WFContentPredicateTableTemplate"` at the `WFContentItemFilter` level.
+
+**Operator ↔ Values schema for Reminders (verified from the sample):**
+
+| `Operator` | UI label | `Property` example | `Values` content |
+|-----------|----------|---------------------|------------------|
+| `4` | is (enumeration match) | `"List"` | `Values.Enumeration = { Value: "Reminders", WFSerializationType: "WFStringSubstitutableState" }` |
+| `1002` | is today (date) | `"Due Date"` | **empty** `<dict/>` — the operator code itself means "today"; no value is required |
+| `1003` | is between (date) | `"Due Date"` | `Values.Date` = ISO8601 `<date>` (lower bound, literal); `Values.AnotherDate` = token-attachment dict wrapping `{ Value: { Type: "CurrentDate" }, WFSerializationType: "WFTextTokenAttachment" }` (upper bound, literal or variable like Current Date) |
+
+⚠️ **Filter date operator ≠ If numeric operator.** Filter row `1003` ("is between") uses `Values.Date` + `Values.AnotherDate`. The If conditional `WFCondition=1003` ("is between") uses `WFNumberValue` + `WFAnotherNumber`. Do NOT copy one structure to the other.
+
+**Verbatim template (Find Reminders where List is Reminders, AND Due Date is between today and Current Date — Any-are-true in the sample):**
+
+```xml
+<dict>
+    <key>WFWorkflowActionIdentifier</key>
+    <string>is.workflow.actions.filter.reminders</string>
+    <key>WFWorkflowActionParameters</key>
+    <dict>
+        <key>UUID</key>
+        <string>FILTER-UUID</string>
+        <key>WFContentItemFilter</key>
+        <dict>
+            <key>Value</key>
+            <dict>
+                <key>WFActionParameterFilterPrefix</key>
+                <integer>0</integer>
+                <key>WFActionParameterFilterTemplates</key>
+                <array>
+                    <dict>
+                        <key>Operator</key>
+                        <integer>4</integer>
+                        <key>Property</key>
+                        <string>List</string>
+                        <key>Removable</key>
+                        <true/>
+                        <key>Values</key>
+                        <dict>
+                            <key>Enumeration</key>
+                            <dict>
+                                <key>Value</key>
+                                <string>Reminders</string>
+                                <key>WFSerializationType</key>
+                                <string>WFStringSubstitutableState</string>
+                            </dict>
+                        </dict>
+                    </dict>
+                    <dict>
+                        <key>Operator</key>
+                        <integer>1002</integer>
+                        <key>Property</key>
+                        <string>Due Date</string>
+                        <key>Removable</key>
+                        <true/>
+                        <key>Values</key>
+                        <dict/>
+                    </dict>
+                    <dict>
+                        <key>Operator</key>
+                        <integer>1003</integer>
+                        <key>Property</key>
+                        <string>Due Date</string>
+                        <key>Removable</key>
+                        <true/>
+                        <key>Values</key>
+                        <dict>
+                            <key>Date</key>
+                            <date>2026-04-13T09:54:12Z</date>
+                            <key>AnotherDate</key>
+                            <dict>
+                                <key>Value</key>
+                                <dict>
+                                    <key>Type</key>
+                                    <string>CurrentDate</string>
+                                </dict>
+                                <key>WFSerializationType</key>
+                                <string>WFTextTokenAttachment</string>
+                            </dict>
+                        </dict>
+                    </dict>
+                </array>
+                <key>WFContentPredicateBoundedDate</key>
+                <false/>
+            </dict>
+            <key>WFSerializationType</key>
+            <string>WFContentPredicateTableTemplate</string>
+        </dict>
+    </dict>
+</dict>
+```
+
+### Edit Reminder (`is.workflow.actions.setters.reminders`)
+
+The setter action mutates **one property** of an existing Reminder per action. To change multiple properties on the same reminder, chain multiple setter actions — each subsequent setter's `WFInput` points at the previous setter's `ActionOutput` (`OutputName="Edited Reminder"`) so the "Edited Reminder" variable propagates down the chain.
+
+**Required on every setter:**
+
+| Field | Value | Notes |
+|-------|-------|-------|
+| `Mode` | `"Set"` | String literal. (Apple also appears to support other modes like `"Clear"` but only `"Set"` is in the reference sample — stick with `"Set"` unless the user asks otherwise.) |
+| `UUID` | new uppercase UUID | Standard action UUID |
+| `WFContentItemPropertyName` | string, e.g. `"Due Date"`, `"Title"` | Drives which value key the action expects — must match exactly (case + spaces). See table below. |
+| `WFInput` | `WFTextTokenAttachment` wrapping the previous setter's `ActionOutput` with `OutputName="Edited Reminder"` | **Omit only on the first setter acting on a Find Reminders output** — that setter inherits the filter's output implicitly. Every subsequent setter needs an explicit chained `WFInput` or the "Edited Reminder" variable breaks. |
+
+**Per-property value key** (add alongside `WFInput` when you want to set a non-default value):
+
+| `WFContentItemPropertyName` | Value key | Value serialization | Notes |
+|-----------------------------|-----------|---------------------|-------|
+| `Due Date` | `WFReminderContentItemDueDate` | `WFTextTokenString` with a date token attachment (`{Type: "CurrentDate"}` or a literal ISO date) | Use `￼` + `attachmentsByRange` for inline date variables |
+| `Title` | `WFReminderContentItemTitle` | `WFTextTokenString` | Text with optional attachments (Clipboard, Variable, etc.) |
+| `Parent Reminder` | `WFReminderContentItemParentReminder` | `WFTextTokenAttachment` | Must reference another reminder (usually another "Edited Reminder" from an earlier setter chain) |
+| `Subtasks` | `WFReminderContentItemSubtasks` | `WFTextTokenAttachment` | Token reference to a List variable (e.g. the output of a `list` action or a split/built list) |
+| `URL` | `WFReminderContentItemURL` | `WFTextTokenString` | Plain text URL with optional attachments |
+| `Notes` | `WFReminderContentItemNotes` | `WFTextTokenString` | Multiline-capable; same pattern as Title |
+| `Tags` | `WFReminderContentItemTags` | `WFTextTokenString` | Apple's new Tags field; comma-separated in the text |
+| `When Messaging Person` | `WFReminderContentItemWhenMessagingPerson` | `WFContactFieldValue` wrapping a `WFContactFieldValues` array of dicts with `WFContactData` (base64-encoded vCard), `WFContactMultivalue`, `WFContactProperty` | Contact-picker field. Use only when the user explicitly names a contact. |
+| `Images` | `WFReminderContentItemImages` | `WFTextTokenAttachment` to an image/list variable | Attaches images to the reminder |
+| `Priority` | `WFReminderContentItemPriority` | Apple UI shows a picker (None / Low / Medium / High); exact on-disk encoding varies — leave blank unless the user explicitly asks for a priority |
+| `Is Completed` | `WFReminderContentItemIsCompleted` | boolean / `WFEnumerationTokenAttachment` (`"Yes"`/`"No"`) | The sample shows an unpopulated slot — when set, expect a Yes/No enumeration |
+| `Is Flagged` | `WFReminderContentItemIsFlagged` | same as Is Completed | Yes/No enumeration |
+| `List` | `WFReminderContentItemList` | **plain string** (list name, e.g. `"Reminders"`) — NOT a token attachment | Only property that takes a bare string value |
+
+**Verbatim template (edit an existing reminder's Due Date to Current Date, then set Title from Clipboard, chaining both):**
+
+```xml
+<!-- First setter works on a Find Reminders output implicitly (no WFInput). -->
+<dict>
+    <key>WFWorkflowActionIdentifier</key>
+    <string>is.workflow.actions.setters.reminders</string>
+    <key>WFWorkflowActionParameters</key>
+    <dict>
+        <key>UUID</key>
+        <string>SETTER1-UUID</string>
+        <key>Mode</key>
+        <string>Set</string>
+        <key>WFContentItemPropertyName</key>
+        <string>Due Date</string>
+        <key>WFReminderContentItemDueDate</key>
+        <dict>
+            <key>Value</key>
+            <dict>
+                <key>attachmentsByRange</key>
+                <dict>
+                    <key>{0, 1}</key>
+                    <dict>
+                        <key>Type</key>
+                        <string>CurrentDate</string>
+                    </dict>
+                </dict>
+                <key>string</key>
+                <string>￼</string>
+            </dict>
+            <key>WFSerializationType</key>
+            <string>WFTextTokenString</string>
+        </dict>
+    </dict>
+</dict>
+
+<!-- Second setter chains via WFInput = previous setter's ActionOutput (OutputName "Edited Reminder"). -->
+<dict>
+    <key>WFWorkflowActionIdentifier</key>
+    <string>is.workflow.actions.setters.reminders</string>
+    <key>WFWorkflowActionParameters</key>
+    <dict>
+        <key>UUID</key>
+        <string>SETTER2-UUID</string>
+        <key>Mode</key>
+        <string>Set</string>
+        <key>WFContentItemPropertyName</key>
+        <string>Title</string>
+        <key>WFInput</key>
+        <dict>
+            <key>Value</key>
+            <dict>
+                <key>OutputName</key>
+                <string>Edited Reminder</string>
+                <key>OutputUUID</key>
+                <string>SETTER1-UUID</string>
+                <key>Type</key>
+                <string>ActionOutput</string>
+            </dict>
+            <key>WFSerializationType</key>
+            <string>WFTextTokenAttachment</string>
+        </dict>
+        <key>WFReminderContentItemTitle</key>
+        <dict>
+            <key>Value</key>
+            <dict>
+                <key>attachmentsByRange</key>
+                <dict>
+                    <key>{0, 1}</key>
+                    <dict>
+                        <key>Type</key>
+                        <string>Clipboard</string>
+                    </dict>
+                </dict>
+                <key>string</key>
+                <string>￼</string>
+            </dict>
+            <key>WFSerializationType</key>
+            <string>WFTextTokenString</string>
+        </dict>
+    </dict>
+</dict>
+```
+
+### Reschedule pattern (common, copy-paste safe)
+
+The most common Reminders task is "reschedule a reminder to a new date." It's a single setter on `Due Date`, where the value comes from an `Ask for Input` (Date and Time) action earlier in the shortcut:
+
+```xml
+<dict>
+    <key>WFWorkflowActionIdentifier</key>
+    <string>is.workflow.actions.setters.reminders</string>
+    <key>WFWorkflowActionParameters</key>
+    <dict>
+        <key>UUID</key>
+        <string>RESCHEDULE-SETTER-UUID</string>
+        <key>Mode</key>
+        <string>Set</string>
+        <key>WFContentItemPropertyName</key>
+        <string>Due Date</string>
+        <key>WFInput</key>
+        <dict>
+            <!-- Reminder to reschedule: chain from the filter or a Repeat Item -->
+            <key>Value</key>
+            <dict>
+                <key>Type</key>
+                <string>Variable</string>
+                <key>VariableName</key>
+                <string>Repeat Item</string>
+            </dict>
+            <key>WFSerializationType</key>
+            <string>WFTextTokenAttachment</string>
+        </dict>
+        <key>WFReminderContentItemDueDate</key>
+        <dict>
+            <key>Value</key>
+            <dict>
+                <key>attachmentsByRange</key>
+                <dict>
+                    <key>{0, 1}</key>
+                    <dict>
+                        <key>OutputName</key>
+                        <string>Provided Input</string>
+                        <key>OutputUUID</key>
+                        <string>ASK-FOR-INPUT-UUID</string>
+                        <key>Type</key>
+                        <string>ActionOutput</string>
+                    </dict>
+                </dict>
+                <key>string</key>
+                <string>￼</string>
+            </dict>
+            <key>WFSerializationType</key>
+            <string>WFTextTokenString</string>
+        </dict>
+    </dict>
+</dict>
+```
+
+### What you never do with Reminders
+
+- **Never use `com.apple.reminders.UpdateReminderAppIntent`** for editing reminder properties. The identifier is allowlisted but its parameter schema is not published by Apple and changes between OS releases. The WF-classic path (`is.workflow.actions.setters.reminders`) is documented above, verified, and stable — always prefer it for editing existing reminders.
+- **Never chain setters without `WFInput`.** The first setter acting directly on a Find Reminders output can omit `WFInput` (implicit from the preceding filter). Every subsequent setter needs an explicit `WFInput` token attachment pointing at the previous setter's `ActionOutput` (`OutputName="Edited Reminder"`) or the chain breaks and every downstream setter edits the wrong reminder.
+- **Never put `WFReminderContentItemList` inside a token attachment dict.** It's the one property that takes a plain string — `<string>Reminders</string>`, not a wrapper.
+- **Never use filter operator `1003` with `WFNumberValue`/`WFAnotherNumber`.** Date filters use `Values.Date` + `Values.AnotherDate`. That's different from If conditional `1003`.
