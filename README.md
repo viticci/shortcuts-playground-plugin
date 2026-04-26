@@ -285,7 +285,7 @@ The first covers 40 Weather Detail cases, 40 Location parameter cases, and 12 Se
 
 ## Credits
 
-- Built by **[Federico Viticci](https://www.macstories.net)** at **MacStories**, with Claude.
+- Built at **MacStories**, with Claude.
 - Grew out of the standalone `shortcuts-generator` Claude Code skill, which bundles action identifiers, validator heuristics, and wiring rules derived from Apple's ToolKit v63 database.
 
 ## License

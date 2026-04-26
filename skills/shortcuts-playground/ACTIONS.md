@@ -1,6 +1,6 @@
 # Shortcuts Actions Reference
 
-Complete catalog of all 365 WF*Action identifiers (macOS ToolKit v63 + local iOS HealthKit backups).
+Complete catalog of all 365 WF*Action identifiers (macOS ToolKit v63 + bundled iOS HealthKit backups).
 
 > Note: In ToolKit SQLite `Tools`, four control-flow actions are not represented as normal tools:
 > `is.workflow.actions.conditional`, `is.workflow.actions.repeat.count`,

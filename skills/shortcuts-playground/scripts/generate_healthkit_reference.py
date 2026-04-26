@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
-"""Generate a local HealthKit reference used by the Shortcuts validator tests.
+"""Generate the bundled HealthKit reference used by the validator tests.
 
-The plist syntax for Shortcuts Health actions comes from Federico's iPhone
-exports. This script supplements that with the local Xcode iPhoneOS SDK so the
-test suite can cover every HealthKit type/value family available on this Mac.
+The plist syntax for Shortcuts Health actions comes from anonymized iOS
+Shortcuts XML examples captured while building this reference. This script
+supplements that with the installed iPhoneOS SDK so the test suite can cover
+every HealthKit type/value family available on the generator machine.
 """
 
 from __future__ import annotations
@@ -62,10 +63,9 @@ SAMPLE_DETAIL_PROPERTIES = [
     "Name",
 ]
 
-LOCAL_EXPORTS = [
+BUNDLED_XML_EVIDENCE = [
     {
-        "name": "HealthSnap",
-        "file": "HealthSnap.xml",
+        "evidence_id": "find_health_samples_quantity_filter",
         "coverage": [
             "is.workflow.actions.filter.health.quantity",
             "WFContentItemFilter",
@@ -74,8 +74,7 @@ LOCAL_EXPORTS = [
         ],
     },
     {
-        "name": "Log Health Sample - Bloating",
-        "file": "Log Health Sample - Bloating.xml",
+        "evidence_id": "log_health_sample_category_without_visible_value",
         "coverage": [
             "is.workflow.actions.health.quantity.log",
             "category type with no visible value row",
@@ -90,8 +89,7 @@ LOCAL_EXPORTS = [
         },
     },
     {
-        "name": "Log Health Sample - Cervical Mucus Quality",
-        "file": "Log Health Sample - Cervical Mucus Quality.xml",
+        "evidence_id": "log_health_sample_category_with_enum_value",
         "coverage": [
             "is.workflow.actions.health.quantity.log",
             "category value picker",
@@ -107,14 +105,12 @@ LOCAL_EXPORTS = [
         },
     },
     {
-        "name": "Log Workout",
-        "file": "Log Workout.xml",
+        "evidence_id": "log_workout_identifier_only",
         "coverage": ["is.workflow.actions.health.workout.log"],
         "note": "Exported before workout permission/configuration was granted; UUID-only shape is not enough for generated shortcuts.",
     },
     {
-        "name": "Get Details of Health Sample",
-        "file": "Get Details of Health Sample.xml",
+        "evidence_id": "get_details_of_health_sample",
         "coverage": [
             "is.workflow.actions.properties.health.quantity",
             "WFContentItemPropertyName",
@@ -123,12 +119,13 @@ LOCAL_EXPORTS = [
     },
 ]
 
-LOCAL_OBSERVED_SHAPES = [
+BUNDLED_OBSERVED_SHAPES = [
     {
-        "name": "Log Health Sample - initial Caffeine quantity observation",
+        "evidence_id": "log_health_sample_quantity",
         "note": (
-            "The scratch export file was later overwritten while testing category values; "
-            "the observed shape is retained because it established the quantity schema."
+            "An anonymized iOS XML example established this quantity schema; "
+            "the preserved reference keeps only the parameter shape, not the "
+            "user's source path."
         ),
         "observed_parameters": {
             "WFQuantitySampleType": "Caffeine",
@@ -330,10 +327,13 @@ def main() -> int:
                 "HealthKit/HKCategoryValues.h",
                 "HealthKit/HKWorkout.h",
             ],
-            "shortcut_xml_syntax_source": "Local iPhone exports in iCloud Drive * Temp Files folder.",
+            "shortcut_xml_syntax_source": (
+                "Anonymized iOS Shortcuts XML examples captured while building "
+                "this reference; user-specific source paths are intentionally omitted."
+            ),
         },
-        "local_shortcuts_exports": LOCAL_EXPORTS,
-        "local_observed_shapes": LOCAL_OBSERVED_SHAPES,
+        "bundled_xml_evidence": BUNDLED_XML_EVIDENCE,
+        "bundled_observed_shapes": BUNDLED_OBSERVED_SHAPES,
         "shortcuts_actions": {
             "find_health_samples": {
                 "identifier": "is.workflow.actions.filter.health.quantity",

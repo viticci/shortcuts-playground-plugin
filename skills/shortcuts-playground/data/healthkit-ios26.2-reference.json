@@ -1,4 +1,72 @@
 {
+  "bundled_observed_shapes": [
+    {
+      "evidence_id": "log_health_sample_quantity",
+      "note": "An anonymized iOS XML example established this quantity schema; the preserved reference keeps only the parameter shape, not the user's source path.",
+      "observed_parameters": {
+        "WFQuantitySampleAdditionalQuantity": "WFQuantityFieldValue with Unit only",
+        "WFQuantitySampleQuantity": "WFQuantityFieldValue with Magnitude + Unit",
+        "WFQuantitySampleType": "Caffeine"
+      }
+    }
+  ],
+  "bundled_xml_evidence": [
+    {
+      "coverage": [
+        "is.workflow.actions.filter.health.quantity",
+        "WFContentItemFilter",
+        "WFHealthQuantityType",
+        "WFContentItemLimitEnabled"
+      ],
+      "evidence_id": "find_health_samples_quantity_filter"
+    },
+    {
+      "coverage": [
+        "is.workflow.actions.health.quantity.log",
+        "category type with no visible value row",
+        "WFQuantitySampleType",
+        "WFQuantitySampleQuantity",
+        "WFQuantitySampleAdditionalQuantity"
+      ],
+      "evidence_id": "log_health_sample_category_without_visible_value",
+      "observed_parameters": {
+        "WFQuantitySampleAdditionalQuantity": "WFQuantityFieldValue with Unit only",
+        "WFQuantitySampleQuantity": "WFQuantityFieldValue retained even when the editor hides Value",
+        "WFQuantitySampleType": "Bloating"
+      }
+    },
+    {
+      "coverage": [
+        "is.workflow.actions.health.quantity.log",
+        "category value picker",
+        "WFCategorySampleEnumeration",
+        "WFQuantitySampleQuantity",
+        "WFQuantitySampleAdditionalQuantity"
+      ],
+      "evidence_id": "log_health_sample_category_with_enum_value",
+      "observed_parameters": {
+        "WFCategorySampleEnumeration": "Dry",
+        "WFQuantitySampleAdditionalQuantity": "WFQuantityFieldValue with Unit only",
+        "WFQuantitySampleQuantity": "WFQuantityFieldValue with Magnitude + Unit",
+        "WFQuantitySampleType": "Cervical Mucus Quality"
+      }
+    },
+    {
+      "coverage": [
+        "is.workflow.actions.health.workout.log"
+      ],
+      "evidence_id": "log_workout_identifier_only",
+      "note": "Exported before workout permission/configuration was granted; UUID-only shape is not enough for generated shortcuts."
+    },
+    {
+      "coverage": [
+        "is.workflow.actions.properties.health.quantity",
+        "WFContentItemPropertyName",
+        "WFInput"
+      ],
+      "evidence_id": "get_details_of_health_sample"
+    }
+  ],
   "category_types": [
     {
       "availability": "API_AVAILABLE(ios(9.0), watchos(2.0), macCatalyst(13.0), macos(13.0), visionos(1.0))",
@@ -911,79 +979,6 @@
     }
   ],
   "generated_on": "2026-04-26",
-  "local_observed_shapes": [
-    {
-      "name": "Log Health Sample - initial Caffeine quantity observation",
-      "note": "The scratch export file was later overwritten while testing category values; the observed shape is retained because it established the quantity schema.",
-      "observed_parameters": {
-        "WFQuantitySampleAdditionalQuantity": "WFQuantityFieldValue with Unit only",
-        "WFQuantitySampleQuantity": "WFQuantityFieldValue with Magnitude + Unit",
-        "WFQuantitySampleType": "Caffeine"
-      }
-    }
-  ],
-  "local_shortcuts_exports": [
-    {
-      "coverage": [
-        "is.workflow.actions.filter.health.quantity",
-        "WFContentItemFilter",
-        "WFHealthQuantityType",
-        "WFContentItemLimitEnabled"
-      ],
-      "file": "HealthSnap.xml",
-      "name": "HealthSnap"
-    },
-    {
-      "coverage": [
-        "is.workflow.actions.health.quantity.log",
-        "category type with no visible value row",
-        "WFQuantitySampleType",
-        "WFQuantitySampleQuantity",
-        "WFQuantitySampleAdditionalQuantity"
-      ],
-      "file": "Log Health Sample - Bloating.xml",
-      "name": "Log Health Sample - Bloating",
-      "observed_parameters": {
-        "WFQuantitySampleAdditionalQuantity": "WFQuantityFieldValue with Unit only",
-        "WFQuantitySampleQuantity": "WFQuantityFieldValue retained even when the editor hides Value",
-        "WFQuantitySampleType": "Bloating"
-      }
-    },
-    {
-      "coverage": [
-        "is.workflow.actions.health.quantity.log",
-        "category value picker",
-        "WFCategorySampleEnumeration",
-        "WFQuantitySampleQuantity",
-        "WFQuantitySampleAdditionalQuantity"
-      ],
-      "file": "Log Health Sample - Cervical Mucus Quality.xml",
-      "name": "Log Health Sample - Cervical Mucus Quality",
-      "observed_parameters": {
-        "WFCategorySampleEnumeration": "Dry",
-        "WFQuantitySampleAdditionalQuantity": "WFQuantityFieldValue with Unit only",
-        "WFQuantitySampleQuantity": "WFQuantityFieldValue with Magnitude + Unit",
-        "WFQuantitySampleType": "Cervical Mucus Quality"
-      }
-    },
-    {
-      "coverage": [
-        "is.workflow.actions.health.workout.log"
-      ],
-      "file": "Log Workout.xml",
-      "name": "Log Workout",
-      "note": "Exported before workout permission/configuration was granted; UUID-only shape is not enough for generated shortcuts."
-    },
-    {
-      "coverage": [
-        "is.workflow.actions.properties.health.quantity",
-        "WFContentItemPropertyName",
-        "WFInput"
-      ],
-      "file": "Get Details of Health Sample.xml",
-      "name": "Get Details of Health Sample"
-    }
-  ],
   "quantity_types": [
     {
       "availability": "API_AVAILABLE(ios(16.0), watchos(9.0), macCatalyst(16.0), macos(13.0), visionos(1.0))",
@@ -2171,7 +2166,7 @@
       "HealthKit/HKWorkout.h"
     ],
     "sdk_path": "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk",
-    "shortcut_xml_syntax_source": "Local iPhone exports in iCloud Drive * Temp Files folder."
+    "shortcut_xml_syntax_source": "Anonymized iOS Shortcuts XML examples captured while building this reference; user-specific source paths are intentionally omitted."
   },
   "workout_activity_types": [
     {

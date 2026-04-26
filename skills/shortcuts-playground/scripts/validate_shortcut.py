@@ -2320,8 +2320,8 @@ def validate(
                     continue
                 require_magnitude = key in HEALTH_REQUIRED_MAIN_QUANTITY_KEYS
                 if key == "WFQuantitySampleAdditionalQuantity":
-                    # The local Caffeine export includes only Unit for the
-                    # secondary quantity field, so Magnitude must remain optional.
+                    # The bundled Caffeine XML example includes only Unit for
+                    # the secondary quantity field, so Magnitude stays optional.
                     require_magnitude = False
                 _validate_health_quantity_field(
                     params.get(key),

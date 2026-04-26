@@ -2,6 +2,10 @@
 
 Copy-paste ready examples that can be signed and imported.
 
+## HealthKit XML Examples
+
+HealthKit examples live in [HEALTHKIT.md](HEALTHKIT.md). They are bundled anonymized iOS Shortcuts XML snippets covering Find Health Samples, Log Health Sample quantity/category shapes, Get Details of Health Sample wiring, and Log Workout evidence.
+
 ## Missing Actions (Real Syntax)
 
 Use these identifiers/keys when generating Measurement + Send Email actions.
@@ -669,7 +673,7 @@ Keep it brief and include clothing recommendations.</string>
 
 ## Dictionary-Based Configuration Pattern
 
-A powerful pattern from Federico's golden shortcuts (EverSafari, Create Calendar Event from Template): build a Dictionary with configuration keys/values, then iterate over it with Repeat Each to process each entry.
+A powerful pattern from the bundled golden shortcuts (EverSafari, Create Calendar Event from Template): build a Dictionary with configuration keys/values, then iterate over it with Repeat Each to process each entry.
 
 **Pattern:**
 1. Create a **Dictionary** action with config keys and values

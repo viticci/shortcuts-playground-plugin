@@ -1,6 +1,6 @@
 # Shortcuts Playground — Internal Install Guide
 
-> Internal MacStories release. Not production-hardened. If anything looks off, ping Federico directly.
+> Internal release. Not production-hardened. If anything looks off, contact the maintainer.
 
 ## What this is
 
@@ -29,7 +29,7 @@ You need:
    ```bash
    export SHORTCUTS_PLAYGROUND_PYTHON=/opt/homebrew/bin/python3
    ```
-4. **A GitHub account with access to the private repo.** The plugin lives in a private GitHub repo until the public release, so you need to be logged in with `gh` (or have your Git credentials set up for HTTPS) and have been granted read access. If `git clone https://github.com/viticci/shortcuts-playground-plugin.git` works for you, you're set.
+4. **A GitHub account with access to the repo.** If the plugin is installed from a private GitHub repo, log in with `gh` or configure Git credentials for HTTPS. If `git clone https://github.com/<owner>/shortcuts-playground-plugin.git` works for you, you're set.
 
 ## Install (one time)
 
@@ -37,7 +37,7 @@ Two commands inside any terminal:
 
 ```bash
 # Step 1: tell Claude Code where the marketplace lives
-claude plugin marketplace add viticci/shortcuts-playground-plugin
+claude plugin marketplace add https://github.com/<owner>/shortcuts-playground-plugin
 
 # Step 2: install the plugin from that marketplace
 claude plugin install shortcuts-playground@shortcuts-playground
@@ -128,7 +128,7 @@ If you don't give it a path, it'll ask for one — it won't hunt for a matching 
 
 ### Getting updates
 
-When Federico ships a new version:
+When a new version ships:
 
 ```bash
 claude plugin update shortcuts-playground@shortcuts-playground
@@ -155,11 +155,11 @@ Your `~/Documents/Shortcuts Playground/` directory stays intact — the plugin n
 
 **Validator hook rejects your write** — that's the Craig Loop doing its job. Read the error message, it's specific about which action and what to fix. Let the agent iterate — it usually converges in 1–3 fixes.
 
-**Built shortcut has wrong behavior in Shortcuts.app** — this is the agent getting a parameter wrong. Use `/shortcuts-playground:remix` with the draft XML to fix it, or describe the issue to Federico with the failing action's name.
+**Built shortcut has wrong behavior in Shortcuts.app** — this is the agent getting a parameter wrong. Use `/shortcuts-playground:remix` with the draft XML to fix it, or describe the issue to the maintainer with the failing action's name.
 
 **Signing fails with a "file doesn't exist" error** — a macOS `shortcuts sign` quirk. Try again; it usually retries successfully.
 
-**Anything weirder than the above** — ping Federico with the failing command and the output. Include the session ID from `claude plugin list` if you can.
+**Anything weirder than the above** — contact the maintainer with the failing command and the output. Include the session ID from `claude plugin list` if you can.
 
 ## What you're getting
 
@@ -181,7 +181,7 @@ You're installing **v1.5.2**. The full CHANGELOG is in the repo. Big recent chan
 
 ## Feedback
 
-This is an internal release. If something breaks, works weirdly, or generates a shortcut that doesn't match your intent — tell Federico. Ideally with:
+This is an internal release. If something breaks, works weirdly, or generates a shortcut that doesn't match your intent, report it with:
 
 1. The exact prompt you ran.
 2. The output path(s) in `~/Documents/Shortcuts Playground/`.

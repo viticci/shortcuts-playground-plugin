@@ -2,6 +2,15 @@
 
 All notable changes to the Shortcuts Playground plugin are documented in this file. The skill-level changelog lives at `skills/shortcuts-playground/CHANGELOG.md`.
 
+## [1.6.1] — 2026-04-26
+
+### Fixed — remove personal local evidence details from distributed references
+
+- Removed user-specific export filenames, iCloud scratch-folder references, and local path details from HealthKit docs and generated reference data.
+- Reframed HealthKit XML examples around generic evidence IDs and parameter shapes.
+- Sanitized bundled golden XML examples that contained personal attribution or sample contact names.
+- Kept generic placeholder paths such as `/Users/you/...` where docs need to demonstrate absolute path syntax.
+
 ## [1.6.0] — 2026-04-26
 
 ### Added — HealthKit action support
@@ -87,13 +96,13 @@ Both agents were producing sequential-placeholder UUIDs (`11111111-1111-1111-111
 - **Golden library check:** scanned all 19 bundled `skills/shortcuts-playground/golden-shortcuts/xml/*.xml` files — zero placeholder UUIDs, so the new rule doesn't regress anything in the bundled reference corpus.
 - **End-to-end build test (B1):** `/shortcuts-playground:build` on a 6-action shortcut ("UUID Check" — Comment + Comment + Ask for Input → Set Variable → Text → Notification). Result: all 4 action UUIDs were real `uuidgen` random values (`AE254120-7DAC-48DD-A723-C5223C00641B`, `0C6669B3-51D1-42B0-986E-DB8E1AE871E1`, `8FC3AED1-BC6F-4A95-A020-40CAF87114FF`, `0FABF921-C030-4E32-96C1-10F9AE5B13FD`). Zero Craig Loop iterations — validator passed on first Write.
 - **End-to-end remix test (B2):** `/shortcuts-playground:remix` on the B1 output, adding a second Show Notification. Result: all 4 original UUIDs preserved verbatim, exactly 1 new `uuidgen` UUID added for the new notification (`1D11A550-7EE1-446A-B2C1-91E35AE563A8`), icon preserved, `WFWorkflowName` renamed to "UUID Check Plus" as requested.
-- **Legacy migration test (B3):** `/shortcuts-playground:remix` on `Rescheduler V14.xml` — a pre-v1.5.1 source containing 10 placeholder UUIDs (`11111111-…` through `AAAAAAAA-…`). Result: the remixer detected all 10 placeholders during step 6's audit, minted 11 replacement UUIDs via `uuidgen` (10 migrations + 1 new notification), applied the remap table across `UUID`, `OutputUUID`, and `GroupingIdentifier` occurrences consistently, and produced a clean signed output. Migrated draft has **zero** placeholder UUIDs (grep confirmed), **11 total** UUIDs (10 migrated source + 1 new), validator passed, `AEA1` magic confirmed on the signed file. Path of migrated output: `/Users/viticci/Agent/Shortcuts Playground/Rescheduler V14 Migrated.shortcut`.
+- **Legacy migration test (B3):** `/shortcuts-playground:remix` on `Rescheduler V14.xml` — a pre-v1.5.1 source containing 10 placeholder UUIDs (`11111111-…` through `AAAAAAAA-…`). Result: the remixer detected all 10 placeholders during step 6's audit, minted 11 replacement UUIDs via `uuidgen` (10 migrations + 1 new notification), applied the remap table across `UUID`, `OutputUUID`, and `GroupingIdentifier` occurrences consistently, and produced a clean signed output. Migrated draft has **zero** placeholder UUIDs (grep confirmed), **11 total** UUIDs (10 migrated source + 1 new), validator passed, `AEA1` magic confirmed on the signed file.
 
 ## [1.5.0] — 2026-04-14
 
 ### Added — Remix workflow (new command + new agent)
 
-You can now apply a natural-language diff to an existing unsigned `.xml` Shortcuts plist. This is the plugin port of the "remix mode" Federico used to drive manually from a companion Shortcuts shortcut.
+You can now apply a natural-language diff to an existing unsigned `.xml` Shortcuts plist. This is the plugin port of a previously manual "remix mode" workflow driven from a companion Shortcuts shortcut.
 
 **New slash command: `/shortcuts-playground:remix <absolute-path-to-xml> <remix idea>`.**
 
@@ -141,8 +150,8 @@ The remixer escalates to the orchestrator — which relays verbatim to the user 
 If you're driving the plugin from an iOS/iPadOS Shortcuts shortcut over SSH:
 
 ```bash
-ssh viticci@mac-studio.tailc0622.ts.net \
-  'CLAUDE_PLUGIN_OPTION_OUTPUT_DIR="/Users/viticci/Agent/Shortcuts Playground" \
+ssh user@example-mac.local \
+  'CLAUDE_PLUGIN_OPTION_OUTPUT_DIR="$HOME/Documents/Shortcuts Playground" \
    claude -p --dangerously-skip-permissions \
    "/shortcuts-playground:remix /absolute/path/to/source.xml [remix idea]"'
 ```
@@ -157,8 +166,8 @@ Same env-var pattern as `/build`. Pair with an "end your message with `SIGNED: <
 ### Verified (test matrix, 4/4 green)
 
 - **T1 — no-path escalation:** `/shortcuts-playground:remix add a Show Notification at the start` (no path in args). **Result:** agent immediately escalated with re-run instructions listing three options. Zero file reads, zero grep, zero hook invocations. Trace log empty — the agent performed no `Write`/`Edit` operations.
-- **T2 — signed-file escalation:** `/shortcuts-playground:remix /Users/viticci/Agent/Shortcuts Playground/Rescheduler V14.shortcut add a notification at the start`. **Result:** agent detected the `.shortcut` extension / `AEA1` magic bytes, escalated asking the user to export unsigned XML first, and suggested the specific re-run path pattern. Trace log still empty — no hook invocations.
-- **T3 — successful remix end-to-end:** `/shortcuts-playground:remix /Users/viticci/Agent/Shortcuts Playground/drafts/Rescheduler V14.xml add a Show Notification action at the very start… Name the remix Rescheduler V14 Notified.` **Result:**
+- **T2 — signed-file escalation:** `/shortcuts-playground:remix /Users/you/Documents/Shortcuts Playground/Rescheduler V14.shortcut add a notification at the start`. **Result:** agent detected the `.shortcut` extension / `AEA1` magic bytes, escalated asking the user to export unsigned XML first, and suggested the specific re-run path pattern. Trace log still empty — no hook invocations.
+- **T3 — successful remix end-to-end:** `/shortcuts-playground:remix /Users/you/Documents/Shortcuts Playground/drafts/Rescheduler V14.xml add a Show Notification action at the very start… Name the remix Rescheduler V14 Notified.` **Result:**
   - Signed output at `~/Documents/Shortcuts Playground/Rescheduler V14 Notified.shortcut`, AEA1 magic confirmed.
   - Archive XML at `~/Documents/Shortcuts Playground/2026-04-14/Rescheduler V14 Notified-142753.xml`, validator-clean.
   - **All 10 source UUIDs preserved** (exact diff: no source UUIDs missing from the remix).
@@ -178,7 +187,7 @@ Same env-var pattern as `/build`. Pair with an "end your message with `SIGNED: <
 
 ### Added (docs-only patch, verified against a second Apple-built sample)
 
-Federico provided `Reminders Complete.xml` covering the `Is Completed` filter in both its Find and Filter forms. Two new patterns landed in the docs as a result:
+An exported shortcut sample provided coverage for the `Is Completed` filter in both its Find and Filter forms. Two new patterns landed in the docs as a result:
 
 - **`skills/shortcuts-playground/FILTERS.md`** — expanded the Reminders Boolean filter section with verbatim templates for `Is Completed = Yes` and `Is Completed = No`. Documented the key distinction that **Reminders Boolean filters do NOT need `Unit: 4`** — that's a Photos-filter requirement and does not apply to Reminders. Added a new top-level section **"Find vs Filter: `WFContentItemInputParameter`"** explaining that `is.workflow.actions.filter.<type>` covers both UI variants; the presence of `WFContentItemInputParameter` (wrapping a previous action's `ActionOutput`) turns a "Find" into a chained "Filter" that operates on upstream output instead of the system database. Applies uniformly to `filter.photos`, `filter.files`, `filter.notes`, `filter.calendarevents`, etc. — not just Reminders.
 - **`skills/shortcuts-playground/PARAMETER_TYPES.md`** — added a cross-reference from the Reminders schema section to the new FILTERS.md Is-Completed template and Find-vs-Filter section. Flags the "Reminders drop `Unit`, Photos require it" Boolean divergence.
@@ -189,7 +198,7 @@ No code, validator, agent, or command changes in this patch — it's pure docume
 
 ### Fixed — all the blockers surfaced by session 5174fcb1
 
-Federico ran a real "Rescheduler" build and the session exposed five distinct problems:
+A real "Rescheduler" build exposed five distinct problems:
 
 1. **Docs gap on Reminders schema.** The `is.workflow.actions.setters.reminders` action was allowlisted but had no documented parameter schema. The first subagent escalated per the v1.2.0 rule; the main thread then spent 20+ tool calls rediscovering the schema by grepping user paths.
 2. **Agent went down the `UpdateReminderAppIntent` dead end first.** The docs didn't tell it to prefer the classic WF action over the newer AppIntent.
@@ -199,7 +208,7 @@ Federico ran a real "Rescheduler" build and the session exposed five distinct pr
 
 ### Added — Reminders recipes verified against an Apple-built sample
 
-Federico provided a second sample shortcut (`Reminder Edits.xml`) that exercises `filter.reminders` with date operators plus `setters.reminders` applied to 13 different property names. That sample is now the ground truth. New content:
+A second sample shortcut (`Reminder Edits.xml`) exercises `filter.reminders` with date operators plus `setters.reminders` applied to 13 different property names. That sample is now the ground truth. New content:
 
 - **`skills/shortcuts-playground/PARAMETER_TYPES.md` → new section "Reminders — Filter & Setter Schemas (DEFINITIVE)"**
   - Full `filter.reminders` template structure (`Operator`/`Property`/`Values`, distinguished from If conditional templates).
@@ -295,7 +304,7 @@ The previous condition code documentation had multiple errors that propagated in
 ### Verified
 - Self-test passes.
 - Hello World regression produces signed `.shortcut`.
-- Federico's exact failing reminders prompt now triggers the escalation path: the agent stops, presents three options, makes zero tool calls to Shortcuts.sqlite / ToolKit / Google Drive / system paths.
+- The exact failing reminders prompt now triggers the escalation path: the agent stops, presents three options, makes zero tool calls to Shortcuts.sqlite / ToolKit / Google Drive / system paths.
 
 ## [1.1.0] — 2026-04-13
 

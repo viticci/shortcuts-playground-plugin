@@ -324,7 +324,7 @@ Used for measurements with units (duration, file size, etc.):
 
 ### HealthKit Quantity Fields
 
-Verified from Federico's local iPhone exports and the local ActionKit `WFHealthKitConstants.plist`.
+Verified from bundled anonymized iOS Shortcuts XML examples and ActionKit `WFHealthKitConstants.plist`.
 
 For **Log Health Sample**, the main value uses `WFQuantitySampleQuantity`:
 
@@ -343,7 +343,7 @@ For **Log Health Sample**, the main value uses `WFQuantitySampleQuantity`:
 </dict>
 ```
 
-The local Caffeine, Bloating, and Cervical Mucus Quality exports also include `WFQuantitySampleAdditionalQuantity`; it can be unit-only:
+The bundled Caffeine, Bloating, and Cervical Mucus Quality XML examples also include `WFQuantitySampleAdditionalQuantity`; it can be unit-only:
 
 ```xml
 <key>WFQuantitySampleAdditionalQuantity</key>

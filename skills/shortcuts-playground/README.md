@@ -97,7 +97,7 @@ To make the skill portable for distribution, the action-ID allowlist is prepacka
 | [`VARIABLES.md`](VARIABLES.md) | Variable reference system |
 | [`CONTROL_FLOW.md`](CONTROL_FLOW.md) | Repeat, Conditional, Menu patterns |
 | [`FILTERS.md`](FILTERS.md) | Content filters for Find/Filter actions |
-| [`HEALTHKIT.md`](HEALTHKIT.md) | iOS/iPadOS Health action schemas and local XML evidence |
+| [`HEALTHKIT.md`](HEALTHKIT.md) | iOS/iPadOS Health action schemas and bundled anonymized XML examples |
 | [`EXAMPLES.md`](EXAMPLES.md) | Complete working examples |
 | [`BEST_PRACTICES.md`](BEST_PRACTICES.md) | Mandatory build guidelines |
 | [`ICONS_AND_COLORS.md`](ICONS_AND_COLORS.md) | Icon glyph and color selection workflow |

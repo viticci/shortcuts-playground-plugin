@@ -111,7 +111,7 @@ The `is today` operator (1002) does NOT require Values:
 
 ### Find Health Samples "Start Date Is Today" Filter
 
-Verified from Federico's local iPhone export (`HealthSnap.xml`). **Find Health Samples** uses the same `WFContentPredicateTableTemplate` wrapper, with Health sample fields such as `Start Date`.
+Verified from a bundled anonymized iOS Shortcuts XML example. **Find Health Samples** uses the same `WFContentPredicateTableTemplate` wrapper, with Health sample fields such as `Start Date`.
 
 ```xml
 <key>WFContentItemFilter</key>

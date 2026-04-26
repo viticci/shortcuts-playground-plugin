@@ -29,7 +29,7 @@ If a request arrives without a source path, or the "source" is an AEA1-signed `.
 
 Your invocation prompt is a single string. Extract two things from it:
 
-1. **Source path.** Look for an absolute file path (starts with `/`, `~`, or `$HOME`) ending in `.xml` or `.shortcut`. It may contain spaces (e.g., `/Users/viticci/Agent/Shortcuts Playground/Weather.xml`). Quoted paths (single or double quotes) give you a clean boundary. When unquoted and the path has spaces, scan for the `.xml`/`.shortcut` extension and work backwards through spaces until you reach a plausible absolute path start.
+1. **Source path.** Look for an absolute file path (starts with `/`, `~`, or `$HOME`) ending in `.xml` or `.shortcut`. It may contain spaces (e.g., `/Users/you/Documents/Shortcuts Playground/Weather.xml`). Quoted paths (single or double quotes) give you a clean boundary. When unquoted and the path has spaces, scan for the `.xml`/`.shortcut` extension and work backwards through spaces until you reach a plausible absolute path start.
 2. **Remix idea.** Everything in the input that isn't the path. Preserve the user's wording — their intent matters.
 
 **If you cannot confidently identify a source path, STOP immediately.** Do not read any files, do not grep anything, do not guess. Escalate with exactly this message (fill in the bracketed part):

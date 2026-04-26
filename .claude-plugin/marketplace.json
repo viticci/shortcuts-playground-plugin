@@ -1,23 +1,21 @@
 {
   "name": "shortcuts-playground",
   "owner": {
-    "name": "Federico Viticci",
-    "email": "viticci@macstories.net",
+    "name": "Shortcuts Playground Maintainers",
     "url": "https://www.macstories.net"
   },
   "metadata": {
     "description": "Shortcuts Playground — internal MacStories release. Ships the plugin + marketplace manifest in the same repo so the team can install with a single `claude plugin marketplace add` call against this GitHub URL.",
-    "version": "1.6.0"
+    "version": "1.6.1"
   },
   "plugins": [
     {
       "name": "shortcuts-playground",
       "source": "./",
       "description": "Build, validate, sign, and archive macOS/iOS Shortcuts directly from Claude Code. Ships a full knowledge base, a build agent (/shortcuts-playground:build) and a remix agent (/shortcuts-playground:remix), a PostToolUse auto-validation hook, and the validate/resolve-icon/sign-shortcut wrappers.",
-      "version": "1.6.0",
+      "version": "1.6.1",
       "author": {
-        "name": "Federico Viticci",
-        "email": "viticci@macstories.net",
+        "name": "Shortcuts Playground Maintainers",
         "url": "https://www.macstories.net"
       },
       "homepage": "https://www.macstories.net",

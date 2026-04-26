@@ -1,19 +1,19 @@
 # HealthKit Shortcuts Reference
 
-Health actions are iOS/iPadOS-first. macOS Shortcuts syncs their XML but cannot fully configure the Health UI. Prefer this file and the local reference data over guesses.
+Health actions are iOS/iPadOS-first. macOS Shortcuts syncs their XML but cannot fully configure the Health UI. Prefer this file and the bundled reference data over guesses.
 
 ## Evidence
 
-Primary syntax source: Federico's local iPhone XML exports in iCloud Drive `* Temp Files`.
+Primary syntax source: bundled anonymized iOS Shortcuts XML examples captured while building this reference. User-specific shortcut names, source paths, and iCloud locations are intentionally omitted from the distributed skill.
 
-- `HealthSnap.xml`: Find Health Samples, `WFHealthQuantityType`, `WFContentItemFilter`, sample output wiring.
-- Initial `Log Health Sample.xml` observation: Caffeine quantity log. The scratch export file was later overwritten while testing category values.
-- `Log Health Sample - Bloating.xml`: category sample with no visible Value row in the editor.
-- `Log Health Sample - Cervical Mucus Quality.xml`: category sample with an explicit enum value picker.
-- `Get Details of Health Sample.xml`: Get Details of Health Sample, `WFContentItemPropertyName`, `WFInput`.
-- `Log Workout.xml`: action identifier sync/export evidence only; the local export was UUID-only before a full workout configuration was captured.
+- Find Health Samples XML example: `WFHealthQuantityType`, `WFContentItemFilter`, sample output wiring.
+- Log Health Sample quantity XML example: Caffeine quantity log.
+- Log Health Sample category XML example: category sample with no visible Value row in the editor.
+- Log Health Sample category-value XML example: category sample with an explicit enum value picker.
+- Get Details of Health Sample XML example: `WFContentItemPropertyName`, `WFInput`.
+- Log Workout XML evidence: action identifier sync/export evidence only; the available export was UUID-only before a full workout configuration was captured.
 
-Exhaustive value source: local Xcode iPhoneOS 26.2 HealthKit headers plus local ActionKit `WFHealthKitConstants.plist`, generated into `data/healthkit-ios26.2-reference.json`.
+Exhaustive value source: iPhoneOS 26.2 HealthKit headers plus ActionKit `WFHealthKitConstants.plist`, generated into `data/healthkit-ios26.2-reference.json`.
 
 ## Actions
 
@@ -32,7 +32,7 @@ Optional:
 - `WFContentItemLimitEnabled`: boolean.
 - `WFContentItemLimitNumber`: required when limit is enabled.
 
-Observed filter from `HealthSnap.xml`:
+Observed filter shape:
 
 ```xml
 <key>WFHealthQuantityType</key>
@@ -113,7 +113,7 @@ Required parameters:
 - `WFQuantitySampleType`
 - A value field: usually `WFQuantitySampleQuantity`; enum category samples can also include `WFCategorySampleEnumeration`.
 
-Quantity sample, Caffeine. This shape was observed in the initial scratch export before later category testing overwrote `Log Health Sample.xml`:
+Quantity sample, Caffeine:
 
 ```xml
 <key>WFQuantitySampleType</key>
@@ -213,7 +213,7 @@ These can use `WFTextTokenAttachment` with `{Type: CurrentDate}`.
 
 Identifier: `is.workflow.actions.health.workout.log`
 
-The local XML export currently proves the identifier but not a fully configured parameter dictionary. The generator and validator support the schema below from local action metadata conventions and HealthKit workout values; treat a future full iPhone export as higher priority if it conflicts.
+The currently available XML evidence proves the identifier but not a fully configured parameter dictionary. The generator and validator support the schema below from action metadata conventions and HealthKit workout values; treat a future full iOS export as higher priority if it conflicts.
 
 Required:
 
@@ -268,11 +268,11 @@ Generated shape:
 
 Use `shortcut_label_guess` as a good default, but prefer `observed_shortcuts_labels` when present. Some labels differ by action context: `HKQuantityTypeIdentifierActiveEnergyBurned` has been observed as both `Active Energy Burned` and `Active Energy`.
 
-Known local label override:
+Known bundled label override:
 
 - `HKCategoryTypeIdentifierGeneralizedBodyAche`: Shortcuts picker label is `Body and Muscle Ache`, not the SDK-derived `Generalized Body Ache`.
 
-The validator checks Health sample types, Find Health Samples quantity types, workout activity types, category enum values, and units against this local reference when it is available.
+The validator checks Health sample types, Find Health Samples quantity types, workout activity types, category enum values, and units against this bundled reference when it is available.
 
 ## Safety
 
