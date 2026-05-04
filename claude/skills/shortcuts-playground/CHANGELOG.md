@@ -1,5 +1,20 @@
 # Autoresearch Loop Changelog
 
+## Date: May 4, 2026 — 1.7.5 URL schemes, JavaScript webpage rules, and date recipes
+
+### Summary
+
+Added Apple-documented Shortcuts URL scheme/x-callback guidance, Run JavaScript on Webpage runtime rules, and date/time recipes from Apple's advanced Shortcuts documentation.
+
+### Fixes Applied
+
+- Added `URL_SCHEMES.md` with documented `shortcuts://`, `create-shortcut`, `open-shortcut`, `run-shortcut`, Gallery, and `x-callback-url/run-shortcut` patterns.
+- Added `JAVASCRIPT_WEBPAGE.md` covering Safari share-sheet runtime requirements, `completion(...)`, JSON-compatible output, and timeout-prone JavaScript APIs.
+- Added `DATE_TIME.md` with UNIX timestamp conversion, built-in date/time styles, ISO 8601, RFC 2822, and Unicode TR35 custom format guidance.
+- Updated the validator to reject unsupported Shortcuts URL routes and malformed documented routes.
+- Updated the validator to require Safari webpage share-sheet metadata and completion-handler usage for Run JavaScript on Webpage actions.
+- Added regression fixtures for valid/invalid Shortcuts URL scheme and JavaScript webpage cases.
+
 ## Date: May 4, 2026 — Weather details and Set Name source reuse
 
 ### Summary

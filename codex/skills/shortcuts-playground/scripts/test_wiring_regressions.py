@@ -108,6 +108,82 @@ def root_plist(name: str, actions: list[dict]) -> dict:
     }
 
 
+def make_shortcuts_url_valid(case_name: str) -> dict:
+    plist = root_plist(
+        case_name,
+        base_actions(case_name, "Open an Apple-documented Shortcuts URL scheme.")
+        + [
+            {
+                "WFWorkflowActionIdentifier": "is.workflow.actions.url",
+                "WFWorkflowActionParameters": {
+                    "UUID": seeded_uuid(case_name + "-url"),
+                    "WFURLActionURL": (
+                        "shortcuts://x-callback-url/run-shortcut?"
+                        "name=Calculate%20Tip&input=text&text=24.99&"
+                        "x-success=myapp%3A%2F%2Fdone&x-error=myapp%3A%2F%2Ferror"
+                    ),
+                },
+            }
+        ],
+    )
+    return plist
+
+
+def make_shortcuts_url_invalid(case_name: str) -> dict:
+    plist = root_plist(
+        case_name,
+        base_actions(case_name, "Reject unsupported Shortcuts URL scheme routes.")
+        + [
+            {
+                "WFWorkflowActionIdentifier": "is.workflow.actions.url",
+                "WFWorkflowActionParameters": {
+                    "UUID": seeded_uuid(case_name + "-url"),
+                    "WFURLActionURL": "shortcuts://import-shortcut?url=https%3A%2F%2Fexample.com%2FTest.shortcut",
+                },
+            }
+        ],
+    )
+    return plist
+
+
+def make_javascript_webpage_valid(case_name: str) -> dict:
+    plist = root_plist(
+        case_name,
+        base_actions(case_name, "Run JavaScript on the current Safari webpage.")
+        + [
+            {
+                "WFWorkflowActionIdentifier": "is.workflow.actions.runjavascriptonwebpage",
+                "WFWorkflowActionParameters": {
+                    "UUID": seeded_uuid(case_name + "-js"),
+                    "WFJavaScript": "const title = document.title; completion({title});",
+                },
+            }
+        ],
+    )
+    plist["WFWorkflowInputContentItemClasses"] = ["WFSafariWebPageContentItem"]
+    plist["WFWorkflowTypes"] = ["ActionExtension"]
+    return plist
+
+
+def make_javascript_webpage_invalid(case_name: str) -> dict:
+    plist = root_plist(
+        case_name,
+        base_actions(case_name, "Reject JavaScript webpage shortcuts without Safari/share-sheet wiring.")
+        + [
+            {
+                "WFWorkflowActionIdentifier": "is.workflow.actions.runjavascriptonwebpage",
+                "WFWorkflowActionParameters": {
+                    "UUID": seeded_uuid(case_name + "-js"),
+                    "WFJavaScript": "window.alert('Done');",
+                },
+            }
+        ],
+    )
+    plist["WFWorkflowInputContentItemClasses"] = ["WFStringContentItem"]
+    plist["WFWorkflowTypes"] = []
+    return plist
+
+
 def attachment_action_output(output_uuid: str, output_name: str) -> dict:
     return {
         "WFSerializationType": "WFTextTokenAttachment",
@@ -1501,6 +1577,34 @@ def make_health_invalid(case_name: str, idx: int) -> tuple[dict, str]:
 
 def build_cases() -> list[Case]:
     cases: list[Case] = []
+
+    cases.append(Case("url-schemes", "ZZ-Shortcuts-URL-Valid", make_shortcuts_url_valid("ZZ-Shortcuts-URL-Valid"), True))
+    cases.append(
+        Case(
+            "url-schemes",
+            "ZZ-Shortcuts-URL-Unsupported-Invalid",
+            make_shortcuts_url_invalid("ZZ-Shortcuts-URL-Unsupported-Invalid"),
+            False,
+            "Unsupported Apple-documented Shortcuts URL route",
+        )
+    )
+    cases.append(
+        Case(
+            "javascript-webpage",
+            "ZZ-JavaScript-Webpage-Valid",
+            make_javascript_webpage_valid("ZZ-JavaScript-Webpage-Valid"),
+            True,
+        )
+    )
+    cases.append(
+        Case(
+            "javascript-webpage",
+            "ZZ-JavaScript-Webpage-Invalid",
+            make_javascript_webpage_invalid("ZZ-JavaScript-Webpage-Invalid"),
+            False,
+            "requires ActionExtension",
+        )
+    )
 
     # 43 weather cases (21 valid + 22 invalid)
     for idx in range(20):

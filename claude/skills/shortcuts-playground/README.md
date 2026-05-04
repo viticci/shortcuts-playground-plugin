@@ -94,6 +94,9 @@ To make the skill portable for distribution, the action-ID allowlist is prepacka
 | [`ACTIONS.md`](ACTIONS.md) | WF*Action identifiers and parameters |
 | [`APPINTENTS.md`](APPINTENTS.md) | AppIntent actions (macOS ToolKit v63 + backups) |
 | [`PARAMETER_TYPES.md`](PARAMETER_TYPES.md) | Parameter value types and serialization formats |
+| [`URL_SCHEMES.md`](URL_SCHEMES.md) | Apple-documented Shortcuts URL schemes and x-callback-url patterns |
+| [`JAVASCRIPT_WEBPAGE.md`](JAVASCRIPT_WEBPAGE.md) | Run JavaScript on Webpage runtime requirements |
+| [`DATE_TIME.md`](DATE_TIME.md) | UNIX timestamp, ISO 8601, RFC 2822, and custom date/time recipes |
 | [`VARIABLES.md`](VARIABLES.md) | Variable reference system |
 | [`CONTROL_FLOW.md`](CONTROL_FLOW.md) | Repeat, Conditional, Menu patterns |
 | [`FILTERS.md`](FILTERS.md) | Content filters for Find/Filter actions |

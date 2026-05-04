@@ -2,6 +2,15 @@
 
 All notable changes to the Shortcuts Playground plugin are documented in this file. The skill-level changelog lives at `skills/shortcuts-playground/CHANGELOG.md`.
 
+## [1.7.5] — 2026-05-04
+
+### Added — URL schemes, JavaScript webpage rules, and date recipes
+
+- Added Apple-documented Shortcuts URL scheme and x-callback-url guidance for `shortcuts://`, `create-shortcut`, `open-shortcut`, `run-shortcut`, Gallery URLs, and `x-callback-url/run-shortcut`.
+- Added validator coverage for literal Shortcuts URL routes so unsupported or incomplete URL shapes are rejected instead of silently documented.
+- Added Run JavaScript on Webpage guidance and validation for Safari share-sheet metadata, `completion(...)`, JSON-compatible output, and timeout-prone blocking dialog APIs.
+- Added Apple-aligned date/time recipe docs for UNIX timestamps, built-in date/time styles, ISO 8601, RFC 2822, and Unicode TR35 custom format strings.
+
 ## [1.7.4] — 2026-04-30
 
 ### Fixed — Health dashboard labels and duration math

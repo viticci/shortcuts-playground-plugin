@@ -92,6 +92,7 @@ Some actions have non-standard mappings:
 | `url` | WFURLAction | Create URL |
 | `downloadurl` | WFDownloadURLAction | Get contents of URL |
 | `openurl` | WFOpenURLAction | Open URL |
+| `openxcallbackurl` | WFOpenXCallbackURLAction | Open x-callback-url (see `URL_SCHEMES.md`) |
 | `urlencode` | WFURLEncodeAction | URL encode |
 | `searchweb` | WFSearchWebAction | Search web |
 

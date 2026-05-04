@@ -88,13 +88,13 @@ Used by Format Date action to specify the date format:
 
 | Value | Description |
 |-------|-------------|
-| `Custom` | Use custom format string in WFDateFormat |
+| `Custom` | Use a custom format string |
 | `Short` | Short format (e.g., "3/24/26") |
 | `Medium` | Medium format (e.g., "Mar 24, 2026") |
 | `Long` | Long format (e.g., "March 24, 2026") |
 | `None` | No date component (time only) |
 
-**CRITICAL (from analysis of 127 shortcuts + runtime testing):** When using `WFDateFormatStyle=Custom`, ALWAYS include BOTH `WFDateFormat` AND `WFDateFormatString` with the same custom pattern (e.g., `MMMM d, yyyy`). From the 127-shortcut corpus: 23 shortcuts use only `WFDateFormat`, 15 use only `WFDateFormatString`, 8 include both. The runtime primarily reads `WFDateFormat` (using `WFDateFormatString` alone causes silent failure on some OS versions), but including both ensures maximum compatibility across all Shortcuts versions.
+For `is.workflow.actions.format.date` custom formats, set `WFDateFormatStyle=Custom`, set `WFDateFormat=Custom`, and put the custom pattern in `WFDateFormatString` (for example, `MMMM d, yyyy`, `yyyy-MM-dd`, or `yyyy-MM-dd'T'HH:mm:ssXXXXX`). Custom patterns use Unicode Technical Standard #35 date field symbols; see `DATE_TIME.md`.
 
 ### WFTimeFormatStyle
 

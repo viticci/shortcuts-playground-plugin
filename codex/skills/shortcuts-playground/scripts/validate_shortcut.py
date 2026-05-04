@@ -16,6 +16,7 @@ import os
 import plistlib
 import re
 import sys
+import urllib.parse
 from pathlib import Path
 from typing import Optional, Tuple
 
@@ -264,6 +265,12 @@ REQUIRED_URL_ACTIONS = {
 
 REQUIRED_URL_INPUT_ACTIONS = {
     "is.workflow.actions.downloadurl",
+}
+
+SHORTCUTS_URL_ACTIONS = {
+    "is.workflow.actions.url",
+    "is.workflow.actions.openurl",
+    "is.workflow.actions.openxcallbackurl",
 }
 
 WEATHER_SOURCE_ACTIONS = {
@@ -780,6 +787,74 @@ def iter_text_token_strings(obj):
     elif isinstance(obj, list):
         for v in obj:
             yield from iter_text_token_strings(v)
+
+
+def _validate_shortcuts_url_literal(url: str, idx: int) -> list[str]:
+    errors: list[str] = []
+    parsed = urllib.parse.urlparse(url)
+    if parsed.scheme != "shortcuts":
+        return errors
+
+    query = urllib.parse.parse_qs(parsed.query, keep_blank_values=True)
+
+    def has_nonempty(name: str) -> bool:
+        return bool(query.get(name) and query[name][0])
+
+    def validate_run_params(context: str) -> None:
+        if not has_nonempty("name"):
+            errors.append(f"{context} missing required name parameter at index {idx}")
+        input_values = query.get("input", [])
+        if input_values:
+            input_value = input_values[0]
+            if input_value not in {"text", "clipboard"}:
+                errors.append(
+                    f"{context} input must be 'text' or 'clipboard', got '{input_value}' at index {idx}"
+                )
+            if input_value == "text" and not has_nonempty("text"):
+                errors.append(f"{context} uses input=text but has no text parameter at index {idx}")
+
+    host = parsed.netloc
+    path = parsed.path
+
+    if host == "" and path in {"", "/"} and not parsed.query:
+        return errors
+    if host == "create-shortcut" and path in {"", "/"}:
+        if parsed.query:
+            errors.append(f"shortcuts://create-shortcut does not take query parameters at index {idx}")
+        return errors
+    if host == "open-shortcut" and path in {"", "/"}:
+        if not has_nonempty("name"):
+            errors.append(f"shortcuts://open-shortcut missing required name parameter at index {idx}")
+        return errors
+    if host == "run-shortcut" and path in {"", "/"}:
+        validate_run_params("shortcuts://run-shortcut")
+        return errors
+    if host == "gallery":
+        if path in {"", "/"}:
+            if parsed.query:
+                errors.append(f"shortcuts://gallery does not take query parameters at index {idx}")
+            return errors
+        if path == "/search":
+            if not has_nonempty("query"):
+                errors.append(f"shortcuts://gallery/search missing required query parameter at index {idx}")
+            return errors
+    if host == "x-callback-url" and path == "/run-shortcut":
+        validate_run_params("shortcuts://x-callback-url/run-shortcut")
+        callbacks = ["x-success", "x-cancel", "x-error"]
+        if not any(has_nonempty(name) for name in callbacks):
+            errors.append(
+                f"shortcuts://x-callback-url/run-shortcut should include at least one callback URL at index {idx}"
+            )
+        for name in callbacks:
+            if has_nonempty(name):
+                callback = query[name][0]
+                callback_parsed = urllib.parse.urlparse(callback)
+                if not callback_parsed.scheme:
+                    errors.append(f"{name} callback is not an absolute URL at index {idx}")
+        return errors
+
+    errors.append(f"Unsupported Apple-documented Shortcuts URL route '{host}{path}' at index {idx}")
+    return errors
 
 
 def _utf16_units(s: str) -> list[int]:
@@ -1409,6 +1484,10 @@ def validate(
                         )
 
     input_classes = plist.get("WFWorkflowInputContentItemClasses") or []
+    uses_javascript_webpage = any(
+        act.get("WFWorkflowActionIdentifier") == "is.workflow.actions.runjavascriptonwebpage"
+        for act in actions
+    )
     uses_input = False
     for act in actions:
         ident = act.get("WFWorkflowActionIdentifier")
@@ -1435,10 +1514,27 @@ def validate(
         errors.append(
             "Shortcut uses Shortcut Input but WFWorkflowInputContentItemClasses is empty (causes Stop and Respond)."
         )
-    if input_classes and not uses_input:
+    if input_classes and not uses_input and not uses_javascript_webpage:
         errors.append(
             "WFWorkflowInputContentItemClasses is set but Shortcut Input is unused; remove input types or use Shortcut Input."
         )
+
+    workflow_types = plist.get("WFWorkflowTypes") or []
+    if uses_javascript_webpage:
+        if "ActionExtension" not in workflow_types:
+            errors.append(
+                "Run JavaScript on Webpage requires ActionExtension in WFWorkflowTypes so it can run from Safari share sheet."
+            )
+        if "WFSafariWebPageContentItem" not in input_classes:
+            errors.append(
+                "Run JavaScript on Webpage requires WFSafariWebPageContentItem in WFWorkflowInputContentItemClasses."
+            )
+        extra_classes = [cls for cls in input_classes if cls != "WFSafariWebPageContentItem"]
+        if extra_classes:
+            errors.append(
+                "Run JavaScript on Webpage shortcuts should scope share-sheet input to Safari webpages only; "
+                f"remove extra input classes: {', '.join(extra_classes)}."
+            )
 
     icon_dict = plist.get("WFWorkflowIcon")
     if not isinstance(icon_dict, dict):
@@ -1962,6 +2058,31 @@ def validate(
             errors.append(
                 f"Shortcut Input action is not runtime-safe on iOS at index {idx}; use ExtensionInput attachment instead"
             )
+
+        if ident in SHORTCUTS_URL_ACTIONS:
+            for _, value in iter_strings(params):
+                if value.startswith("shortcuts://"):
+                    errors.extend(_validate_shortcuts_url_literal(value, idx))
+
+        if ident == "is.workflow.actions.runjavascriptonwebpage":
+            script_values = [
+                value
+                for path, value in iter_strings(params)
+                if path and path[-1] != "UUID" and value.strip()
+            ]
+            combined_script = "\n".join(script_values)
+            if "completion(" not in combined_script:
+                errors.append(
+                    f"Run JavaScript on Webpage script must call completion(...) or completion() at index {idx}"
+                )
+            if re.search(r"\b(?:window\.)?(?:alert|prompt|confirm)\s*\(", combined_script):
+                errors.append(
+                    f"Run JavaScript on Webpage script uses blocking dialog APIs at index {idx}; avoid alert/prompt/confirm"
+                )
+            if re.search(r"setTimeout\s*\([^,]+,\s*(?:[5-9]\d{3,}|\d{5,})", combined_script):
+                errors.append(
+                    f"Run JavaScript on Webpage script uses a long timeout at index {idx}; keep execution short"
+                )
 
         # Text action should not be blank
         if ident == "is.workflow.actions.gettext":

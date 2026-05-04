@@ -184,6 +184,9 @@ For complete documentation, see:
 - [APPINTENTS.md](APPINTENTS.md) - AppIntent actions (ToolKit + backups)
 - [PARAMETER_TYPES.md](PARAMETER_TYPES.md) - All parameter value types and serialization formats
 - [HEALTHKIT.md](HEALTHKIT.md) - iOS/iPadOS Health actions, bundled anonymized XML examples, and HealthKit value coverage
+- [URL_SCHEMES.md](URL_SCHEMES.md) - Apple-documented Shortcuts URL schemes and x-callback-url patterns
+- [JAVASCRIPT_WEBPAGE.md](JAVASCRIPT_WEBPAGE.md) - Run JavaScript on Webpage runtime requirements and script rules
+- [DATE_TIME.md](DATE_TIME.md) - Apple-aligned date/time recipes, UNIX timestamps, ISO 8601, RFC 2822, and custom formats
 - [VARIABLES.md](VARIABLES.md) - Variable reference system
 - [CONTROL_FLOW.md](CONTROL_FLOW.md) - Repeat, Conditional, Menu patterns
 - [FILTERS.md](FILTERS.md) - Content filters for Find/Filter actions (photos, files, etc.)
@@ -398,7 +401,7 @@ Prefer wording like `- Input uses the text output from the Text action above` an
 24. **API research and endpoint accuracy**: For complex or unfamiliar external APIs, verify auth, endpoints, parameters, and payload formats against the latest official docs before assembling the shortcut. Validate endpoint strings exactly (underscore vs hyphen matters)
 25. **API string sanity checks**: Before output, scan API strings for `//` (beyond protocol) and empty JSON fields where variables are expected (e.g., `equals:””`, `id:””`, `url:””`, `filename:””`), and fix them
 26. **JSON request bodies**: For `WFHTTPBodyType = JSON`, use `WFJSONValues` for flat key/value payloads so the body is preserved in Shortcuts UI
-27. **Format Date custom style**: When `WFDateFormatStyle` is `Custom`, put the format pattern in `WFDateFormat` (not `WFDateFormatString`). The runtime-verified schema: `WFDateFormatStyle=Custom` + `WFDateFormat=<pattern>` (e.g., `MMMM d, yyyy`, `EEEE`, `HH`). Using `WFDateFormatString` passes validation but the runtime ignores it and outputs the raw unformatted date
+27. **Format Date custom style**: When `WFDateFormatStyle` is `Custom`, set `WFDateFormat=Custom` and put the pattern in `WFDateFormatString` (e.g., `MMMM d, yyyy`, `yyyy-MM-dd`, `yyyy-MM-dd'T'HH:mm:ssXXXXX`). See DATE_TIME.md for UNIX timestamp, ISO 8601, RFC 2822, and Unicode TR35 guidance
 28. **Complex JSON fallback**: If the JSON body includes arrays of objects or deep nesting and the UI renders it as `Number 0`/empty rows, use a JSON Text action and set `WFRequestVariable` to that text with `WFHTTPBodyType = File` and `Content-Type: application/json`
 29. **Filename extensions**: When using **Get Name** for file uploads, append the correct extension in the JSON payload (e.g., `.png`) and do not rely on the base name alone
 30. **Count input visibility**: For `is.workflow.actions.count`, set both `WFInput` and `Input` to the same variable so the UI shows the selected list
@@ -417,6 +420,8 @@ Prefer wording like `- Input uses the text output from the Text action above` an
 43. **No raw object/list tokens inside JSON text**: Do not inject Dictionary/List outputs (for example, raw API `content` arrays) directly into JSON Text templates; Shortcuts may stringify them as newline-separated blocks rather than valid JSON
 44. **Continuation payload safe pattern**: For multi-turn handoff payloads, append assistant text from a plain text variable (for example, `Response Text`) and keep `messages_json` as valid JSON before rerunning the shortcut
 45. **JSON string interpolation safety**: Before inserting freeform text into JSON Text templates (`”content”:””`), sanitize it first (at minimum handle backslashes, double quotes, and control whitespace/newlines) or the next `Detect Dictionary` step will fail
+46. **Shortcuts URL schemes**: Only use Apple-documented `shortcuts://` routes from URL_SCHEMES.md. URL-encode every query value; do not invent import/install routes or extra parameters
+47. **Run JavaScript on Webpage**: Use `is.workflow.actions.runjavascriptonwebpage` only for Safari webpage share-sheet shortcuts. Include `ActionExtension`, scope input to `WFSafariWebPageContentItem`, call `completion(...)` or `completion()`, return JSON-compatible values, and avoid synchronous dialogs/long timers
 46. **API response parse stability**: For `downloadurl` JSON APIs, keep `ShowHeaders` off unless explicitly needed and run `Detect Dictionary` on `Contents of URL` before any `Get Dictionary Value` extraction
 47. **Action input keys matter**: `Replace Text` uses `WFInput`, while `Change Case` and `Split Text` use `text`; wrong keys import but show empty inputs in the editor
 48. **Split Text custom separator**: If `WFTextSeparator` is `Custom`, always include `WFTextCustomSeparator` (a single space `” “` is valid)

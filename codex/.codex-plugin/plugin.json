@@ -1,6 +1,6 @@
 {
   "name": "shortcuts-playground",
-  "version": "1.7.4",
+  "version": "1.7.5",
   "description": "Build, validate, sign, archive, and remix macOS/iOS Shortcuts from Codex using a bundled Shortcuts plist knowledge base and validator.",
   "author": {
     "name": "Shortcuts Playground Maintainers",
