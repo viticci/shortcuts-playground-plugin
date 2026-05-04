@@ -30,8 +30,8 @@ WEATHER_DETAILS = [
     "Low",
     "Humidity",
     "UV Index",
-    "Sunrise Date",
-    "Sunset Date",
+    "Sunrise Time",
+    "Sunset Time",
     "Wind Speed",
     "Visibility",
 ]
