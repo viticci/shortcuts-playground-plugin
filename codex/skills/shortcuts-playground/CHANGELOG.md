@@ -1,5 +1,18 @@
 # Autoresearch Loop Changelog
 
+## Date: May 4, 2026 — Weather details and Set Name source reuse
+
+### Summary
+
+Fixed two shortcut-generation gaps found from exported shortcuts: Weather Detail fields must use current Shortcuts picker labels, and Set Name must not be followed by Delete/Move against the same original file reference.
+
+### Fixes Applied
+
+- Documented and validated the supported Get Detail of Weather Conditions names, including `Sunrise Time` and `Sunset Time` instead of stale `Sunrise Date` / `Sunset Date`.
+- Added sunrise/sunset list handling guidance and validation: use Get Item from List, First Item for sunrise and Last Item for sunset, before formatting the date.
+- Documented the Set Name rename-and-replace caveat and added validation for Delete File / Move File actions that reuse the same source variable or action output after Set Name.
+- Expanded the wiring regression suite with Weather sunrise/sunset and Set Name delete/move cases.
+
 ## Date: April 30, 2026 — 1.7.4 Health dashboard labels and duration math
 
 ### Summary

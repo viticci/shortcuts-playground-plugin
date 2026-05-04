@@ -26,16 +26,28 @@ from validate_shortcut import load_allowed_ids, load_icon_metadata, validate
 
 PLACEHOLDER = "\uFFFC"
 WEATHER_DETAILS = [
+    "Date",
+    "Location",
     "Condition",
     "Temperature",
     "High",
     "Low",
+    "Feels Like",
     "Humidity",
+    "Pressure",
+    "Precipitation Amount",
+    "Precipitation Chance",
+    "Wind Direction",
     "UV Index",
-    "Sunrise Date",
-    "Sunset Date",
+    "Sunrise Time",
+    "Sunset Time",
     "Wind Speed",
     "Visibility",
+    "Dewpoint",
+    "Air Quality Index",
+    "Air Quality Category",
+    "Air Pollutants",
+    "Name",
 ]
 HEALTH_SAMPLE_DETAILS = ["Type", "Value", "Unit", "Start Date", "End Date", "Duration", "Source", "Name"]
 
@@ -331,6 +343,113 @@ def make_weather_valid(case_name: str, idx: int) -> dict:
     return root_plist(case_name, actions)
 
 
+def make_weather_sun_times_valid(case_name: str) -> dict:
+    prompt = "Weather sunrise/sunset list extraction valid case"
+    actions = base_actions(case_name, prompt)
+
+    weather_uuid = seeded_uuid(f"{case_name}-weather")
+    sunrise_uuid = seeded_uuid(f"{case_name}-sunrise")
+    sunrise_item_uuid = seeded_uuid(f"{case_name}-sunrise-item")
+    sunrise_format_uuid = seeded_uuid(f"{case_name}-sunrise-format")
+    sunset_uuid = seeded_uuid(f"{case_name}-sunset")
+    sunset_item_uuid = seeded_uuid(f"{case_name}-sunset-item")
+    sunset_format_uuid = seeded_uuid(f"{case_name}-sunset-format")
+    text_uuid = seeded_uuid(f"{case_name}-text")
+
+    actions.extend(
+        [
+            {
+                "WFWorkflowActionIdentifier": "is.workflow.actions.comment",
+                "WFWorkflowActionParameters": {
+                    "WFCommentActionText": "Fetch a daily forecast, extract sunrise and sunset lists, choose the first sunrise and last sunset, then format both times.",
+                },
+            },
+            {
+                "WFWorkflowActionIdentifier": "is.workflow.actions.weather.forecast",
+                "WFWorkflowActionParameters": {
+                    "UUID": weather_uuid,
+                    "WFWeatherForecastType": "Daily",
+                },
+            },
+            {
+                "WFWorkflowActionIdentifier": "is.workflow.actions.properties.weather.conditions",
+                "WFWorkflowActionParameters": {
+                    "UUID": sunrise_uuid,
+                    "WFInput": attachment_action_output(weather_uuid, "Weather Conditions"),
+                    "WFContentItemPropertyName": "Sunrise Time",
+                },
+            },
+            {
+                "WFWorkflowActionIdentifier": "is.workflow.actions.getitemfromlist",
+                "WFWorkflowActionParameters": {
+                    "UUID": sunrise_item_uuid,
+                    "WFInput": attachment_action_output(sunrise_uuid, "Sunrise Time"),
+                    "WFItemSpecifier": "First Item",
+                },
+            },
+            {
+                "WFWorkflowActionIdentifier": "is.workflow.actions.format.date",
+                "WFWorkflowActionParameters": {
+                    "UUID": sunrise_format_uuid,
+                    "WFDate": token_string_action_output(sunrise_item_uuid, "Item from List"),
+                    "WFDateFormatStyle": "None",
+                    "WFTimeFormatStyle": "Short",
+                },
+            },
+            {
+                "WFWorkflowActionIdentifier": "is.workflow.actions.properties.weather.conditions",
+                "WFWorkflowActionParameters": {
+                    "UUID": sunset_uuid,
+                    "WFInput": attachment_action_output(weather_uuid, "Weather Conditions"),
+                    "WFContentItemPropertyName": "Sunset Time",
+                },
+            },
+            {
+                "WFWorkflowActionIdentifier": "is.workflow.actions.getitemfromlist",
+                "WFWorkflowActionParameters": {
+                    "UUID": sunset_item_uuid,
+                    "WFInput": attachment_action_output(sunset_uuid, "Sunset Time"),
+                    "WFItemSpecifier": "Last Item",
+                },
+            },
+            {
+                "WFWorkflowActionIdentifier": "is.workflow.actions.format.date",
+                "WFWorkflowActionParameters": {
+                    "UUID": sunset_format_uuid,
+                    "WFDate": token_string_action_output(sunset_item_uuid, "Item from List"),
+                    "WFDateFormatStyle": "None",
+                    "WFTimeFormatStyle": "Short",
+                },
+            },
+            {
+                "WFWorkflowActionIdentifier": "is.workflow.actions.gettext",
+                "WFWorkflowActionParameters": {
+                    "UUID": text_uuid,
+                    "WFTextActionText": {
+                        "WFSerializationType": "WFTextTokenString",
+                        "Value": {
+                            "string": "Sunrise: \uFFFC\nSunset: \uFFFC",
+                            "attachmentsByRange": {
+                                "{9, 1}": {
+                                    "Type": "ActionOutput",
+                                    "OutputUUID": sunrise_format_uuid,
+                                    "OutputName": "Formatted Date",
+                                },
+                                "{19, 1}": {
+                                    "Type": "ActionOutput",
+                                    "OutputUUID": sunset_format_uuid,
+                                    "OutputName": "Formatted Date",
+                                },
+                            },
+                        },
+                    },
+                },
+            },
+        ]
+    )
+    return root_plist(case_name, actions)
+
+
 def make_weather_invalid(case_name: str, idx: int) -> tuple[dict, str]:
     prompt = f"Weather invalid case {idx}"
     actions = base_actions(case_name, prompt)
@@ -340,12 +459,12 @@ def make_weather_invalid(case_name: str, idx: int) -> tuple[dict, str]:
     text_uuid = seeded_uuid(f"{case_name}-text")
     var_name = f"Non Weather {idx}"
     weather_var_name = f"Weather Source {idx}"
-    pattern = idx % 12
+    pattern = idx % 15
     detail_name = WEATHER_DETAILS[idx % len(WEATHER_DETAILS)]
 
     expected = "Get Detail of Weather Conditions"
 
-    if pattern in {0, 1, 2, 6, 7, 10, 11}:
+    if pattern in {0, 1, 2, 6, 7, 10, 11, 12, 13, 14}:
         actions.append(
             {
                 "WFWorkflowActionIdentifier": "is.workflow.actions.weather.currentconditions",
@@ -443,6 +562,10 @@ def make_weather_invalid(case_name: str, idx: int) -> tuple[dict, str]:
             expected = "reference weather action output directly"
         elif pattern == 11:
             params["WFInput"] = attachment_action_output(weather_uuid, "Weather Conditions")
+        elif pattern == 12:
+            params["WFInput"] = attachment_action_output(weather_uuid, "Weather Conditions")
+        elif pattern in {13, 14}:
+            params["WFInput"] = attachment_action_output(weather_uuid, "Weather Conditions")
 
     if pattern == 6:
         # Missing property key entirely.
@@ -453,6 +576,11 @@ def make_weather_invalid(case_name: str, idx: int) -> tuple[dict, str]:
     elif pattern == 11:
         params["WFContentItemPropertyName"] = "Detail"
         expected = "placeholder detail name"
+    elif pattern == 12:
+        params["WFContentItemPropertyName"] = "Sunrise Date"
+        expected = "unsupported detail name"
+    elif pattern in {13, 14}:
+        params["WFContentItemPropertyName"] = "Sunset Time"
     else:
         params["WFContentItemPropertyName"] = detail_name
 
@@ -465,6 +593,30 @@ def make_weather_invalid(case_name: str, idx: int) -> tuple[dict, str]:
             "WFWorkflowActionParameters": params,
         }
     )
+
+    if pattern == 13:
+        actions.append(
+            {
+                "WFWorkflowActionIdentifier": "is.workflow.actions.format.date",
+                "WFWorkflowActionParameters": {
+                    "UUID": seeded_uuid(f"{case_name}-format-direct-sun"),
+                    "WFDate": token_string_action_output(detail_uuid, "Sunset Time"),
+                },
+            }
+        )
+        expected = "Sunset Time returns a list"
+    if pattern == 14:
+        actions.append(
+            {
+                "WFWorkflowActionIdentifier": "is.workflow.actions.getitemfromlist",
+                "WFWorkflowActionParameters": {
+                    "UUID": seeded_uuid(f"{case_name}-wrong-sun-item"),
+                    "WFInput": attachment_action_output(detail_uuid, "Sunset Time"),
+                    "WFItemSpecifier": "First Item",
+                },
+            }
+        )
+        expected = "Sunset Time returns a list"
     return root_plist(case_name, actions), expected
 
 
@@ -682,7 +834,8 @@ def make_set_name_invalid(case_name: str, idx: int) -> tuple[dict, str]:
     prompt = f"Set Name invalid case {idx}"
     actions = base_actions(case_name, prompt)
     file_src_uuid = seeded_uuid(f"{case_name}-file-src")
-    pattern = idx % 5
+    pattern = idx % 6
+    rename_uuid = seeded_uuid(f"{case_name}-rename")
 
     actions.append(
         {
@@ -691,7 +844,7 @@ def make_set_name_invalid(case_name: str, idx: int) -> tuple[dict, str]:
         }
     )
 
-    params = {"UUID": seeded_uuid(f"{case_name}-rename")}
+    params = {"UUID": rename_uuid}
     expected = "Set Name"
     if pattern == 0:
         params["WFNewFilename"] = "Test.txt"
@@ -707,13 +860,17 @@ def make_set_name_invalid(case_name: str, idx: int) -> tuple[dict, str]:
         params["WFFile"] = attachment_action_output(file_src_uuid, "Text")
         params["WFNewFilename"] = "   "
         expected = "Set Name missing WFNewFilename"
-    else:
+    elif pattern == 4:
         params["WFFile"] = {
             "WFSerializationType": "WFTextTokenAttachment",
             "Value": {},
         }
         params["WFNewFilename"] = "Test.txt"
         expected = "Set Name missing WFFile"
+    else:
+        params["WFFile"] = attachment_action_output(file_src_uuid, "Text")
+        params["WFNewFilename"] = "Renamed.txt"
+        expected = "Delete File reuses the same file output after Set Name"
 
     actions.append(
         {
@@ -721,7 +878,163 @@ def make_set_name_invalid(case_name: str, idx: int) -> tuple[dict, str]:
             "WFWorkflowActionParameters": params,
         }
     )
+
+    if pattern == 5:
+        actions.append(
+            {
+                "WFWorkflowActionIdentifier": "is.workflow.actions.file.delete",
+                "WFWorkflowActionParameters": {
+                    "UUID": seeded_uuid(f"{case_name}-delete-original"),
+                    "WFInput": attachment_action_output(file_src_uuid, "Text"),
+                },
+            }
+        )
+
     return root_plist(case_name, actions), expected
+
+
+def make_set_name_delete_variable_invalid(case_name: str) -> tuple[dict, str]:
+    prompt = "Set Name followed by Delete File variable reuse invalid case"
+    actions = base_actions(case_name, prompt)
+    file_src_uuid = seeded_uuid(f"{case_name}-file-src")
+    rename_uuid = seeded_uuid(f"{case_name}-rename")
+
+    actions.extend(
+        [
+            {
+                "WFWorkflowActionIdentifier": "is.workflow.actions.file.select",
+                "WFWorkflowActionParameters": {"UUID": file_src_uuid},
+            },
+            {
+                "WFWorkflowActionIdentifier": "is.workflow.actions.setvariable",
+                "WFWorkflowActionParameters": {
+                    "WFVariableName": "Original File",
+                    "WFInput": attachment_action_output(file_src_uuid, "File"),
+                },
+            },
+            {
+                "WFWorkflowActionIdentifier": "is.workflow.actions.file.rename",
+                "WFWorkflowActionParameters": {
+                    "UUID": rename_uuid,
+                    "WFFile": attachment_variable("Original File"),
+                    "WFNewFilename": "Renamed.txt",
+                },
+            },
+            {
+                "WFWorkflowActionIdentifier": "is.workflow.actions.file.delete",
+                "WFWorkflowActionParameters": {
+                    "UUID": seeded_uuid(f"{case_name}-delete-original"),
+                    "WFInput": attachment_variable("Original File"),
+                },
+            },
+        ]
+    )
+    return root_plist(case_name, actions), "Delete File reuses variable"
+
+
+def make_set_name_delete_by_path_valid(case_name: str) -> dict:
+    prompt = "Set Name followed by Delete File using captured original path valid case"
+    actions = base_actions(case_name, prompt)
+    file_src_uuid = seeded_uuid(f"{case_name}-file-src")
+    path_uuid = seeded_uuid(f"{case_name}-path")
+    rename_uuid = seeded_uuid(f"{case_name}-rename")
+
+    actions.extend(
+        [
+            {
+                "WFWorkflowActionIdentifier": "is.workflow.actions.file.select",
+                "WFWorkflowActionParameters": {"UUID": file_src_uuid},
+            },
+            {
+                "WFWorkflowActionIdentifier": "is.workflow.actions.properties.files",
+                "WFWorkflowActionParameters": {
+                    "UUID": path_uuid,
+                    "WFContentItemPropertyName": "File Path",
+                    "WFInput": attachment_action_output(file_src_uuid, "File"),
+                },
+            },
+            {
+                "WFWorkflowActionIdentifier": "is.workflow.actions.file.rename",
+                "WFWorkflowActionParameters": {
+                    "UUID": rename_uuid,
+                    "WFFile": attachment_action_output(file_src_uuid, "File"),
+                    "WFNewFilename": "Renamed.txt",
+                },
+            },
+            {
+                "WFWorkflowActionIdentifier": "is.workflow.actions.file.delete",
+                "WFWorkflowActionParameters": {
+                    "UUID": seeded_uuid(f"{case_name}-delete-by-path"),
+                    "WFInput": attachment_action_output(path_uuid, "File Path"),
+                },
+            },
+        ]
+    )
+    return root_plist(case_name, actions)
+
+
+def make_set_name_move_variable_invalid(case_name: str) -> tuple[dict, str]:
+    prompt = "Set Name followed by Move File variable reuse invalid case"
+    actions = base_actions(case_name, prompt)
+    file_src_uuid = seeded_uuid(f"{case_name}-file-src")
+    rename_uuid = seeded_uuid(f"{case_name}-rename")
+
+    actions.extend(
+        [
+            {
+                "WFWorkflowActionIdentifier": "is.workflow.actions.file.select",
+                "WFWorkflowActionParameters": {"UUID": file_src_uuid},
+            },
+            {
+                "WFWorkflowActionIdentifier": "is.workflow.actions.setvariable",
+                "WFWorkflowActionParameters": {
+                    "WFVariableName": "Original File",
+                    "WFInput": attachment_action_output(file_src_uuid, "File"),
+                },
+            },
+            {
+                "WFWorkflowActionIdentifier": "is.workflow.actions.file.rename",
+                "WFWorkflowActionParameters": {
+                    "UUID": rename_uuid,
+                    "WFFile": attachment_variable("Original File"),
+                    "WFNewFilename": "Renamed.txt",
+                },
+            },
+            {
+                "WFWorkflowActionIdentifier": "is.workflow.actions.file.move",
+                "WFWorkflowActionParameters": {
+                    "UUID": seeded_uuid(f"{case_name}-move-original"),
+                    "WFInput": attachment_variable("Original File"),
+                },
+            },
+        ]
+    )
+    return root_plist(case_name, actions), "Move File reuses variable"
+
+
+def make_legacy_set_name_missing_filename_invalid(case_name: str) -> tuple[dict, str]:
+    prompt = "Set Name invalid missing filename case"
+    actions = base_actions(case_name, prompt)
+    file_src_uuid = seeded_uuid(f"{case_name}-file-src")
+    actions.extend(
+        [
+            {
+                "WFWorkflowActionIdentifier": "is.workflow.actions.gettext",
+                "WFWorkflowActionParameters": {
+                    "UUID": file_src_uuid,
+                    "WFTextActionText": "file payload",
+                },
+            },
+            {
+                "WFWorkflowActionIdentifier": "is.workflow.actions.file.rename",
+                "WFWorkflowActionParameters": {
+                    "UUID": seeded_uuid(f"{case_name}-rename"),
+                    "WFFile": attachment_action_output(file_src_uuid, "Text"),
+                },
+            },
+        ]
+    )
+    return root_plist(case_name, actions), "Set Name missing WFNewFilename"
 
 
 def make_health_find_detail_valid(case_name: str, idx: int, health_type: str) -> dict:
@@ -1189,11 +1502,19 @@ def make_health_invalid(case_name: str, idx: int) -> tuple[dict, str]:
 def build_cases() -> list[Case]:
     cases: list[Case] = []
 
-    # 40 weather cases (20 valid + 20 invalid)
+    # 43 weather cases (21 valid + 22 invalid)
     for idx in range(20):
         case_name = f"ZZ-Weather-Valid-{idx + 1:02d}"
         cases.append(Case("weather", case_name, make_weather_valid(case_name, idx), True))
-    for idx in range(20):
+    cases.append(
+        Case(
+            "weather",
+            "ZZ-Weather-Sun-Times-Valid",
+            make_weather_sun_times_valid("ZZ-Weather-Sun-Times-Valid"),
+            True,
+        )
+    )
+    for idx in range(22):
         case_name = f"ZZ-Weather-Invalid-{idx + 1:02d}"
         plist, expected = make_weather_invalid(case_name, idx)
         cases.append(Case("weather", case_name, plist, False, expected))
@@ -1207,14 +1528,29 @@ def build_cases() -> list[Case]:
         plist, expected = make_location_invalid(case_name, idx)
         cases.append(Case("location", case_name, plist, False, expected))
 
-    # 12 Set Name cases (6 valid + 6 invalid)
+    # 16 Set Name cases (7 valid + 9 invalid)
     for idx in range(6):
         case_name = f"ZZ-SetName-Valid-{idx + 1:02d}"
         cases.append(Case("set-name", case_name, make_set_name_valid(case_name, idx), True))
+    cases.append(
+        Case(
+            "set-name",
+            "ZZ-SetName-Delete-By-Path-Valid",
+            make_set_name_delete_by_path_valid("ZZ-SetName-Delete-By-Path-Valid"),
+            True,
+        )
+    )
     for idx in range(6):
         case_name = f"ZZ-SetName-Invalid-{idx + 1:02d}"
         plist, expected = make_set_name_invalid(case_name, idx)
         cases.append(Case("set-name", case_name, plist, False, expected))
+    for name, maker in [
+        ("ZZ-SetName-Delete-Variable-Invalid", make_set_name_delete_variable_invalid),
+        ("ZZ-SetName-Move-Variable-Invalid", make_set_name_move_variable_invalid),
+        ("ZZ-SetName-Legacy-Missing-Filename-Invalid", make_legacy_set_name_missing_filename_invalid),
+    ]:
+        plist, expected = maker(name)
+        cases.append(Case("set-name", name, plist, False, expected))
 
     health = load_healthkit_reference()
     quantity_types = health.get("quantity_types", [])

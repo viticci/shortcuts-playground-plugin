@@ -280,11 +280,46 @@ WEATHER_DETAIL_PLACEHOLDER_VALUES = {
     "detail",
 }
 
+WEATHER_DETAIL_SUPPORTED_VALUES = {
+    "Date",
+    "Location",
+    "Temperature",
+    "Low",
+    "High",
+    "Feels Like",
+    "Condition",
+    "Visibility",
+    "Dewpoint",
+    "Humidity",
+    "Pressure",
+    "Precipitation Amount",
+    "Precipitation Chance",
+    "Wind Speed",
+    "Wind Direction",
+    "UV Index",
+    "Sunrise Time",
+    "Sunset Time",
+    "Air Quality Index",
+    "Air Quality Category",
+    "Air Pollutants",
+    "Name",
+}
+
+WEATHER_DETAIL_LIST_VALUES = {
+    "Sunrise Time",
+    "Sunset Time",
+}
+
 LOCATION_PARAMETER_KEYS = {
     "WFLocation",
     "WFWeatherCustomLocation",
     # Legacy export key still seen in some installed shortcuts.
     "WFWeatherLocation",
+}
+
+DESTRUCTIVE_FILE_ACTIONS = {
+    "is.workflow.actions.file.delete": "Delete File",
+    "is.workflow.actions.file.move": "Move File",
 }
 
 UNUSED_OUTPUT_ACTIONS = {
@@ -1094,6 +1129,10 @@ def _extract_input_variable_name(value) -> Optional[str]:
     return None
 
 
+def _extract_input_variable_names(value) -> set[str]:
+    return {name for name in iter_variable_names(value) if isinstance(name, str) and name.strip()}
+
+
 def _input_action_output_uuids(value) -> list[str]:
     if not isinstance(value, dict):
         return []
@@ -1223,6 +1262,8 @@ def validate(
     weather_source_vars: set[str] = set()
     location_source_vars: set[str] = set()
     health_sample_source_vars: set[str] = set()
+    renamed_file_source_vars: dict[str, int] = {}
+    renamed_file_source_uuids: dict[str, int] = {}
 
     for idx, act in enumerate(actions):
         ident = act.get("WFWorkflowActionIdentifier")
@@ -2077,6 +2118,10 @@ def validate(
                 errors.append(
                     f"Get Detail of Weather Conditions uses placeholder detail name at index {idx}: {prop_name!r}"
                 )
+            elif isinstance(prop_name, str) and prop_name not in WEATHER_DETAIL_SUPPORTED_VALUES:
+                errors.append(
+                    f"Get Detail of Weather Conditions uses unsupported detail name at index {idx}: {prop_name!r}; use one of {', '.join(sorted(WEATHER_DETAIL_SUPPORTED_VALUES))}"
+                )
             weather_input = params.get("WFInput")
             if _token_param_is_empty(weather_input):
                 errors.append(f"Get Detail of Weather Conditions missing WFInput at index {idx}")
@@ -2113,6 +2158,26 @@ def validate(
                     if not has_weather_source:
                         errors.append(
                             f"Get Detail of Weather Conditions WFInput should reference output from Get Weather/Forecast at index {idx}"
+                        )
+
+        if ident == "is.workflow.actions.getitemfromlist":
+            wfinput = params.get("WFInput")
+            for out_uuid in _input_action_output_uuids(wfinput):
+                source_ident = uuid_to_ident.get(out_uuid)
+                source_params = uuid_to_params.get(out_uuid, {})
+                source_prop = source_params.get("WFContentItemPropertyName")
+                if (
+                    source_ident == "is.workflow.actions.properties.weather.conditions"
+                    and source_prop in WEATHER_DETAIL_LIST_VALUES
+                ):
+                    specifier = params.get("WFItemSpecifier")
+                    if source_prop == "Sunrise Time" and specifier not in (None, "", "First Item"):
+                        errors.append(
+                            f"Sunrise Time returns a list; Get Item from List should use First Item at index {idx}"
+                        )
+                    if source_prop == "Sunset Time" and specifier != "Last Item":
+                        errors.append(
+                            f"Sunset Time returns a list; Get Item from List should use Last Item at index {idx}"
                         )
 
         if ident == "is.workflow.actions.gettimebetweendates":
@@ -2557,6 +2622,10 @@ def validate(
                 for out_uuid in _input_action_output_uuids(wf_file):
                     if out_uuid not in uuid_to_ident:
                         errors.append(f"Set Name WFFile references unknown OutputUUID at index {idx}")
+                    else:
+                        renamed_file_source_uuids[out_uuid] = idx
+                for var_name in _extract_input_variable_names(wf_file):
+                    renamed_file_source_vars[var_name] = idx
 
             if _token_param_is_empty(params.get("WFNewFilename")):
                 errors.append(f"Set Name missing WFNewFilename at index {idx}")
@@ -2568,6 +2637,18 @@ def validate(
                 wfdate = params.get("WFDate")
                 if not _input_is_editor_visible(wfdate):
                     errors.append(f"Format Date WFDate should use WFTextTokenString with placeholder at index {idx}")
+                for out_uuid in _input_action_output_uuids(wfdate):
+                    source_ident = uuid_to_ident.get(out_uuid)
+                    source_params = uuid_to_params.get(out_uuid, {})
+                    source_prop = source_params.get("WFContentItemPropertyName")
+                    if (
+                        source_ident == "is.workflow.actions.properties.weather.conditions"
+                        and source_prop in WEATHER_DETAIL_LIST_VALUES
+                    ):
+                        expected = "First Item" if source_prop == "Sunrise Time" else "Last Item"
+                        errors.append(
+                            f"{source_prop} returns a list; use Get Item from List ({expected}) before Format Date at index {idx}"
+                        )
             if params.get("WFDateFormat") == "Custom" and not params.get("WFDateFormatString"):
                 errors.append(f"Format Date custom format is empty at index {idx}")
             if params.get("WFDateFormat") == "Custom" and params.get("WFDateFormatString"):
@@ -2599,6 +2680,22 @@ def validate(
                     effective = fmt_str if fmt_key == "Custom" else (fmt_key or fmt_str)
                     if not allow_datetime_format and isinstance(effective, str) and re.search(r"[HhmsZ]|'T'", effective):
                         errors.append(f"{name} should use date-only format (yyyy-MM-dd)")
+
+        if ident in DESTRUCTIVE_FILE_ACTIONS:
+            wfinput = params.get("WFInput")
+            destructive_name = DESTRUCTIVE_FILE_ACTIONS[ident]
+            for var_name in _extract_input_variable_names(wfinput):
+                rename_idx = renamed_file_source_vars.get(var_name)
+                if rename_idx is not None:
+                    errors.append(
+                        f"{destructive_name} reuses variable '{var_name}' after Set Name at index {rename_idx}; capture the original file path before Set Name and pass that path to {destructive_name} at index {idx}"
+                    )
+            for out_uuid in _input_action_output_uuids(wfinput):
+                rename_idx = renamed_file_source_uuids.get(out_uuid)
+                if rename_idx is not None:
+                    errors.append(
+                        f"{destructive_name} reuses the same file output after Set Name at index {rename_idx}; capture the original file path before Set Name and pass that path to {destructive_name} at index {idx}"
+                    )
 
         if ident == "is.workflow.actions.math":
             if not params.get("WFMathOperand"):
