@@ -29,7 +29,7 @@ You need:
    ```bash
    export SHORTCUTS_PLAYGROUND_PYTHON=/opt/homebrew/bin/python3
    ```
-4. **A GitHub account with access to the repo.** If the plugin is installed from a private GitHub repo, log in with `gh` or configure Git credentials for HTTPS. If `git clone https://github.com/<owner>/shortcuts-playground-plugin.git` works for you, you're set.
+4. **A GitHub account with access to the repo.** If the plugin is installed from a private GitHub repo, log in with `gh` or configure Git credentials for HTTPS. If `git clone https://github.com/viticci/shortcuts-playground-plugin.git` works for you, you're set.
 
 ## Install (one time)
 
@@ -37,7 +37,7 @@ Two commands inside any terminal:
 
 ```bash
 # Step 1: tell Claude Code where the marketplace lives
-claude plugin marketplace add https://github.com/<owner>/shortcuts-playground-plugin
+claude plugin marketplace add https://github.com/viticci/shortcuts-playground-plugin
 
 # Step 2: install the plugin from that marketplace
 claude plugin install shortcuts-playground@shortcuts-playground
@@ -171,7 +171,7 @@ Your `~/Documents/Shortcuts Playground/` directory stays intact — the plugin n
 
 ## Release notes
 
-You're installing **v1.7.0**. The full CHANGELOG is in the repo. Big recent changes:
+You're installing **v1.7.5**. The full CHANGELOG is in the repo. Big recent changes:
 
 - **v1.7.0** — repository split into separate `claude/` and `codex/` plugin packages.
 - **v1.6.x** — HealthKit action support and sanitized bundled HealthKit XML evidence.
