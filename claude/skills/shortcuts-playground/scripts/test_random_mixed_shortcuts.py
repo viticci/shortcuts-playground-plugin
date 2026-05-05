@@ -395,11 +395,11 @@ def build_case(case_name: str, idx: int, rng: random.Random) -> BuildResult:
     rename_uuid = uid("set-name")
     actions.append(
         {
-            "WFWorkflowActionIdentifier": "is.workflow.actions.file.rename",
+            "WFWorkflowActionIdentifier": "is.workflow.actions.setitemname",
             "WFWorkflowActionParameters": {
                 "UUID": rename_uuid,
-                "WFFile": action_output(key_uuid, "Dictionary Value"),
-                "WFNewFilename": f"Test-{idx:03d}.txt",
+                "WFInput": action_output(key_uuid, "Dictionary Value"),
+                "WFName": f"Test-{idx:03d}.txt",
             },
         }
     )

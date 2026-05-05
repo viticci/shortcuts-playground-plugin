@@ -81,6 +81,60 @@ Use these identifiers/keys when generating Measurement + Send Email actions.
 </dict>
 ```
 
+## Set Name vs Rename File
+
+Use **Set Name** (`is.workflow.actions.setitemname`) when the workflow needs a renamed item object for **Save File** or **Share**. Do not use **Rename File** (`is.workflow.actions.file.rename`) for this pattern; Rename File changes the original file in place.
+
+```xml
+<!-- Set Name (creates a renamed item object for downstream Save/Share) -->
+<dict>
+  <key>WFWorkflowActionIdentifier</key>
+  <string>is.workflow.actions.setitemname</string>
+  <key>WFWorkflowActionParameters</key>
+  <dict>
+    <key>UUID</key>
+    <string>C7056602-18BE-4DF6-88DC-099821A06AD2</string>
+    <key>WFInput</key>
+    <dict>
+      <key>Value</key>
+      <dict>
+        <key>Type</key>
+        <string>Variable</string>
+        <key>VariableName</key>
+        <string>Original File</string>
+      </dict>
+      <key>WFSerializationType</key>
+      <string>WFTextTokenAttachment</string>
+    </dict>
+    <key>WFName</key>
+    <string>Renamed.txt</string>
+  </dict>
+</dict>
+
+<!-- Save File receives Set Name's Renamed Item output -->
+<dict>
+  <key>WFWorkflowActionIdentifier</key>
+  <string>is.workflow.actions.documentpicker.save</string>
+  <key>WFWorkflowActionParameters</key>
+  <dict>
+    <key>WFInput</key>
+    <dict>
+      <key>Value</key>
+      <dict>
+        <key>OutputName</key>
+        <string>Renamed Item</string>
+        <key>OutputUUID</key>
+        <string>C7056602-18BE-4DF6-88DC-099821A06AD2</string>
+        <key>Type</key>
+        <string>ActionOutput</string>
+      </dict>
+      <key>WFSerializationType</key>
+      <string>WFTextTokenAttachment</string>
+    </dict>
+  </dict>
+</dict>
+```
+
 ## Example 1: Hello World
 
 The simplest shortcut - displays "Hello World!".

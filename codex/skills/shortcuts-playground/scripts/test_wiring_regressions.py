@@ -7,7 +7,8 @@ validate_shortcut.py's validate() API.
 It is designed to enforce:
 - Get Detail of Weather Conditions must have non-empty, correctly wired input.
 - Location-bearing parameters must never be emitted empty/unwired.
-- Set Name must include both file input and target filename.
+- Set Name must use setitemname with both input and target name.
+- Rename File must not be used as a renamed-copy step before Save/Share.
 - HealthKit actions must validate exported iOS plist parameter shapes across
   all SDK-known HealthKit type/value families.
 """
@@ -869,7 +870,7 @@ def make_set_name_valid(case_name: str, idx: int) -> dict:
     prompt = f"Set Name valid case {idx}"
     actions = base_actions(case_name, prompt)
     file_src_uuid = seeded_uuid(f"{case_name}-file-src")
-    rename_uuid = seeded_uuid(f"{case_name}-rename")
+    set_name_uuid = seeded_uuid(f"{case_name}-set-name")
     var_name = f"New Name {idx}"
 
     actions.append(
@@ -895,11 +896,11 @@ def make_set_name_valid(case_name: str, idx: int) -> dict:
 
     actions.append(
         {
-            "WFWorkflowActionIdentifier": "is.workflow.actions.file.rename",
+            "WFWorkflowActionIdentifier": "is.workflow.actions.setitemname",
             "WFWorkflowActionParameters": {
-                "UUID": rename_uuid,
-                "WFFile": attachment_action_output(file_src_uuid, "Text"),
-                "WFNewFilename": new_name_param,
+                "UUID": set_name_uuid,
+                "WFInput": attachment_action_output(file_src_uuid, "Text"),
+                "WFName": new_name_param,
             },
         }
     )
@@ -911,7 +912,7 @@ def make_set_name_invalid(case_name: str, idx: int) -> tuple[dict, str]:
     actions = base_actions(case_name, prompt)
     file_src_uuid = seeded_uuid(f"{case_name}-file-src")
     pattern = idx % 6
-    rename_uuid = seeded_uuid(f"{case_name}-rename")
+    set_name_uuid = seeded_uuid(f"{case_name}-set-name")
 
     actions.append(
         {
@@ -920,60 +921,49 @@ def make_set_name_invalid(case_name: str, idx: int) -> tuple[dict, str]:
         }
     )
 
-    params = {"UUID": rename_uuid}
+    params = {"UUID": set_name_uuid}
     expected = "Set Name"
     if pattern == 0:
-        params["WFNewFilename"] = "Test.txt"
-        expected = "Set Name missing WFFile"
+        params["WFName"] = "Test.txt"
+        expected = "Set Name missing WFInput"
     elif pattern == 1:
-        params["WFFile"] = {}
-        params["WFNewFilename"] = "Test.txt"
-        expected = "Set Name WFFile is not a token attachment"
+        params["WFInput"] = {}
+        params["WFName"] = "Test.txt"
+        expected = "Set Name WFInput is not a token attachment"
     elif pattern == 2:
-        params["WFFile"] = attachment_action_output(file_src_uuid, "Text")
-        expected = "Set Name missing WFNewFilename"
+        params["WFInput"] = attachment_action_output(file_src_uuid, "Text")
+        expected = "Set Name missing WFName"
     elif pattern == 3:
-        params["WFFile"] = attachment_action_output(file_src_uuid, "Text")
-        params["WFNewFilename"] = "   "
-        expected = "Set Name missing WFNewFilename"
+        params["WFInput"] = attachment_action_output(file_src_uuid, "Text")
+        params["WFName"] = "   "
+        expected = "Set Name missing WFName"
     elif pattern == 4:
-        params["WFFile"] = {
+        params["WFInput"] = {
             "WFSerializationType": "WFTextTokenAttachment",
             "Value": {},
         }
-        params["WFNewFilename"] = "Test.txt"
-        expected = "Set Name missing WFFile"
+        params["WFName"] = "Test.txt"
+        expected = "Set Name missing WFInput"
     else:
-        params["WFFile"] = attachment_action_output(file_src_uuid, "Text")
-        params["WFNewFilename"] = "Renamed.txt"
-        expected = "Delete File reuses the same file output after Set Name"
+        params["WFInput"] = attachment_action_output("00000000-0000-4000-8000-000000000001", "File")
+        params["WFName"] = "Renamed.txt"
+        expected = "Set Name WFInput references unknown OutputUUID"
 
     actions.append(
         {
-            "WFWorkflowActionIdentifier": "is.workflow.actions.file.rename",
+            "WFWorkflowActionIdentifier": "is.workflow.actions.setitemname",
             "WFWorkflowActionParameters": params,
         }
     )
 
-    if pattern == 5:
-        actions.append(
-            {
-                "WFWorkflowActionIdentifier": "is.workflow.actions.file.delete",
-                "WFWorkflowActionParameters": {
-                    "UUID": seeded_uuid(f"{case_name}-delete-original"),
-                    "WFInput": attachment_action_output(file_src_uuid, "Text"),
-                },
-            }
-        )
-
     return root_plist(case_name, actions), expected
 
 
-def make_set_name_delete_variable_invalid(case_name: str) -> tuple[dict, str]:
-    prompt = "Set Name followed by Delete File variable reuse invalid case"
+def make_set_name_delete_variable_valid(case_name: str) -> dict:
+    prompt = "Set Name followed by Delete File variable reuse valid case"
     actions = base_actions(case_name, prompt)
     file_src_uuid = seeded_uuid(f"{case_name}-file-src")
-    rename_uuid = seeded_uuid(f"{case_name}-rename")
+    set_name_uuid = seeded_uuid(f"{case_name}-set-name")
 
     actions.extend(
         [
@@ -989,11 +979,18 @@ def make_set_name_delete_variable_invalid(case_name: str) -> tuple[dict, str]:
                 },
             },
             {
-                "WFWorkflowActionIdentifier": "is.workflow.actions.file.rename",
+                "WFWorkflowActionIdentifier": "is.workflow.actions.setitemname",
                 "WFWorkflowActionParameters": {
-                    "UUID": rename_uuid,
-                    "WFFile": attachment_variable("Original File"),
-                    "WFNewFilename": "Renamed.txt",
+                    "UUID": set_name_uuid,
+                    "WFInput": attachment_variable("Original File"),
+                    "WFName": "Renamed.txt",
+                },
+            },
+            {
+                "WFWorkflowActionIdentifier": "is.workflow.actions.documentpicker.save",
+                "WFWorkflowActionParameters": {
+                    "UUID": seeded_uuid(f"{case_name}-save-renamed"),
+                    "WFInput": attachment_action_output(set_name_uuid, "Renamed Item"),
                 },
             },
             {
@@ -1005,7 +1002,7 @@ def make_set_name_delete_variable_invalid(case_name: str) -> tuple[dict, str]:
             },
         ]
     )
-    return root_plist(case_name, actions), "Delete File reuses variable"
+    return root_plist(case_name, actions)
 
 
 def make_set_name_delete_by_path_valid(case_name: str) -> dict:
@@ -1013,7 +1010,7 @@ def make_set_name_delete_by_path_valid(case_name: str) -> dict:
     actions = base_actions(case_name, prompt)
     file_src_uuid = seeded_uuid(f"{case_name}-file-src")
     path_uuid = seeded_uuid(f"{case_name}-path")
-    rename_uuid = seeded_uuid(f"{case_name}-rename")
+    set_name_uuid = seeded_uuid(f"{case_name}-set-name")
 
     actions.extend(
         [
@@ -1030,11 +1027,11 @@ def make_set_name_delete_by_path_valid(case_name: str) -> dict:
                 },
             },
             {
-                "WFWorkflowActionIdentifier": "is.workflow.actions.file.rename",
+                "WFWorkflowActionIdentifier": "is.workflow.actions.setitemname",
                 "WFWorkflowActionParameters": {
-                    "UUID": rename_uuid,
-                    "WFFile": attachment_action_output(file_src_uuid, "File"),
-                    "WFNewFilename": "Renamed.txt",
+                    "UUID": set_name_uuid,
+                    "WFInput": attachment_action_output(file_src_uuid, "File"),
+                    "WFName": "Renamed.txt",
                 },
             },
             {
@@ -1049,8 +1046,8 @@ def make_set_name_delete_by_path_valid(case_name: str) -> dict:
     return root_plist(case_name, actions)
 
 
-def make_set_name_move_variable_invalid(case_name: str) -> tuple[dict, str]:
-    prompt = "Set Name followed by Move File variable reuse invalid case"
+def make_rename_file_share_invalid(case_name: str) -> tuple[dict, str]:
+    prompt = "Rename File used before Share invalid case"
     actions = base_actions(case_name, prompt)
     file_src_uuid = seeded_uuid(f"{case_name}-file-src")
     rename_uuid = seeded_uuid(f"{case_name}-rename")
@@ -1077,40 +1074,52 @@ def make_set_name_move_variable_invalid(case_name: str) -> tuple[dict, str]:
                 },
             },
             {
-                "WFWorkflowActionIdentifier": "is.workflow.actions.file.move",
+                "WFWorkflowActionIdentifier": "is.workflow.actions.share",
                 "WFWorkflowActionParameters": {
-                    "UUID": seeded_uuid(f"{case_name}-move-original"),
-                    "WFInput": attachment_variable("Original File"),
+                    "UUID": seeded_uuid(f"{case_name}-share-renamed"),
+                    "WFInput": attachment_action_output(rename_uuid, "Renamed File"),
                 },
             },
         ]
     )
-    return root_plist(case_name, actions), "Move File reuses variable"
+    return root_plist(case_name, actions), "Share consumes Rename File output"
 
 
-def make_legacy_set_name_missing_filename_invalid(case_name: str) -> tuple[dict, str]:
-    prompt = "Set Name invalid missing filename case"
+def make_rename_file_delete_original_invalid(case_name: str) -> tuple[dict, str]:
+    prompt = "Rename File followed by Delete File original variable invalid case"
     actions = base_actions(case_name, prompt)
     file_src_uuid = seeded_uuid(f"{case_name}-file-src")
     actions.extend(
         [
             {
-                "WFWorkflowActionIdentifier": "is.workflow.actions.gettext",
+                "WFWorkflowActionIdentifier": "is.workflow.actions.file.select",
+                "WFWorkflowActionParameters": {"UUID": file_src_uuid},
+            },
+            {
+                "WFWorkflowActionIdentifier": "is.workflow.actions.setvariable",
                 "WFWorkflowActionParameters": {
-                    "UUID": file_src_uuid,
-                    "WFTextActionText": "file payload",
+                    "WFVariableName": "Original File",
+                    "WFInput": attachment_action_output(file_src_uuid, "File"),
                 },
             },
             {
                 "WFWorkflowActionIdentifier": "is.workflow.actions.file.rename",
                 "WFWorkflowActionParameters": {
                     "UUID": seeded_uuid(f"{case_name}-rename"),
-                    "WFFile": attachment_action_output(file_src_uuid, "Text"),
+                    "WFFile": attachment_variable("Original File"),
+                    "WFNewFilename": "Renamed.txt",
+                },
+            },
+            {
+                "WFWorkflowActionIdentifier": "is.workflow.actions.file.delete",
+                "WFWorkflowActionParameters": {
+                    "UUID": seeded_uuid(f"{case_name}-delete-original"),
+                    "WFInput": attachment_variable("Original File"),
                 },
             },
         ]
     )
-    return root_plist(case_name, actions), "Set Name missing WFNewFilename"
+    return root_plist(case_name, actions), "Delete File reuses variable"
 
 
 def make_health_find_detail_valid(case_name: str, idx: int, health_type: str) -> dict:
@@ -1632,10 +1641,18 @@ def build_cases() -> list[Case]:
         plist, expected = make_location_invalid(case_name, idx)
         cases.append(Case("location", case_name, plist, False, expected))
 
-    # 16 Set Name cases (7 valid + 9 invalid)
+    # 16 Set Name/Rename File cases (8 valid + 8 invalid)
     for idx in range(6):
         case_name = f"ZZ-SetName-Valid-{idx + 1:02d}"
         cases.append(Case("set-name", case_name, make_set_name_valid(case_name, idx), True))
+    cases.append(
+        Case(
+            "set-name",
+            "ZZ-SetName-Delete-Variable-Valid",
+            make_set_name_delete_variable_valid("ZZ-SetName-Delete-Variable-Valid"),
+            True,
+        )
+    )
     cases.append(
         Case(
             "set-name",
@@ -1649,9 +1666,8 @@ def build_cases() -> list[Case]:
         plist, expected = make_set_name_invalid(case_name, idx)
         cases.append(Case("set-name", case_name, plist, False, expected))
     for name, maker in [
-        ("ZZ-SetName-Delete-Variable-Invalid", make_set_name_delete_variable_invalid),
-        ("ZZ-SetName-Move-Variable-Invalid", make_set_name_move_variable_invalid),
-        ("ZZ-SetName-Legacy-Missing-Filename-Invalid", make_legacy_set_name_missing_filename_invalid),
+        ("ZZ-RenameFile-Share-Invalid", make_rename_file_share_invalid),
+        ("ZZ-RenameFile-Delete-Original-Invalid", make_rename_file_delete_original_invalid),
     ]:
         plist, expected = maker(name)
         cases.append(Case("set-name", name, plist, False, expected))

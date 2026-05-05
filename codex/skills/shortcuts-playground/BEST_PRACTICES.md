@@ -291,9 +291,10 @@ Example:
 ## Files & Output
 
 - Prefer **Select File** (`is.workflow.actions.file.select`) for user file input; use **Document Picker Open/Save** when you need explicit Files UI flows.
-- Use **Set Name** (`is.workflow.actions.file.rename`) before saving files to ensure predictable filenames.
-- For **Set Name**, always provide both `WFFile` (wired file input) and `WFNewFilename` (for example, `Test.txt`). The action outputs a file object with the updated name for downstream actions.
-- **Set Name caveat for rename-and-replace workflows**: Set Name's output is suitable for downstream **Save File** or **Share**, but the source magic variable wired into `WFFile` becomes unsafe to reference later in destructive actions such as **Delete File** or **Move File**. For "rename, save, then remove original" workflows, capture the source's path as text before Set Name (for example, **Get Details of Files -> File Path**) and pass that captured path to Delete/Move instead of reusing the original file variable or action output.
+- Use **Set Name** (`is.workflow.actions.setitemname`) before **Save File** or **Share** when you need a renamed copy/new file object.
+- For **Set Name**, always provide both `WFInput` (the source file/item) and `WFName` (for example, `Test.txt`). The action outputs **Renamed Item**; wire that output into **Save File** (`is.workflow.actions.documentpicker.save`) or **Share**.
+- Do **not** use **Rename File** (`is.workflow.actions.file.rename`) for "rename, save/share elsewhere, then delete original" workflows. Rename File mutates the original file at its existing path in place; it does not create a separate renamed file object for saving elsewhere.
+- For rename-and-save workflows, keep the original file in a named variable (for example, **Original File**), use **Set Name** on that variable to produce **Renamed Item**, save/share **Renamed Item**, then delete **Original File** only if the user explicitly asked to remove the source after saving.
 - For file outputs, preview with **Quick Look** before **Save/Share** when appropriate.
 - For PDFs, a common pattern is **Make PDF → Preview Document → Save/Share**.
 - For **Notes** output, use the supported Notes action for the target OS (AppIntent on iOS/iPadOS). If Notes isn’t available, fall back to **Share** or **Save File** and add a Comment explaining the fallback.

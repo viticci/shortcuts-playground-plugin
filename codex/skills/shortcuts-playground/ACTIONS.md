@@ -83,6 +83,8 @@ Some actions have non-standard mappings:
 | `file` | WFFileAction | Create file reference |
 | `documentpicker.open` | WFSelectFilesAction | Open file picker |
 | `documentpicker.save` | WFSaveFileAction | Save file |
+| `setitemname` | WFSetItemNameAction | Set Name; produces a renamed item object |
+| `file.rename` | WFRenameFileAction | Rename File; mutates the original file in place |
 | `file.append` | WFAppendFileAction | Append to text file (was `appendfile` in older versions) |
 
 ### Web & URLs

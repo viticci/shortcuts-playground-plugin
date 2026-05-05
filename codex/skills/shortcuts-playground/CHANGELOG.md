@@ -1,5 +1,18 @@
 # Autoresearch Loop Changelog
 
+## Date: May 5, 2026 — Set Name action identity correction
+
+### Summary
+
+Corrected the Set Name guidance after comparing a generated shortcut against an Apple-built skeleton. **Set Name** is `is.workflow.actions.setitemname` and produces a renamed item object; **Rename File** is `is.workflow.actions.file.rename` and renames the original file in place.
+
+### Fixes Applied
+
+- Replaced the incorrect Set Name mapping (`file.rename` + `WFFile`/`WFNewFilename`) with the verified `setitemname` + `WFInput`/`WFName` schema.
+- Documented that Rename File mutates the original path and must not be used for save-as/share-copy workflows.
+- Updated validator coverage so Set Name validates `WFInput` and `WFName`, while Save/Share consuming Rename File output is rejected.
+- Updated regression and random mixed-shortcut fixtures to generate `setitemname`.
+
 ## Date: May 4, 2026 — 1.7.5 URL schemes, JavaScript webpage rules, and date recipes
 
 ### Summary
@@ -15,18 +28,18 @@ Added Apple-documented Shortcuts URL scheme/x-callback guidance, Run JavaScript 
 - Updated the validator to require Safari webpage share-sheet metadata and completion-handler usage for Run JavaScript on Webpage actions.
 - Added regression fixtures for valid/invalid Shortcuts URL scheme and JavaScript webpage cases.
 
-## Date: May 4, 2026 — Weather details and Set Name source reuse
+## Date: May 4, 2026 — Weather details and superseded Set Name source reuse
 
 ### Summary
 
-Fixed two shortcut-generation gaps found from exported shortcuts: Weather Detail fields must use current Shortcuts picker labels, and Set Name must not be followed by Delete/Move against the same original file reference.
+Fixed the Weather Detail picker labels. The Set Name source-reuse guidance from this entry was superseded by the May 5, 2026 correction: Set Name is `setitemname`, while `file.rename` is Rename File and mutates the original file in place.
 
 ### Fixes Applied
 
 - Documented and validated the supported Get Detail of Weather Conditions names, including `Sunrise Time` and `Sunset Time` instead of stale `Sunrise Date` / `Sunset Date`.
 - Added sunrise/sunset list handling guidance and validation: use Get Item from List, First Item for sunrise and Last Item for sunset, before formatting the date.
-- Documented the Set Name rename-and-replace caveat and added validation for Delete File / Move File actions that reuse the same source variable or action output after Set Name.
-- Expanded the wiring regression suite with Weather sunrise/sunset and Set Name delete/move cases.
+- Added an earlier Set Name source-reuse validator, later replaced by the May 5 Set Name/Rename File distinction.
+- Expanded the wiring regression suite with Weather sunrise/sunset and file-renaming cases.
 
 ## Date: April 30, 2026 — 1.7.4 Health dashboard labels and duration math
 

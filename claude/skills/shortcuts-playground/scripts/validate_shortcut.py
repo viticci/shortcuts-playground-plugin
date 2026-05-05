@@ -329,6 +329,11 @@ DESTRUCTIVE_FILE_ACTIONS = {
     "is.workflow.actions.file.move": "Move File",
 }
 
+RENAMED_COPY_OUTPUT_ACTIONS = {
+    "is.workflow.actions.documentpicker.save": "Save File",
+    "is.workflow.actions.share": "Share",
+}
+
 UNUSED_OUTPUT_ACTIONS = {
     "is.workflow.actions.gettext",
     "is.workflow.actions.number",
@@ -1337,8 +1342,9 @@ def validate(
     weather_source_vars: set[str] = set()
     location_source_vars: set[str] = set()
     health_sample_source_vars: set[str] = set()
-    renamed_file_source_vars: dict[str, int] = {}
-    renamed_file_source_uuids: dict[str, int] = {}
+    rename_file_source_vars: dict[str, int] = {}
+    rename_file_source_uuids: dict[str, int] = {}
+    rename_file_output_uuids: dict[str, int] = {}
 
     for idx, act in enumerate(actions):
         ident = act.get("WFWorkflowActionIdentifier")
@@ -2731,25 +2737,45 @@ def validate(
                         f"Send Email uses legacy SendMail parameter keys; use WFSendEmailAction* at index {idx}"
                     )
 
+        if ident == "is.workflow.actions.setitemname":
+            wf_input = params.get("WFInput")
+            if _token_param_is_empty(wf_input):
+                errors.append(f"Set Name missing WFInput at index {idx}")
+            elif not _input_is_attached(wf_input):
+                errors.append(f"Set Name WFInput is not a token attachment at index {idx}")
+            elif not _input_has_reference(wf_input):
+                errors.append(f"Set Name WFInput has no variable/output reference at index {idx}")
+            else:
+                for out_uuid in _input_action_output_uuids(wf_input):
+                    if out_uuid not in uuid_to_ident:
+                        errors.append(f"Set Name WFInput references unknown OutputUUID at index {idx}")
+
+            if _token_param_is_empty(params.get("WFName")):
+                errors.append(f"Set Name missing WFName at index {idx}")
+
         if ident == "is.workflow.actions.file.rename":
             wf_file = params.get("WFFile")
             if _token_param_is_empty(wf_file):
-                errors.append(f"Set Name missing WFFile at index {idx}")
+                errors.append(f"Rename File missing WFFile at index {idx}")
             elif not _input_is_attached(wf_file):
-                errors.append(f"Set Name WFFile is not a token attachment at index {idx}")
+                errors.append(f"Rename File WFFile is not a token attachment at index {idx}")
             elif not _input_has_reference(wf_file):
-                errors.append(f"Set Name WFFile has no variable/output reference at index {idx}")
+                errors.append(f"Rename File WFFile has no variable/output reference at index {idx}")
             else:
                 for out_uuid in _input_action_output_uuids(wf_file):
                     if out_uuid not in uuid_to_ident:
-                        errors.append(f"Set Name WFFile references unknown OutputUUID at index {idx}")
+                        errors.append(f"Rename File WFFile references unknown OutputUUID at index {idx}")
                     else:
-                        renamed_file_source_uuids[out_uuid] = idx
+                        rename_file_source_uuids[out_uuid] = idx
                 for var_name in _extract_input_variable_names(wf_file):
-                    renamed_file_source_vars[var_name] = idx
+                    rename_file_source_vars[var_name] = idx
 
             if _token_param_is_empty(params.get("WFNewFilename")):
-                errors.append(f"Set Name missing WFNewFilename at index {idx}")
+                errors.append(f"Rename File missing WFNewFilename at index {idx}")
+
+            rename_uuid = params.get("UUID")
+            if isinstance(rename_uuid, str) and rename_uuid.strip():
+                rename_file_output_uuids[rename_uuid] = idx
 
         if ident == "is.workflow.actions.format.date":
             if not params.get("WFDate"):
@@ -2806,16 +2832,26 @@ def validate(
             wfinput = params.get("WFInput")
             destructive_name = DESTRUCTIVE_FILE_ACTIONS[ident]
             for var_name in _extract_input_variable_names(wfinput):
-                rename_idx = renamed_file_source_vars.get(var_name)
+                rename_idx = rename_file_source_vars.get(var_name)
                 if rename_idx is not None:
                     errors.append(
-                        f"{destructive_name} reuses variable '{var_name}' after Set Name at index {rename_idx}; capture the original file path before Set Name and pass that path to {destructive_name} at index {idx}"
+                        f"{destructive_name} reuses variable '{var_name}' after Rename File at index {rename_idx}; Rename File changes the original file in place, so use Set Name (is.workflow.actions.setitemname) for renamed-copy workflows at index {idx}"
                     )
             for out_uuid in _input_action_output_uuids(wfinput):
-                rename_idx = renamed_file_source_uuids.get(out_uuid)
+                rename_idx = rename_file_source_uuids.get(out_uuid)
                 if rename_idx is not None:
                     errors.append(
-                        f"{destructive_name} reuses the same file output after Set Name at index {rename_idx}; capture the original file path before Set Name and pass that path to {destructive_name} at index {idx}"
+                        f"{destructive_name} reuses the same file output after Rename File at index {rename_idx}; Rename File changes the original file in place, so use Set Name (is.workflow.actions.setitemname) for renamed-copy workflows at index {idx}"
+                    )
+
+        if ident in RENAMED_COPY_OUTPUT_ACTIONS:
+            wfinput = params.get("WFInput")
+            consumer_name = RENAMED_COPY_OUTPUT_ACTIONS[ident]
+            for out_uuid in _input_action_output_uuids(wfinput):
+                rename_idx = rename_file_output_uuids.get(out_uuid)
+                if rename_idx is not None:
+                    errors.append(
+                        f"{consumer_name} consumes Rename File output from index {rename_idx}; Rename File mutates the original file in place. Use Set Name (is.workflow.actions.setitemname with WFInput and WFName) to create a renamed file object for saving or sharing at index {idx}"
                     )
 
         if ident == "is.workflow.actions.math":
