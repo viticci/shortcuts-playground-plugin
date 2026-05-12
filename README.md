@@ -69,7 +69,49 @@ shortcuts-playground-selftest                    # expect "✔ All checks passed
 
 ## Installation in Codex
 
-//TODO
+Codex installs plugins from marketplaces. This repository includes a Codex marketplace at `.agents/plugins/marketplace.json`, which points at the Codex package in `./codex`.
+
+### In the terminal
+
+Register the marketplace, then install the plugin from Codex's plugin browser:
+
+```bash
+# 1. Register the marketplace
+codex plugin marketplace add https://github.com/viticci/shortcuts-playground-plugin
+
+# 2. Open Codex
+codex
+```
+
+Inside Codex, type `/plugins`, choose the Shortcuts Playground marketplace, open Shortcuts Playground, and select `Install plugin`. Start a new session to load the plugin.
+
+For local development from a cloned checkout, register the checkout instead of GitHub:
+
+```bash
+codex plugin marketplace add /absolute/path/to/shortcuts-playground-plugin
+```
+
+### In the Codex app
+
+1. Open the Codex app and make sure you're signed in.
+2. Register the marketplace once from Terminal:
+   ```
+   codex plugin marketplace add https://github.com/viticci/shortcuts-playground-plugin
+   ```
+3. Open Plugins in the Codex app, switch to the Shortcuts Playground marketplace, open Shortcuts Playground, and click the plus button or `Add to Codex`.
+4. Start a new thread to load the plugin.
+
+### Verify the install
+
+Run these checks to confirm the local requirements and Codex cache are in place:
+
+```bash
+python3 --version                                                   # expect 3.10+
+which shortcuts                                                     # expect /usr/bin/shortcuts
+test -d ~/.codex/plugins/cache/shortcuts-playground/shortcuts-playground/1.0 && echo "installed"
+```
+
+Then start a new Codex thread and ask it to use Shortcuts Playground. Codex should load the bundled skill and call the validator/signing scripts from the installed plugin cache.
 
 ---
 
