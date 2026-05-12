@@ -1,32 +1,34 @@
 # Shortcuts Playground
 
-Create Apple Shortcuts with natural language and Claude Code.
+Create Apple Shortcuts with natural language using Claude Code or Codex.
 
-Shortcuts Playground is a plugin for [Claude Code](https://claude.com/claude-code) that turns any session on your Mac into a full-stack Shortcuts author. Describe what you want in plain English — a few minutes later, you get a real, signed `.shortcut` file ready to import into the Shortcuts app.
+Shortcuts Playground is a plugin for Claude Code and Codex that lets you turn any idea into a shortcut for Apple's Shortcuts app. Describe what you want in plain English; a few minutes later, you get a real, signed `.shortcut` file ready to import into the Shortcuts app.
 
-Under the hood, shortcuts have always been XML files that get signed and encrypted into Apple's proprietary `.shortcut` format. Shortcuts Playground ships a comprehensive knowledge base that teaches Claude how Shortcuts actions work, what syntax they use, and how they connect to one another. Claude generates the XML, validates it through an automatic loop, and signs it using Apple's own `shortcuts` CLI. The result is a valid shortcut, built from a sentence.
+Under the hood, shortcuts have always been XML files that get signed and encrypted into Apple's proprietary `.shortcut` format. Shortcuts Playground ships a comprehensive knowledge base that teaches Claude and Codex how Shortcuts actions work, what syntax they use, and how they connect to one another. Agents generate the XML, validate it through a loop, and sign it using Apple's native `shortcuts` CLI. The result is a valid shortcut, built from a sentence.
 
-A project by [Federico Viticci](https://www.macstories.net), built with Claude.
+A project by [Federico Viticci](https://www.macstories.net).
 
 ---
 
 ## What It Does
 
-- **Build from scratch.** Type `/shortcuts-playground:build` followed by a description of the shortcut you want. Claude designs the action list, wires variables, picks an icon, validates the XML through a self-correcting loop, and signs the result.
-- **Remix an existing shortcut.** Type `/shortcuts-playground:remix` with a path to an unsigned `.xml` file and describe what to change. Claude applies a surgical diff — preserving every action, UUID, and icon you didn't ask to touch.
-- **Automatic validation.** A `PostToolUse` hook runs a structural validator on every file write. Errors feed back into Claude's context so it can fix them before signing. This is the Craig Loop — it adds a few seconds of latency but dramatically improves output quality.
+You can install Shortcuts Playground in either Claude Code or Codex. At the moment, the Claude Code version of the plugin offers a richer experience thannks to dedicated commands, agents, and hooks.
+
+- **Build from scratch.** In Claude Code, type `/shortcuts-playground:build` followed by a description of the shortcut you want. Claude designs the action list, wires variables, picks an icon, validates the XML through a self-correcting loop, and signs the result.
+- **Remix an existing shortcut.** Type `/shortcuts-playground:remix` with a path to an unsigned `.xml` shortcut file and describe what to change. The agent applies a surgical diff — preserving every action, UUID, and icon you didn't ask to touch.
+- **Automatic validation.** In Claude Code, a `PostToolUse` hook runs a structural validator on every file write. Errors feed back into the agent's context so it can fix them before signing. This is called a Craig Loop. It adds a few seconds of latency but dramatically improves output quality.
 
 ---
 
 ## Requirements
 
 - **macOS.** The signing step uses the built-in `shortcuts` CLI, which is macOS-only.
-- **Claude Code.** Install from [claude.com/claude-code](https://claude.com/claude-code). You need a version that supports plugins — run `claude plugin --help` and confirm you see `install`, `marketplace`, and `list` subcommands.
+- **Claude Code or Codex.** Install from [claude.com/claude-code](https://claude.com/claude-code) or [openai.com/codex](https://openai.com/codex/). Either the desktop apps or CLIs will work.
 - **Python 3.10+.** The bundled validator requires 3.10 or later. The system Python on older macOS versions ships 3.9 and will fail. Install a newer version via Homebrew (`brew install python3`) or set `SHORTCUTS_PLAYGROUND_PYTHON` to point at your interpreter.
 
 ---
 
-## Installation
+## Installation in Claude
 
 ### In the terminal
 
@@ -65,6 +67,10 @@ shortcuts-playground-selftest                    # expect "✔ All checks passed
 
 `shortcuts-playground-selftest` checks your Python version, the `shortcuts` CLI, the plugin root, bundled data files, the validator, and runs a full sign round trip. If anything fails, it tells you exactly what broke.
 
+## Installation in Codex
+
+//TODO
+
 ---
 
 ## Quick Start
@@ -101,11 +107,11 @@ Shortcuts Playground can take you roughly 90% of the way to a complete, function
 
 Common things to watch for:
 
-- **Variables.** Occasionally a field will be empty where a variable connection is needed. This happens most often with JSON payloads that need a File object attached.
-- **Repeat loops.** Double-check the wiring inside loops — variable scope can get tricky.
-- **Always inspect the result.** Open the shortcut in the Shortcuts app and walk through it before relying on it. This is good friction — you'll learn a lot about how shortcuts work from the inside.
+- **Variables.** Occasionally a field will be empty where a variable connection is needed. You'll need to go in there and manually connect that variable or parameter yourself.
+- **Repeat loops.** Double-check the wiring inside loops: variable scope can get tricky.
+- **Always inspect the result.** Open the shortcut in the Shortcuts app and walk through it before relying on it. This is good friction: you'll learn a lot about how shortcuts work from the inside.
 
-For best results, use Claude Opus 4 or Claude Sonnet 4 as the underlying model.
+For best results, use Claude Opus 4.6/4.7 or GPT 5.5 as the underlying models. Higher reasoning efforts produce better outputs, but introduce latency.
 
 ---
 
@@ -155,7 +161,7 @@ The plugin also supports a `signing_mode` option (`anyone` for public distributi
 
 ## Companion Shortcut
 
-A companion Shortcuts shortcut that communicates with Claude Code over SSH — letting you generate shortcuts from iPhone and iPad — is available exclusively for [Club MacStories](https://club.macstories.net) members.
+A companion Shortcuts shortcut that communicates with Claude Code and Codex over SSH – letting you generate shortcuts from iPhone and iPad – is available exclusively for [Club MacStories](https://club.macstories.net) members.
 
 ---
 
