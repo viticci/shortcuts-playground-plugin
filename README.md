@@ -1,12 +1,16 @@
 # Shortcuts Playground
 
+![](https://cdn.macstories.net/cleanshot-2026-05-19-at-16-52-43-2x-1779202387918.png)
+
 Create Apple Shortcuts with natural language using Claude Code or Codex.
 
 Shortcuts Playground is a plugin for Claude Code and Codex that lets you turn any idea into a shortcut for Apple's Shortcuts app. Describe what you want in plain English; a few minutes later, you get a real, signed `.shortcut` file ready to import into the Shortcuts app.
 
-Under the hood, shortcuts have always been XML files that get signed and encrypted into Apple's proprietary `.shortcut` format. Shortcuts Playground ships a comprehensive knowledge base that teaches Claude and Codex how Shortcuts actions work, what syntax they use, and how they connect to one another. Agents generate the XML, validate it through a loop, and sign it using Apple's native `shortcuts` CLI. The result is a valid shortcut, built from a sentence.
+Under the hood, shortcuts have always been XML files that get signed and encrypted into a special, Apple-only `.shortcut` format. Shortcuts Playground ships a comprehensive knowledge base that teaches Claude and Codex how Shortcuts actions work, what syntax they use, and how they connect to one another. Agents generate the XML, validate it through a loop, and sign it using Apple's native `shortcuts` CLI.
 
-A project by [Federico Viticci](https://www.macstories.net).
+The result is a valid shortcut, built from a sentence.
+
+A project by [Federico Viticci](https://www.macstories.net). Read more [here](https://www.macstories.net/stories/introducing-shortcuts-playground/).‎
 
 ---
 
