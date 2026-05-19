@@ -13,11 +13,12 @@ All notable changes to the Shortcuts Playground plugin are documented in this fi
 - Improved placeholder range validator errors to include expected UTF-16 placeholder positions.
 - Added pipeline-first guidance to the builder flow so agents validate, sign, and verify before optional polishing, and so incomplete "validation passed" reports are re-delegated as signing tasks.
 
-## [1.0] — 2026-05-08
+## [1.0] — 2026-05-19
 
 ### Fixed — public launch reset and HealthKit active calories
 
 - Reset the Claude Code and Codex plugin manifests and marketplace metadata to version `1.0`.
+- Updated Claude Code and Codex plugin author/developer metadata to Federico Viticci.
 - Updated HealthKit guidance, reference data, and validator regressions so Active Energy Burned uses the Shortcuts label `Active Calories`.
 - Rejected stale HealthKit labels such as `Active Energy` and `Active Energy Burned` in generated actions.
 

@@ -3,7 +3,7 @@
   "version": "1.0",
   "description": "Build, validate, sign, archive, and remix macOS/iOS Shortcuts from Codex using a bundled Shortcuts plist knowledge base and validator.",
   "author": {
-    "name": "Shortcuts Playground Maintainers",
+    "name": "Federico Viticci",
     "url": "https://www.macstories.net"
   },
   "homepage": "https://www.macstories.net",
@@ -25,7 +25,7 @@
     "displayName": "Shortcuts Playground",
     "shortDescription": "Build and validate Apple Shortcuts",
     "longDescription": "Create, remix, validate, archive, and sign macOS/iOS Shortcuts plist XML from Codex. Includes ToolKit v63 action metadata, HealthKit syntax, golden XML examples, icon/color resolution, and validator scripts.",
-    "developerName": "Shortcuts Playground Maintainers",
+    "developerName": "Federico Viticci",
     "category": "Productivity",
     "capabilities": [
       "Read",

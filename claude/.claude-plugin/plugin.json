@@ -3,7 +3,7 @@
   "version": "1.0",
   "description": "Build, validate, sign, and archive macOS/iOS Shortcuts directly from Claude Code. Ships a full Shortcuts knowledge base, a Craig Loop validator, a build agent, and a PostToolUse hook that auto-validates every .xml/.shortcut file as it is written.",
   "author": {
-    "name": "Shortcuts Playground Maintainers",
+    "name": "Federico Viticci",
     "url": "https://www.macstories.net"
   },
   "homepage": "https://www.macstories.net",
