@@ -99,6 +99,8 @@ codex plugin marketplace add /absolute/path/to/shortcuts-playground-plugin
 
 ### Build a shortcut
 
+![](https://cdn.macstories.net/cleanshot-2026-05-19-at-16-31-34-2x-1779201108419.png)
+
 ```
 /shortcuts-playground:build a shortcut that asks for a city, fetches the current weather, and shows a notification
 ```
@@ -183,7 +185,7 @@ The plugin also supports a `signing_mode` option (`anyone` for public distributi
 
 ## Companion Shortcut
 
-A companion Shortcuts shortcut that communicates with Claude Code and Codex over SSH – letting you generate shortcuts from iPhone and iPad – is available exclusively for [Club MacStories](https://club.macstories.net) members.
+A companion Shortcuts Playground Remote shortcut that communicates with Claude Code and Codex over SSH – letting you generate shortcuts from iPhone and iPad – is available exclusively for [Club MacStories](https://club.macstories.net) members.
 
 ---
 
