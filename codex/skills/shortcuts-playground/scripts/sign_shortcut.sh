@@ -77,6 +77,13 @@ if [ -z "$NAME" ]; then
   NAME="${BASENAME%.*}"
 fi
 
+case "$NAME" in
+  */*|*\\*|.|..)
+    printf 'Invalid --name: shortcut names cannot contain path separators or dot path segments.\n' >&2
+    exit 64
+    ;;
+esac
+
 DATE_STAMP="$(date +%F)"
 TIME_STAMP="$(date +%H%M%S)"
 ARCHIVE_DIR="$OUTPUT_DIR/$DATE_STAMP"
