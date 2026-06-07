@@ -315,6 +315,7 @@ Send Message content -> WFTextTokenString placeholder for "Message Items"
 - **Duplicate shortcut names cause silent skips**: If a shortcut with the same name already exists in the user's library, importing via `open -a Shortcuts` or `shortcuts run` on the signed file will silently skip it. The `shortcuts` CLI does not have `import` or `delete` subcommands — instruct the user to delete the old shortcut manually before importing the new one.
 - Sign using a canonical filename that matches the intended shortcut name; do not append `_signed`.
 - If `shortcuts sign` says `The file doesn't exist` for an existing file, retry from a clean XML copy to a `.shortcut` path (for example, `cp source.xml /tmp/MyShortcut.shortcut`), then sign again.
+- If `shortcuts sign` says `The file couldn't be opened because it isn't in the correct format` while the XML passes `validate-shortcut` and `plutil -lint`, retry outside Codex `workspace-write` sandbox restrictions or with Codex filesystem sandboxing set to full access before treating the plist as malformed.
 - `shortcuts` automation should rely only on supported subcommands: `run`, `list`, `view`, and `sign`.
 - During install verification, treat a `_signed` library name as failure and reinstall using a canonical filename.
 

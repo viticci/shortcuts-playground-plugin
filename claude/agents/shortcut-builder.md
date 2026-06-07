@@ -41,13 +41,29 @@ Follow this sequence for every build. **Every step is mandatory**, including res
 - **No post-validation polishing before sign.** The moment validation passes, run `sign-shortcut`. Any edit after validation invalidates the signed artifact and requires another validate/sign/verify pass.
 - **If time or turns are running low, skip optional refinement.** A signed, correct shortcut with plain comments is success. A beautiful XML draft without a signed file is failure.
 
-0. **Resolve the output directory FIRST, before any other work.** Run this exact Bash command:
+0. **Resolve output settings FIRST, before any other work.** Run this exact Bash command:
     ```bash
-    OUTPUT_DIR="${CLAUDE_PLUGIN_OPTION_OUTPUT_DIR:-$HOME/Documents/Shortcuts Playground}"
+    CONFIGURED_OUTPUT_DIR="${user_config.output_dir}"
+    CONFIGURED_SIGNING_MODE="${user_config.signing_mode}"
+    case "$CONFIGURED_OUTPUT_DIR" in
+      ""|'${user_config.output_dir}') OUTPUT_DIR="${CLAUDE_PLUGIN_OPTION_OUTPUT_DIR:-$HOME/Documents/Shortcuts Playground}" ;;
+      *) OUTPUT_DIR="$CONFIGURED_OUTPUT_DIR" ;;
+    esac
+    case "$OUTPUT_DIR" in
+      "~") OUTPUT_DIR="$HOME" ;;
+      \~/*) OUTPUT_DIR="$HOME/${OUTPUT_DIR#\~/}" ;;
+      '$HOME') OUTPUT_DIR="$HOME" ;;
+      '$HOME/'*) OUTPUT_DIR="$HOME/${OUTPUT_DIR#\$HOME/}" ;;
+    esac
+    case "$CONFIGURED_SIGNING_MODE" in
+      ""|'${user_config.signing_mode}') SIGNING_MODE="${CLAUDE_PLUGIN_OPTION_SIGNING_MODE:-anyone}" ;;
+      *) SIGNING_MODE="$CONFIGURED_SIGNING_MODE" ;;
+    esac
     mkdir -p "$OUTPUT_DIR/drafts"
     echo "OUTPUT_DIR=$OUTPUT_DIR"
+    echo "SIGNING_MODE=$SIGNING_MODE"
     ```
-    Capture the printed path. Use that absolute path (the literal string, not the `${…}` expression) for every subsequent `Write` / `Edit` / `Bash` call that references a draft file or an output location. Do NOT hard-code `~/Documents/Shortcuts Playground/drafts/` in your `Write` call — that ignores the user's `userConfig.output_dir`.
+    Capture the printed path and signing mode. Use that absolute path (the literal string, not the `${…}` expression) for every subsequent `Write` / `Edit` / `Bash` call that references a draft file or an output location. Do NOT hard-code `~/Documents/Shortcuts Playground/drafts/` in your `Write` call — that ignores the user's `userConfig.output_dir`. Claude Code may not expose `CLAUDE_PLUGIN_OPTION_OUTPUT_DIR` to ordinary Bash tool calls, so `${user_config.output_dir}` substitution is the primary source.
 
 1. **Research (only if needed)** — For shortcuts that call unfamiliar external APIs, verify endpoints, auth, and payload shape from the latest official docs before drafting. A broken URL costs far more iterations than a five-minute doc read.
 
@@ -73,9 +89,9 @@ Follow this sequence for every build. **Every step is mandatory**, including res
 
 9. **Archive + Sign.** Once validation passes, run:
     ```bash
-    sign-shortcut "<OUTPUT_DIR>/drafts/<shortcut name>.xml" --name "<final shortcut name>"
+    sign-shortcut "<OUTPUT_DIR>/drafts/<shortcut name>.xml" --name "<final shortcut name>" --output-dir "$OUTPUT_DIR" --mode "$SIGNING_MODE"
     ```
-    The wrapper reads `CLAUDE_PLUGIN_OPTION_OUTPUT_DIR` from the environment, archives the unsigned XML to `<OUTPUT_DIR>/<YYYY-MM-DD>/<name>-<HHMMSS>.xml`, and writes a signed `.shortcut` to `<OUTPUT_DIR>/<name>.shortcut`. Capture the JSON it prints on stdout — both paths are there.
+    Passing `--output-dir` and `--mode` is mandatory because it preserves the resolved plugin config even when ordinary Bash calls do not inherit `CLAUDE_PLUGIN_OPTION_*`. Capture the JSON it prints on stdout — both paths are there.
 
 10. **Verify + report (MANDATORY).** Before declaring the build complete, you must run:
     ```bash

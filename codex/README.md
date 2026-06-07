@@ -52,3 +52,5 @@ python3 "$SKILL_DIR/scripts/validate_shortcut.py" /path/to/Shortcut.xml
 ```
 
 Set `SHORTCUTS_PLAYGROUND_OUTPUT_DIR` and `SHORTCUTS_PLAYGROUND_SIGNING_MODE` to customize signing output.
+
+If `scripts/sign_shortcut.sh` fails with `Error: The file couldn't be opened because it isn't in the correct format.` while `validate_shortcut.py` and `plutil -lint` pass, retry signing outside Codex `workspace-write` sandbox restrictions or with Codex filesystem sandboxing set to full access. Apple's `shortcuts sign` can surface that misleading format error when the sandbox blocks what it needs.

@@ -94,6 +94,20 @@ mkdir -p "$ARCHIVE_DIR" "$OUTPUT_DIR"
 cp "$INPUT" "$ARCHIVE_FILE"
 cp "$INPUT" "$SIGNED_PATH"
 
-shortcuts sign --mode "$MODE" --input "$SIGNED_PATH" --output "$SIGNED_PATH"
+set +e
+SIGN_OUTPUT="$(shortcuts sign --mode "$MODE" --input "$SIGNED_PATH" --output "$SIGNED_PATH" 2>&1)"
+SIGN_STATUS=$?
+set -e
+if [ "$SIGN_STATUS" -ne 0 ]; then
+  if [ -n "$SIGN_OUTPUT" ]; then
+    printf '%s\n' "$SIGN_OUTPUT" >&2
+  fi
+  case "$SIGN_OUTPUT" in
+    *"isn't in the correct format"*|*"isn’t in the correct format"*)
+      printf '\nshortcuts-playground: Apple shortcuts sign reported a format error. If validate_shortcut.py and plutil -lint both pass, this can be caused by Codex workspace-write sandbox restrictions rather than malformed XML. Retry signing outside the restricted sandbox or with Codex filesystem sandboxing set to full access.\n' >&2
+      ;;
+  esac
+  exit "$SIGN_STATUS"
+fi
 
 printf '{"archive":"%s","signed":"%s","mode":"%s"}\n' "$ARCHIVE_FILE" "$SIGNED_PATH" "$MODE"

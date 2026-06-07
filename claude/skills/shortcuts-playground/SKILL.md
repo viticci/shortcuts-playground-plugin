@@ -328,6 +328,7 @@ The signing process:
 
 Signing gotchas:
 - If `shortcuts sign` reports `Error: The file doesn't exist.` but the file exists, copy the XML plist directly to a clean `.shortcut` path and retry (example: `cp source.xml /tmp/MyShortcut.shortcut`).
+- If `shortcuts sign` reports `Error: The file couldn't be opened because it isn't in the correct format.` while `validate-shortcut` and `plutil -lint` pass, suspect Codex `workspace-write` sandbox restrictions before blaming the XML. Retry signing outside the restricted sandbox or with Codex filesystem sandboxing set to full access.
 - `ERROR: Unrecognized attribute string flag '?'` warnings are noisy but can be non-fatal if the output file is produced.
 - The `shortcuts` CLI supports `run`, `list`, `view`, and `sign`; do not assume `delete`, `rename`, or `import` subcommands.
 

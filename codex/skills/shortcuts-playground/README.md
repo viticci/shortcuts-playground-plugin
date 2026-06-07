@@ -29,6 +29,8 @@ python3 "$SKILL_DIR/scripts/validate_shortcut.py" /path/to/Shortcut.xml
 
 `sign_shortcut.sh` defaults to `SHORTCUTS_PLAYGROUND_OUTPUT_DIR` or `~/Documents/Shortcuts Playground`, and `SHORTCUTS_PLAYGROUND_SIGNING_MODE` or `anyone`.
 
+If `shortcuts sign` reports that a validator-clean plist "isn't in the correct format", retry outside Codex `workspace-write` sandbox restrictions before assuming the XML is malformed.
+
 ## Auto-Validation Hook
 
 The parent Codex plugin bundles a `PostToolUse` hook in `hooks/hooks.json`.

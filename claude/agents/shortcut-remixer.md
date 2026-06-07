@@ -61,17 +61,33 @@ Only after all three checks pass do you proceed to Read the full file.
 
 Follow this sequence for every remix. Every step is mandatory, including resolving the output directory first (step 0), running the validator baseline (step 5), and verifying the signed file exists at the end (step 11).
 
-### 0. Resolve the output directory FIRST
+### 0. Resolve output settings FIRST
 
 Before any other work, run this Bash command:
 
 ```bash
-OUTPUT_DIR="${CLAUDE_PLUGIN_OPTION_OUTPUT_DIR:-$HOME/Documents/Shortcuts Playground}"
+CONFIGURED_OUTPUT_DIR="${user_config.output_dir}"
+CONFIGURED_SIGNING_MODE="${user_config.signing_mode}"
+case "$CONFIGURED_OUTPUT_DIR" in
+  ""|'${user_config.output_dir}') OUTPUT_DIR="${CLAUDE_PLUGIN_OPTION_OUTPUT_DIR:-$HOME/Documents/Shortcuts Playground}" ;;
+  *) OUTPUT_DIR="$CONFIGURED_OUTPUT_DIR" ;;
+esac
+case "$OUTPUT_DIR" in
+  "~") OUTPUT_DIR="$HOME" ;;
+  \~/*) OUTPUT_DIR="$HOME/${OUTPUT_DIR#\~/}" ;;
+  '$HOME') OUTPUT_DIR="$HOME" ;;
+  '$HOME/'*) OUTPUT_DIR="$HOME/${OUTPUT_DIR#\$HOME/}" ;;
+esac
+case "$CONFIGURED_SIGNING_MODE" in
+  ""|'${user_config.signing_mode}') SIGNING_MODE="${CLAUDE_PLUGIN_OPTION_SIGNING_MODE:-anyone}" ;;
+  *) SIGNING_MODE="$CONFIGURED_SIGNING_MODE" ;;
+esac
 mkdir -p "$OUTPUT_DIR/drafts"
 echo "OUTPUT_DIR=$OUTPUT_DIR"
+echo "SIGNING_MODE=$SIGNING_MODE"
 ```
 
-Capture the printed absolute path. Use that literal string (not the `${...}` expression) for every subsequent `Write` / `Edit` / `Bash` call. Do NOT hard-code `~/Documents/Shortcuts Playground/drafts/` — that ignores the user's `userConfig.output_dir`.
+Capture the printed absolute path and signing mode. Use that literal string (not the `${...}` expression) for every subsequent `Write` / `Edit` / `Bash` call. Do NOT hard-code `~/Documents/Shortcuts Playground/drafts/` — that ignores the user's `userConfig.output_dir`. Claude Code may not expose `CLAUDE_PLUGIN_OPTION_OUTPUT_DIR` to ordinary Bash tool calls, so `${user_config.output_dir}` substitution is the primary source.
 
 ### 1. Parse $ARGUMENTS into source path + remix idea
 
@@ -183,10 +199,10 @@ Run the Craig Loop bounded at **5 iterations**. If the same validator error pers
 Run:
 
 ```bash
-sign-shortcut "<OUTPUT_DIR>/drafts/<new name>.xml" --name "<new name>"
+sign-shortcut "<OUTPUT_DIR>/drafts/<new name>.xml" --name "<new name>" --output-dir "$OUTPUT_DIR" --mode "$SIGNING_MODE"
 ```
 
-Capture the JSON output — both the archive path and the signed path are in it.
+Passing `--output-dir` and `--mode` is mandatory because it preserves the resolved plugin config even when ordinary Bash calls do not inherit `CLAUDE_PLUGIN_OPTION_*`. Capture the JSON output — both the archive path and the signed path are in it.
 
 ### 11. Verify + report (MANDATORY)
 

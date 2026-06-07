@@ -1727,14 +1727,14 @@
     {
       "availability": "API_AVAILABLE(ios(8.0), watchos(2.0), macCatalyst(13.0), macos(13.0), visionos(1.0))",
       "sdk_suffix": "BloodPressureDiastolic",
-      "shortcut_label_guess": "Blood Pressure Diastolic",
+      "shortcut_label_guess": "Diastolic Blood Pressure",
       "symbol": "HKQuantityTypeIdentifierBloodPressureDiastolic",
       "unit_and_aggregation": "mmHg, Discrete (Arithmetic)"
     },
     {
       "availability": "API_AVAILABLE(ios(8.0), watchos(2.0), macCatalyst(13.0), macos(13.0), visionos(1.0))",
       "sdk_suffix": "BloodPressureSystolic",
-      "shortcut_label_guess": "Blood Pressure Systolic",
+      "shortcut_label_guess": "Systolic Blood Pressure",
       "symbol": "HKQuantityTypeIdentifierBloodPressureSystolic",
       "unit_and_aggregation": "mmHg, Discrete (Arithmetic)"
     },

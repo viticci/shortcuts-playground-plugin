@@ -21,7 +21,7 @@ The agent will escalate to you (the orchestrator) if it cannot build — typical
 - **Do not do the agent's research for it.** Do not grep `~/Documents`, `~/Agent`, `~/.claude`, `~/Library`, `/Applications`, `/System`, or any other user or system path looking for examples or schemas. Those directories are off limits for this command.
 - **The only paths you may read from are:**
   1. The plugin installation directory itself (`${CLAUDE_PLUGIN_ROOT}` — skill docs, bundled data, golden shortcuts, validator source). If the answer is here, read it and re-delegate to the agent with the answer as additional context.
-  2. The file the agent just wrote to `${CLAUDE_PLUGIN_OPTION_OUTPUT_DIR:-$HOME/Documents/Shortcuts Playground}/drafts/<name>.xml`, if you need to inspect what it produced before responding.
+  2. The file the agent just wrote under the `OUTPUT_DIR` it printed in step 0, if you need to inspect what it produced before responding.
 - **Relay the escalation to the user** if the plugin directory doesn't have the answer. Present the agent's escalation reason and any options it offered, and wait for user input. Do NOT paper over the escalation by improvising.
 
 ## Hard rules for this command

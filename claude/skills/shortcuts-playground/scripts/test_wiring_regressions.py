@@ -605,6 +605,28 @@ def load_healthkit_reference() -> dict:
         return json.load(handle)
 
 
+def validate_healthkit_reference_labels(health: dict) -> None:
+    quantity_by_suffix = {
+        row.get("sdk_suffix"): row
+        for row in health.get("quantity_types", [])
+        if isinstance(row, dict)
+    }
+    expected = {
+        "BloodPressureDiastolic": "Diastolic Blood Pressure",
+        "BloodPressureSystolic": "Systolic Blood Pressure",
+    }
+    failures = []
+    for sdk_suffix, expected_label in expected.items():
+        row = quantity_by_suffix.get(sdk_suffix)
+        actual = row.get("shortcut_label_guess") if row else None
+        if actual != expected_label:
+            failures.append(
+                f"{sdk_suffix}: expected shortcut_label_guess {expected_label!r}, got {actual!r}"
+            )
+    if failures:
+        raise AssertionError("HealthKit reference label mismatch:\n" + "\n".join(failures))
+
+
 def make_weather_valid(case_name: str, idx: int) -> dict:
     prompt = f"Weather valid case {idx}"
     actions = base_actions(case_name, prompt)
@@ -1969,6 +1991,7 @@ def build_cases() -> list[Case]:
         cases.append(Case("set-name", name, plist, False, expected))
 
     health = load_healthkit_reference()
+    validate_healthkit_reference_labels(health)
     quantity_types = health.get("quantity_types", [])
     category_types = health.get("category_types", [])
     category_values = health.get("category_values", {})

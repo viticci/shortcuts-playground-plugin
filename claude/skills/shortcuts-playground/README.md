@@ -27,6 +27,8 @@ sign-shortcut /path/to/Shortcut.xml --name "Shortcut Name"
 
 `sign-shortcut` defaults to `CLAUDE_PLUGIN_OPTION_OUTPUT_DIR` or `~/Documents/Shortcuts Playground`, and `CLAUDE_PLUGIN_OPTION_SIGNING_MODE` or `anyone`.
 
+If `shortcuts sign` reports that a validator-clean plist "isn't in the correct format", retry outside Codex `workspace-write` sandbox restrictions before assuming the XML is malformed.
+
 ## What's Included
 
 | File | Description |

@@ -127,7 +127,7 @@ You can set these in three ways, from most to least explicit:
      }
    }
    ```
-   Claude Code exports each value as `CLAUDE_PLUGIN_OPTION_<KEY_UPPERCASED>` (e.g. `CLAUDE_PLUGIN_OPTION_OUTPUT_DIR`) when it spawns bin wrappers, hook scripts, and MCP servers.
+   Claude Code substitutes non-sensitive values into plugin skill/agent content as `${user_config.<key>}` and exports each value as `CLAUDE_PLUGIN_OPTION_<KEY_UPPERCASED>` (e.g. `CLAUDE_PLUGIN_OPTION_OUTPUT_DIR`) for plugin subprocesses. The bundled agents resolve `${user_config.output_dir}` first and pass the resulting path to `sign-shortcut --output-dir`, so this setting controls both draft and signed output paths.
 3. **Environment variable override.** If both above fail, you can always set the env var directly for a one-off build:
    ```bash
    CLAUDE_PLUGIN_OPTION_OUTPUT_DIR=/custom/dir sign-shortcut draft.xml --name "My Shortcut"
@@ -135,6 +135,8 @@ You can set these in three ways, from most to least explicit:
    Or pass `--output-dir` / `--mode` flags directly to `sign-shortcut` to bypass config entirely.
 
 If none of these are set, the plugin falls back to `~/Documents/Shortcuts Playground/` and `anyone`. Those defaults exist so first-time install just works.
+
+For best results, store `output_dir` as an absolute path such as `/Users/you/Developer/Shortcuts`. The agents also expand leading `~/` and literal `$HOME/` values, but absolute paths avoid ambiguity across shells and plugin subprocesses.
 
 ## Usage
 

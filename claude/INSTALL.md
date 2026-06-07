@@ -157,6 +157,8 @@ Your `~/Documents/Shortcuts Playground/` directory stays intact — the plugin n
 
 **Signing fails with a "file doesn't exist" error** — a macOS `shortcuts sign` quirk. Try again; it usually retries successfully.
 
+**Signing fails with "isn't in the correct format" even though validation passes** — if `validate-shortcut` and `plutil -lint` both pass, the XML may be fine. This has been observed when Apple's `shortcuts sign` runs under Codex `workspace-write` sandbox restrictions. Retry from an unrestricted shell or with Codex filesystem sandboxing set to full access before treating the plist as malformed.
+
 **Anything weirder than the above** — contact the maintainer with the failing command and the output. Include the session ID from `claude plugin list` if you can.
 
 ## What you're getting
