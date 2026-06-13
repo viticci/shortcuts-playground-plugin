@@ -135,6 +135,25 @@ TARGET_MACOS_ENV_VARS = (
     "SHORTCUTS_PLAYGROUND_TARGET_MACOS",
     "CLAUDE_PLUGIN_OPTION_TARGET_MACOS",
 )
+OS27_PARAMETER_KEYS_BY_ACTION = {
+    # Cross-checked against the Automators OS 26 -> 27 action delta and local
+    # ToolKit v78 metadata. These action identifiers may exist on older OSes,
+    # but the listed top-level parameter keys are OS 27-era metadata.
+    "com.apple.Safari.CreateNewTabGroup": {"contents"},
+    "com.apple.mobilenotes.SharingExtension": {"interpretAsMarkdown"},
+    "is.workflow.actions.appendnote": {
+        "ignoreWhitespace",
+        "interpretAsMarkdown",
+        "section",
+    },
+    "is.workflow.actions.askllm": {"WFAllowWebSearch"},
+    "is.workflow.actions.getdistance": {"WFAvoidHighways", "WFAvoidTolls"},
+    "is.workflow.actions.gettraveltime": {"WFAvoidHighways", "WFAvoidTolls"},
+    "is.workflow.actions.hide.app": {"WFAppsExcept"},
+    "is.workflow.actions.quit.app": {"WFAppsExcept"},
+    "is.workflow.actions.scanbarcode": {"imageFile"},
+}
+OS27_PARAMETER_REASON = "macOS 27+ (toolkit-v78 parameter)"
 
 REQUIRED_INPUT_ACTIONS = {
     # Actions that should always have explicit input wired
@@ -823,6 +842,17 @@ def load_future_toolkit_id_reasons(skill_dir: Path, target_macos_major: int | No
         for ident in ids - included:
             future[ident] = reason
     return future
+
+
+def load_future_parameter_key_reasons(target_macos_major: int | None) -> dict[str, dict[str, str]]:
+    """Return OS 27-only parameter keys excluded by the target macOS."""
+
+    if target_macos_major is None or target_macos_major >= 27:
+        return {}
+    return {
+        identifier: {key: OS27_PARAMETER_REASON for key in keys}
+        for identifier, keys in OS27_PARAMETER_KEYS_BY_ACTION.items()
+    }
 
 
 def load_allowed_ids(skill_dir: Path, target_macos_major: int | None = None) -> set[str]:
@@ -1533,10 +1563,12 @@ def validate(
     allowed_glyph_ids: Optional[set[int]] = None,
     allowed_icon_colors: Optional[set[int]] = None,
     unavailable_ids: Optional[dict[str, str]] = None,
+    unavailable_parameter_keys: Optional[dict[str, dict[str, str]]] = None,
 ) -> Tuple[list[str], Optional[Tuple[int, str, str]]]:
     errors: list[str] = []
     first_error: Optional[Tuple[int, str, str]] = None
     unavailable_ids = unavailable_ids or {}
+    unavailable_parameter_keys = unavailable_parameter_keys or {}
     actions = plist.get("WFWorkflowActions", [])
     comments: list[str] = []
     uuid_to_ident: dict[str, str] = {}
@@ -1587,6 +1619,15 @@ def validate(
         if ident == "is.workflow.actions.measurement.convert":
             has_measurement_convert = True
         params = act.get("WFWorkflowActionParameters") or {}
+        parameter_reasons = unavailable_parameter_keys.get(ident) if ident else None
+        if parameter_reasons:
+            for key in sorted(parameter_reasons):
+                if key in params:
+                    errors.append(
+                        f"Parameter '{key}' on {ident} requires {parameter_reasons[key]} "
+                        f"at index {idx}. Set --target-macos 27 or "
+                        "SHORTCUTS_PLAYGROUND_TARGET_MACOS=27 only when building for Golden Gate."
+                    )
         used_output_uuids.update(iter_action_output_refs(params))
         if not unit_text_found:
             for path, s in iter_strings(params):
@@ -3402,6 +3443,7 @@ def main() -> int:
     target_macos_major = resolve_target_macos_major(args.target_macos)
     allowed_ids = load_allowed_ids(skill_dir, target_macos_major)
     unavailable_ids = load_future_toolkit_id_reasons(skill_dir, target_macos_major)
+    unavailable_parameter_keys = load_future_parameter_key_reasons(target_macos_major)
     allowed_glyph_ids, allowed_icon_colors = load_icon_metadata(skill_dir)
 
     try:
@@ -3416,6 +3458,7 @@ def main() -> int:
         allowed_glyph_ids,
         allowed_icon_colors,
         unavailable_ids,
+        unavailable_parameter_keys,
     )
 
     # Repeating-hex UUID check (agent placeholder detection). Runs on the raw

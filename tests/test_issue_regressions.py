@@ -160,6 +160,80 @@ class ToolkitSnapshotTests(unittest.TestCase):
                 rel_path,
             )
 
+    def test_os27_parameter_keys_are_target_gated(self) -> None:
+        expected = {
+            "com.apple.Safari.CreateNewTabGroup": {"contents"},
+            "com.apple.mobilenotes.SharingExtension": {"interpretAsMarkdown"},
+            "is.workflow.actions.appendnote": {
+                "ignoreWhitespace",
+                "interpretAsMarkdown",
+                "section",
+            },
+            "is.workflow.actions.askllm": {"WFAllowWebSearch"},
+            "is.workflow.actions.getdistance": {"WFAvoidHighways", "WFAvoidTolls"},
+            "is.workflow.actions.gettraveltime": {"WFAvoidHighways", "WFAvoidTolls"},
+            "is.workflow.actions.hide.app": {"WFAppsExcept"},
+            "is.workflow.actions.quit.app": {"WFAppsExcept"},
+            "is.workflow.actions.scanbarcode": {"imageFile"},
+        }
+
+        plist = {
+            "WFWorkflowActions": [
+                {
+                    "WFWorkflowActionIdentifier": identifier,
+                    "WFWorkflowActionParameters": {key: True for key in sorted(keys)},
+                }
+                for identifier, keys in sorted(expected.items())
+            ],
+            "WFWorkflowName": "OS 27 Parameter Gate Regression",
+        }
+
+        for rel_path in (
+            "claude/skills/shortcuts-playground/scripts/validate_shortcut.py",
+            "codex/skills/shortcuts-playground/scripts/validate_shortcut.py",
+        ):
+            module, module_path = self.load_validator_module(rel_path)
+            skill_dir = module_path.parents[1]
+            future_params_26 = module.load_future_parameter_key_reasons(26)
+            future_params_27 = module.load_future_parameter_key_reasons(27)
+
+            self.assertEqual(
+                expected,
+                {identifier: set(keys) for identifier, keys in module.OS27_PARAMETER_KEYS_BY_ACTION.items()},
+                rel_path,
+            )
+            self.assertEqual({}, future_params_27, rel_path)
+            for identifier, keys in expected.items():
+                self.assertEqual(set(keys), set(future_params_26[identifier]), rel_path)
+
+            errors_26, _ = module.validate(
+                plist,
+                module.load_allowed_ids(skill_dir, target_macos_major=26),
+                unavailable_ids=module.load_future_toolkit_id_reasons(skill_dir, 26),
+                unavailable_parameter_keys=future_params_26,
+            )
+            for identifier, keys in expected.items():
+                for key in keys:
+                    self.assertTrue(
+                        [
+                            error
+                            for error in errors_26
+                            if f"Parameter '{key}' on {identifier} requires macOS 27+" in error
+                        ],
+                        f"{rel_path}: missing gate for {identifier} {key}: {errors_26}",
+                    )
+
+            errors_27, _ = module.validate(
+                plist,
+                module.load_allowed_ids(skill_dir, target_macos_major=27),
+                unavailable_ids=module.load_future_toolkit_id_reasons(skill_dir, 27),
+                unavailable_parameter_keys=future_params_27,
+            )
+            self.assertFalse(
+                [error for error in errors_27 if "toolkit-v78 parameter" in error],
+                f"{rel_path}: {errors_27}",
+            )
+
     def test_ios27_toolkit_snapshot_is_packaged(self) -> None:
         for rel_path in (
             "claude/skills/shortcuts-playground/data/toolkit-v78-ios27-tool-ids.json",

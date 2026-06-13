@@ -9,6 +9,7 @@ All notable changes to the Shortcuts Playground plugin are documented in this fi
 - Added an iOS 27.0 Simulator ToolKit v78 ID snapshot to both Claude and Codex packages, target-gated alongside the macOS 27 v78 snapshot.
 - Added a compact first-party ToolKit v78 parameter-key snapshot and lookup fallback so broad AppIntent gaps can be inspected without reading local databases at runtime.
 - Updated the grounding lookup helper to report OS 27-era parameter metadata and one-sided macOS/iOS ToolKit provenance separately from action identifier availability.
+- Added validator target gating for the Automators OS 26 to 27 parameter deltas, so OS 27-only keys are rejected on macOS 26 targets even when the action identifier predates OS 27.
 - Documented the Automators OS 26 to 27 action and parameter deltas against local ToolKit evidence, including Messages, Photos, Reminders, Share/Collaborate, stored content, on-screen context, Notes markdown, Maps route options, and Hide/Quit Apps exclusion lists.
 - Filled the Create Note markdown and Safari Create Tab Group contents parameter mappings from local macOS 27 ToolKit evidence.
 - Documented iOS 27 hearing-device runtime metadata for Adjust Volume, Mute Volume, and Select Preset AppIntents.

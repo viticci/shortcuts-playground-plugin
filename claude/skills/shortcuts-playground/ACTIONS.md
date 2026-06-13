@@ -70,7 +70,7 @@ These classic/WF-namespace identifiers are present in local OS 27 ToolKit v78 da
 
 #### OS 26 to 27 Updated Parameters
 
-These parameter additions were cross-checked against the Automators OS 26 to 27 thread and local ToolKit v78 metadata. Treat AppIntent-style WF-namespace actions (`appendnote`, `scanbarcode`, `extracttextfromimage`) as ToolKit-backed AppIntents even though their identifiers begin with `is.workflow.actions.`.
+These parameter additions were cross-checked against the Automators OS 26 to 27 thread and local ToolKit v78 metadata. Treat AppIntent-style WF-namespace actions (`appendnote`, `scanbarcode`, `extracttextfromimage`) as ToolKit-backed AppIntents even though their identifiers begin with `is.workflow.actions.`. The validator rejects these parameter keys when targeting macOS 26 or older even if the action identifier itself is available on that target.
 
 | Identifier | New/Updated Parameters | Notes |
 |------------|------------------------|-------|
