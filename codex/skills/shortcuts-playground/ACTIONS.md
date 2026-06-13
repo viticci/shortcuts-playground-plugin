@@ -82,13 +82,14 @@ These parameter additions were cross-checked against the Automators OS 26 to 27 
 | `is.workflow.actions.hide.app` | `WFAppsExcept` | Used when `WFHideAppMode = "All Apps"` to keep listed apps open. |
 | `is.workflow.actions.quit.app` | `WFAppsExcept` | Used when `WFQuitAppMode = "All Apps"` to keep listed apps open. |
 | `is.workflow.actions.scanbarcode` | `imageFile` | ToolKit-backed AppIntent parameter for scanning an input image file. |
+| `is.workflow.actions.extracttextfromimage` | `imageFile` | Displayed as **Extract from Image** on OS 27. ToolKit v78 exposes this as the primary image input. Older exported shortcuts may still use `WFImage` or `WFInput`. |
 | `com.apple.Safari.CreateNewTabGroup` | `contents` | Displayed as **Create Tab Group**. Accepts URLs or existing Safari tab entities to seed the new tab group. |
 
 #### OS 26 to 27 Display Name Changes
 
 | Identifier | Old Name | New Name |
 |------------|----------|----------|
-| `is.workflow.actions.extracttextfromimage` | Extract Text from Image | Extract from Image |
+| `is.workflow.actions.extracttextfromimage` | Extract Text from Image | Extract from Image (`imageFile` in ToolKit v78) |
 | `com.apple.TVRemoteUIService.ToggleSystemAppearanceIntent` | Set Light/Dark Mode | Set Appearance on Apple TV |
 
 ### Text & Input

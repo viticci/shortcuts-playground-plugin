@@ -170,6 +170,7 @@ class ToolkitSnapshotTests(unittest.TestCase):
                 "section",
             },
             "is.workflow.actions.askllm": {"WFAllowWebSearch"},
+            "is.workflow.actions.extracttextfromimage": {"imageFile"},
             "is.workflow.actions.getdistance": {"WFAvoidHighways", "WFAvoidTolls"},
             "is.workflow.actions.gettraveltime": {"WFAvoidHighways", "WFAvoidTolls"},
             "is.workflow.actions.hide.app": {"WFAppsExcept"},
@@ -232,6 +233,71 @@ class ToolkitSnapshotTests(unittest.TestCase):
             self.assertFalse(
                 [error for error in errors_27 if "toolkit-v78 parameter" in error],
                 f"{rel_path}: {errors_27}",
+            )
+
+    def test_extract_from_image_accepts_os27_image_file_key(self) -> None:
+        image_uuid = "12345678-1234-4234-9234-123456789ABC"
+        image_attachment = {
+            "Value": {
+                "OutputName": "File",
+                "OutputUUID": image_uuid,
+                "Type": "ActionOutput",
+            },
+            "WFSerializationType": "WFTextTokenAttachment",
+        }
+        plist = {
+            "WFWorkflowActions": [
+                {
+                    "WFWorkflowActionIdentifier": "is.workflow.actions.getfile",
+                    "WFWorkflowActionParameters": {
+                        "UUID": image_uuid,
+                    },
+                },
+                {
+                    "WFWorkflowActionIdentifier": "is.workflow.actions.extracttextfromimage",
+                    "WFWorkflowActionParameters": {
+                        "imageFile": image_attachment,
+                    },
+                },
+            ],
+            "WFWorkflowIcon": {
+                "WFWorkflowIconGlyphNumber": 61440,
+                "WFWorkflowIconStartColor": 431817727,
+            },
+            "WFWorkflowName": "Extract from Image Regression",
+        }
+
+        for rel_path in (
+            "claude/skills/shortcuts-playground/scripts/validate_shortcut.py",
+            "codex/skills/shortcuts-playground/scripts/validate_shortcut.py",
+        ):
+            module, module_path = self.load_validator_module(rel_path)
+            skill_dir = module_path.parents[1]
+            errors_27, _ = module.validate(
+                plist,
+                module.load_allowed_ids(skill_dir, target_macos_major=27),
+                unavailable_ids=module.load_future_toolkit_id_reasons(skill_dir, 27),
+                unavailable_parameter_keys=module.load_future_parameter_key_reasons(27),
+            )
+            self.assertFalse(
+                [error for error in errors_27 if "Extract Text from Image" in error],
+                f"{rel_path}: {errors_27}",
+            )
+
+            errors_26, _ = module.validate(
+                plist,
+                module.load_allowed_ids(skill_dir, target_macos_major=26),
+                unavailable_ids=module.load_future_toolkit_id_reasons(skill_dir, 26),
+                unavailable_parameter_keys=module.load_future_parameter_key_reasons(26),
+            )
+            self.assertTrue(
+                [
+                    error
+                    for error in errors_26
+                    if "Parameter 'imageFile' on is.workflow.actions.extracttextfromimage requires macOS 27+"
+                    in error
+                ],
+                f"{rel_path}: {errors_26}",
             )
 
     def test_notes_markdown_contents_is_a_valid_content_key(self) -> None:
@@ -839,6 +905,7 @@ class OS27AutomatorsReferenceTests(unittest.TestCase):
             "com.apple.mobilenotes.SharingExtension",
             "com.apple.Safari.CreateNewTabGroup",
             "Create Tab Group",
+            "Extract from Image (`imageFile` in ToolKit v78)",
             "is.workflow.actions.getonscreencontext",
             "is.workflow.actions.getonscreencontent",
             "is.workflow.actions.extracttextfromimage",

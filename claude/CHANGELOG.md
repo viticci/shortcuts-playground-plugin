@@ -7,6 +7,7 @@ All notable changes to the Shortcuts Playground plugin are documented in this fi
 ### Fixed - AppIntent validation and package checks
 
 - Added `markdownContents` to the Notes create content-key validator so `com.apple.Notes.CreateNoteFromMarkdownLinkAction` no longer needs a false-positive waiver when using the runtime-correct AppIntent parameter.
+- Added OS 27 target-gated `imageFile` support for `is.workflow.actions.extracttextfromimage`, matching the local ToolKit v78 **Extract from Image** row while preserving older `WFImage`/`WFInput` compatibility.
 - Removed stale Notes `markdownContents` validator-gap guidance from the shared skill docs.
 - Updated ToolKit snapshot docs and Claude self-test coverage so the packaged `toolkit-v78-first-party-parameter-keys.json` AppIntent parameter catalog is explicitly checked.
 - Updated Claude builder/remixer prompts so OS 27 AppIntent gaps can use the packaged `lookup_action_grounding.py` helper before escalating.

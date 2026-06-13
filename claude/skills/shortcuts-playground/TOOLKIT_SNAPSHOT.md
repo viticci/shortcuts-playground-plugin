@@ -24,7 +24,7 @@ This keeps validation portable and self-contained while avoiding false compatibi
 
 The v78 snapshot expands validation coverage for shortcuts created on macOS 27. It is only active when the target is macOS 27+ or `latest`. It is an identifier allowlist, not a complete authoring schema. If a v78-only action identifier is present but its parameter serialization is not documented in the reference files or a golden XML, do not guess the payload. Ask for an exported XML sample or use a documented fallback.
 
-OS 27-era parameter keys are also target-gated. Examples include `WFAllowWebSearch` on Use Model, `interpretAsMarkdown` on Notes actions, `WFAvoidTolls`/`WFAvoidHighways` on Maps route actions, `WFAppsExcept` on Hide/Quit App, `imageFile` on Scan QR or Barcode, and `contents` on Safari Create Tab Group.
+OS 27-era parameter keys are also target-gated. Examples include `WFAllowWebSearch` on Use Model, `interpretAsMarkdown` on Notes actions, `WFAvoidTolls`/`WFAvoidHighways` on Maps route actions, `WFAppsExcept` on Hide/Quit App, `imageFile` on Scan QR or Barcode / Extract from Image, and `contents` on Safari Create Tab Group.
 
 ## iOS 27 simulator scope
 

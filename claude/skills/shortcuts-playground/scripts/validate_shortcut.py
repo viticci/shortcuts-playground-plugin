@@ -147,6 +147,7 @@ OS27_PARAMETER_KEYS_BY_ACTION = {
         "section",
     },
     "is.workflow.actions.askllm": {"WFAllowWebSearch"},
+    "is.workflow.actions.extracttextfromimage": {"imageFile"},
     "is.workflow.actions.getdistance": {"WFAvoidHighways", "WFAvoidTolls"},
     "is.workflow.actions.gettraveltime": {"WFAvoidHighways", "WFAvoidTolls"},
     "is.workflow.actions.hide.app": {"WFAppsExcept"},
@@ -2712,7 +2713,7 @@ def validate(
                 errors.append(f"Get Time Between Dates has unsupported WFTimeUntilUnit '{unit}' at index {idx}")
 
         if ident == "is.workflow.actions.extracttextfromimage":
-            image_keys = ("WFImage", "WFInput")
+            image_keys = ("imageFile", "WFImage", "WFInput")
             non_empty_image_inputs: list[tuple[str, object]] = []
             for key in image_keys:
                 if key not in params:
@@ -2727,7 +2728,7 @@ def validate(
 
             if not non_empty_image_inputs:
                 errors.append(
-                    f"Extract Text from Image missing WFImage/WFInput at index {idx}"
+                    f"Extract Text from Image missing imageFile/WFImage/WFInput at index {idx}"
                 )
             elif len(non_empty_image_inputs) > 1:
                 used = ", ".join(key for key, _ in non_empty_image_inputs)
