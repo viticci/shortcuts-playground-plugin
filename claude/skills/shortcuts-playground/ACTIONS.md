@@ -72,18 +72,18 @@ These classic/WF-namespace identifiers are present in local OS 27 ToolKit v78 da
 
 These parameter additions were cross-checked against the Automators OS 26 to 27 thread and local ToolKit v78 metadata. Treat AppIntent-style WF-namespace actions (`appendnote`, `scanbarcode`, `extracttextfromimage`) as ToolKit-backed AppIntents even though their identifiers begin with `is.workflow.actions.`. The validator rejects these parameter keys when targeting macOS 26 or older even if the action identifier itself is available on that target.
 
-| Identifier | New/Updated Parameters | Notes |
-|------------|------------------------|-------|
-| `is.workflow.actions.appendnote` | `section`, `ignoreWhitespace`, `interpretAsMarkdown` | `section` is the section title/heading; the booleans are `On`/`Off` UI toggles. |
-| `com.apple.mobilenotes.SharingExtension` | `interpretAsMarkdown` | Displayed as **Create Note**. This ToolKit row uses `contents` for the note body; `com.apple.Notes.CreateNoteIntent` did not expose the markdown toggle in local macOS 27 v78. |
-| `is.workflow.actions.askllm` | `WFAllowWebSearch` | Displayed as **Use Broad World Knowledge**. Boolean toggle for web-backed model knowledge. |
-| `is.workflow.actions.getdistance` | `WFAvoidTolls`, `WFAvoidHighways` | Boolean route options. Route modes: `Driving`, `Walking`, `Biking`, `Direct`. |
-| `is.workflow.actions.gettraveltime` | `WFAvoidTolls`, `WFAvoidHighways` | Boolean route options. Route modes: `Driving`, `Walking`, `Biking`, `Transit`. |
-| `is.workflow.actions.hide.app` | `WFAppsExcept` | Used when `WFHideAppMode = "All Apps"` to keep listed apps open. |
-| `is.workflow.actions.quit.app` | `WFAppsExcept` | Used when `WFQuitAppMode = "All Apps"` to keep listed apps open. |
-| `is.workflow.actions.scanbarcode` | `imageFile` | ToolKit-backed AppIntent parameter for scanning an input image file. |
-| `is.workflow.actions.extracttextfromimage` | `imageFile` | Displayed as **Extract from Image** on OS 27. ToolKit v78 exposes this as the primary image input. Older exported shortcuts may still use `WFImage` or `WFInput`. |
-| `com.apple.Safari.CreateNewTabGroup` | `contents` | Displayed as **Create Tab Group**. Accepts URLs or existing Safari tab entities to seed the new tab group. |
+| Identifier | Display Name | New/Updated Parameters | Notes |
+|------------|--------------|------------------------|-------|
+| `is.workflow.actions.appendnote` | Append to Note | `section`, `ignoreWhitespace`, `interpretAsMarkdown` | `section` is the section title/heading; the booleans are `On`/`Off` UI toggles. |
+| `com.apple.mobilenotes.SharingExtension` | Create Note | `interpretAsMarkdown` | This ToolKit row uses `contents` for the note body; `com.apple.Notes.CreateNoteIntent` did not expose the markdown toggle in local macOS 27 v78. |
+| `is.workflow.actions.askllm` | Use Broad World Knowledge | `WFAllowWebSearch` | Boolean toggle for web-backed model knowledge. |
+| `is.workflow.actions.getdistance` | Get Distance | `WFAvoidTolls`, `WFAvoidHighways` | Boolean route options. Route modes: `Driving`, `Walking`, `Biking`, `Direct`. |
+| `is.workflow.actions.gettraveltime` | Get Travel Time | `WFAvoidTolls`, `WFAvoidHighways` | Boolean route options. Route modes: `Driving`, `Walking`, `Biking`, `Transit`. |
+| `is.workflow.actions.hide.app` | Hide App | `WFAppsExcept` | Used when `WFHideAppMode = "All Apps"` to keep listed apps open. |
+| `is.workflow.actions.quit.app` | Quit App | `WFAppsExcept` | Used when `WFQuitAppMode = "All Apps"` to keep listed apps open. |
+| `is.workflow.actions.scanbarcode` | Scan QR or Barcode | `imageFile` | ToolKit-backed AppIntent parameter displayed as **Image** for scanning an input image file. |
+| `is.workflow.actions.extracttextfromimage` | Extract from Image | `imageFile` | ToolKit v78 exposes this as the primary image input. Older exported shortcuts may still use `WFImage` or `WFInput`. |
+| `com.apple.Safari.CreateNewTabGroup` | Create Tab Group | `contents` | Accepts URLs or existing Safari tab entities to seed the new tab group. |
 
 #### OS 26 to 27 Display Name Changes
 

@@ -8,6 +8,7 @@ Reviewed the plugin's shipped AppIntent/ToolKit coverage against the local macOS
 
 ### Fixes Applied
 
+- Made the OS 26 to 27 updated-parameter table display the exact Automators action names alongside identifiers, including Scan QR or Barcode, Get Distance, Get Travel Time, Hide App, and Quit App.
 - Verified the shipped macOS 27 and iOS 27 Simulator v78 action ID snapshots exactly match the local ToolKit databases, and verified the first-party parameter catalog has no missing, stale, or mismatched rows.
 - Added `data/toolkit-v78-trigger-parameter-keys.json`, a compact static catalog of 42 ToolKit v78 automation triggers with identifiers, Apple Python names, parameter keys, platform labels, and output type identifiers.
 - Added `AUTOMATION_TRIGGERS.md` so trigger metadata is discoverable without implying import-ready automation support.
