@@ -5,7 +5,7 @@
 #   1. Python 3.10+ interpreter is available
 #   2. macOS `shortcuts` CLI is on PATH
 #   3. Plugin root resolves and contains expected files
-#   4. Bundled data files (ToolKit snapshot, HealthKit reference, glyph + color JSON) are present
+#   4. Bundled data files (ToolKit snapshots/catalogs, HealthKit reference, glyph + color JSON) are present
 #   5. Validator passes on an embedded golden XML
 #   6. sign-shortcut round-trips to a temp dir and produces a signed .shortcut
 #
@@ -86,6 +86,7 @@ DATA_FILES=(
   "toolkit-v63-tool-ids.json"
   "toolkit-v78-tool-ids.json"
   "toolkit-v78-ios27-tool-ids.json"
+  "toolkit-v78-first-party-parameter-keys.json"
   "macos27-shortpy-grounding.json"
   "shortcuts-official-glyph-mapping.json"
   "shortcuts-icon-colors.json"

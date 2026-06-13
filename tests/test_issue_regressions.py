@@ -234,6 +234,40 @@ class ToolkitSnapshotTests(unittest.TestCase):
                 f"{rel_path}: {errors_27}",
             )
 
+    def test_notes_markdown_contents_is_a_valid_content_key(self) -> None:
+        plist = {
+            "WFWorkflowActions": [
+                {
+                    "WFWorkflowActionIdentifier": "com.apple.Notes.CreateNoteFromMarkdownLinkAction",
+                    "WFWorkflowActionParameters": {
+                        "title": "Markdown Note",
+                        "markdownContents": "# Heading\n\nBody",
+                    },
+                }
+            ],
+            "WFWorkflowIcon": {
+                "WFWorkflowIconGlyphNumber": 61440,
+                "WFWorkflowIconStartColor": 431817727,
+            },
+            "WFWorkflowName": "Notes Markdown Regression",
+        }
+
+        for rel_path in (
+            "claude/skills/shortcuts-playground/scripts/validate_shortcut.py",
+            "codex/skills/shortcuts-playground/scripts/validate_shortcut.py",
+        ):
+            module, module_path = self.load_validator_module(rel_path)
+            self.assertIn("markdowncontents", module.NOTES_CONTENT_KEYS, rel_path)
+            skill_dir = module_path.parents[1]
+            errors, _ = module.validate(
+                plist,
+                module.load_allowed_ids(skill_dir, target_macos_major=27),
+            )
+            self.assertFalse(
+                [error for error in errors if "Notes create action missing content" in error],
+                f"{rel_path}: {errors}",
+            )
+
     def test_ios27_toolkit_snapshot_is_packaged(self) -> None:
         for rel_path in (
             "claude/skills/shortcuts-playground/data/toolkit-v78-ios27-tool-ids.json",
@@ -785,6 +819,7 @@ class OS27AutomatorsReferenceTests(unittest.TestCase):
             "OS 27-only parameter keys are rejected on macOS 26 targets",
             "OS 27-era parameter keys are also target-gated",
             "v78-only identifier or parameter key",
+            "toolkit-v78-first-party-parameter-keys.json",
         )
         for rel_path in (
             "claude/skills/shortcuts-playground/TOOLKIT_SNAPSHOT.md",
@@ -846,6 +881,20 @@ class OS27AutomatorsReferenceTests(unittest.TestCase):
             text = (REPO_ROOT / rel_path).read_text(encoding="utf-8")
             for term in required_appintent_terms:
                 self.assertIn(term, text, f"{rel_path}: {term}")
+
+    def test_claude_selftest_checks_parameter_catalog(self) -> None:
+        text = (REPO_ROOT / "claude/bin/shortcuts-playground-selftest").read_text(encoding="utf-8")
+        self.assertIn("toolkit-v78-first-party-parameter-keys.json", text)
+
+    def test_claude_agents_use_packaged_grounding_for_appintent_gaps(self) -> None:
+        for rel_path in (
+            "claude/agents/shortcut-builder.md",
+            "claude/agents/shortcut-remixer.md",
+        ):
+            text = (REPO_ROOT / rel_path).read_text(encoding="utf-8")
+            self.assertIn("lookup_action_grounding.py", text, rel_path)
+            self.assertIn("bundled JSON only", text, rel_path)
+            self.assertIn("toolkit-parameter-summary", text, rel_path)
 
 
 class SigningWrapperTests(unittest.TestCase):

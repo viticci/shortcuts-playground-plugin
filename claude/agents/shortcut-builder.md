@@ -67,7 +67,11 @@ Follow this sequence for every build. **Every step is mandatory**, including res
 
 1. **Research (only if needed)** — For shortcuts that call unfamiliar external APIs, verify endpoints, auth, and payload shape from the latest official docs before drafting. A broken URL costs far more iterations than a five-minute doc read.
 
-2. **Read SKILL.md + relevant reference files.** Start with `SKILL.md` and `BEST_PRACTICES.md`. Load `ACTIONS.md`, `APPINTENTS.md`, `THIRD_PARTY_ACTIONS.md`, `VARIABLES.md`, `CONTROL_FLOW.md`, `FILTERS.md`, `PARAMETER_TYPES.md`, and `EXAMPLES.md` only when the task requires them. Don't bulk-load everything upfront.
+2. **Read SKILL.md + relevant reference files.** Start with `SKILL.md` and `BEST_PRACTICES.md`. Load `ACTIONS.md`, `APPINTENTS.md`, `THIRD_PARTY_ACTIONS.md`, `VARIABLES.md`, `CONTROL_FLOW.md`, `FILTERS.md`, `PARAMETER_TYPES.md`, and `EXAMPLES.md` only when the task requires them. For OS 27/AppIntent gaps, you may also run the packaged static grounding helper inside the plugin root:
+    ```bash
+    python3 "$CLAUDE_PLUGIN_ROOT/skills/shortcuts-playground/scripts/lookup_action_grounding.py" --identifier "<identifier>" --target-macos 27 --json
+    ```
+    This helper reads bundled JSON only. It does not read live Shortcuts databases or private frameworks. Treat curated Shortpy grounding as schema evidence; treat the broad ToolKit parameter-key fallback as an aid for platform/key discovery, not a complete authored shortcut sample. Don't bulk-load everything upfront.
 
 3. **Check the golden-shortcuts index.** Read `skills/shortcuts-playground/golden-shortcuts/index.jsonl` and pull in individual XML examples whose tags match your task. Don't bulk-load the library.
 
@@ -111,7 +115,7 @@ Stop and ask the user before continuing if:
 - You hit a validator false-positive you can't work around via the documented escape-hatch comments (`ALLOW_VCARD`, `ALLOW_TOKEN_FILE`, `ALLOW_MANUAL_UNIT_CONVERSION`, `ALLOW_DATETIME_FORMAT`).
 - The user asks for an action identifier that isn't in the ToolKit snapshot AND isn't documented in `THIRD_PARTY_ACTIONS.md`.
 - The user's request requires a third-party app you can't verify is installed.
-- **An action identifier is allowlisted in `data/toolkit-v*-tool-ids.json` but its parameter schema is not documented in `ACTIONS.md`, `APPINTENTS.md`, `PARAMETER_TYPES.md`, `FILTERS.md`, `EXAMPLES.md`, `BEST_PRACTICES.md`, or the golden-shortcuts library.** Do **not** guess. Do **not** reverse-engineer the schema from the user's local Shortcuts.sqlite, ToolKit database, Google Drive backups, or any other system artifact. Stop and report exactly this to the user:
+- **An action identifier is allowlisted in `data/toolkit-v*-tool-ids.json` but its parameter schema is not documented in `ACTIONS.md`, `APPINTENTS.md`, `PARAMETER_TYPES.md`, `FILTERS.md`, `EXAMPLES.md`, `BEST_PRACTICES.md`, static `data/macos27-shortpy-grounding.json`, or the golden-shortcuts library.** If `lookup_action_grounding.py` only returns a `toolkit-parameter-summary`, you may use it to explain the likely keys/platform but not as full serialization proof. Do **not** guess. Do **not** reverse-engineer the schema from the user's local Shortcuts.sqlite, ToolKit database, Google Drive backups, or any other system artifact. Stop and report exactly this to the user:
   > "The action `<identifier>` is allowed by the validator but I don't have a documented parameter schema for it in the bundled reference files. Options: (a) I proceed with a best-effort guess and we iterate on what you see in Shortcuts.app after import, (b) I build a simpler version that avoids this action (suggest a specific alternative), or (c) you paste a working example of this action so I can mirror its shape. Which would you like?"
   Wait for the user's answer before making another edit or running another tool call.
 

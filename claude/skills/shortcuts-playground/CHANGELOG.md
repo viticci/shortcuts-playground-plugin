@@ -1,5 +1,19 @@
 # Autoresearch Loop Changelog
 
+## Date: June 13, 2026 - AppIntent validator gap audit
+
+### Summary
+
+Reviewed the plugin against the newer AppIntent/ToolKit metadata path and closed two packaging/validation gaps that could weaken OS 27 authoring.
+
+### Fixes Applied
+
+- Added `markdownContents` to the Notes create content-key validator so the runtime-correct `com.apple.Notes.CreateNoteFromMarkdownLinkAction` payload validates cleanly.
+- Removed stale guidance that treated Notes `markdownContents` as a known validator false positive.
+- Updated ToolKit snapshot docs and Claude self-test coverage so the packaged `toolkit-v78-first-party-parameter-keys.json` AppIntent parameter catalog is explicitly checked.
+- Updated Claude builder/remixer prompts so OS 27 AppIntent gaps can use the packaged `lookup_action_grounding.py` helper before escalating.
+- Added issue-regression tests for Notes `markdownContents`, parameter-catalog documentation, and self-test packaging coverage.
+
 ## Date: June 13, 2026 - OS 26 to 27 Automators action delta
 
 ### Summary

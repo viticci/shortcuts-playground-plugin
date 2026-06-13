@@ -293,6 +293,7 @@ NOTES_CONTENT_KEYS = {
     "wfnotecontentitem",
     "wfcreatenoteinput",
     "markdown",
+    "markdowncontents",
     "content",
     "text",
 }

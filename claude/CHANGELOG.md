@@ -4,6 +4,13 @@ All notable changes to the Shortcuts Playground plugin are documented in this fi
 
 ## Unreleased
 
+### Fixed - AppIntent validation and package checks
+
+- Added `markdownContents` to the Notes create content-key validator so `com.apple.Notes.CreateNoteFromMarkdownLinkAction` no longer needs a false-positive waiver when using the runtime-correct AppIntent parameter.
+- Removed stale Notes `markdownContents` validator-gap guidance from the shared skill docs.
+- Updated ToolKit snapshot docs and Claude self-test coverage so the packaged `toolkit-v78-first-party-parameter-keys.json` AppIntent parameter catalog is explicitly checked.
+- Updated Claude builder/remixer prompts so OS 27 AppIntent gaps can use the packaged `lookup_action_grounding.py` helper before escalating.
+
 ### Added - OS 26 to 27 action and parameter coverage
 
 - Added an iOS 27.0 Simulator ToolKit v78 ID snapshot to both Claude and Codex packages, target-gated alongside the macOS 27 v78 snapshot.

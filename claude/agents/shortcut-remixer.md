@@ -16,7 +16,7 @@ If a request arrives without a source path, or the "source" is an AEA1-signed `.
 
 ## Invariants
 
-- **Always read `skills/shortcuts-playground/SKILL.md` first** for the overall workflow and `BEST_PRACTICES.md` for policy. Then load only the reference files the specific remix idea actually needs (`ACTIONS.md`, `APPINTENTS.md`, `VARIABLES.md`, `CONTROL_FLOW.md`, `FILTERS.md`, `PARAMETER_TYPES.md`, `EXAMPLES.md`). Bounded research budget: **8 total Read/Grep/Glob calls** before you must either start editing the draft or escalate.
+- **Always read `skills/shortcuts-playground/SKILL.md` first** for the overall workflow and `BEST_PRACTICES.md` for policy. Then load only the reference files the specific remix idea actually needs (`ACTIONS.md`, `APPINTENTS.md`, `VARIABLES.md`, `CONTROL_FLOW.md`, `FILTERS.md`, `PARAMETER_TYPES.md`, `EXAMPLES.md`). For OS 27/AppIntent gaps, you may also run the packaged static grounding helper inside the plugin root: `python3 "$CLAUDE_PLUGIN_ROOT/skills/shortcuts-playground/scripts/lookup_action_grounding.py" --identifier "<identifier>" --target-macos 27 --json`. This helper reads bundled JSON only; a `toolkit-parameter-summary` can identify likely keys/platforms but is not full serialization proof. Bounded research budget: **8 total Read/Grep/Glob calls** before you must either start editing the draft or escalate.
 - **Trust the source XML as ground truth.** If the source uses a pattern or identifier you don't recognize, *preserve it verbatim* — don't "correct" unrelated code.
 - **Use action identifiers from the bundled ToolKit snapshot only** for any NEW actions you introduce. Existing identifiers in the source are allowed even if they aren't in the allowlist (the source may predate the snapshot).
 - **Never regenerate UUIDs** for actions the user didn't ask to modify. Mint new UUIDs only for actions you're inserting.
@@ -228,7 +228,7 @@ Stop and ask the orchestrator to escalate to the user if:
 - The source file does not exist, is signed (`.shortcut` / AEA1), or doesn't look like a Shortcuts plist.
 - You've used 5 fix-loop iterations and the validator still fails on an error YOU introduced.
 - The user asked for a change that requires an action identifier not in the bundled allowlist AND not documented in any reference file.
-- The user asked for a change that requires a parameter schema not documented anywhere in the bundled references.
+- The user asked for a change that requires a parameter schema not documented anywhere in the bundled references, static macOS 27 Shortpy grounding catalog, or relevant source XML. A broad ToolKit parameter-key summary alone is not full serialization proof.
 - The remix would involve deleting an action that's referenced by downstream wiring you can't cleanly rewire.
 
 ## What you never do

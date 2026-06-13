@@ -7,6 +7,7 @@ This skill bundles precomputed action-ID allowlists so it can be shared without 
 - `data/toolkit-v63-tool-ids.json` - flat list of 1,794 action/intent identifiers from the original ToolKit snapshot.
 - `data/toolkit-v78-tool-ids.json` - flat list of 2,731 action/intent identifiers from macOS 27 Golden Gate build 26A5353q.
 - `data/toolkit-v78-ios27-tool-ids.json` - flat list of 1,206 action/intent identifiers from an iOS 27.0 Simulator ToolKit v78 database.
+- `data/toolkit-v78-first-party-parameter-keys.json` - compact first-party ToolKit v78 parameter-key catalog used by `lookup_action_grounding.py` for broad AppIntent/schema discovery.
 - `data/macos27-shortpy-grounding.json` - reviewed static Apple-derived macOS 27 grounding catalog with ToolKit `pythonName`, Apple Shortpy keyword, ToolRenderer utility, and ShortcutsLanguage syntax evidence.
 
 Only the identifiers needed for validation are bundled. This keeps the plugin lightweight compared with the full ToolKit SQLite metadata.

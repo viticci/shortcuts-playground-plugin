@@ -252,7 +252,7 @@ validate-shortcut /path/to/Shortcut.xml
 5. **Exit conditions** (stop looping and report to the user):
    - **Max 5 iterations.** If the validator still fails after 5 fix attempts, stop. Summarize the remaining errors and ask the user for guidance.
    - **Same errors repeating.** If the same error persists across 2 consecutive iterations despite attempted fixes, stop. The fix approach is wrong — do not keep trying the same thing.
-   - **Known validator gaps.** Some valid patterns trigger false failures (see BEST_PRACTICES.md). If the only remaining errors are documented false positives (numeric If implicit input, Notes `markdownContents`), the shortcut is acceptable — note this in your response.
+   - **Known validator gaps.** Only waive validator failures if `BEST_PRACTICES.md` lists a current, runtime-verified false positive. Otherwise fix the shortcut or stop and report the exact remaining errors.
 
 ### Anti-patterns (do NOT do these)
 - **Chatting the validator**: Running the validator repeatedly without making meaningful code changes between runs. Every re-run must follow a real edit.

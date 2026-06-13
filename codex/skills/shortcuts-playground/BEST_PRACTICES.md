@@ -117,7 +117,7 @@ These guidelines are mandatory for every shortcut built with this skill. If guid
 - If you reference **Shortcut Input**, set `WFWorkflowInputContentItemClasses` to non-empty input types. Do not use Shortcut Input when the shortcut receives no input (avoids “Stop and Respond”).
 - If you do **not** reference Shortcut Input, keep `WFWorkflowInputContentItemClasses` empty.
 - Notes create actions must include both a **title/name** parameter and a **content/markdown** parameter; do not leave them empty.
-- For `com.apple.Notes.CreateNoteFromMarkdownLinkAction`, use `markdownContents` (camelCase) as the content parameter key — this is the official AppIntent parameter name from the toolkit. **Known validator gap**: the validator's `NOTES_CONTENT_KEYS` set does not include `markdowncontents`, so the validator will report a false failure. The runtime requires `markdownContents`; using `markdown` passes validation but the note body will be empty at runtime.
+- For `com.apple.Notes.CreateNoteFromMarkdownLinkAction`, use `markdownContents` (camelCase) as the content parameter key — this is the official AppIntent parameter name from the toolkit and the runtime-required key. Do not use `markdown` as a substitute; it can pass older validation but produce an empty note body at runtime.
 
 ## Critical Variable Wiring Rules
 
@@ -350,8 +350,6 @@ This shortcut was created via the following user prompt:
 
 ## Known Validator Gaps
 
-The following patterns are structurally valid but trigger false failures in the validator. When the Craig Loop's only remaining errors match these items, the shortcut is acceptable:
-
-1. **Notes `markdownContents` key**: The validator's `NOTES_CONTENT_KEYS` set does not include `markdowncontents`. The runtime requires `markdownContents` (camelCase) — confirmed at runtime.
+There are no current false-positive exemptions. Do not waive validator failures unless this section lists an explicit, runtime-verified exception.
 
 (The previously-listed "code 0 truthiness bug" and "numeric If implicit input" gaps were both fixed when the conditional system was rewritten against the Apple sample shortcut. The validator now correctly handles code 0 via `is None` checks and rejects implicit input for every condition code, matching the documented behavior.)
