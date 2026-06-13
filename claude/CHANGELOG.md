@@ -8,7 +8,7 @@ All notable changes to the Shortcuts Playground plugin are documented in this fi
 
 - Added an iOS 27.0 Simulator ToolKit v78 ID snapshot to both Claude and Codex packages, target-gated alongside the macOS 27 v78 snapshot.
 - Documented the Automators OS 26 to 27 action and parameter deltas against local ToolKit evidence, including Messages, Photos, Reminders, Share/Collaborate, stored content, on-screen context, Notes markdown, Maps route options, and Hide/Quit Apps exclusion lists.
-- Mapped the reported Toggle Vehicle Motion Cues action to the confirmed macOS 27 `Set Motion Cues` ToolKit entry, documented the confirmed `Set Switch Control` on/off intent, and left Set Switch Control Switch Set marked as unresolved pending an exported shortcut or device ToolKit database.
+- Mapped the reported Toggle Vehicle Motion Cues action to the confirmed macOS 27 `Set Motion Cues` ToolKit entry, documented the confirmed `Set Switch Control` on/off intent and `switchControlSwitches` settings-pane deep link target, and left Set Switch Control Switch Set marked as unresolved pending an exported shortcut or device ToolKit database.
 - Added issue-regression coverage for the iOS 27 snapshot and the new action/parameter reference entries.
 
 ### Added - macOS 27 Golden Gate validation support

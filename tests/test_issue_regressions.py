@@ -574,6 +574,8 @@ class OS27AutomatorsReferenceTests(unittest.TestCase):
             "com.apple.reminders.CreateSectionAppIntent",
             "com.apple.HearingApp.MuteVolumeIntent",
             "Set Switch Control Switch Set",
+            "com.apple.systempreferences.OpenAccessibilitySwitchControlStaticDeepLinks",
+            "switchControlSwitches",
             "com.apple.UniversalAccess.UASettingsShortcuts.UAToggleSwitchControlIntent",
             "com.apple.systempreferences.AxFeatureSwitchcontrolEntity-UpdatableEntity",
             "Toggle Vehicle Motion Cues",
