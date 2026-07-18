@@ -64,7 +64,7 @@ Wrap literal text in single quotes, including the ISO separator `T`: `yyyy-MM-dd
 For `is.workflow.actions.format.date`:
 
 - Always set `WFDate` to the source Date as an editor-visible token string.
-- For custom formats, set `WFDateFormatStyle` to `Custom`, set `WFDateFormat` to `Custom`, and put the custom pattern in `WFDateFormatString`.
+- For custom formats, set `WFDateFormatStyle` to `Custom` and put the custom pattern in `WFDateFormat` itself (e.g., `yyyyMMdd-HHmmss`). `WFDateFormatString` is NOT a valid WorkflowKit key — the runtime silently ignores it and reads the pattern from `WFDateFormat`, so `WFDateFormat=Custom` + `WFDateFormatString=<pattern>` renders correctly in the editor but yields an empty string at runtime.
 - Keep the unformatted Date value available for later **Adjust Date**, **Get Time Between Dates**, or comparison actions.
 
 ## Sources

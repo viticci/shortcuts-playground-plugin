@@ -94,7 +94,7 @@ Used by Format Date action to specify the date format:
 | `Long` | Long format (e.g., "March 24, 2026") |
 | `None` | No date component (time only) |
 
-For `is.workflow.actions.format.date` custom formats, set `WFDateFormatStyle=Custom`, set `WFDateFormat=Custom`, and put the custom pattern in `WFDateFormatString` (for example, `MMMM d, yyyy`, `yyyy-MM-dd`, or `yyyy-MM-dd'T'HH:mm:ssXXXXX`). Custom patterns use Unicode Technical Standard #35 date field symbols; see `DATE_TIME.md`.
+For `is.workflow.actions.format.date` custom formats, set `WFDateFormatStyle=Custom` and put the custom pattern in `WFDateFormat` itself (for example, `MMMM d, yyyy`, `yyyy-MM-dd`, or `yyyy-MM-dd'T'HH:mm:ssXXXXX`). Do not use `WFDateFormatString` — it is not a valid WorkflowKit key and the runtime silently ignores it. Custom patterns use Unicode Technical Standard #35 date field symbols; see `DATE_TIME.md`.
 
 ### WFTimeFormatStyle
 
