@@ -427,8 +427,7 @@ def build_case(
                 "UUID": fmt_uuid,
                 "WFDate": token_string_action_output(date_uuid, "Date"),
                 "WFDateFormatStyle": "Custom",
-                "WFDateFormat": "Custom",
-                "WFDateFormatString": rng.choice(
+                "WFDateFormat": rng.choice(
                     ["yyyy-MM-dd", "MMM d, yyyy", "yyyy-MM-dd HH:mm"]
                 ),
             },

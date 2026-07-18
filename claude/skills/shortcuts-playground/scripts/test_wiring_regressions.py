@@ -485,6 +485,59 @@ def make_text_token_placeholder_invalid(case_name: str) -> tuple[dict, str]:
     return root_plist(case_name, actions), "expected placeholder position"
 
 
+def make_format_date_custom_valid(case_name: str) -> dict:
+    actions = base_actions(case_name, "Format the current date with a custom pattern.")
+    date_uuid = seeded_uuid(f"{case_name}-date")
+    fmt_uuid = seeded_uuid(f"{case_name}-format-date")
+    actions.extend(
+        [
+            {
+                "WFWorkflowActionIdentifier": "is.workflow.actions.date",
+                "WFWorkflowActionParameters": {
+                    "UUID": date_uuid,
+                    "WFDateActionMode": "Current Date",
+                },
+            },
+            {
+                "WFWorkflowActionIdentifier": "is.workflow.actions.format.date",
+                "WFWorkflowActionParameters": {
+                    "UUID": fmt_uuid,
+                    "WFDate": token_string_action_output(date_uuid, "Date"),
+                    "WFDateFormatStyle": "Custom",
+                    "WFDateFormat": "yyyy-MM-dd",
+                },
+            },
+            {
+                "WFWorkflowActionIdentifier": "is.workflow.actions.showresult",
+                "WFWorkflowActionParameters": {
+                    "Text": token_string_action_output(fmt_uuid, "Formatted Date"),
+                },
+            },
+        ]
+    )
+    return root_plist(case_name, actions)
+
+
+def make_format_date_format_string_invalid(case_name: str) -> tuple[dict, str]:
+    plist = make_format_date_custom_valid(case_name)
+    params = plist["WFWorkflowActions"][-2]["WFWorkflowActionParameters"]
+    params["WFDateFormatString"] = params["WFDateFormat"]
+    params["WFDateFormat"] = "Custom"
+    return plist, "not a valid WorkflowKit key"
+
+
+def make_format_date_custom_literal_invalid(case_name: str) -> tuple[dict, str]:
+    plist = make_format_date_custom_valid(case_name)
+    plist["WFWorkflowActions"][-2]["WFWorkflowActionParameters"]["WFDateFormat"] = "Custom"
+    return plist, "Custom belongs in WFDateFormatStyle"
+
+
+def make_format_date_empty_custom_invalid(case_name: str) -> tuple[dict, str]:
+    plist = make_format_date_custom_valid(case_name)
+    del plist["WFWorkflowActions"][-2]["WFWorkflowActionParameters"]["WFDateFormat"]
+    return plist, "custom format is empty"
+
+
 def current_date_attachment() -> dict:
     return {
         "WFSerializationType": "WFTextTokenAttachment",
@@ -1932,6 +1985,22 @@ def build_cases() -> list[Case]:
     ]:
         plist, expected = maker(name)
         cases.append(Case("date-delta", name, plist, False, expected))
+
+    cases.append(
+        Case(
+            "format-date",
+            "ZZ-Format-Date-Custom-Valid",
+            make_format_date_custom_valid("ZZ-Format-Date-Custom-Valid"),
+            True,
+        )
+    )
+    for name, maker in [
+        ("ZZ-Format-Date-FormatString-Invalid", make_format_date_format_string_invalid),
+        ("ZZ-Format-Date-Custom-Literal-Invalid", make_format_date_custom_literal_invalid),
+        ("ZZ-Format-Date-Empty-Custom-Invalid", make_format_date_empty_custom_invalid),
+    ]:
+        plist, expected = maker(name)
+        cases.append(Case("format-date", name, plist, False, expected))
 
     # 43 weather cases (21 valid + 22 invalid)
     for idx in range(20):

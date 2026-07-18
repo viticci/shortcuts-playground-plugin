@@ -4170,15 +4170,24 @@ def validate(
                         errors.append(
                             f"{source_prop} returns a list; use Get Item from List ({expected}) before Format Date at index {idx}"
                         )
-            if params.get("WFDateFormat") == "Custom" and not params.get("WFDateFormatString"):
+            # The runtime reads the custom pattern from WFDateFormat itself
+            # (selected by WFDateFormatStyle=Custom). WFDateFormatString is not
+            # a WorkflowKit key: the editor renders it, the runtime ignores it,
+            # and the formatted output comes back empty.
+            if "WFDateFormatString" in params:
+                errors.append(
+                    f"Format Date uses WFDateFormatString, which is not a valid WorkflowKit key (the runtime ignores it and returns an empty string); put the custom pattern in WFDateFormat with WFDateFormatStyle=Custom at index {idx}"
+                )
+            if params.get("WFDateFormat") == "Custom":
+                errors.append(
+                    f"Format Date has WFDateFormat=Custom; WFDateFormat must hold the actual pattern (e.g., yyyy-MM-dd) and Custom belongs in WFDateFormatStyle at index {idx}"
+                )
+            if params.get("WFDateFormatStyle") == "Custom" and not params.get("WFDateFormat"):
                 errors.append(f"Format Date custom format is empty at index {idx}")
-            if params.get("WFDateFormat") == "Custom" and params.get("WFDateFormatString"):
-                if params.get("WFDateFormatStyle") != "Custom":
-                    errors.append(f"Format Date custom style must be set to Custom at index {idx}")
             custom_name = params.get("CustomOutputName")
             enforce_custom_style = custom_name in {"Start Date", "End Date"}
-            if params.get("WFDateFormat") == "Custom":
-                fmt = params.get("WFDateFormatString", "")
+            if params.get("WFDateFormatStyle") == "Custom" and params.get("WFDateFormat") != "Custom":
+                fmt = params.get("WFDateFormat", "")
                 if enforce_custom_style:
                     if fmt and not allow_datetime_format and re.search(r"[HhmsZ]|'T'", fmt):
                         errors.append(
@@ -4195,10 +4204,11 @@ def validate(
             if isinstance(name, str) and name.strip() and name in {"Start Date", "End Date"}:
                 fmt_params = var_format_dates.get(name)
                 if fmt_params is not None:
+                    # With WFDateFormatStyle=Custom the pattern lives in
+                    # WFDateFormat itself. A literal "Custom" value is the
+                    # legacy broken shape, already rejected above.
                     fmt_key = fmt_params.get("WFDateFormat")
-                    fmt_str = fmt_params.get("WFDateFormatString", "")
-                    # Accept Custom or a direct date-only format (e.g., yyyy-MM-dd)
-                    effective = fmt_str if fmt_key == "Custom" else (fmt_key or fmt_str)
+                    effective = "" if fmt_key == "Custom" else (fmt_key or "")
                     if not allow_datetime_format and isinstance(effective, str) and re.search(r"[HhmsZ]|'T'", effective):
                         errors.append(f"{name} should use date-only format (yyyy-MM-dd)")
 
@@ -4507,6 +4517,32 @@ def main() -> int:
             f"not hand-picked sequences. Re-mint ALL offending UUIDs and update every "
             f"OutputUUID / GroupingIdentifier reference to match."
         )
+
+    # Non-fatal lints: likely runtime hazards that don't fail validation, so
+    # they print in both the pass and fail paths.
+    warnings: list[str] = []
+    for warn_idx, warn_action in enumerate(plist.get("WFWorkflowActions", []) or []):
+        if not isinstance(warn_action, dict):
+            continue
+        if warn_action.get("WFWorkflowActionIdentifier") != "is.workflow.actions.base64encode":
+            continue
+        warn_params = warn_action.get("WFWorkflowActionParameters")
+        if not isinstance(warn_params, dict):
+            warn_params = {}
+        # Line-break mode only affects encoded output; decoding ignores it.
+        if warn_params.get("WFEncodeMode") == "Decode":
+            continue
+        if "WFBase64LineBreakMode" not in warn_params:
+            warnings.append(
+                f"Base64 Encode omits WFBase64LineBreakMode at index {warn_idx}; the runtime "
+                f"default is 'Every 76 Characters', which inserts newlines into the encoded "
+                f"output, and APIs reject wrapped base64 (e.g., GitHub returns 422 'content "
+                f"is not valid Base64'). Set WFBase64LineBreakMode=None for JSON/API payloads."
+            )
+    if warnings:
+        for warning in warnings:
+            print(f"Warning: {warning}")
+        print()
 
     if errors:
         print("Validation failed:\n")
