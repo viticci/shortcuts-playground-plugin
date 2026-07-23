@@ -205,6 +205,8 @@ For complete documentation, see:
 
 When you need to verify an unfamiliar action identifier, check the packaged `data/toolkit-v*-tool-ids.json` snapshots, then `ACTIONS.md`, `APPINTENTS.md`, and `THIRD_PARTY_ACTIONS.md` before inventing anything.
 
+For a **third-party** action whose parameters you cannot confirm from the above, run `bin/extract-appintents` (see THIRD_PARTY_ACTIONS.md → "Parameter-level ground truth") to read the exact parameter keys, types, and Team ID straight from the installed app, rather than guessing.
+
 ## Golden Example Library (On-Demand)
 
 A curated set of shortcut XMLs is available for on-demand reference. Use the index first; only load XML sources that match the current task.

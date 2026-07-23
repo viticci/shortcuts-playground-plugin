@@ -75,3 +75,35 @@ Third-party actions referenced in backups: 49
 Notes:
 - Backup-only entries may come from apps not installed on this Mac.
 - WF-style third-party actions can still use the `is.workflow.actions.*` prefix (e.g., Lightroom).
+
+## Parameter-level ground truth (opt-in)
+
+The lists above name *which* third-party actions exist, but not how to *call* them: the exact parameter keys, their types, and whether they are required. Naming an action is not enough to encode it — a wrong parameter key silently produces a broken action, and that ground truth cannot live in a static snapshot because it depends on the third-party apps a given user has installed.
+
+Fill it in on demand with the bundled extractor. It is **opt-in and local**: it reads each installed app's declared App Intents schema at `<App>.app/Contents/Resources/Metadata.appintents/extract.actionsdata`, makes no network calls, and is not part of the normal validation path.
+
+```bash
+# Print a catalog for every installed third-party app…
+"$CLAUDE_PLUGIN_ROOT/bin/extract-appintents"
+# …or capture one app's actions:
+"$CLAUDE_PLUGIN_ROOT/bin/extract-appintents" --app /Applications/PastePal.app --out /tmp/appintents.json
+```
+
+Each entry is keyed by the fully-qualified action identifier — the exact string that goes in `WFWorkflowActionIdentifier` — and carries what an `AppIntentDescriptor` needs:
+
+```jsonc
+"com.onmyway133.PastePal.AddItemIntent": {
+  "bundleId": "com.onmyway133.PastePal",
+  "teamId":   "T78DK947F2",
+  "appName":  "PastePal",
+  "intentId": "AddItemIntent",
+  "parameters": [
+    { "name": "text",      "optional": false, "type": "string" },
+    { "name": "imageFile", "optional": true,  "type": "file" },
+    { "name": "folder",    "optional": true,  "type": "entity:Folder" },
+    { "name": "name",      "optional": true,  "type": "string" }
+  ]
+}
+```
+
+When building a call to a third-party action, prefer a schema from this catalog over guessing: emit only the listed `name` keys, respect `optional` (a required parameter left empty stops the shortcut with an "ask" prompt), and route by `type` — `string`/number primitives go in text-style parameters, `file` takes an image/file variable, `entity:*` expects one of the app's entities. The generated catalog is per-user, so it is git-ignored rather than committed.

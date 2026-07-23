@@ -18,6 +18,11 @@ __pycache__/
 *.swp
 *.swo
 
+# Per-user App Intents catalog from bin/extract-appintents (contains the local
+# machine's installed-app list; regenerate locally, never commit).
+appintents*.json
+third-party-appintents.json
+
 # Ad-hoc test output
 /tmp-shortcuts/
 /.local-test-output/

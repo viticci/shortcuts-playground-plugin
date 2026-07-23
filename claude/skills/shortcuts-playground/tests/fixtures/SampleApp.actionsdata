@@ -1,0 +1,16 @@
+{
+  "actions": {
+    "AddItemIntent": {
+      "identifier": "AddItemIntent",
+      "descriptionMetadata": { "descriptionText": { "key": "Add content" } },
+      "parameters": [
+        { "name": "text", "title": { "key": "Text" }, "isOptional": false,
+          "valueType": { "primitive": { "wrapper": { "typeIdentifier": 0 } } } },
+        { "name": "imageFile", "title": { "key": "Image" }, "isOptional": true,
+          "valueType": { "intents": { "wrapper": { "typeIdentifier": 12 } } } },
+        { "name": "folder", "title": { "key": "Collection" }, "isOptional": true,
+          "valueType": { "entity": { "wrapper": { "typeName": "Folder" } } } }
+      ]
+    }
+  }
+}
