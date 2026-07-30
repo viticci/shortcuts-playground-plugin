@@ -535,7 +535,7 @@ Or with full app info:
 ### HTTP Actions
 | Parameter | Type |
 |-----------|------|
-| `WFURL` | string, WFTextTokenString, or WFTextTokenAttachment |
+| `WFURL` | string or WFTextTokenString |
 | `WFHTTPMethod` | string (`GET`, `POST`, `PUT`, `DELETE`) |
 | `WFHTTPBodyType` | string (`JSON`, `Form`, `File`) |
 | `WFHTTPHeaders` | WFDictionaryFieldValue |
@@ -546,7 +546,7 @@ Or with full app info:
 
 #### HTTP Notes
 
-- **WFURL variables**: For `WFURL` parameters (especially `downloadurl`), prefer `WFTextTokenString` with `￼` placeholders even when the URL is entirely a variable. `WFTextTokenAttachment` is rare for `WFURL` and can crash imports.
+- **WFURL variables**: For `WFURL` parameters (especially `downloadurl`), require `WFTextTokenString` with `￼` placeholders even when the URL is entirely one variable. Do not use `WFTextTokenAttachment`: it can sign and import while leaving Get Contents of URL with an empty runtime URL.
 - **JSON bodies**: When `WFHTTPBodyType = JSON`, build the payload as `WFJSONValues` (structured `WFDictionaryFieldValue`). If the body contains arrays of objects or deep nesting and renders incorrectly, use a JSON Text action, set `WFHTTPBodyType = File`, and pass it via `WFRequestVariable` with `Content-Type: application/json`.
 - **File body requests**: When `WFHTTPBodyType = File`, include an empty `WFFormValues` dictionary to match system exports.
 - **Form file fields**: For `WFHTTPBodyType = Form` and `WFItemType = 5`, wrap the file reference like this so the UI shows the connected file:

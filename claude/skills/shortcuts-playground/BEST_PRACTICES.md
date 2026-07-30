@@ -7,6 +7,7 @@ These guidelines are mandatory for every shortcut built with this skill. If guid
 - Use your best available web search and page-fetch tools to research official API docs before building requests (for example, SerpAPI + Firecrawl when available).
 - For complex or unfamiliar external APIs, verify auth, endpoints, parameters, and payload formats against the latest official docs before drafting request actions.
 - If the URL is static, set it directly in **Get Contents of URL** (`WFURL`). If it needs variables or query parameters, build the URL in a **URL/Text** action with tokenized placeholders and pass it into **Get Contents of URL**.
+- Serialize every variable-driven **Get Contents of URL** `WFURL` as `WFTextTokenString` with a `￼` placeholder and matching `attachmentsByRange`. Never pass the URL action output as a bare `WFTextTokenAttachment`: it can sign and import while leaving the URL field empty at runtime, even when the source Text/IP value is present.
 - Store API tokens in Text actions; add a Comment with a link to the service's API key page before token use.
 - Never hardcode real credentials/tokens in shell snippets, examples, logs, or transcripts. Use env vars or credential placeholders.
 - Do not load API tokens from files unless the user explicitly asks. If you must read from a file, add a Comment containing `ALLOW_TOKEN_FILE` and explain why.

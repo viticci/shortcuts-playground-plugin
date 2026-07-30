@@ -1,5 +1,18 @@
 # Autoresearch Loop Changelog
 
+## Date: July 30, 2026 - Variable URL runtime reliability
+
+### Summary
+
+Blocked variable-driven Get Contents of URL actions whose `WFURL` can sign and import but becomes empty at runtime.
+
+### Fixes Applied
+
+- Required dynamic `WFURL` dictionaries on `is.workflow.actions.downloadurl` to use an editor-visible `WFTextTokenString` placeholder.
+- Rejected bare `WFTextTokenAttachment` URL values with an actionable validator error while preserving plain static URL strings.
+- Added mirrored Codex/Claude regression coverage for invalid attachments, valid token strings, and valid static URLs.
+- Updated the HTTP parameter reference and core authoring rules so a populated source Text/IP value cannot mask an empty imported URL field.
+
 ## Date: June 15, 2026 - Mac-specific automation exports
 
 ### Summary
