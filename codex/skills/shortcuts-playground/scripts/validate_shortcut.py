@@ -3502,10 +3502,24 @@ def validate(
                     f"Output from {ident} at index {idx} is unused; likely missing variable wiring"
                 )
 
-        # Download URL should have WFURL or WFInput
+        # Download URL should have WFURL or WFInput. A variable-driven WFURL
+        # must remain editor-visible: bare token attachments can sign and import
+        # while Get Contents of URL receives an empty URL at runtime.
         if ident in REQUIRED_URL_INPUT_ACTIONS:
-            if not params.get("WFURL") and not params.get("WFInput"):
+            wfurl = params.get("WFURL")
+            if not wfurl and not params.get("WFInput"):
                 errors.append(f"Get Contents of URL missing WFURL/WFInput at index {idx}")
+            elif isinstance(wfurl, dict):
+                if wfurl.get("WFSerializationType") != "WFTextTokenString":
+                    errors.append(
+                        f"Get Contents of URL WFURL must use WFTextTokenString with a placeholder "
+                        f"at index {idx}; bare WFTextTokenAttachment values can import as an empty URL"
+                    )
+                elif not _input_is_token_string(wfurl):
+                    errors.append(
+                        f"Get Contents of URL WFURL must contain a WFTextTokenString placeholder "
+                        f"and attachment at index {idx}"
+                    )
 
         if ident == "is.workflow.actions.count":
             if "Input" not in params:
