@@ -4,7 +4,9 @@ All notable changes to the Shortcuts Playground plugin are documented in this fi
 
 ## Unreleased
 
-- Nothing yet.
+### Fixed
+
+- Quoted the `auto-validate.sh` path in the Claude `PostToolUse` hook so the hook still runs when the plugin root contains a space. The Codex hook was already quoted; this brings the Claude hook in line with it.
 
 ## [1.2.1] — 2026-06-15
 
