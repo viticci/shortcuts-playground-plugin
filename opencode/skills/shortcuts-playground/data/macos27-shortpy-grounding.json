@@ -1,0 +1,4085 @@
+{
+  "controlFlowLookup": {
+    "elif": {
+      "literalFieldsByConditionFamily": {
+        "between_upper_bound": "WFAnotherNumber",
+        "number": "WFNumberValue",
+        "string": "WFConditionalActionString"
+      },
+      "notes": "Otherwise If is a mode-1 intermediary conditional with condition fields, not a separate ToolKit action.",
+      "requiredFields": [
+        "GroupingIdentifier",
+        "WFControlFlowMode",
+        "WFInput",
+        "WFCondition"
+      ],
+      "requiresConditionFields": true,
+      "wfControlFlowMode": 1,
+      "wfIdentifier": "is.workflow.actions.conditional"
+    },
+    "else": {
+      "notes": "Plain Otherwise is mode 1 without WFInput/WFCondition/literal fields.",
+      "requiredFields": [
+        "GroupingIdentifier",
+        "WFControlFlowMode"
+      ],
+      "requiresConditionFields": false,
+      "wfControlFlowMode": 1,
+      "wfIdentifier": "is.workflow.actions.conditional"
+    },
+    "end_if": {
+      "notes": "End If closes the grouped conditional block.",
+      "requiredFields": [
+        "GroupingIdentifier",
+        "WFControlFlowMode"
+      ],
+      "requiresConditionFields": false,
+      "wfControlFlowMode": 2,
+      "wfIdentifier": "is.workflow.actions.conditional"
+    },
+    "if": {
+      "literalFieldsByConditionFamily": {
+        "between_upper_bound": "WFAnotherNumber",
+        "number": "WFNumberValue",
+        "string": "WFConditionalActionString"
+      },
+      "notes": "Opening conditional action. Every observed string/number condition carries explicit WFInput.",
+      "requiredFields": [
+        "GroupingIdentifier",
+        "WFControlFlowMode",
+        "WFInput",
+        "WFCondition"
+      ],
+      "requiresConditionFields": true,
+      "wfControlFlowMode": 0,
+      "wfIdentifier": "is.workflow.actions.conditional"
+    }
+  },
+  "minimumMacOSMajor": 27,
+  "pythonLookup": {
+    "com_apple_measure_convert_measurement": {
+      "name": "Convert Measurement",
+      "parameterByKeyword": {},
+      "status": "toolrenderer_embedded_toolkit_metadata",
+      "toolType": "action",
+      "wfIdentifier": "is.workflow.actions.measurement.convert"
+    },
+    "com_apple_script_editor_2_run_apple_script": {
+      "name": "Run AppleScript",
+      "parameterByKeyword": {},
+      "status": "toolrenderer_embedded_toolkit_metadata",
+      "toolType": "action",
+      "wfIdentifier": "is.workflow.actions.runapplescript"
+    },
+    "com_apple_script_editor_2_run_java_script_for_mac_automation": {
+      "name": "Run JavaScript for Mac Automation",
+      "parameterByKeyword": {},
+      "status": "toolrenderer_embedded_toolkit_metadata",
+      "toolType": "action",
+      "wfIdentifier": "is.workflow.actions.runjavascriptforautomation"
+    },
+    "com_apple_shortcuts_add_item_to_list": {
+      "name": "Add Item to List",
+      "parameterByKeyword": {
+        "index": {
+          "label": "Index",
+          "required": false,
+          "types": [
+            {
+              "id": "int",
+              "kind": 1,
+              "pythonName": "int"
+            }
+          ],
+          "wfKey": "WFItemIndex"
+        },
+        "item": {
+          "label": "Item",
+          "required": true,
+          "types": [
+            {
+              "id": "string",
+              "kind": 1,
+              "pythonName": "str"
+            }
+          ],
+          "wfKey": "WFListItem"
+        },
+        "list": {
+          "label": "List",
+          "required": false,
+          "types": [
+            {
+              "id": "com.apple.shortcuts.WFContentItem",
+              "kind": 2,
+              "name": "Anything",
+              "pythonName": "com_apple_shortcuts_wfcontent_item"
+            }
+          ],
+          "wfKey": "WFListVariable"
+        },
+        "position": {
+          "label": "Position",
+          "required": false,
+          "types": [
+            {
+              "cases": [
+                {
+                  "id": "Beginning",
+                  "title": "Beginning"
+                },
+                {
+                  "id": "End",
+                  "title": "End"
+                },
+                {
+                  "id": "Index",
+                  "title": "Index"
+                }
+              ],
+              "id": "com.apple.shortcuts.is.workflow.actions.additemtolist.WFInsertPosition",
+              "kind": 4,
+              "name": "Position",
+              "pythonName": "additemtolist_wfinsert_position"
+            }
+          ],
+          "wfKey": "WFInsertPosition"
+        }
+      },
+      "status": "catalog_ready_observed_keywords",
+      "toolType": "action",
+      "wfIdentifier": "is.workflow.actions.additemtolist"
+    },
+    "com_apple_shortcuts_adjust_date": {
+      "name": "Adjust Date",
+      "parameterByKeyword": {
+        "date": {
+          "label": "Date",
+          "required": false,
+          "types": [
+            {
+              "id": "date",
+              "kind": 1,
+              "pythonName": "DateTime"
+            }
+          ],
+          "wfKey": "WFDate"
+        },
+        "duration": {
+          "label": "Duration",
+          "required": false,
+          "types": [
+            {
+              "id": "measurement_duration",
+              "kind": 1,
+              "pythonName": "Measurement"
+            }
+          ],
+          "wfKey": "WFDuration"
+        },
+        "operation": {
+          "label": "Operation",
+          "required": false,
+          "types": [
+            {
+              "cases": [
+                {
+                  "id": "Add",
+                  "title": "Add"
+                },
+                {
+                  "id": "Get Start of Day",
+                  "title": "Get Start of Day"
+                },
+                {
+                  "id": "Get Start of Hour",
+                  "title": "Get Start of Hour"
+                },
+                {
+                  "id": "Get Start of Minute",
+                  "title": "Get Start of Minute"
+                },
+                {
+                  "id": "Get Start of Month",
+                  "title": "Get Start of Month"
+                },
+                {
+                  "id": "Get Start of Week",
+                  "title": "Get Start of Week"
+                },
+                {
+                  "id": "Get Start of Year",
+                  "title": "Get Start of Year"
+                },
+                {
+                  "id": "Subtract",
+                  "title": "Subtract"
+                }
+              ],
+              "id": "com.apple.shortcuts.is.workflow.actions.adjustdate.WFAdjustOperation",
+              "kind": 4,
+              "name": "Operation",
+              "pythonName": "adjustdate_wfadjust_operation"
+            }
+          ],
+          "wfKey": "WFAdjustOperation"
+        }
+      },
+      "status": "catalog_ready_observed_keywords",
+      "toolType": "action",
+      "wfIdentifier": "is.workflow.actions.adjustdate"
+    },
+    "com_apple_shortcuts_ask_for_input": {
+      "name": "Ask for Input",
+      "parameterByKeyword": {},
+      "status": "catalog_ready_source_examples",
+      "toolType": "siriIntent",
+      "wfIdentifier": "is.workflow.actions.ask"
+    },
+    "com_apple_shortcuts_comment": {
+      "name": "Comment",
+      "parameterByKeyword": {
+        "comment": {
+          "label": "Comment",
+          "required": false,
+          "types": [
+            {
+              "id": "string",
+              "kind": 1,
+              "pythonName": "str"
+            }
+          ],
+          "wfKey": "WFCommentActionText"
+        }
+      },
+      "status": "catalog_ready_observed_keywords",
+      "toolType": "action",
+      "wfIdentifier": "is.workflow.actions.comment"
+    },
+    "com_apple_shortcuts_date": {
+      "name": "Date",
+      "parameterByKeyword": {},
+      "status": "catalog_ready_source_examples",
+      "toolType": "action",
+      "wfIdentifier": "is.workflow.actions.date"
+    },
+    "com_apple_shortcuts_dictionary": {
+      "name": "Dictionary",
+      "parameterByKeyword": {},
+      "status": "toolrenderer_embedded_toolkit_metadata",
+      "toolType": "action",
+      "wfIdentifier": "is.workflow.actions.dictionary"
+    },
+    "com_apple_shortcuts_get_contents_of_url": {
+      "name": "Get Contents of URL",
+      "parameterByKeyword": {
+        "file": {
+          "label": "File",
+          "required": false,
+          "types": [
+            {
+              "id": "com.apple.shortcuts.WFContentItem",
+              "kind": 2,
+              "name": "Anything",
+              "pythonName": "com_apple_shortcuts_wfcontent_item"
+            }
+          ],
+          "wfKey": "WFRequestVariable"
+        },
+        "form_values": {
+          "label": "Form Values",
+          "required": false,
+          "types": [
+            {
+              "id": "dictionary",
+              "kind": 1,
+              "pythonName": "dict[Any, Any]"
+            }
+          ],
+          "wfKey": "WFFormValues"
+        },
+        "headers": {
+          "label": "Headers",
+          "required": false,
+          "types": [
+            {
+              "id": "dictionary",
+              "kind": 1,
+              "pythonName": "dict[Any, Any]"
+            }
+          ],
+          "wfKey": "WFHTTPHeaders"
+        },
+        "json_values": {
+          "label": "JSON Values",
+          "required": false,
+          "types": [
+            {
+              "id": "dictionary",
+              "kind": 1,
+              "pythonName": "dict[Any, Any]"
+            }
+          ],
+          "wfKey": "WFJSONValues"
+        },
+        "method": {
+          "label": "Method",
+          "required": false,
+          "types": [
+            {
+              "cases": [
+                {
+                  "id": "DELETE",
+                  "title": "DELETE"
+                },
+                {
+                  "id": "GET",
+                  "title": "GET"
+                },
+                {
+                  "id": "PATCH",
+                  "title": "PATCH"
+                },
+                {
+                  "id": "POST",
+                  "title": "POST"
+                },
+                {
+                  "id": "PUT",
+                  "title": "PUT"
+                }
+              ],
+              "id": "com.apple.shortcuts.is.workflow.actions.downloadurl.WFHTTPMethod",
+              "kind": 4,
+              "name": "Method",
+              "pythonName": "downloadurl_wfhttpmethod"
+            }
+          ],
+          "wfKey": "WFHTTPMethod"
+        },
+        "request_body": {
+          "label": "Request Body",
+          "required": false,
+          "types": [
+            {
+              "cases": [
+                {
+                  "id": "File",
+                  "title": "File"
+                },
+                {
+                  "id": "Form",
+                  "title": "Form"
+                },
+                {
+                  "id": "JSON",
+                  "title": "JSON"
+                }
+              ],
+              "id": "com.apple.shortcuts.is.workflow.actions.downloadurl.WFHTTPBodyType",
+              "kind": 4,
+              "name": "Request Body",
+              "pythonName": "downloadurl_wfhttpbody_type"
+            }
+          ],
+          "wfKey": "WFHTTPBodyType"
+        },
+        "show_headers": {
+          "label": null,
+          "required": null,
+          "types": [],
+          "wfKey": "ShowHeaders"
+        },
+        "url": {
+          "label": "URL",
+          "required": false,
+          "types": [
+            {
+              "id": "string",
+              "kind": 1,
+              "pythonName": "str"
+            }
+          ],
+          "wfKey": "WFURL"
+        }
+      },
+      "status": "catalog_ready_observed_keywords",
+      "toolType": "action",
+      "wfIdentifier": "is.workflow.actions.downloadurl"
+    },
+    "com_apple_shortcuts_get_details_of_files": {
+      "name": "Get Details of Files",
+      "parameterByKeyword": {
+        "detail": {
+          "label": "Detail",
+          "required": false,
+          "types": [
+            {
+              "cases": [
+                {
+                  "id": "Creation Date",
+                  "title": "Date Created"
+                },
+                {
+                  "id": "File Extension",
+                  "title": "File Extension"
+                },
+                {
+                  "id": "File Path",
+                  "title": "File Path"
+                },
+                {
+                  "id": "File Size",
+                  "title": "File Size"
+                },
+                {
+                  "id": "Last Modified Date",
+                  "title": "Date Modified"
+                },
+                {
+                  "id": "Name",
+                  "title": "Name"
+                }
+              ],
+              "id": "com.apple.shortcuts.is.workflow.actions.properties.files.WFContentItemPropertyName",
+              "kind": 4,
+              "name": "Detail",
+              "pythonName": "properties_files_wfcontent_item_property_name"
+            }
+          ],
+          "wfKey": "WFContentItemPropertyName"
+        },
+        "file": {
+          "label": "File",
+          "required": false,
+          "types": [
+            {
+              "id": "com.apple.shortcuts.WFContentItem",
+              "kind": 2,
+              "name": "Anything",
+              "pythonName": "com_apple_shortcuts_wfcontent_item"
+            }
+          ],
+          "wfKey": "WFInput"
+        }
+      },
+      "status": "catalog_ready_observed_keywords",
+      "toolType": "action",
+      "wfIdentifier": "is.workflow.actions.properties.files"
+    },
+    "com_apple_shortcuts_get_dictionary_value": {
+      "name": "Get Dictionary Value",
+      "parameterByKeyword": {},
+      "status": "catalog_ready_source_examples",
+      "toolType": "action",
+      "wfIdentifier": "is.workflow.actions.getvalueforkey"
+    },
+    "com_apple_shortcuts_get_item_from_list": {
+      "name": "Get Item from List",
+      "parameterByKeyword": {
+        "end_index": {
+          "label": "End Index",
+          "required": false,
+          "types": [
+            {
+              "id": "int",
+              "kind": 1,
+              "pythonName": "int"
+            }
+          ],
+          "wfKey": "WFItemRangeEnd"
+        },
+        "get": {
+          "label": "Get",
+          "required": false,
+          "types": [
+            {
+              "cases": [
+                {
+                  "id": "First Item",
+                  "title": "First Item"
+                },
+                {
+                  "id": "Item At Index",
+                  "title": "Item at Index"
+                },
+                {
+                  "id": "Items in Range",
+                  "title": "Items in Range"
+                },
+                {
+                  "id": "Last Item",
+                  "title": "Last Item"
+                },
+                {
+                  "id": "Random Item",
+                  "title": "Random Item"
+                }
+              ],
+              "id": "com.apple.shortcuts.is.workflow.actions.getitemfromlist.WFItemSpecifier",
+              "kind": 4,
+              "name": "Get",
+              "pythonName": "getitemfromlist_wfitem_specifier"
+            }
+          ],
+          "wfKey": "WFItemSpecifier"
+        },
+        "index": {
+          "label": "Index",
+          "required": false,
+          "types": [
+            {
+              "id": "int",
+              "kind": 1,
+              "pythonName": "int"
+            }
+          ],
+          "wfKey": "WFItemIndex"
+        },
+        "list": {
+          "label": "List",
+          "required": false,
+          "types": [
+            {
+              "id": "com.apple.shortcuts.WFContentItem",
+              "kind": 2,
+              "name": "Anything",
+              "pythonName": "com_apple_shortcuts_wfcontent_item"
+            }
+          ],
+          "wfKey": "WFInput"
+        },
+        "start_index": {
+          "label": "Start Index",
+          "required": false,
+          "types": [
+            {
+              "id": "int",
+              "kind": 1,
+              "pythonName": "int"
+            }
+          ],
+          "wfKey": "WFItemRangeStart"
+        }
+      },
+      "status": "catalog_ready_observed_keywords",
+      "toolType": "action",
+      "wfIdentifier": "is.workflow.actions.getitemfromlist"
+    },
+    "com_apple_shortcuts_get_variable": {
+      "name": "Get Variable",
+      "parameterByKeyword": {},
+      "status": "toolrenderer_embedded_toolkit_metadata",
+      "toolType": "action",
+      "wfIdentifier": "is.workflow.actions.getvariable"
+    },
+    "com_apple_shortcuts_list": {
+      "name": "List",
+      "parameterByKeyword": {
+        "wfitems": {
+          "label": null,
+          "required": null,
+          "types": [],
+          "wfKey": "WFItems"
+        }
+      },
+      "status": "catalog_ready_observed_keywords",
+      "toolType": "action",
+      "wfIdentifier": "is.workflow.actions.list"
+    },
+    "com_apple_shortcuts_nothing": {
+      "name": "Nothing",
+      "parameterByKeyword": {},
+      "status": "catalog_ready_source_examples",
+      "toolType": "action",
+      "wfIdentifier": "is.workflow.actions.nothing"
+    },
+    "com_apple_shortcuts_run_script_over_ssh": {
+      "name": "Run Script Over SSH",
+      "parameterByKeyword": {},
+      "status": "toolrenderer_embedded_toolkit_metadata",
+      "toolType": "action",
+      "wfIdentifier": "is.workflow.actions.runsshscript"
+    },
+    "com_apple_shortcuts_set_name": {
+      "name": "Set Name",
+      "parameterByKeyword": {
+        "don_t_include_file_extension": {
+          "label": "Don't Include File Extension",
+          "required": false,
+          "types": [
+            {
+              "id": "bool",
+              "kind": 1,
+              "pythonName": "bool"
+            }
+          ],
+          "wfKey": "WFDontIncludeFileExtension"
+        },
+        "input": {
+          "label": "Input",
+          "required": false,
+          "types": [
+            {
+              "id": "com.apple.shortcuts.WFContentItem",
+              "kind": 2,
+              "name": "Anything",
+              "pythonName": "com_apple_shortcuts_wfcontent_item"
+            }
+          ],
+          "wfKey": "WFInput"
+        },
+        "name": {
+          "label": "Name",
+          "required": false,
+          "types": [
+            {
+              "id": "string",
+              "kind": 1,
+              "pythonName": "str"
+            }
+          ],
+          "wfKey": "WFName"
+        }
+      },
+      "status": "catalog_ready_observed_keywords",
+      "toolType": "action",
+      "wfIdentifier": "is.workflow.actions.setitemname"
+    },
+    "com_apple_shortcuts_set_variable": {
+      "name": "Set Variable",
+      "parameterByKeyword": {
+        "input": {
+          "label": "Input",
+          "required": false,
+          "types": [
+            {
+              "id": "com.apple.shortcuts.WFContentItem",
+              "kind": 2,
+              "name": "Anything",
+              "pythonName": "com_apple_shortcuts_wfcontent_item"
+            }
+          ],
+          "wfKey": "WFInput"
+        },
+        "variable": {
+          "label": "Variable",
+          "required": false,
+          "types": [
+            {
+              "id": "string",
+              "kind": 1,
+              "pythonName": "str"
+            }
+          ],
+          "wfKey": "WFVariableName"
+        }
+      },
+      "status": "catalog_ready_observed_keywords",
+      "toolType": "action",
+      "wfIdentifier": "is.workflow.actions.setvariable"
+    },
+    "com_apple_shortcuts_show_alert": {
+      "name": "Show Alert",
+      "parameterByKeyword": {},
+      "status": "catalog_ready_source_examples",
+      "toolType": "action",
+      "wfIdentifier": "is.workflow.actions.alert"
+    },
+    "com_apple_shortcuts_show_content": {
+      "name": "Show Content",
+      "parameterByKeyword": {
+        "content": {
+          "label": "Content",
+          "required": true,
+          "types": [
+            {
+              "id": "string",
+              "kind": 1,
+              "pythonName": "str"
+            }
+          ],
+          "wfKey": "Text"
+        }
+      },
+      "status": "catalog_ready_observed_keywords",
+      "toolType": "action",
+      "wfIdentifier": "is.workflow.actions.showresult"
+    },
+    "com_apple_shortcuts_show_notification": {
+      "name": "Show Notification",
+      "parameterByKeyword": {
+        "attachment": {
+          "label": "Attachment",
+          "required": false,
+          "types": [
+            {
+              "id": "com.apple.shortcuts.WFContentItem",
+              "kind": 2,
+              "name": "Anything",
+              "pythonName": "com_apple_shortcuts_wfcontent_item"
+            }
+          ],
+          "wfKey": "WFInput"
+        },
+        "body": {
+          "label": "Body",
+          "required": false,
+          "types": [
+            {
+              "id": "string",
+              "kind": 1,
+              "pythonName": "str"
+            }
+          ],
+          "wfKey": "WFNotificationActionBody"
+        },
+        "play_sound": {
+          "label": "Play Sound",
+          "required": false,
+          "types": [
+            {
+              "id": "bool",
+              "kind": 1,
+              "pythonName": "bool"
+            }
+          ],
+          "wfKey": "WFNotificationActionSound"
+        },
+        "title": {
+          "label": "Title",
+          "required": false,
+          "types": [
+            {
+              "id": "string",
+              "kind": 1,
+              "pythonName": "str"
+            }
+          ],
+          "wfKey": "WFNotificationActionTitle"
+        }
+      },
+      "status": "catalog_ready_observed_keywords",
+      "toolType": "action",
+      "wfIdentifier": "is.workflow.actions.notification"
+    },
+    "com_apple_shortcuts_text": {
+      "name": "Text",
+      "parameterByKeyword": {
+        "text": {
+          "label": "Text",
+          "required": false,
+          "types": [
+            {
+              "id": "string",
+              "kind": 1,
+              "pythonName": "str"
+            }
+          ],
+          "wfKey": "WFTextActionText"
+        }
+      },
+      "status": "catalog_ready_observed_keywords",
+      "toolType": "action",
+      "wfIdentifier": "is.workflow.actions.gettext"
+    },
+    "com_apple_shortcuts_use_model": {
+      "name": "Use Model",
+      "parameterByKeyword": {
+        "follow_up": {
+          "label": "Follow Up",
+          "required": false,
+          "types": [
+            {
+              "id": "bool",
+              "kind": 1,
+              "pythonName": "bool"
+            }
+          ],
+          "wfKey": "FollowUp"
+        },
+        "model": {
+          "label": "Model",
+          "required": false,
+          "types": [
+            {
+              "id": "com.apple.shortcuts.WFAskLLMModelParameter",
+              "kind": 2,
+              "name": "TypeLookupDetails",
+              "pythonName": "com_apple_shortcuts_wfask_llmmodel_parameter"
+            }
+          ],
+          "wfKey": "WFLLMModel"
+        },
+        "request": {
+          "label": "Request",
+          "required": true,
+          "types": [
+            {
+              "id": "string",
+              "kind": 1,
+              "pythonName": "str"
+            }
+          ],
+          "wfKey": "WFLLMPrompt"
+        },
+        "use_broad_world_knowledge": {
+          "label": "Use Broad World Knowledge",
+          "required": false,
+          "types": [
+            {
+              "id": "bool",
+              "kind": 1,
+              "pythonName": "bool"
+            }
+          ],
+          "wfKey": "WFAllowWebSearch"
+        }
+      },
+      "status": "catalog_ready_observed_keywords",
+      "toolType": "action",
+      "wfIdentifier": "is.workflow.actions.askllm"
+    },
+    "com_apple_terminal_run_shell_script": {
+      "name": "Run Shell Script",
+      "parameterByKeyword": {},
+      "status": "toolrenderer_embedded_toolkit_metadata",
+      "toolType": "action",
+      "wfIdentifier": "is.workflow.actions.runshellscript"
+    },
+    "finder_save_file": {
+      "name": "Save File",
+      "parameterByKeyword": {
+        "ask_where_to_save": {
+          "label": "Ask Where To Save",
+          "required": false,
+          "types": [
+            {
+              "id": "bool",
+              "kind": 1,
+              "pythonName": "bool"
+            }
+          ],
+          "wfKey": "WFAskWhereToSave"
+        },
+        "file": {
+          "label": "File",
+          "required": false,
+          "types": [
+            {
+              "id": "file",
+              "kind": 1,
+              "pythonName": "File"
+            }
+          ],
+          "wfKey": "WFInput"
+        },
+        "folder": {
+          "label": "Folder",
+          "required": false,
+          "types": [
+            {
+              "id": "file",
+              "kind": 1,
+              "pythonName": "File"
+            }
+          ],
+          "wfKey": "WFFolder"
+        },
+        "overwrite_if_file_exists": {
+          "label": "Overwrite If File Exists",
+          "required": false,
+          "types": [
+            {
+              "id": "bool",
+              "kind": 1,
+              "pythonName": "bool"
+            }
+          ],
+          "wfKey": "WFSaveFileOverwrite"
+        },
+        "subpath": {
+          "label": "Subpath",
+          "required": false,
+          "types": [
+            {
+              "id": "string",
+              "kind": 1,
+              "pythonName": "str"
+            }
+          ],
+          "wfKey": "WFFileDestinationPath"
+        }
+      },
+      "status": "catalog_ready_observed_keywords",
+      "toolType": "action",
+      "wfIdentifier": "is.workflow.actions.documentpicker.save"
+    },
+    "finder_select_file": {
+      "name": "Select File",
+      "parameterByKeyword": {
+        "select_multiple": {
+          "label": "Select Multiple",
+          "required": false,
+          "types": [
+            {
+              "id": "bool",
+              "kind": 1,
+              "pythonName": "bool"
+            }
+          ],
+          "wfKey": "SelectMultiple"
+        },
+        "type": {
+          "label": "Type",
+          "required": false,
+          "types": [
+            {
+              "cases": [
+                {
+                  "id": "Files",
+                  "title": "Files"
+                },
+                {
+                  "id": "Folders",
+                  "title": "Folders"
+                }
+              ],
+              "id": "com.apple.shortcuts.is.workflow.actions.file.select.WFPickingMode",
+              "kind": 4,
+              "name": "Type",
+              "pythonName": "file_select_wfpicking_mode"
+            }
+          ],
+          "wfKey": "WFPickingMode"
+        }
+      },
+      "status": "catalog_ready_observed_keywords",
+      "toolType": "action",
+      "wfIdentifier": "is.workflow.actions.file.select"
+    },
+    "reminders_new_reminder": {
+      "name": "New Reminder",
+      "parameterByKeyword": {
+        "alert": {
+          "label": "Alert",
+          "required": false,
+          "types": [
+            {
+              "cases": [
+                {
+                  "id": "Alert",
+                  "title": "Alert"
+                },
+                {
+                  "id": "No Alert",
+                  "title": "No Alert"
+                }
+              ],
+              "id": "com.apple.shortcuts.is.workflow.actions.addnewreminder.WFAlertEnabled",
+              "kind": 4,
+              "name": "Alert",
+              "pythonName": "addnewreminder_wfalert_enabled"
+            }
+          ],
+          "wfKey": "WFAlertEnabled"
+        },
+        "flag": {
+          "label": "Flag",
+          "required": false,
+          "types": [
+            {
+              "id": "bool",
+              "kind": 1,
+              "pythonName": "bool"
+            }
+          ],
+          "wfKey": "WFFlag"
+        },
+        "images": {
+          "label": "Images",
+          "required": false,
+          "types": [
+            {
+              "id": "com.apple.shortcuts.WFContentItem",
+              "kind": 2,
+              "name": "Anything",
+              "pythonName": "com_apple_shortcuts_wfcontent_item"
+            }
+          ],
+          "wfKey": "WFImages"
+        },
+        "list": {
+          "label": "List",
+          "required": false,
+          "types": [
+            {
+              "id": "com.apple.shortcuts.WFCalendarSubstitutableState",
+              "kind": 2,
+              "name": "Calendar",
+              "pythonName": "com_apple_shortcuts_wfcalendar_substitutable_state"
+            }
+          ],
+          "wfKey": "WFCalendarDescriptor"
+        },
+        "location": {
+          "label": "Location",
+          "required": false,
+          "types": [
+            {
+              "id": "placemark",
+              "kind": 1,
+              "pythonName": "Placemark"
+            }
+          ],
+          "wfKey": "WFAlertLocation"
+        },
+        "notes": {
+          "label": "Notes",
+          "required": false,
+          "types": [
+            {
+              "id": "string",
+              "kind": 1,
+              "pythonName": "str"
+            }
+          ],
+          "wfKey": "WFCalendarItemNotes"
+        },
+        "parent_reminder": {
+          "label": "Parent Reminder",
+          "required": false,
+          "types": [
+            {
+              "id": "com.apple.shortcuts.WFContentItem",
+              "kind": 2,
+              "name": "Anything",
+              "pythonName": "com_apple_shortcuts_wfcontent_item"
+            }
+          ],
+          "wfKey": "WFParentTask"
+        },
+        "person": {
+          "label": "Person",
+          "required": false,
+          "types": [
+            {
+              "id": "person",
+              "kind": 1,
+              "pythonName": "Person"
+            }
+          ],
+          "wfKey": "WFAlertPerson"
+        },
+        "priority": {
+          "label": "Priority",
+          "required": false,
+          "types": [
+            {
+              "cases": [
+                {
+                  "id": "High",
+                  "title": "High"
+                },
+                {
+                  "id": "Low",
+                  "title": "Low"
+                },
+                {
+                  "id": "Medium",
+                  "title": "Medium"
+                },
+                {
+                  "id": "None",
+                  "title": "None"
+                }
+              ],
+              "id": "com.apple.shortcuts.is.workflow.actions.addnewreminder.WFPriority",
+              "kind": 4,
+              "name": "Priority",
+              "pythonName": "addnewreminder_wfpriority"
+            }
+          ],
+          "wfKey": "WFPriority"
+        },
+        "radius": {
+          "label": "Radius",
+          "required": false,
+          "types": [
+            {
+              "id": "measurement_length",
+              "kind": 1,
+              "pythonName": "Measurement"
+            }
+          ],
+          "wfKey": "WFAlertLocationRadius"
+        },
+        "reminder": {
+          "label": "Reminder",
+          "required": false,
+          "types": [
+            {
+              "id": "string",
+              "kind": 1,
+              "pythonName": "str"
+            }
+          ],
+          "wfKey": "WFCalendarItemTitle"
+        },
+        "time": {
+          "label": "Time",
+          "required": false,
+          "types": [
+            {
+              "id": "date",
+              "kind": 1,
+              "pythonName": "DateTime"
+            }
+          ],
+          "wfKey": "WFAlertCustomTime"
+        },
+        "trigger": {
+          "label": "Trigger",
+          "required": false,
+          "types": [
+            {
+              "cases": [
+                {
+                  "id": "At Time",
+                  "title": "At Time"
+                },
+                {
+                  "id": "When I Arrive",
+                  "title": "When I Arrive"
+                },
+                {
+                  "id": "When I Leave",
+                  "title": "When I Leave"
+                },
+                {
+                  "id": "When Messaging",
+                  "title": "When Messaging"
+                }
+              ],
+              "id": "com.apple.shortcuts.is.workflow.actions.addnewreminder.WFAlertCondition",
+              "kind": 4,
+              "name": "Trigger",
+              "pythonName": "addnewreminder_wfalert_condition"
+            }
+          ],
+          "wfKey": "WFAlertCondition"
+        },
+        "urgent": {
+          "label": "Urgent",
+          "required": false,
+          "types": [
+            {
+              "id": "bool",
+              "kind": 1,
+              "pythonName": "bool"
+            }
+          ],
+          "wfKey": "WFUrgent"
+        },
+        "url": {
+          "label": "URL",
+          "required": false,
+          "types": [
+            {
+              "id": "url",
+              "kind": 1,
+              "pythonName": "URL"
+            }
+          ],
+          "wfKey": "WFURL"
+        },
+        "wftags": {
+          "label": null,
+          "required": null,
+          "types": [],
+          "wfKey": "WFTags"
+        }
+      },
+      "status": "catalog_ready_observed_keywords",
+      "toolType": "action",
+      "wfIdentifier": "is.workflow.actions.addnewreminder"
+    },
+    "safari_run_java_script_on_active_safari_tab": {
+      "name": "Run JavaScript on Active Safari Tab",
+      "parameterByKeyword": {},
+      "status": "toolrenderer_embedded_toolkit_metadata",
+      "toolType": "action",
+      "wfIdentifier": "is.workflow.actions.runjavascriptonwebpage"
+    }
+  },
+  "runtimePolicy": "Static metadata only. Do not call Apple's private WorkflowKit/ShortcutsLanguage/ShortcutsAgent/ToolRenderer frameworks in production.",
+  "schemaVersion": 1,
+  "shortcutsLanguageSyntaxSurface": {
+    "appendActionIdentifier": "is.workflow.actions.appendvariable",
+    "diagnosticStrings": [
+      "Argument does not support lists, please provide a single value.",
+      "Match cases must be string or f-string patterns (e.g. `case \"option\":` or `case f\"{variable}\":`).",
+      "Function symbols must be non-dotted identifiers, such as <function-name>. <module>.<function-name> is only allowed in Shortcuts Language where <function-name> is `append`, and `module` is a variable.",
+      "Only keyword arguments are allowed in argument lists.",
+      "For loop subjects may only be list-backed variables or `range(n)` expressions for an integer `n` in Shortcuts Language.",
+      "The subject of a for loop must be a list-backed variable, or the function `enumerate(<object>)`, or the function `range(<integer>)`."
+    ],
+    "listConstructorPythonName": "com_apple_shortcuts_list",
+    "supportsDictionaryLiterals": true,
+    "supportsElifSyntax": true,
+    "supportsElseSyntax": true,
+    "supportsListLiterals": true,
+    "supportsVariableAppendSyntax": true
+  },
+  "source": "Derived from local macOS 27 Shortcuts ToolKit, ToolRenderer embedded Python surface, WorkflowKit source export, and installed Apple Intelligence shortcut graphs.",
+  "structuralActions": {
+    "is.workflow.actions.conditional": {
+      "keywords": [],
+      "name": null,
+      "outputResultName": null,
+      "parameters": [
+        {
+          "description": null,
+          "label": null,
+          "pythonKeyword": null,
+          "required": null,
+          "types": [],
+          "wfKey": "WFConditions"
+        }
+      ],
+      "pythonName": null,
+      "sampleShortcuts": [
+        "Add to List and Otherwise If",
+        "NL - List Conditional"
+      ],
+      "sourceFunctions": {},
+      "status": "structural_control_flow",
+      "summary": null,
+      "toolRendererEmbedded": false,
+      "toolRendererScriptingUtility": false,
+      "toolType": null
+    }
+  },
+  "summary": {
+    "pythonLookupFunctionCount": 29,
+    "shortcutsLanguageSyntaxSignals": 4,
+    "sourceIdentifierCount": 30,
+    "structuralControlFlowCount": 1,
+    "toolCount": 29,
+    "toolRendererEmbeddedActionIdentifierCount": 13,
+    "toolRendererScriptingUtilityIdentifierCount": 11
+  },
+  "toolRendererEmbeddedPythonSurface": {
+    "builtinFunctions": [
+      "input",
+      "shortcuts_builtin_ask",
+      "shortcuts_builtin_choose",
+      "shortcuts_builtin_clipboard",
+      "shortcuts_builtin_current_date",
+      "shortcuts_builtin_device"
+    ],
+    "customDescriptionResourceNames": [
+      "CustomDescriptions_Tools",
+      "CustomDescriptions_Triggers",
+      "CustomDescriptions_Enums_iOS",
+      "CustomDescriptions_Enums_macOS"
+    ],
+    "embeddedActionIdentifiers": [
+      "is.workflow.actions.adjustdate",
+      "is.workflow.actions.dictionary",
+      "is.workflow.actions.gettext",
+      "is.workflow.actions.getvalueforkey",
+      "is.workflow.actions.getvariable",
+      "is.workflow.actions.list",
+      "is.workflow.actions.measurement.convert",
+      "is.workflow.actions.nothing",
+      "is.workflow.actions.runapplescript",
+      "is.workflow.actions.runjavascriptforautomation",
+      "is.workflow.actions.runjavascriptonwebpage",
+      "is.workflow.actions.runshellscript",
+      "is.workflow.actions.runsshscript"
+    ],
+    "hasCatalogRefPrelude": true,
+    "hasFStringGuidance": true,
+    "scriptingUtilityIdentifiers": [
+      "is.workflow.actions.dictionary",
+      "is.workflow.actions.getvalueforkey",
+      "is.workflow.actions.getvariable",
+      "is.workflow.actions.list",
+      "is.workflow.actions.gettext",
+      "is.workflow.actions.nothing",
+      "is.workflow.actions.runapplescript",
+      "is.workflow.actions.runjavascriptforautomation",
+      "is.workflow.actions.runjavascriptonwebpage",
+      "is.workflow.actions.runshellscript",
+      "is.workflow.actions.runsshscript"
+    ]
+  },
+  "tools": {
+    "is.workflow.actions.additemtolist": {
+      "keywords": [
+        "array",
+        "set",
+        "collection",
+        "for",
+        "append",
+        "prepend",
+        "insert"
+      ],
+      "name": "Add Item to List",
+      "outputResultName": "List",
+      "parameters": [
+        {
+          "description": null,
+          "label": "Position",
+          "pythonKeyword": "position",
+          "required": false,
+          "types": [
+            {
+              "cases": [
+                {
+                  "id": "Beginning",
+                  "title": "Beginning"
+                },
+                {
+                  "id": "End",
+                  "title": "End"
+                },
+                {
+                  "id": "Index",
+                  "title": "Index"
+                }
+              ],
+              "id": "com.apple.shortcuts.is.workflow.actions.additemtolist.WFInsertPosition",
+              "kind": 4,
+              "name": "Position",
+              "pythonName": "additemtolist_wfinsert_position"
+            }
+          ],
+          "wfKey": "WFInsertPosition"
+        },
+        {
+          "description": null,
+          "label": "Index",
+          "pythonKeyword": "index",
+          "required": false,
+          "types": [
+            {
+              "id": "int",
+              "kind": 1,
+              "pythonName": "int"
+            }
+          ],
+          "wfKey": "WFItemIndex"
+        },
+        {
+          "description": null,
+          "label": "Item",
+          "pythonKeyword": "item",
+          "required": true,
+          "types": [
+            {
+              "id": "string",
+              "kind": 1,
+              "pythonName": "str"
+            }
+          ],
+          "wfKey": "WFListItem"
+        },
+        {
+          "description": null,
+          "label": "List",
+          "pythonKeyword": "list",
+          "required": false,
+          "types": [
+            {
+              "id": "com.apple.shortcuts.WFContentItem",
+              "kind": 2,
+              "name": "Anything",
+              "pythonName": "com_apple_shortcuts_wfcontent_item"
+            }
+          ],
+          "wfKey": "WFListVariable"
+        }
+      ],
+      "pythonName": "com_apple_shortcuts_add_item_to_list",
+      "sampleShortcuts": [
+        "Add to List and Otherwise If"
+      ],
+      "sourceFunctions": {
+        "com_apple_shortcuts_add_item_to_list": [
+          "index",
+          "item",
+          "list",
+          "position"
+        ]
+      },
+      "status": "catalog_ready_observed_keywords",
+      "summary": "Adds the specified item to a list at the beginning, end, or a specific index.",
+      "toolRendererEmbedded": false,
+      "toolRendererScriptingUtility": false,
+      "toolType": "action"
+    },
+    "is.workflow.actions.addnewreminder": {
+      "keywords": [
+        "create",
+        "add",
+        "calendar",
+        "task",
+        "todo",
+        "to-do"
+      ],
+      "name": "New Reminder",
+      "outputResultName": "New Reminder",
+      "parameters": [
+        {
+          "description": null,
+          "label": "Trigger",
+          "pythonKeyword": "trigger",
+          "required": false,
+          "types": [
+            {
+              "cases": [
+                {
+                  "id": "At Time",
+                  "title": "At Time"
+                },
+                {
+                  "id": "When I Arrive",
+                  "title": "When I Arrive"
+                },
+                {
+                  "id": "When I Leave",
+                  "title": "When I Leave"
+                },
+                {
+                  "id": "When Messaging",
+                  "title": "When Messaging"
+                }
+              ],
+              "id": "com.apple.shortcuts.is.workflow.actions.addnewreminder.WFAlertCondition",
+              "kind": 4,
+              "name": "Trigger",
+              "pythonName": "addnewreminder_wfalert_condition"
+            }
+          ],
+          "wfKey": "WFAlertCondition"
+        },
+        {
+          "description": "Text representing the date or date and time when the alert should occur. Examples: \u201ctonight at 7\u201d, \u201cMarch 7\u201d",
+          "label": "Time",
+          "pythonKeyword": "time",
+          "required": false,
+          "types": [
+            {
+              "id": "date",
+              "kind": 1,
+              "pythonName": "DateTime"
+            }
+          ],
+          "wfKey": "WFAlertCustomTime"
+        },
+        {
+          "description": null,
+          "label": "Alert",
+          "pythonKeyword": "alert",
+          "required": false,
+          "types": [
+            {
+              "cases": [
+                {
+                  "id": "Alert",
+                  "title": "Alert"
+                },
+                {
+                  "id": "No Alert",
+                  "title": "No Alert"
+                }
+              ],
+              "id": "com.apple.shortcuts.is.workflow.actions.addnewreminder.WFAlertEnabled",
+              "kind": 4,
+              "name": "Alert",
+              "pythonName": "addnewreminder_wfalert_enabled"
+            }
+          ],
+          "wfKey": "WFAlertEnabled"
+        },
+        {
+          "description": "The location that triggers the alert.",
+          "label": "Location",
+          "pythonKeyword": "location",
+          "required": false,
+          "types": [
+            {
+              "id": "placemark",
+              "kind": 1,
+              "pythonName": "Placemark"
+            }
+          ],
+          "wfKey": "WFAlertLocation"
+        },
+        {
+          "description": "The distance from the provided location to consider \"arriving\" or \"leaving\" the location",
+          "label": "Radius",
+          "pythonKeyword": "radius",
+          "required": false,
+          "types": [
+            {
+              "id": "measurement_length",
+              "kind": 1,
+              "pythonName": "Measurement"
+            }
+          ],
+          "wfKey": "WFAlertLocationRadius"
+        },
+        {
+          "description": "The reminder notification will be shown when chatting with this person in Messages.",
+          "label": "Person",
+          "pythonKeyword": "person",
+          "required": false,
+          "types": [
+            {
+              "id": "person",
+              "kind": 1,
+              "pythonName": "Person"
+            }
+          ],
+          "wfKey": "WFAlertPerson"
+        },
+        {
+          "description": "The list of reminders to add this reminder to.",
+          "label": "List",
+          "pythonKeyword": "list",
+          "required": false,
+          "types": [
+            {
+              "id": "com.apple.shortcuts.WFCalendarSubstitutableState",
+              "kind": 2,
+              "name": "Calendar",
+              "pythonName": "com_apple_shortcuts_wfcalendar_substitutable_state"
+            }
+          ],
+          "wfKey": "WFCalendarDescriptor"
+        },
+        {
+          "description": "Optionally, a description for this reminder.",
+          "label": "Notes",
+          "pythonKeyword": "notes",
+          "required": false,
+          "types": [
+            {
+              "id": "string",
+              "kind": 1,
+              "pythonName": "str"
+            }
+          ],
+          "wfKey": "WFCalendarItemNotes"
+        },
+        {
+          "description": "The title of this reminder.",
+          "label": "Reminder",
+          "pythonKeyword": "reminder",
+          "required": false,
+          "types": [
+            {
+              "id": "string",
+              "kind": 1,
+              "pythonName": "str"
+            }
+          ],
+          "wfKey": "WFCalendarItemTitle"
+        },
+        {
+          "description": null,
+          "label": "Flag",
+          "pythonKeyword": "flag",
+          "required": false,
+          "types": [
+            {
+              "id": "bool",
+              "kind": 1,
+              "pythonName": "bool"
+            }
+          ],
+          "wfKey": "WFFlag"
+        },
+        {
+          "description": "An optional set of images to attach to this reminder. Use a variable to get the images.",
+          "label": "Images",
+          "pythonKeyword": "images",
+          "required": false,
+          "types": [
+            {
+              "id": "com.apple.shortcuts.WFContentItem",
+              "kind": 2,
+              "name": "Anything",
+              "pythonName": "com_apple_shortcuts_wfcontent_item"
+            }
+          ],
+          "wfKey": "WFImages"
+        },
+        {
+          "description": "Optionally, a parent reminder to add this reminder to.",
+          "label": "Parent Reminder",
+          "pythonKeyword": "parent_reminder",
+          "required": false,
+          "types": [
+            {
+              "id": "com.apple.shortcuts.WFContentItem",
+              "kind": 2,
+              "name": "Anything",
+              "pythonName": "com_apple_shortcuts_wfcontent_item"
+            }
+          ],
+          "wfKey": "WFParentTask"
+        },
+        {
+          "description": null,
+          "label": "Priority",
+          "pythonKeyword": "priority",
+          "required": false,
+          "types": [
+            {
+              "cases": [
+                {
+                  "id": "High",
+                  "title": "High"
+                },
+                {
+                  "id": "Low",
+                  "title": "Low"
+                },
+                {
+                  "id": "Medium",
+                  "title": "Medium"
+                },
+                {
+                  "id": "None",
+                  "title": "None"
+                }
+              ],
+              "id": "com.apple.shortcuts.is.workflow.actions.addnewreminder.WFPriority",
+              "kind": 4,
+              "name": "Priority",
+              "pythonName": "addnewreminder_wfpriority"
+            }
+          ],
+          "wfKey": "WFPriority"
+        },
+        {
+          "description": null,
+          "label": null,
+          "pythonKeyword": "wftags",
+          "required": null,
+          "types": [],
+          "wfKey": "WFTags"
+        },
+        {
+          "description": "Optionally, a URL to attach to this reminder.",
+          "label": "URL",
+          "pythonKeyword": "url",
+          "required": false,
+          "types": [
+            {
+              "id": "url",
+              "kind": 1,
+              "pythonName": "URL"
+            }
+          ],
+          "wfKey": "WFURL"
+        },
+        {
+          "description": null,
+          "label": "Urgent",
+          "pythonKeyword": "urgent",
+          "required": false,
+          "types": [
+            {
+              "id": "bool",
+              "kind": 1,
+              "pythonName": "bool"
+            }
+          ],
+          "wfKey": "WFUrgent"
+        }
+      ],
+      "pythonName": "reminders_new_reminder",
+      "sampleShortcuts": [
+        "NL - Reminder"
+      ],
+      "sourceFunctions": {
+        "reminders_new_reminder": [
+          "alert",
+          "flag",
+          "list",
+          "notes",
+          "reminder",
+          "time"
+        ]
+      },
+      "status": "catalog_ready_observed_keywords",
+      "summary": "Creates a new reminder and adds it to the selected list of reminders.",
+      "toolRendererEmbedded": false,
+      "toolRendererScriptingUtility": false,
+      "toolType": "action"
+    },
+    "is.workflow.actions.adjustdate": {
+      "keywords": [
+        "add",
+        "subtract",
+        "math",
+        "time",
+        "get",
+        "start",
+        "of",
+        "this",
+        "minute",
+        "hour",
+        "day",
+        "week",
+        "month",
+        "year"
+      ],
+      "name": "Adjust Date",
+      "outputResultName": "Adjusted Date",
+      "parameters": [
+        {
+          "description": null,
+          "label": "Operation",
+          "pythonKeyword": "operation",
+          "required": false,
+          "types": [
+            {
+              "cases": [
+                {
+                  "id": "Add",
+                  "title": "Add"
+                },
+                {
+                  "id": "Get Start of Day",
+                  "title": "Get Start of Day"
+                },
+                {
+                  "id": "Get Start of Hour",
+                  "title": "Get Start of Hour"
+                },
+                {
+                  "id": "Get Start of Minute",
+                  "title": "Get Start of Minute"
+                },
+                {
+                  "id": "Get Start of Month",
+                  "title": "Get Start of Month"
+                },
+                {
+                  "id": "Get Start of Week",
+                  "title": "Get Start of Week"
+                },
+                {
+                  "id": "Get Start of Year",
+                  "title": "Get Start of Year"
+                },
+                {
+                  "id": "Subtract",
+                  "title": "Subtract"
+                }
+              ],
+              "id": "com.apple.shortcuts.is.workflow.actions.adjustdate.WFAdjustOperation",
+              "kind": 4,
+              "name": "Operation",
+              "pythonName": "adjustdate_wfadjust_operation"
+            }
+          ],
+          "wfKey": "WFAdjustOperation"
+        },
+        {
+          "description": null,
+          "label": "Date",
+          "pythonKeyword": "date",
+          "required": false,
+          "types": [
+            {
+              "id": "date",
+              "kind": 1,
+              "pythonName": "DateTime"
+            }
+          ],
+          "wfKey": "WFDate"
+        },
+        {
+          "description": null,
+          "label": "Duration",
+          "pythonKeyword": "duration",
+          "required": false,
+          "types": [
+            {
+              "id": "measurement_duration",
+              "kind": 1,
+              "pythonName": "Measurement"
+            }
+          ],
+          "wfKey": "WFDuration"
+        }
+      ],
+      "pythonName": "com_apple_shortcuts_adjust_date",
+      "sampleShortcuts": [
+        "NL - Reminder"
+      ],
+      "sourceFunctions": {
+        "Measurement": [
+          "quantity",
+          "unit"
+        ],
+        "com_apple_shortcuts_adjust_date": [
+          "date",
+          "duration",
+          "operation"
+        ]
+      },
+      "status": "catalog_ready_observed_keywords",
+      "summary": "Adds or subtracts an amount of time from the date passed into the action.",
+      "toolRendererEmbedded": true,
+      "toolRendererScriptingUtility": false,
+      "toolType": "action"
+    },
+    "is.workflow.actions.alert": {
+      "keywords": [
+        "message",
+        "ask",
+        "display",
+        "prompt",
+        "show",
+        "confirmation"
+      ],
+      "name": "Show Alert",
+      "outputResultName": null,
+      "parameters": [
+        {
+          "description": null,
+          "label": "Show Cancel Button",
+          "pythonKeyword": null,
+          "required": false,
+          "types": [
+            {
+              "id": "bool",
+              "kind": 1,
+              "pythonName": "bool"
+            }
+          ],
+          "wfKey": "WFAlertActionCancelButtonShown"
+        },
+        {
+          "description": null,
+          "label": "Message",
+          "pythonKeyword": null,
+          "required": false,
+          "types": [
+            {
+              "id": "string",
+              "kind": 1,
+              "pythonName": "str"
+            }
+          ],
+          "wfKey": "WFAlertActionMessage"
+        },
+        {
+          "description": null,
+          "label": "Title",
+          "pythonKeyword": null,
+          "required": false,
+          "types": [
+            {
+              "id": "string",
+              "kind": 1,
+              "pythonName": "str"
+            }
+          ],
+          "wfKey": "WFAlertActionTitle"
+        }
+      ],
+      "pythonName": "com_apple_shortcuts_show_alert",
+      "sampleShortcuts": [
+        "NL - Simple Text"
+      ],
+      "sourceFunctions": {
+        "com_apple_shortcuts_show_alert": []
+      },
+      "status": "catalog_ready_source_examples",
+      "summary": "Displays an alert with a title, a message, and two buttons. If the user selects the OK button, the shortcut continues. The cancel button stops the shortcut.",
+      "toolRendererEmbedded": false,
+      "toolRendererScriptingUtility": false,
+      "toolType": "action"
+    },
+    "is.workflow.actions.ask": {
+      "keywords": [
+        "ask",
+        "prompt",
+        "show",
+        "dialog",
+        "keyboard",
+        "text",
+        "number",
+        "url",
+        "date",
+        "time"
+      ],
+      "name": "Ask for Input",
+      "outputResultName": "Ask for Input",
+      "parameters": [
+        {
+          "description": null,
+          "label": "Show When Run",
+          "pythonKeyword": null,
+          "required": false,
+          "types": [
+            {
+              "id": "bool",
+              "kind": 1,
+              "pythonName": "bool"
+            }
+          ],
+          "wfKey": "ShowWhenRun"
+        },
+        {
+          "description": null,
+          "label": "Allow Multiple Lines",
+          "pythonKeyword": null,
+          "required": false,
+          "types": [
+            {
+              "id": "bool",
+              "kind": 1,
+              "pythonName": "bool"
+            }
+          ],
+          "wfKey": "WFAllowsMultilineText"
+        },
+        {
+          "description": null,
+          "label": "Allow Decimal Numbers",
+          "pythonKeyword": null,
+          "required": false,
+          "types": [
+            {
+              "id": "bool",
+              "kind": 1,
+              "pythonName": "bool"
+            }
+          ],
+          "wfKey": "WFAskActionAllowsDecimalNumbers"
+        },
+        {
+          "description": null,
+          "label": "Allow Negative Numbers",
+          "pythonKeyword": null,
+          "required": false,
+          "types": [
+            {
+              "id": "bool",
+              "kind": 1,
+              "pythonName": "bool"
+            }
+          ],
+          "wfKey": "WFAskActionAllowsNegativeNumbers"
+        },
+        {
+          "description": null,
+          "label": "Default Answer",
+          "pythonKeyword": null,
+          "required": false,
+          "types": [
+            {
+              "id": "string",
+              "kind": 1,
+              "pythonName": "str"
+            }
+          ],
+          "wfKey": "WFAskActionDefaultAnswer"
+        },
+        {
+          "description": null,
+          "label": "Default Date",
+          "pythonKeyword": null,
+          "required": false,
+          "types": [
+            {
+              "id": "date",
+              "kind": 1,
+              "pythonName": "DateTime"
+            }
+          ],
+          "wfKey": "WFAskActionDefaultAnswerDate"
+        },
+        {
+          "description": null,
+          "label": "Default Date and Time",
+          "pythonKeyword": null,
+          "required": false,
+          "types": [
+            {
+              "id": "date",
+              "kind": 1,
+              "pythonName": "DateTime"
+            }
+          ],
+          "wfKey": "WFAskActionDefaultAnswerDateAndTime"
+        },
+        {
+          "description": null,
+          "label": "Default Number",
+          "pythonKeyword": null,
+          "required": false,
+          "types": [
+            {
+              "id": "number",
+              "kind": 1,
+              "pythonName": "float"
+            }
+          ],
+          "wfKey": "WFAskActionDefaultAnswerNumber"
+        },
+        {
+          "description": null,
+          "label": "Default Time",
+          "pythonKeyword": null,
+          "required": false,
+          "types": [
+            {
+              "id": "date",
+              "kind": 1,
+              "pythonName": "DateTime"
+            }
+          ],
+          "wfKey": "WFAskActionDefaultAnswerTime"
+        },
+        {
+          "description": null,
+          "label": "Default URL",
+          "pythonKeyword": null,
+          "required": false,
+          "types": [
+            {
+              "id": "string",
+              "kind": 1,
+              "pythonName": "str"
+            }
+          ],
+          "wfKey": "WFAskActionDefaultAnswerURL"
+        },
+        {
+          "description": null,
+          "label": "Prompt",
+          "pythonKeyword": null,
+          "required": false,
+          "types": [
+            {
+              "id": "string",
+              "kind": 1,
+              "pythonName": "str"
+            }
+          ],
+          "wfKey": "WFAskActionPrompt"
+        },
+        {
+          "description": null,
+          "label": "Input Type",
+          "pythonKeyword": null,
+          "required": false,
+          "types": [
+            {
+              "cases": [
+                {
+                  "id": "Date",
+                  "title": "Date"
+                },
+                {
+                  "id": "Date and Time",
+                  "title": "Date and Time"
+                },
+                {
+                  "id": "Number",
+                  "title": "Number"
+                },
+                {
+                  "id": "Text",
+                  "title": "Text"
+                },
+                {
+                  "id": "Time",
+                  "title": "Time"
+                },
+                {
+                  "id": "URL",
+                  "title": "URL"
+                }
+              ],
+              "id": "com.apple.shortcuts.AskForInputType",
+              "kind": 4,
+              "name": "Input Type",
+              "pythonName": "com_apple_shortcuts_ask_for_input_type"
+            }
+          ],
+          "wfKey": "WFInputType"
+        },
+        {
+          "description": null,
+          "label": "URL",
+          "pythonKeyword": null,
+          "required": false,
+          "types": [
+            {
+              "id": "url",
+              "kind": 1,
+              "pythonName": "URL"
+            }
+          ],
+          "wfKey": "urlAnswer"
+        }
+      ],
+      "pythonName": "com_apple_shortcuts_ask_for_input",
+      "sampleShortcuts": [
+        "NL - Apple Intelligence",
+        "NL - Reminder"
+      ],
+      "sourceFunctions": {
+        "com_apple_shortcuts_ask_for_input": []
+      },
+      "status": "catalog_ready_source_examples",
+      "summary": "Displays a dialog prompting the user to enter a piece of information.",
+      "toolRendererEmbedded": false,
+      "toolRendererScriptingUtility": false,
+      "toolType": "siriIntent"
+    },
+    "is.workflow.actions.askllm": {
+      "keywords": [
+        "ask",
+        "apple",
+        "intelligence",
+        "intelligent",
+        "ai",
+        "generative",
+        "chat",
+        "llm",
+        "language",
+        "chatgpt",
+        "siri"
+      ],
+      "name": "Use Model",
+      "outputResultName": "Response",
+      "parameters": [
+        {
+          "description": "Show the model's response and make additional requests before the final response is passed to the next action.",
+          "label": "Follow Up",
+          "pythonKeyword": "follow_up",
+          "required": false,
+          "types": [
+            {
+              "id": "bool",
+              "kind": 1,
+              "pythonName": "bool"
+            }
+          ],
+          "wfKey": "FollowUp"
+        },
+        {
+          "description": "Allow the model to go out to the web for up-to-date information.",
+          "label": "Use Broad World Knowledge",
+          "pythonKeyword": "use_broad_world_knowledge",
+          "required": false,
+          "types": [
+            {
+              "id": "bool",
+              "kind": 1,
+              "pythonName": "bool"
+            }
+          ],
+          "wfKey": "WFAllowWebSearch"
+        },
+        {
+          "description": "Responses are automatically optimized for the actions they're passed into \u2014 for example, if the response is passed into the 'Repeat with Each' action, the model creates a list.\n\nTo manually specify the model's output, select an output type using the 'Output' parameter.\n\n**Private Cloud Compute Models**\nUse large server-based models on Private Cloud Compute to handle complex requests while protecting your privacy.\n\n**On-Device Model**\nUse the on-device model to handle simple requests without the need for a network connection.\n\n**Extensions**\nApps installed on your device can expose models to Shortcuts, so you can tap into their broad world knowledge and domain expertise. You can enable extensions in Settings > Apple Intelligence & Siri.\n\nImage analysis is supported by the Private Cloud Compute and Extension models, however image generation is not supported.",
+          "label": "Output",
+          "pythonKeyword": null,
+          "required": false,
+          "types": [
+            {
+              "id": "string",
+              "kind": 1,
+              "pythonName": "str"
+            }
+          ],
+          "wfKey": "WFGenerativeResultType"
+        },
+        {
+          "description": null,
+          "label": "Model",
+          "pythonKeyword": "model",
+          "required": false,
+          "types": [
+            {
+              "id": "com.apple.shortcuts.WFAskLLMModelParameter",
+              "kind": 2,
+              "name": "TypeLookupDetails",
+              "pythonName": "com_apple_shortcuts_wfask_llmmodel_parameter"
+            }
+          ],
+          "wfKey": "WFLLMModel"
+        },
+        {
+          "description": "A request for the model that optionally includes variables and outputs from previous actions, including calendar events, reminders, images, and more.",
+          "label": "Request",
+          "pythonKeyword": "request",
+          "required": true,
+          "types": [
+            {
+              "id": "string",
+              "kind": 1,
+              "pythonName": "str"
+            }
+          ],
+          "wfKey": "WFLLMPrompt"
+        }
+      ],
+      "pythonName": "com_apple_shortcuts_use_model",
+      "sampleShortcuts": [
+        "Funny Hello World",
+        "NL - Apple Intelligence"
+      ],
+      "sourceFunctions": {
+        "com_apple_shortcuts_use_model": [
+          "model",
+          "request"
+        ]
+      },
+      "status": "catalog_ready_observed_keywords",
+      "summary": "Use a model to handle complex requests in your shortcuts.",
+      "toolRendererEmbedded": false,
+      "toolRendererScriptingUtility": false,
+      "toolType": "action"
+    },
+    "is.workflow.actions.comment": {
+      "keywords": [
+        "note",
+        "explain"
+      ],
+      "name": "Comment",
+      "outputResultName": null,
+      "parameters": [
+        {
+          "description": null,
+          "label": "Comment",
+          "pythonKeyword": "comment",
+          "required": false,
+          "types": [
+            {
+              "id": "string",
+              "kind": 1,
+              "pythonName": "str"
+            }
+          ],
+          "wfKey": "WFCommentActionText"
+        }
+      ],
+      "pythonName": "com_apple_shortcuts_comment",
+      "sampleShortcuts": [
+        "Add to List and Otherwise If"
+      ],
+      "sourceFunctions": {},
+      "status": "catalog_ready_observed_keywords",
+      "summary": "This action lets you explain how part of a shortcut works. When run, this action does nothing.",
+      "toolRendererEmbedded": false,
+      "toolRendererScriptingUtility": false,
+      "toolType": "action"
+    },
+    "is.workflow.actions.date": {
+      "keywords": [
+        "date",
+        "set date",
+        "pass date",
+        "time",
+        "current",
+        "now",
+        "get",
+        "holiday",
+        "public event",
+        "event"
+      ],
+      "name": "Date",
+      "outputResultName": "Date",
+      "parameters": [
+        {
+          "description": null,
+          "label": "Date",
+          "pythonKeyword": null,
+          "required": false,
+          "types": [
+            {
+              "id": "date",
+              "kind": 1,
+              "pythonName": "DateTime"
+            }
+          ],
+          "wfKey": "WFDateActionDate"
+        },
+        {
+          "description": null,
+          "label": "Date",
+          "pythonKeyword": null,
+          "required": false,
+          "types": [
+            {
+              "id": "string",
+              "kind": 1,
+              "pythonName": "str"
+            }
+          ],
+          "wfKey": "WFDateActionMode"
+        },
+        {
+          "description": null,
+          "label": "Occurrence",
+          "pythonKeyword": null,
+          "required": false,
+          "types": [
+            {
+              "cases": [
+                {
+                  "id": "Next Occurrence",
+                  "title": "Next Occurrence"
+                },
+                {
+                  "id": "Specified Year",
+                  "title": "Specified Year"
+                }
+              ],
+              "id": "com.apple.shortcuts.is.workflow.actions.date.WFEventOccurrenceMode",
+              "kind": 4,
+              "name": "Occurrence",
+              "pythonName": "date_wfevent_occurrence_mode"
+            }
+          ],
+          "wfKey": "WFEventOccurrenceMode"
+        },
+        {
+          "description": null,
+          "label": "Year",
+          "pythonKeyword": null,
+          "required": false,
+          "types": [
+            {
+              "id": "string",
+              "kind": 1,
+              "pythonName": "str"
+            }
+          ],
+          "wfKey": "WFEventOccurrenceSpecifiedYear"
+        }
+      ],
+      "pythonName": "com_apple_shortcuts_date",
+      "sampleShortcuts": [
+        "NL - Reminder"
+      ],
+      "sourceFunctions": {
+        "com_apple_shortcuts_date": []
+      },
+      "status": "catalog_ready_source_examples",
+      "summary": "Passes the specified date and time to the next action.",
+      "toolRendererEmbedded": false,
+      "toolRendererScriptingUtility": false,
+      "toolType": "action"
+    },
+    "is.workflow.actions.dictionary": {
+      "keywords": [
+        "json",
+        "plist"
+      ],
+      "name": "Dictionary",
+      "outputResultName": "Dictionary",
+      "parameters": [
+        {
+          "description": null,
+          "label": "Items",
+          "pythonKeyword": null,
+          "required": false,
+          "types": [
+            {
+              "id": "dictionary",
+              "kind": 1,
+              "pythonName": "dict[Any, Any]"
+            }
+          ],
+          "wfKey": "WFItems"
+        }
+      ],
+      "pythonName": "com_apple_shortcuts_dictionary",
+      "sampleShortcuts": [],
+      "sourceFunctions": {},
+      "status": "toolrenderer_embedded_toolkit_metadata",
+      "summary": "Passes the specified list of key-value pairs to the next action as a dictionary.",
+      "toolRendererEmbedded": true,
+      "toolRendererScriptingUtility": true,
+      "toolType": "action"
+    },
+    "is.workflow.actions.documentpicker.save": {
+      "keywords": [
+        "save",
+        "file",
+        "document",
+        "icloud",
+        "cloud",
+        "upload",
+        "copy",
+        "iCloud",
+        "Drive",
+        "Dropbox"
+      ],
+      "name": "Save File",
+      "outputResultName": "Saved File",
+      "parameters": [
+        {
+          "description": null,
+          "label": "Ask Where To Save",
+          "pythonKeyword": "ask_where_to_save",
+          "required": false,
+          "types": [
+            {
+              "id": "bool",
+              "kind": 1,
+              "pythonName": "bool"
+            }
+          ],
+          "wfKey": "WFAskWhereToSave"
+        },
+        {
+          "description": "The path to save to, such as \"/folder/file.txt\"",
+          "label": "Subpath",
+          "pythonKeyword": "subpath",
+          "required": false,
+          "types": [
+            {
+              "id": "string",
+              "kind": 1,
+              "pythonName": "str"
+            }
+          ],
+          "wfKey": "WFFileDestinationPath"
+        },
+        {
+          "description": null,
+          "label": "Folder",
+          "pythonKeyword": "folder",
+          "required": false,
+          "types": [
+            {
+              "id": "file",
+              "kind": 1,
+              "pythonName": "File"
+            }
+          ],
+          "wfKey": "WFFolder"
+        },
+        {
+          "description": null,
+          "label": "File",
+          "pythonKeyword": "file",
+          "required": false,
+          "types": [
+            {
+              "id": "file",
+              "kind": 1,
+              "pythonName": "File"
+            }
+          ],
+          "wfKey": "WFInput"
+        },
+        {
+          "description": null,
+          "label": "Overwrite If File Exists",
+          "pythonKeyword": "overwrite_if_file_exists",
+          "required": false,
+          "types": [
+            {
+              "id": "bool",
+              "kind": 1,
+              "pythonName": "bool"
+            }
+          ],
+          "wfKey": "WFSaveFileOverwrite"
+        }
+      ],
+      "pythonName": "finder_save_file",
+      "sampleShortcuts": [
+        "NL - Files"
+      ],
+      "sourceFunctions": {
+        "finder_save_file": [
+          "ask_where_to_save",
+          "file",
+          "folder"
+        ]
+      },
+      "status": "catalog_ready_observed_keywords",
+      "summary": "Saves files to a specified folder. You can also use this action to copy a file.",
+      "toolRendererEmbedded": false,
+      "toolRendererScriptingUtility": false,
+      "toolType": "action"
+    },
+    "is.workflow.actions.downloadurl": {
+      "keywords": [
+        "URL",
+        "web",
+        "display",
+        "site",
+        "open",
+        "show",
+        "post",
+        "put",
+        "api",
+        "curl",
+        "wget",
+        "http",
+        "headers",
+        "request",
+        "form"
+      ],
+      "name": "Get Contents of URL",
+      "outputResultName": "Contents of URL",
+      "parameters": [
+        {
+          "description": null,
+          "label": null,
+          "pythonKeyword": "show_headers",
+          "required": null,
+          "types": [],
+          "wfKey": "ShowHeaders"
+        },
+        {
+          "description": null,
+          "label": "Form Values",
+          "pythonKeyword": "form_values",
+          "required": false,
+          "types": [
+            {
+              "id": "dictionary",
+              "kind": 1,
+              "pythonName": "dict[Any, Any]"
+            }
+          ],
+          "wfKey": "WFFormValues"
+        },
+        {
+          "description": null,
+          "label": "Request Body",
+          "pythonKeyword": "request_body",
+          "required": false,
+          "types": [
+            {
+              "cases": [
+                {
+                  "id": "File",
+                  "title": "File"
+                },
+                {
+                  "id": "Form",
+                  "title": "Form"
+                },
+                {
+                  "id": "JSON",
+                  "title": "JSON"
+                }
+              ],
+              "id": "com.apple.shortcuts.is.workflow.actions.downloadurl.WFHTTPBodyType",
+              "kind": 4,
+              "name": "Request Body",
+              "pythonName": "downloadurl_wfhttpbody_type"
+            }
+          ],
+          "wfKey": "WFHTTPBodyType"
+        },
+        {
+          "description": null,
+          "label": "Headers",
+          "pythonKeyword": "headers",
+          "required": false,
+          "types": [
+            {
+              "id": "dictionary",
+              "kind": 1,
+              "pythonName": "dict[Any, Any]"
+            }
+          ],
+          "wfKey": "WFHTTPHeaders"
+        },
+        {
+          "description": "The HTTP method to use.",
+          "label": "Method",
+          "pythonKeyword": "method",
+          "required": false,
+          "types": [
+            {
+              "cases": [
+                {
+                  "id": "DELETE",
+                  "title": "DELETE"
+                },
+                {
+                  "id": "GET",
+                  "title": "GET"
+                },
+                {
+                  "id": "PATCH",
+                  "title": "PATCH"
+                },
+                {
+                  "id": "POST",
+                  "title": "POST"
+                },
+                {
+                  "id": "PUT",
+                  "title": "PUT"
+                }
+              ],
+              "id": "com.apple.shortcuts.is.workflow.actions.downloadurl.WFHTTPMethod",
+              "kind": 4,
+              "name": "Method",
+              "pythonName": "downloadurl_wfhttpmethod"
+            }
+          ],
+          "wfKey": "WFHTTPMethod"
+        },
+        {
+          "description": null,
+          "label": "JSON Values",
+          "pythonKeyword": "json_values",
+          "required": false,
+          "types": [
+            {
+              "id": "dictionary",
+              "kind": 1,
+              "pythonName": "dict[Any, Any]"
+            }
+          ],
+          "wfKey": "WFJSONValues"
+        },
+        {
+          "description": null,
+          "label": "File",
+          "pythonKeyword": "file",
+          "required": false,
+          "types": [
+            {
+              "id": "com.apple.shortcuts.WFContentItem",
+              "kind": 2,
+              "name": "Anything",
+              "pythonName": "com_apple_shortcuts_wfcontent_item"
+            }
+          ],
+          "wfKey": "WFRequestVariable"
+        },
+        {
+          "description": null,
+          "label": "URL",
+          "pythonKeyword": "url",
+          "required": false,
+          "types": [
+            {
+              "id": "string",
+              "kind": 1,
+              "pythonName": "str"
+            }
+          ],
+          "wfKey": "WFURL"
+        }
+      ],
+      "pythonName": "com_apple_shortcuts_get_contents_of_url",
+      "sampleShortcuts": [
+        "NL - Web JSON"
+      ],
+      "sourceFunctions": {
+        "com_apple_shortcuts_get_contents_of_url": [
+          "url"
+        ]
+      },
+      "status": "catalog_ready_observed_keywords",
+      "summary": "Gets the contents of URLs passed into the action. Useful for downloading files and web content, or for making API requests.",
+      "toolRendererEmbedded": false,
+      "toolRendererScriptingUtility": false,
+      "toolType": "action"
+    },
+    "is.workflow.actions.file.select": {
+      "keywords": [
+        "file",
+        "document",
+        "picker",
+        "open",
+        "folder"
+      ],
+      "name": "Select File",
+      "outputResultName": "File",
+      "parameters": [
+        {
+          "description": null,
+          "label": "Select Multiple",
+          "pythonKeyword": "select_multiple",
+          "required": false,
+          "types": [
+            {
+              "id": "bool",
+              "kind": 1,
+              "pythonName": "bool"
+            }
+          ],
+          "wfKey": "SelectMultiple"
+        },
+        {
+          "description": null,
+          "label": "Type",
+          "pythonKeyword": "type",
+          "required": false,
+          "types": [
+            {
+              "cases": [
+                {
+                  "id": "Files",
+                  "title": "Files"
+                },
+                {
+                  "id": "Folders",
+                  "title": "Folders"
+                }
+              ],
+              "id": "com.apple.shortcuts.is.workflow.actions.file.select.WFPickingMode",
+              "kind": 4,
+              "name": "Type",
+              "pythonName": "file_select_wfpicking_mode"
+            }
+          ],
+          "wfKey": "WFPickingMode"
+        }
+      ],
+      "pythonName": "finder_select_file",
+      "sampleShortcuts": [
+        "NL - Files"
+      ],
+      "sourceFunctions": {
+        "finder_select_file": []
+      },
+      "status": "catalog_ready_observed_keywords",
+      "summary": "Prompts to select files or folders.",
+      "toolRendererEmbedded": false,
+      "toolRendererScriptingUtility": false,
+      "toolType": "action"
+    },
+    "is.workflow.actions.getitemfromlist": {
+      "keywords": [
+        "indices",
+        "index",
+        "subset",
+        "first",
+        "last",
+        "random"
+      ],
+      "name": "Get Item from List",
+      "outputResultName": "Item from List",
+      "parameters": [
+        {
+          "description": null,
+          "label": "List",
+          "pythonKeyword": "list",
+          "required": false,
+          "types": [
+            {
+              "id": "com.apple.shortcuts.WFContentItem",
+              "kind": 2,
+              "name": "Anything",
+              "pythonName": "com_apple_shortcuts_wfcontent_item"
+            }
+          ],
+          "wfKey": "WFInput"
+        },
+        {
+          "description": null,
+          "label": "Index",
+          "pythonKeyword": "index",
+          "required": false,
+          "types": [
+            {
+              "id": "int",
+              "kind": 1,
+              "pythonName": "int"
+            }
+          ],
+          "wfKey": "WFItemIndex"
+        },
+        {
+          "description": null,
+          "label": "End Index",
+          "pythonKeyword": "end_index",
+          "required": false,
+          "types": [
+            {
+              "id": "int",
+              "kind": 1,
+              "pythonName": "int"
+            }
+          ],
+          "wfKey": "WFItemRangeEnd"
+        },
+        {
+          "description": null,
+          "label": "Start Index",
+          "pythonKeyword": "start_index",
+          "required": false,
+          "types": [
+            {
+              "id": "int",
+              "kind": 1,
+              "pythonName": "int"
+            }
+          ],
+          "wfKey": "WFItemRangeStart"
+        },
+        {
+          "description": null,
+          "label": "Get",
+          "pythonKeyword": "get",
+          "required": false,
+          "types": [
+            {
+              "cases": [
+                {
+                  "id": "First Item",
+                  "title": "First Item"
+                },
+                {
+                  "id": "Item At Index",
+                  "title": "Item at Index"
+                },
+                {
+                  "id": "Items in Range",
+                  "title": "Items in Range"
+                },
+                {
+                  "id": "Last Item",
+                  "title": "Last Item"
+                },
+                {
+                  "id": "Random Item",
+                  "title": "Random Item"
+                }
+              ],
+              "id": "com.apple.shortcuts.is.workflow.actions.getitemfromlist.WFItemSpecifier",
+              "kind": 4,
+              "name": "Get",
+              "pythonName": "getitemfromlist_wfitem_specifier"
+            }
+          ],
+          "wfKey": "WFItemSpecifier"
+        }
+      ],
+      "pythonName": "com_apple_shortcuts_get_item_from_list",
+      "sampleShortcuts": [
+        "Funny Hello World",
+        "NL - Files"
+      ],
+      "sourceFunctions": {
+        "com_apple_shortcuts_get_item_from_list": [
+          "list"
+        ]
+      },
+      "status": "catalog_ready_observed_keywords",
+      "summary": "Returns one or more items from the list passed as input. You can get the first item, the last item, a random item, the item at a particular index, or items in a range of indexes.",
+      "toolRendererEmbedded": false,
+      "toolRendererScriptingUtility": false,
+      "toolType": "action"
+    },
+    "is.workflow.actions.gettext": {
+      "keywords": [
+        "text",
+        "such text",
+        "very speech",
+        "much words",
+        "so wow",
+        "string"
+      ],
+      "name": "Text",
+      "outputResultName": "Text",
+      "parameters": [
+        {
+          "description": null,
+          "label": "Text",
+          "pythonKeyword": "text",
+          "required": false,
+          "types": [
+            {
+              "id": "string",
+              "kind": 1,
+              "pythonName": "str"
+            }
+          ],
+          "wfKey": "WFTextActionText"
+        }
+      ],
+      "pythonName": "com_apple_shortcuts_text",
+      "sampleShortcuts": [
+        "Add to List and Otherwise If",
+        "NL - Files"
+      ],
+      "sourceFunctions": {
+        "com_apple_shortcuts_text": [
+          "text"
+        ]
+      },
+      "status": "catalog_ready_observed_keywords",
+      "summary": "Passes the specified text to the next action.",
+      "toolRendererEmbedded": true,
+      "toolRendererScriptingUtility": true,
+      "toolType": "action"
+    },
+    "is.workflow.actions.getvalueforkey": {
+      "keywords": [
+        "json",
+        "plist",
+        "xml",
+        "urlencoded",
+        "query",
+        "string",
+        "for",
+        "key"
+      ],
+      "name": "Get Dictionary Value",
+      "outputResultName": "Dictionary Value",
+      "parameters": [
+        {
+          "description": null,
+          "label": "Key",
+          "pythonKeyword": null,
+          "required": false,
+          "types": [
+            {
+              "id": "string",
+              "kind": 1,
+              "pythonName": "str"
+            }
+          ],
+          "wfKey": "WFDictionaryKey"
+        },
+        {
+          "description": null,
+          "label": "Get",
+          "pythonKeyword": null,
+          "required": false,
+          "types": [
+            {
+              "cases": [
+                {
+                  "id": "All Keys",
+                  "title": "All Keys"
+                },
+                {
+                  "id": "All Values",
+                  "title": "All Values"
+                },
+                {
+                  "id": "Value",
+                  "title": "Value"
+                }
+              ],
+              "id": "com.apple.shortcuts.is.workflow.actions.getvalueforkey.WFGetDictionaryValueType",
+              "kind": 4,
+              "name": "Get",
+              "pythonName": "getvalueforkey_wfget_dictionary_value_type"
+            }
+          ],
+          "wfKey": "WFGetDictionaryValueType"
+        },
+        {
+          "description": null,
+          "label": "Dictionary",
+          "pythonKeyword": null,
+          "required": false,
+          "types": [
+            {
+              "id": "com.apple.shortcuts.WFContentItem",
+              "kind": 2,
+              "name": "Anything",
+              "pythonName": "com_apple_shortcuts_wfcontent_item"
+            }
+          ],
+          "wfKey": "WFInput"
+        }
+      ],
+      "pythonName": "com_apple_shortcuts_get_dictionary_value",
+      "sampleShortcuts": [
+        "NL - Web JSON"
+      ],
+      "sourceFunctions": {
+        "com_apple_shortcuts_get_dictionary_value": []
+      },
+      "status": "catalog_ready_source_examples",
+      "summary": "Gets the value for the specified key in the dictionary passed into the action.",
+      "toolRendererEmbedded": true,
+      "toolRendererScriptingUtility": true,
+      "toolType": "action"
+    },
+    "is.workflow.actions.getvariable": {
+      "keywords": [
+        "programming",
+        "scripting",
+        "var"
+      ],
+      "name": "Get Variable",
+      "outputResultName": "Variable",
+      "parameters": [
+        {
+          "description": null,
+          "label": "Variable",
+          "pythonKeyword": null,
+          "required": false,
+          "types": [
+            {
+              "id": "com.apple.shortcuts.WFContentItem",
+              "kind": 2,
+              "name": "Anything",
+              "pythonName": "com_apple_shortcuts_wfcontent_item"
+            }
+          ],
+          "wfKey": "WFVariable"
+        }
+      ],
+      "pythonName": "com_apple_shortcuts_get_variable",
+      "sampleShortcuts": [],
+      "sourceFunctions": {},
+      "status": "toolrenderer_embedded_toolkit_metadata",
+      "summary": "Gets the value of the specified variable and passes it to the next action.",
+      "toolRendererEmbedded": true,
+      "toolRendererScriptingUtility": true,
+      "toolType": "action"
+    },
+    "is.workflow.actions.list": {
+      "keywords": [
+        "array"
+      ],
+      "name": "List",
+      "outputResultName": "List",
+      "parameters": [
+        {
+          "description": null,
+          "label": null,
+          "pythonKeyword": "wfitems",
+          "required": null,
+          "types": [],
+          "wfKey": "WFItems"
+        }
+      ],
+      "pythonName": "com_apple_shortcuts_list",
+      "sampleShortcuts": [
+        "Add to List and Otherwise If",
+        "NL - List Conditional"
+      ],
+      "sourceFunctions": {},
+      "status": "catalog_ready_observed_keywords",
+      "summary": "Allows you to specify a list of items to be passed to the next action.",
+      "toolRendererEmbedded": true,
+      "toolRendererScriptingUtility": true,
+      "toolType": "action"
+    },
+    "is.workflow.actions.measurement.convert": {
+      "keywords": [
+        "degrees",
+        "distance",
+        "pressure",
+        "measure",
+        "speed",
+        "weather"
+      ],
+      "name": "Convert Measurement",
+      "outputResultName": "Converted Measurement",
+      "parameters": [
+        {
+          "description": null,
+          "label": "Measurement",
+          "pythonKeyword": null,
+          "required": false,
+          "types": [
+            {
+              "id": "com.apple.shortcuts.WFContentItem",
+              "kind": 2,
+              "name": "Anything",
+              "pythonName": "com_apple_shortcuts_wfcontent_item"
+            }
+          ],
+          "wfKey": "WFInput"
+        },
+        {
+          "description": null,
+          "label": "Unit",
+          "pythonKeyword": null,
+          "required": false,
+          "types": [
+            {
+              "cases": [
+                {
+                  "id": "Mm",
+                  "title": "Mm"
+                },
+                {
+                  "id": "NM",
+                  "title": "NM"
+                },
+                {
+                  "id": "cm",
+                  "title": "cm"
+                },
+                {
+                  "id": "dam",
+                  "title": "dam"
+                },
+                {
+                  "id": "dm",
+                  "title": "dm"
+                },
+                {
+                  "id": "ft",
+                  "title": "ft"
+                },
+                {
+                  "id": "ftm",
+                  "title": "ftm"
+                },
+                {
+                  "id": "fur",
+                  "title": "fur"
+                },
+                {
+                  "id": "hm",
+                  "title": "hm"
+                },
+                {
+                  "id": "in",
+                  "title": "in"
+                },
+                {
+                  "id": "km",
+                  "title": "km"
+                },
+                {
+                  "id": "ly",
+                  "title": "ly"
+                },
+                {
+                  "id": "m",
+                  "title": "m"
+                },
+                {
+                  "id": "mi",
+                  "title": "mi"
+                },
+                {
+                  "id": "mm",
+                  "title": "mm"
+                },
+                {
+                  "id": "nm",
+                  "title": "nm"
+                },
+                {
+                  "id": "pc",
+                  "title": "pc"
+                },
+                {
+                  "id": "pm",
+                  "title": "pm"
+                },
+                {
+                  "id": "smi",
+                  "title": "smi"
+                },
+                {
+                  "id": "ua",
+                  "title": "ua"
+                },
+                {
+                  "id": "yd",
+                  "title": "yd"
+                },
+                {
+                  "id": "\u00b5m",
+                  "title": "\u00b5m"
+                }
+              ],
+              "id": "com.apple.shortcuts.is.workflow.actions.measurement.convert.WFMeasurementUnit",
+              "kind": 4,
+              "name": "Unit",
+              "pythonName": "measurement_convert_wfmeasurement_unit"
+            }
+          ],
+          "wfKey": "WFMeasurementUnit"
+        },
+        {
+          "description": null,
+          "label": "Type",
+          "pythonKeyword": null,
+          "required": false,
+          "types": [
+            {
+              "cases": [
+                {
+                  "id": "Acceleration",
+                  "title": "Acceleration"
+                },
+                {
+                  "id": "Angle",
+                  "title": "Angle"
+                },
+                {
+                  "id": "Area",
+                  "title": "Area"
+                },
+                {
+                  "id": "Concentration Mass",
+                  "title": "Concentration Mass"
+                },
+                {
+                  "id": "Dispersion",
+                  "title": "Dispersion"
+                },
+                {
+                  "id": "Duration",
+                  "title": "Duration"
+                },
+                {
+                  "id": "Electric Charge",
+                  "title": "Electric Charge"
+                },
+                {
+                  "id": "Electric Current",
+                  "title": "Electric Current"
+                },
+                {
+                  "id": "Electric Potential Difference",
+                  "title": "Electric Potential Difference"
+                },
+                {
+                  "id": "Electric Resistance",
+                  "title": "Electric Resistance"
+                },
+                {
+                  "id": "Energy",
+                  "title": "Energy"
+                },
+                {
+                  "id": "Frequency",
+                  "title": "Frequency"
+                },
+                {
+                  "id": "Fuel Efficiency",
+                  "title": "Fuel Efficiency"
+                },
+                {
+                  "id": "Illuminance",
+                  "title": "Illuminance"
+                },
+                {
+                  "id": "Information Storage",
+                  "title": "Information Storage"
+                },
+                {
+                  "id": "Length",
+                  "title": "Length"
+                },
+                {
+                  "id": "Mass",
+                  "title": "Mass"
+                },
+                {
+                  "id": "Power",
+                  "title": "Power"
+                },
+                {
+                  "id": "Pressure",
+                  "title": "Pressure"
+                },
+                {
+                  "id": "Speed",
+                  "title": "Speed"
+                },
+                {
+                  "id": "Temperature",
+                  "title": "Temperature"
+                },
+                {
+                  "id": "Volume",
+                  "title": "Volume"
+                }
+              ],
+              "id": "com.apple.shortcuts.is.workflow.actions.measurement.convert.WFMeasurementUnitType",
+              "kind": 4,
+              "name": "Type",
+              "pythonName": "measurement_convert_wfmeasurement_unit_type"
+            }
+          ],
+          "wfKey": "WFMeasurementUnitType"
+        }
+      ],
+      "pythonName": "com_apple_measure_convert_measurement",
+      "sampleShortcuts": [],
+      "sourceFunctions": {},
+      "status": "toolrenderer_embedded_toolkit_metadata",
+      "summary": "Converts the measurements passed into the action to the specified unit.",
+      "toolRendererEmbedded": true,
+      "toolRendererScriptingUtility": false,
+      "toolType": "action"
+    },
+    "is.workflow.actions.nothing": {
+      "keywords": [
+        "nil",
+        "nothing",
+        "empty",
+        "discard",
+        "clear"
+      ],
+      "name": "Nothing",
+      "outputResultName": null,
+      "parameters": [],
+      "pythonName": "com_apple_shortcuts_nothing",
+      "sampleShortcuts": [
+        "Add to List and Otherwise If"
+      ],
+      "sourceFunctions": {},
+      "status": "catalog_ready_source_examples",
+      "summary": "This action does nothing and produces no output. It is useful to separate blocks of actions, or to explicitly pass an empty input to an action.",
+      "toolRendererEmbedded": true,
+      "toolRendererScriptingUtility": true,
+      "toolType": "action"
+    },
+    "is.workflow.actions.notification": {
+      "keywords": [
+        "local",
+        "notification",
+        "show",
+        "send",
+        "alert",
+        "reminder",
+        "push"
+      ],
+      "name": "Show Notification",
+      "outputResultName": null,
+      "parameters": [
+        {
+          "description": null,
+          "label": "Attachment",
+          "pythonKeyword": "attachment",
+          "required": false,
+          "types": [
+            {
+              "id": "com.apple.shortcuts.WFContentItem",
+              "kind": 2,
+              "name": "Anything",
+              "pythonName": "com_apple_shortcuts_wfcontent_item"
+            }
+          ],
+          "wfKey": "WFInput"
+        },
+        {
+          "description": null,
+          "label": "Body",
+          "pythonKeyword": "body",
+          "required": false,
+          "types": [
+            {
+              "id": "string",
+              "kind": 1,
+              "pythonName": "str"
+            }
+          ],
+          "wfKey": "WFNotificationActionBody"
+        },
+        {
+          "description": null,
+          "label": "Play Sound",
+          "pythonKeyword": "play_sound",
+          "required": false,
+          "types": [
+            {
+              "id": "bool",
+              "kind": 1,
+              "pythonName": "bool"
+            }
+          ],
+          "wfKey": "WFNotificationActionSound"
+        },
+        {
+          "description": null,
+          "label": "Title",
+          "pythonKeyword": "title",
+          "required": false,
+          "types": [
+            {
+              "id": "string",
+              "kind": 1,
+              "pythonName": "str"
+            }
+          ],
+          "wfKey": "WFNotificationActionTitle"
+        }
+      ],
+      "pythonName": "com_apple_shortcuts_show_notification",
+      "sampleShortcuts": [
+        "NL - Inline Automation App",
+        "NL - Inline Automation Time"
+      ],
+      "sourceFunctions": {
+        "com_apple_shortcuts_show_notification": [
+          "body",
+          "title"
+        ]
+      },
+      "status": "catalog_ready_observed_keywords",
+      "summary": "Displays a local notification.",
+      "toolRendererEmbedded": false,
+      "toolRendererScriptingUtility": false,
+      "toolType": "action"
+    },
+    "is.workflow.actions.properties.files": {
+      "keywords": [
+        "property",
+        "properties",
+        "fetch"
+      ],
+      "name": "Get Details of Files",
+      "outputResultName": "Details of Files",
+      "parameters": [
+        {
+          "description": null,
+          "label": "Detail",
+          "pythonKeyword": "detail",
+          "required": false,
+          "types": [
+            {
+              "cases": [
+                {
+                  "id": "Creation Date",
+                  "title": "Date Created"
+                },
+                {
+                  "id": "File Extension",
+                  "title": "File Extension"
+                },
+                {
+                  "id": "File Path",
+                  "title": "File Path"
+                },
+                {
+                  "id": "File Size",
+                  "title": "File Size"
+                },
+                {
+                  "id": "Last Modified Date",
+                  "title": "Date Modified"
+                },
+                {
+                  "id": "Name",
+                  "title": "Name"
+                }
+              ],
+              "id": "com.apple.shortcuts.is.workflow.actions.properties.files.WFContentItemPropertyName",
+              "kind": 4,
+              "name": "Detail",
+              "pythonName": "properties_files_wfcontent_item_property_name"
+            }
+          ],
+          "wfKey": "WFContentItemPropertyName"
+        },
+        {
+          "description": null,
+          "label": "File",
+          "pythonKeyword": "file",
+          "required": false,
+          "types": [
+            {
+              "id": "com.apple.shortcuts.WFContentItem",
+              "kind": 2,
+              "name": "Anything",
+              "pythonName": "com_apple_shortcuts_wfcontent_item"
+            }
+          ],
+          "wfKey": "WFInput"
+        }
+      ],
+      "pythonName": "com_apple_shortcuts_get_details_of_files",
+      "sampleShortcuts": [
+        "NL - Files"
+      ],
+      "sourceFunctions": {
+        "com_apple_shortcuts_get_details_of_files": [
+          "detail",
+          "file"
+        ]
+      },
+      "status": "catalog_ready_observed_keywords",
+      "summary": "Gets a specific piece of information from the files passed into the action.",
+      "toolRendererEmbedded": false,
+      "toolRendererScriptingUtility": false,
+      "toolType": "action"
+    },
+    "is.workflow.actions.runapplescript": {
+      "keywords": [
+        "apple",
+        "script",
+        "hypertalk",
+        "event",
+        "OSA"
+      ],
+      "name": "Run AppleScript",
+      "outputResultName": "AppleScript Result",
+      "parameters": [
+        {
+          "description": null,
+          "label": "Input",
+          "pythonKeyword": null,
+          "required": false,
+          "types": [
+            {
+              "id": "com.apple.shortcuts.WFContentItem",
+              "kind": 2,
+              "name": "Anything",
+              "pythonName": "com_apple_shortcuts_wfcontent_item"
+            }
+          ],
+          "wfKey": "Input"
+        },
+        {
+          "description": null,
+          "label": "",
+          "pythonKeyword": null,
+          "required": false,
+          "types": [
+            {
+              "id": "string",
+              "kind": 1,
+              "pythonName": "str"
+            }
+          ],
+          "wfKey": "Script"
+        }
+      ],
+      "pythonName": "com_apple_script_editor_2_run_apple_script",
+      "sampleShortcuts": [],
+      "sourceFunctions": {},
+      "status": "toolrenderer_embedded_toolkit_metadata",
+      "summary": "This action executes an AppleScript.",
+      "toolRendererEmbedded": true,
+      "toolRendererScriptingUtility": true,
+      "toolType": "action"
+    },
+    "is.workflow.actions.runjavascriptforautomation": {
+      "keywords": [
+        "jxa",
+        "apple",
+        "script",
+        "applescript",
+        "event",
+        "OSA"
+      ],
+      "name": "Run JavaScript for Mac Automation",
+      "outputResultName": "JavaScript Result",
+      "parameters": [
+        {
+          "description": null,
+          "label": "Input",
+          "pythonKeyword": null,
+          "required": false,
+          "types": [
+            {
+              "id": "com.apple.shortcuts.WFContentItem",
+              "kind": 2,
+              "name": "Anything",
+              "pythonName": "com_apple_shortcuts_wfcontent_item"
+            }
+          ],
+          "wfKey": "Input"
+        },
+        {
+          "description": null,
+          "label": "",
+          "pythonKeyword": null,
+          "required": false,
+          "types": [
+            {
+              "id": "string",
+              "kind": 1,
+              "pythonName": "str"
+            }
+          ],
+          "wfKey": "Script"
+        }
+      ],
+      "pythonName": "com_apple_script_editor_2_run_java_script_for_mac_automation",
+      "sampleShortcuts": [],
+      "sourceFunctions": {},
+      "status": "toolrenderer_embedded_toolkit_metadata",
+      "summary": "This action executes a JavaScript for Automation (JXA) script.",
+      "toolRendererEmbedded": true,
+      "toolRendererScriptingUtility": true,
+      "toolType": "action"
+    },
+    "is.workflow.actions.runjavascriptonwebpage": {
+      "keywords": [
+        "script",
+        "safari",
+        "java",
+        "javascript",
+        "web page",
+        "webkit",
+        "browser",
+        "json",
+        "web",
+        "page",
+        "website"
+      ],
+      "name": "Run JavaScript on Active Safari Tab",
+      "outputResultName": "JavaScript Result",
+      "parameters": [
+        {
+          "description": null,
+          "label": "Web Page",
+          "pythonKeyword": null,
+          "required": false,
+          "types": [
+            {
+              "id": "com.apple.shortcuts.WFContentItem",
+              "kind": 2,
+              "name": "Anything",
+              "pythonName": "com_apple_shortcuts_wfcontent_item"
+            }
+          ],
+          "wfKey": "WFInput"
+        },
+        {
+          "description": null,
+          "label": "JavaScript",
+          "pythonKeyword": null,
+          "required": false,
+          "types": [
+            {
+              "id": "string",
+              "kind": 1,
+              "pythonName": "str"
+            }
+          ],
+          "wfKey": "WFJavaScript"
+        }
+      ],
+      "pythonName": "safari_run_java_script_on_active_safari_tab",
+      "sampleShortcuts": [],
+      "sourceFunctions": {},
+      "status": "toolrenderer_embedded_toolkit_metadata",
+      "summary": "Runs JavaScript on a Safari web page passed in as input",
+      "toolRendererEmbedded": true,
+      "toolRendererScriptingUtility": true,
+      "toolType": "action"
+    },
+    "is.workflow.actions.runshellscript": {
+      "keywords": [
+        "script",
+        "terminal",
+        "bash",
+        "zsh"
+      ],
+      "name": "Run Shell Script",
+      "outputResultName": "Shell Script Result",
+      "parameters": [
+        {
+          "description": null,
+          "label": "Input",
+          "pythonKeyword": null,
+          "required": false,
+          "types": [
+            {
+              "id": "com.apple.shortcuts.WFContentItem",
+              "kind": 2,
+              "name": "Anything",
+              "pythonName": "com_apple_shortcuts_wfcontent_item"
+            }
+          ],
+          "wfKey": "Input"
+        },
+        {
+          "description": "to stdin: The input will be converted to a file and directed to the stdin pipe of the script.\nas arguments: The input will be converted to a list of strings and passed as arguments to the script.",
+          "label": "Pass Input",
+          "pythonKeyword": null,
+          "required": false,
+          "types": [
+            {
+              "cases": [
+                {
+                  "id": "as arguments",
+                  "title": "as arguments"
+                },
+                {
+                  "id": "to stdin",
+                  "title": "to stdin"
+                }
+              ],
+              "id": "com.apple.shortcuts.is.workflow.actions.runshellscript.InputMode",
+              "kind": 4,
+              "name": "Pass Input",
+              "pythonName": "runshellscript_input_mode"
+            }
+          ],
+          "wfKey": "InputMode"
+        },
+        {
+          "description": "When enabled, Shortcuts will ask for an administrator\u2019s password and run the script as the root user. This is similar to using sudo on the command line.",
+          "label": "Run as Administrator",
+          "pythonKeyword": null,
+          "required": false,
+          "types": [
+            {
+              "id": "bool",
+              "kind": 1,
+              "pythonName": "bool"
+            }
+          ],
+          "wfKey": "RunAsRoot"
+        },
+        {
+          "description": null,
+          "label": "",
+          "pythonKeyword": null,
+          "required": false,
+          "types": [
+            {
+              "id": "string",
+              "kind": 1,
+              "pythonName": "str"
+            }
+          ],
+          "wfKey": "Script"
+        },
+        {
+          "description": "The shell to use for interpreting and running the script.",
+          "label": "Shell",
+          "pythonKeyword": null,
+          "required": false,
+          "types": [
+            {
+              "id": "string",
+              "kind": 1,
+              "pythonName": "str"
+            }
+          ],
+          "wfKey": "Shell"
+        }
+      ],
+      "pythonName": "com_apple_terminal_run_shell_script",
+      "sampleShortcuts": [],
+      "sourceFunctions": {},
+      "status": "toolrenderer_embedded_toolkit_metadata",
+      "summary": "This action executes a UNIX shell script. The script will execute starting in your user\u2019s home directory.",
+      "toolRendererEmbedded": true,
+      "toolRendererScriptingUtility": true,
+      "toolType": "action"
+    },
+    "is.workflow.actions.runsshscript": {
+      "keywords": [
+        "unix",
+        "shell",
+        "script",
+        "ssh",
+        "terminal",
+        "linux",
+        "mac"
+      ],
+      "name": "Run Script Over SSH",
+      "outputResultName": "Shell Script Result",
+      "parameters": [
+        {
+          "description": null,
+          "label": "Input",
+          "pythonKeyword": null,
+          "required": false,
+          "types": [
+            {
+              "id": "com.apple.shortcuts.WFContentItem",
+              "kind": 2,
+              "name": "Anything",
+              "pythonName": "com_apple_shortcuts_wfcontent_item"
+            }
+          ],
+          "wfKey": "WFInput"
+        },
+        {
+          "description": null,
+          "label": "Authentication",
+          "pythonKeyword": null,
+          "required": false,
+          "types": [
+            {
+              "cases": [
+                {
+                  "id": "Password",
+                  "title": "Password"
+                },
+                {
+                  "id": "SSH Key",
+                  "title": "SSH Key"
+                }
+              ],
+              "id": "com.apple.shortcuts.is.workflow.actions.runsshscript.WFSSHAuthenticationType",
+              "kind": 4,
+              "name": "Authentication",
+              "pythonName": "runsshscript_wfsshauthentication_type"
+            }
+          ],
+          "wfKey": "WFSSHAuthenticationType"
+        },
+        {
+          "description": null,
+          "label": "Host",
+          "pythonKeyword": null,
+          "required": false,
+          "types": [
+            {
+              "id": "string",
+              "kind": 1,
+              "pythonName": "str"
+            }
+          ],
+          "wfKey": "WFSSHHost"
+        },
+        {
+          "description": null,
+          "label": "Password",
+          "pythonKeyword": null,
+          "required": false,
+          "types": [
+            {
+              "id": "string",
+              "kind": 1,
+              "pythonName": "str"
+            }
+          ],
+          "wfKey": "WFSSHPassword"
+        },
+        {
+          "description": null,
+          "label": "Port",
+          "pythonKeyword": null,
+          "required": false,
+          "types": [
+            {
+              "id": "string",
+              "kind": 1,
+              "pythonName": "str"
+            }
+          ],
+          "wfKey": "WFSSHPort"
+        },
+        {
+          "description": null,
+          "label": "Script",
+          "pythonKeyword": null,
+          "required": false,
+          "types": [
+            {
+              "id": "string",
+              "kind": 1,
+              "pythonName": "str"
+            }
+          ],
+          "wfKey": "WFSSHScript"
+        },
+        {
+          "description": null,
+          "label": "User",
+          "pythonKeyword": null,
+          "required": false,
+          "types": [
+            {
+              "id": "string",
+              "kind": 1,
+              "pythonName": "str"
+            }
+          ],
+          "wfKey": "WFSSHUser"
+        }
+      ],
+      "pythonName": "com_apple_shortcuts_run_script_over_ssh",
+      "sampleShortcuts": [],
+      "sourceFunctions": {},
+      "status": "toolrenderer_embedded_toolkit_metadata",
+      "summary": "Runs a script on a remote computer over SSH.",
+      "toolRendererEmbedded": true,
+      "toolRendererScriptingUtility": true,
+      "toolType": "action"
+    },
+    "is.workflow.actions.setitemname": {
+      "keywords": [
+        "title"
+      ],
+      "name": "Set Name",
+      "outputResultName": "Renamed Item",
+      "parameters": [
+        {
+          "description": "By default, Shortcuts will automatically include a file extension if one isn't specified. Turn this on if you want to create a file with no extension.",
+          "label": "Don't Include File Extension",
+          "pythonKeyword": "don_t_include_file_extension",
+          "required": false,
+          "types": [
+            {
+              "id": "bool",
+              "kind": 1,
+              "pythonName": "bool"
+            }
+          ],
+          "wfKey": "WFDontIncludeFileExtension"
+        },
+        {
+          "description": null,
+          "label": "Input",
+          "pythonKeyword": "input",
+          "required": false,
+          "types": [
+            {
+              "id": "com.apple.shortcuts.WFContentItem",
+              "kind": 2,
+              "name": "Anything",
+              "pythonName": "com_apple_shortcuts_wfcontent_item"
+            }
+          ],
+          "wfKey": "WFInput"
+        },
+        {
+          "description": null,
+          "label": "Name",
+          "pythonKeyword": "name",
+          "required": false,
+          "types": [
+            {
+              "id": "string",
+              "kind": 1,
+              "pythonName": "str"
+            }
+          ],
+          "wfKey": "WFName"
+        }
+      ],
+      "pythonName": "com_apple_shortcuts_set_name",
+      "sampleShortcuts": [
+        "NL - Files"
+      ],
+      "sourceFunctions": {
+        "com_apple_shortcuts_set_name": [
+          "don_t_include_file_extension",
+          "input",
+          "name"
+        ]
+      },
+      "status": "catalog_ready_observed_keywords",
+      "summary": "Sets the name of the item passed as input.",
+      "toolRendererEmbedded": false,
+      "toolRendererScriptingUtility": false,
+      "toolType": "action"
+    },
+    "is.workflow.actions.setvariable": {
+      "keywords": [
+        "programming",
+        "scripting",
+        "var"
+      ],
+      "name": "Set Variable",
+      "outputResultName": null,
+      "parameters": [
+        {
+          "description": null,
+          "label": "Input",
+          "pythonKeyword": "input",
+          "required": false,
+          "types": [
+            {
+              "id": "com.apple.shortcuts.WFContentItem",
+              "kind": 2,
+              "name": "Anything",
+              "pythonName": "com_apple_shortcuts_wfcontent_item"
+            }
+          ],
+          "wfKey": "WFInput"
+        },
+        {
+          "description": null,
+          "label": "Variable",
+          "pythonKeyword": "variable",
+          "required": false,
+          "types": [
+            {
+              "id": "string",
+              "kind": 1,
+              "pythonName": "str"
+            }
+          ],
+          "wfKey": "WFVariableName"
+        }
+      ],
+      "pythonName": "com_apple_shortcuts_set_variable",
+      "sampleShortcuts": [
+        "Add to List and Otherwise If"
+      ],
+      "sourceFunctions": {},
+      "status": "catalog_ready_observed_keywords",
+      "summary": "Sets the value of the specified variable to the input of this action.",
+      "toolRendererEmbedded": false,
+      "toolRendererScriptingUtility": false,
+      "toolType": "action"
+    },
+    "is.workflow.actions.showresult": {
+      "keywords": [
+        "text",
+        "result",
+        "string",
+        "display",
+        "alert",
+        "present",
+        "reveal",
+        "notification",
+        "image",
+        "output"
+      ],
+      "name": "Show Content",
+      "outputResultName": null,
+      "parameters": [
+        {
+          "description": null,
+          "label": "Content",
+          "pythonKeyword": "content",
+          "required": true,
+          "types": [
+            {
+              "id": "string",
+              "kind": 1,
+              "pythonName": "str"
+            }
+          ],
+          "wfKey": "Text"
+        }
+      ],
+      "pythonName": "com_apple_shortcuts_show_content",
+      "sampleShortcuts": [
+        "Funny Hello World",
+        "NL - Apple Intelligence",
+        "NL - List Conditional",
+        "NL - Web JSON"
+      ],
+      "sourceFunctions": {
+        "com_apple_shortcuts_show_content": [
+          "content"
+        ]
+      },
+      "status": "catalog_ready_observed_keywords",
+      "summary": "Shows a preview of the provided content. If run from Siri, speaks the provided text.",
+      "toolRendererEmbedded": false,
+      "toolRendererScriptingUtility": false,
+      "toolType": "action"
+    }
+  }
+}

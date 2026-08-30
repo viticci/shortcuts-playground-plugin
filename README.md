@@ -2,11 +2,11 @@
 
 ![](https://cdn.macstories.net/cleanshot-2026-05-19-at-16-52-43-2x-1779202387918.png)
 
-Create Apple Shortcuts with natural language using Claude Code or Codex.
+Create Apple Shortcuts with natural language using Claude Code, Codex, or OpenCode.
 
-Shortcuts Playground is a plugin for Claude Code and Codex that lets you turn any idea into a shortcut for Apple's Shortcuts app. Describe what you want in plain English; a few minutes later, you get a real, signed `.shortcut` file ready to import into the Shortcuts app.
+Shortcuts Playground is a plugin for Claude Code, Codex, and OpenCode that lets you turn any idea into a shortcut for Apple's Shortcuts app. Describe what you want in plain English; a few minutes later, you get a real, signed `.shortcut` file ready to import into the Shortcuts app.
 
-Under the hood, shortcuts have always been XML files that get signed and encrypted into a special, Apple-only `.shortcut` format. Shortcuts Playground ships a comprehensive knowledge base that teaches Claude and Codex how Shortcuts actions work, what syntax they use, and how they connect to one another. Agents generate the XML, validate it through a loop, and sign it using Apple's native `shortcuts` CLI.
+Under the hood, shortcuts have always been XML files that get signed and encrypted into a special, Apple-only `.shortcut` format. Shortcuts Playground ships a comprehensive knowledge base that teaches Claude, Codex, and OpenCode how Shortcuts actions work, what syntax they use, and how they connect to one another. Agents generate the XML, validate it through a loop, and sign it using Apple's native `shortcuts` CLI.
 
 For OS 27-era Shortcuts, the plugin also ships target-gated ToolKit v78 action coverage from macOS 27 and iOS 27 Simulator, plus reviewed static Apple-derived grounding, parameter-key, enum-case, automation-trigger, and exported `WFWorkflowTriggers` catalogs. Those catalogs are generated from Apple's local ToolKit/ToolRenderer/WorkflowKit metadata and maintainer-exported shortcut XML, then packaged as JSON so existing users do not need macOS 27 or private Apple frameworks.
 
@@ -226,16 +226,17 @@ Your `~/Documents/Shortcuts Playground/` directory stays intact.
 
 ## Dual-Runtime Support
 
-This repository ships plugins for two agent runtimes:
+This repository ships plugins for three agent runtimes:
 
 | Folder | Runtime | Notes |
 |--------|---------|-------|
 | [`claude/`](claude/) | Claude Code | Full plugin with skill, slash commands, specialized agents, PostToolUse hook, and CLI wrappers. |
 | [`codex/`](codex/) | Codex | Codex-compatible plugin with bundled skill, validator/signing scripts, and opt-in PostToolUse validation hook. |
+| [`opencode/`](opencode/) | OpenCode | OpenCode-native plugin with skill, slash commands, specialized subagents, and validator hook. |
 
-The root `.claude-plugin/marketplace.json` installs the Claude Code plugin from `./claude`. The root `.agents/plugins/marketplace.json` installs the Codex plugin from `./codex`.
+The root `.claude-plugin/marketplace.json` installs the Claude Code plugin from `./claude`. The root `.agents/plugins/marketplace.json` installs the Codex plugin from `./codex`. The OpenCode plugin lives in `./opencode`.
 
-For detailed technical documentation, see [`claude/README.md`](claude/README.md) and [`claude/INSTALL.md`](claude/INSTALL.md).
+For detailed technical documentation, see [`claude/README.md`](claude/README.md), [`claude/INSTALL.md`](claude/INSTALL.md), and [`opencode/README.md`](opencode/README.md).
 
 ---
 

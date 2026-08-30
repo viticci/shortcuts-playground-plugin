@@ -13,6 +13,7 @@ __pycache__/
 
 # Editor / IDE
 .claude/
+.opencode/
 .vscode/
 .idea/
 *.swp

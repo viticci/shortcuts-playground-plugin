@@ -1,0 +1,1051 @@
+{
+  "generated_at": "2026-06-13T00:00:00Z",
+  "scope": "Automation trigger metadata from local macOS 27 and iOS 27 Simulator ToolKit v78 databases. This is identifier/parameter/type metadata only; it is not an import-ready automation plist schema.",
+  "sources": {
+    "iOS 27 Simulator": "~/Library/Developer/CoreSimulator/Devices/882D599D-74B2-427C-9A9F-F8A981202189/data/Library/Shortcuts/ToolKit/Tools-prod.v78-0AF1699F-A23C-448D-9133-EB3AFAB76368.sqlite",
+    "macOS 27": "~/Library/Shortcuts/ToolKit/Tools-prod.v78-50E0494B-3028-4767-888F-CDB05691F066.sqlite"
+  },
+  "triggers": {
+    "com.apple.shortcuts.WFAirplaneModeTrigger.changes": {
+      "displayName": "Airplane Mode",
+      "flags": 5,
+      "id": "com.apple.shortcuts.WFAirplaneModeTrigger.changes",
+      "outputTypeIdentifiers": [
+        "none"
+      ],
+      "parameterCount": 1,
+      "parameters": [
+        {
+          "key": "WFAirplaneModeType",
+          "name": "State",
+          "sortOrder": 0,
+          "typePythonName": "com_apple_shortcuts_wfairplane_mode_trigger_wfairplane_mode_type"
+        }
+      ],
+      "platforms": [
+        "iOS 27 Simulator",
+        "macOS 27"
+      ],
+      "pythonName": "when_airplane_mode_changes"
+    },
+    "com.apple.shortcuts.WFAlarmTrigger.any_alarm": {
+      "displayName": "Alarm",
+      "flags": 1,
+      "id": "com.apple.shortcuts.WFAlarmTrigger.any_alarm",
+      "outputTypeIdentifiers": [
+        "none"
+      ],
+      "parameterCount": 1,
+      "parameters": [
+        {
+          "key": "WFAlarmState",
+          "name": "Alarm State",
+          "sortOrder": 0,
+          "typePythonName": "com_apple_shortcuts_wfalarm_trigger_wfalarm_state"
+        }
+      ],
+      "platforms": [
+        "iOS 27 Simulator",
+        "macOS 27"
+      ],
+      "pythonName": "when_alarm_any_alarm"
+    },
+    "com.apple.shortcuts.WFAlarmTrigger.specific_alarm": {
+      "displayName": "Alarm",
+      "flags": 1,
+      "id": "com.apple.shortcuts.WFAlarmTrigger.specific_alarm",
+      "outputTypeIdentifiers": [
+        "none"
+      ],
+      "parameterCount": 2,
+      "parameters": [
+        {
+          "key": "WFAlarms",
+          "name": "Alarm",
+          "sortOrder": 0,
+          "typePythonName": "com_apple_shortcuts_wfalarm_parameter_state"
+        },
+        {
+          "key": "WFAlarmState",
+          "name": "Alarm State",
+          "sortOrder": 1,
+          "typePythonName": "com_apple_shortcuts_wfalarm_trigger_wfalarm_state"
+        }
+      ],
+      "platforms": [
+        "iOS 27 Simulator",
+        "macOS 27"
+      ],
+      "pythonName": "when_alarm_specific_alarm"
+    },
+    "com.apple.shortcuts.WFAppInFocusTrigger.opened": {
+      "displayName": "App",
+      "flags": 5,
+      "id": "com.apple.shortcuts.WFAppInFocusTrigger.opened",
+      "outputTypeIdentifiers": [
+        "none"
+      ],
+      "parameterCount": 2,
+      "parameters": [
+        {
+          "key": "WFSelectedApps",
+          "name": "App",
+          "sortOrder": 0,
+          "typePythonName": "com_apple_shortcuts_wfapp_descriptor_parameter_state"
+        },
+        {
+          "key": "WFAppState",
+          "name": "State",
+          "sortOrder": 1,
+          "typePythonName": "com_apple_shortcuts_wfapp_in_focus_trigger_wfapp_state"
+        }
+      ],
+      "platforms": [
+        "iOS 27 Simulator",
+        "macOS 27"
+      ],
+      "pythonName": "when_app_opened"
+    },
+    "com.apple.shortcuts.WFArriveLocationTrigger.enter_location": {
+      "displayName": "Arrive",
+      "flags": 3,
+      "id": "com.apple.shortcuts.WFArriveLocationTrigger.enter_location",
+      "outputTypeIdentifiers": [
+        "none"
+      ],
+      "parameterCount": 1,
+      "parameters": [
+        {
+          "key": "WFArriveLocation",
+          "name": "Location",
+          "sortOrder": 0,
+          "typePythonName": "Placemark"
+        }
+      ],
+      "platforms": [
+        "iOS 27 Simulator",
+        "macOS 27"
+      ],
+      "pythonName": "when_arrive_enter_location"
+    },
+    "com.apple.shortcuts.WFArriveLocationTrigger.enter_location_between": {
+      "displayName": "Arrive",
+      "flags": 3,
+      "id": "com.apple.shortcuts.WFArriveLocationTrigger.enter_location_between",
+      "outputTypeIdentifiers": [
+        "none"
+      ],
+      "parameterCount": 3,
+      "parameters": [
+        {
+          "key": "WFArriveLocation",
+          "name": "Location",
+          "sortOrder": 0,
+          "typePythonName": "Placemark"
+        },
+        {
+          "key": "WFArriveStartTime",
+          "name": "Start Time",
+          "sortOrder": 1,
+          "typePythonName": "DateTime"
+        },
+        {
+          "key": "WFArriveEndTime",
+          "name": "End Time",
+          "sortOrder": 2,
+          "typePythonName": "DateTime"
+        }
+      ],
+      "platforms": [
+        "iOS 27 Simulator",
+        "macOS 27"
+      ],
+      "pythonName": "when_arrive_enter_location_between"
+    },
+    "com.apple.shortcuts.WFBatteryLevelTrigger.equal": {
+      "displayName": "Battery Level",
+      "flags": 1,
+      "id": "com.apple.shortcuts.WFBatteryLevelTrigger.equal",
+      "outputTypeIdentifiers": [
+        "none"
+      ],
+      "parameterCount": 2,
+      "parameters": [
+        {
+          "key": "WFBatteryLevel",
+          "name": "Level",
+          "sortOrder": 0,
+          "typePythonName": "float"
+        },
+        {
+          "key": "WFBatteryLevelComparison",
+          "name": "Comparison",
+          "sortOrder": 1,
+          "typePythonName": "com_apple_shortcuts_wfbattery_level_trigger_wfbattery_level_comparison"
+        }
+      ],
+      "platforms": [
+        "iOS 27 Simulator",
+        "macOS 27"
+      ],
+      "pythonName": "when_battery_level_equal"
+    },
+    "com.apple.shortcuts.WFBluetoothTrigger.any_connection_changes": {
+      "displayName": "Bluetooth",
+      "flags": 3,
+      "id": "com.apple.shortcuts.WFBluetoothTrigger.any_connection_changes",
+      "outputTypeIdentifiers": [
+        "none"
+      ],
+      "parameterCount": 1,
+      "parameters": [
+        {
+          "key": "WFBluetoothConnectionType",
+          "name": "Connection Type",
+          "sortOrder": 0,
+          "typePythonName": "com_apple_shortcuts_wfbluetooth_trigger_wfbluetooth_connection_type"
+        }
+      ],
+      "platforms": [
+        "iOS 27 Simulator",
+        "macOS 27"
+      ],
+      "pythonName": "when_bluetooth_any_connection_changes"
+    },
+    "com.apple.shortcuts.WFBluetoothTrigger.selected_connection_changes": {
+      "displayName": "Bluetooth",
+      "flags": 3,
+      "id": "com.apple.shortcuts.WFBluetoothTrigger.selected_connection_changes",
+      "outputTypeIdentifiers": [
+        "none"
+      ],
+      "parameterCount": 2,
+      "parameters": [
+        {
+          "key": "WFBluetoothConnectionType",
+          "name": "Connection Type",
+          "sortOrder": 0,
+          "typePythonName": "com_apple_shortcuts_wfbluetooth_trigger_wfbluetooth_connection_type"
+        },
+        {
+          "key": "WFSelectedDevices",
+          "name": "Devices",
+          "sortOrder": 1,
+          "typePythonName": "str"
+        }
+      ],
+      "platforms": [
+        "iOS 27 Simulator",
+        "macOS 27"
+      ],
+      "pythonName": "when_bluetooth_selected_connection_changes"
+    },
+    "com.apple.shortcuts.WFCarPlayConnectionTrigger.changes": {
+      "displayName": "CarPlay",
+      "flags": 5,
+      "id": "com.apple.shortcuts.WFCarPlayConnectionTrigger.changes",
+      "outputTypeIdentifiers": [
+        "none"
+      ],
+      "parameterCount": 1,
+      "parameters": [
+        {
+          "key": "WFCarPlayConnectionType",
+          "name": "Connection",
+          "sortOrder": 0,
+          "typePythonName": "com_apple_shortcuts_wfcar_play_connection_trigger_wfcar_play_connection_type"
+        }
+      ],
+      "platforms": [
+        "iOS 27 Simulator",
+        "macOS 27"
+      ],
+      "pythonName": "when_car_play_changes"
+    },
+    "com.apple.shortcuts.WFDiskMountTrigger.external_drive": {
+      "displayName": "External Drive",
+      "flags": 5,
+      "id": "com.apple.shortcuts.WFDiskMountTrigger.external_drive",
+      "outputTypeIdentifiers": [
+        "file"
+      ],
+      "parameterCount": 0,
+      "parameters": [],
+      "platforms": [
+        "iOS 27 Simulator",
+        "macOS 27"
+      ],
+      "pythonName": "when_external_drive_external_drive"
+    },
+    "com.apple.shortcuts.WFEmailTrigger.senders_are": {
+      "displayName": "Email",
+      "flags": 3,
+      "id": "com.apple.shortcuts.WFEmailTrigger.senders_are",
+      "outputTypeIdentifiers": [
+        "com.apple.shortcuts.WFEmailContentItem"
+      ],
+      "parameterCount": 3,
+      "parameters": [
+        {
+          "key": "WFEmailSender",
+          "name": "Sender",
+          "sortOrder": 0,
+          "typePythonName": "Person"
+        },
+        {
+          "key": "WFEmailAccount",
+          "name": "Account",
+          "sortOrder": 1,
+          "typePythonName": "com_apple_shortcuts_wfemail_account_parameter_state"
+        },
+        {
+          "key": "WFEmailRecipient",
+          "name": "Recipient",
+          "sortOrder": 2,
+          "typePythonName": "Person"
+        }
+      ],
+      "platforms": [
+        "iOS 27 Simulator",
+        "macOS 27"
+      ],
+      "pythonName": "when_email_senders_are"
+    },
+    "com.apple.shortcuts.WFEmailTrigger.senders_are_and_subject_contains": {
+      "displayName": "Email",
+      "flags": 3,
+      "id": "com.apple.shortcuts.WFEmailTrigger.senders_are_and_subject_contains",
+      "outputTypeIdentifiers": [
+        "com.apple.shortcuts.WFEmailContentItem"
+      ],
+      "parameterCount": 4,
+      "parameters": [
+        {
+          "key": "WFEmailSender",
+          "name": "Sender",
+          "sortOrder": 0,
+          "typePythonName": "Person"
+        },
+        {
+          "key": "WFEmailSubjectContains",
+          "name": "Subject",
+          "sortOrder": 1,
+          "typePythonName": "str"
+        },
+        {
+          "key": "WFEmailAccount",
+          "name": "Account",
+          "sortOrder": 2,
+          "typePythonName": "com_apple_shortcuts_wfemail_account_parameter_state"
+        },
+        {
+          "key": "WFEmailRecipient",
+          "name": "Recipient",
+          "sortOrder": 3,
+          "typePythonName": "Person"
+        }
+      ],
+      "platforms": [
+        "iOS 27 Simulator",
+        "macOS 27"
+      ],
+      "pythonName": "when_email_senders_are_and_subject_contains"
+    },
+    "com.apple.shortcuts.WFEmailTrigger.subject_contains": {
+      "displayName": "Email",
+      "flags": 3,
+      "id": "com.apple.shortcuts.WFEmailTrigger.subject_contains",
+      "outputTypeIdentifiers": [
+        "com.apple.shortcuts.WFEmailContentItem"
+      ],
+      "parameterCount": 3,
+      "parameters": [
+        {
+          "key": "WFEmailSubjectContains",
+          "name": "Subject",
+          "sortOrder": 0,
+          "typePythonName": "str"
+        },
+        {
+          "key": "WFEmailAccount",
+          "name": "Account",
+          "sortOrder": 1,
+          "typePythonName": "com_apple_shortcuts_wfemail_account_parameter_state"
+        },
+        {
+          "key": "WFEmailRecipient",
+          "name": "Recipient",
+          "sortOrder": 2,
+          "typePythonName": "Person"
+        }
+      ],
+      "platforms": [
+        "iOS 27 Simulator",
+        "macOS 27"
+      ],
+      "pythonName": "when_email_subject_contains"
+    },
+    "com.apple.shortcuts.WFExternalDisplayTrigger.": {
+      "displayName": "Display",
+      "flags": 5,
+      "id": "com.apple.shortcuts.WFExternalDisplayTrigger.",
+      "outputTypeIdentifiers": [
+        "com.apple.shortcuts.WFDisplayContentItem"
+      ],
+      "parameterCount": 1,
+      "parameters": [
+        {
+          "key": "WFConnectionType",
+          "name": "Connection",
+          "sortOrder": 0,
+          "typePythonName": "com_apple_shortcuts_wfexternal_display_trigger_wfconnection_type"
+        }
+      ],
+      "platforms": [
+        "iOS 27 Simulator",
+        "macOS 27"
+      ],
+      "pythonName": "when_display_wfexternaldisplaytrigger"
+    },
+    "com.apple.shortcuts.WFFileTrigger.file_modified": {
+      "displayName": "File",
+      "flags": 5,
+      "id": "com.apple.shortcuts.WFFileTrigger.file_modified",
+      "outputTypeIdentifiers": [
+        "file"
+      ],
+      "parameterCount": 0,
+      "parameters": [],
+      "platforms": [
+        "iOS 27 Simulator",
+        "macOS 27"
+      ],
+      "pythonName": "when_file_file_modified"
+    },
+    "com.apple.shortcuts.WFFolderTrigger.folder_changed": {
+      "displayName": "Folder",
+      "flags": 5,
+      "id": "com.apple.shortcuts.WFFolderTrigger.folder_changed",
+      "outputTypeIdentifiers": [
+        "none"
+      ],
+      "parameterCount": 0,
+      "parameters": [],
+      "platforms": [
+        "iOS 27 Simulator",
+        "macOS 27"
+      ],
+      "pythonName": "when_folder_folder_changed"
+    },
+    "com.apple.shortcuts.WFKeyboardTrigger.connection_changes": {
+      "displayName": "Keyboard",
+      "flags": 5,
+      "id": "com.apple.shortcuts.WFKeyboardTrigger.connection_changes",
+      "outputTypeIdentifiers": [
+        "bool"
+      ],
+      "parameterCount": 1,
+      "parameters": [
+        {
+          "key": "WFConnectionType",
+          "name": "Connection",
+          "sortOrder": 0,
+          "typePythonName": "com_apple_shortcuts_wfkeyboard_trigger_wfconnection_type"
+        }
+      ],
+      "platforms": [
+        "iOS 27 Simulator",
+        "macOS 27"
+      ],
+      "pythonName": "when_keyboard_connection_changes"
+    },
+    "com.apple.shortcuts.WFLeaveLocationTrigger.leave_location": {
+      "displayName": "Leave",
+      "flags": 3,
+      "id": "com.apple.shortcuts.WFLeaveLocationTrigger.leave_location",
+      "outputTypeIdentifiers": [
+        "none"
+      ],
+      "parameterCount": 1,
+      "parameters": [
+        {
+          "key": "WFLeaveLocation",
+          "name": "Location",
+          "sortOrder": 0,
+          "typePythonName": "Placemark"
+        }
+      ],
+      "platforms": [
+        "iOS 27 Simulator",
+        "macOS 27"
+      ],
+      "pythonName": "when_leave_leave_location"
+    },
+    "com.apple.shortcuts.WFLeaveLocationTrigger.leave_location_between": {
+      "displayName": "Leave",
+      "flags": 3,
+      "id": "com.apple.shortcuts.WFLeaveLocationTrigger.leave_location_between",
+      "outputTypeIdentifiers": [
+        "none"
+      ],
+      "parameterCount": 3,
+      "parameters": [
+        {
+          "key": "WFLeaveLocation",
+          "name": "Location",
+          "sortOrder": 0,
+          "typePythonName": "Placemark"
+        },
+        {
+          "key": "WFLeaveStartTime",
+          "name": "Start Time",
+          "sortOrder": 1,
+          "typePythonName": "DateTime"
+        },
+        {
+          "key": "WFLeaveEndTime",
+          "name": "End Time",
+          "sortOrder": 2,
+          "typePythonName": "DateTime"
+        }
+      ],
+      "platforms": [
+        "iOS 27 Simulator",
+        "macOS 27"
+      ],
+      "pythonName": "when_leave_leave_location_between"
+    },
+    "com.apple.shortcuts.WFLowPowerModeTrigger.changes": {
+      "displayName": "Low Power Mode",
+      "flags": 5,
+      "id": "com.apple.shortcuts.WFLowPowerModeTrigger.changes",
+      "outputTypeIdentifiers": [
+        "none"
+      ],
+      "parameterCount": 1,
+      "parameters": [
+        {
+          "key": "WFLowPowerModeType",
+          "name": "State",
+          "sortOrder": 0,
+          "typePythonName": "com_apple_shortcuts_wflow_power_mode_trigger_wflow_power_mode_type"
+        }
+      ],
+      "platforms": [
+        "iOS 27 Simulator",
+        "macOS 27"
+      ],
+      "pythonName": "when_low_power_mode_changes"
+    },
+    "com.apple.shortcuts.WFMessageTrigger.contains": {
+      "displayName": "Message",
+      "flags": 3,
+      "id": "com.apple.shortcuts.WFMessageTrigger.contains",
+      "outputTypeIdentifiers": [
+        "com.apple.shortcuts.WFMessageContentItem"
+      ],
+      "parameterCount": 1,
+      "parameters": [
+        {
+          "key": "WFMessageContains",
+          "name": "Message",
+          "sortOrder": 0,
+          "typePythonName": "str"
+        }
+      ],
+      "platforms": [
+        "iOS 27 Simulator",
+        "macOS 27"
+      ],
+      "pythonName": "when_message_contains"
+    },
+    "com.apple.shortcuts.WFMessageTrigger.senders_are": {
+      "displayName": "Message",
+      "flags": 3,
+      "id": "com.apple.shortcuts.WFMessageTrigger.senders_are",
+      "outputTypeIdentifiers": [
+        "com.apple.shortcuts.WFMessageContentItem"
+      ],
+      "parameterCount": 1,
+      "parameters": [
+        {
+          "key": "WFMessageSender",
+          "name": "Sender",
+          "sortOrder": 0,
+          "typePythonName": "Person"
+        }
+      ],
+      "platforms": [
+        "iOS 27 Simulator",
+        "macOS 27"
+      ],
+      "pythonName": "when_message_senders_are"
+    },
+    "com.apple.shortcuts.WFMessageTrigger.senders_are_and_contains": {
+      "displayName": "Message",
+      "flags": 3,
+      "id": "com.apple.shortcuts.WFMessageTrigger.senders_are_and_contains",
+      "outputTypeIdentifiers": [
+        "com.apple.shortcuts.WFMessageContentItem"
+      ],
+      "parameterCount": 2,
+      "parameters": [
+        {
+          "key": "WFMessageSender",
+          "name": "Sender",
+          "sortOrder": 0,
+          "typePythonName": "Person"
+        },
+        {
+          "key": "WFMessageContains",
+          "name": "Message",
+          "sortOrder": 1,
+          "typePythonName": "str"
+        }
+      ],
+      "platforms": [
+        "iOS 27 Simulator",
+        "macOS 27"
+      ],
+      "pythonName": "when_message_senders_are_and_contains"
+    },
+    "com.apple.shortcuts.WFNFCTrigger.scan_tag": {
+      "displayName": "NFC",
+      "flags": 5,
+      "id": "com.apple.shortcuts.WFNFCTrigger.scan_tag",
+      "outputTypeIdentifiers": [
+        "none"
+      ],
+      "parameterCount": 1,
+      "parameters": [
+        {
+          "key": "WFNFCTag",
+          "name": "NFC Tag",
+          "sortOrder": 0,
+          "typePythonName": "com_apple_shortcuts_wfinobject_substitutable_state"
+        }
+      ],
+      "platforms": [
+        "iOS 27 Simulator",
+        "macOS 27"
+      ],
+      "pythonName": "when_nfc_scan_tag"
+    },
+    "com.apple.shortcuts.WFNotificationTrigger.received": {
+      "displayName": "Notification",
+      "flags": 1,
+      "id": "com.apple.shortcuts.WFNotificationTrigger.received",
+      "outputTypeIdentifiers": [
+        "com.apple.shortcuts.WFNotificationContentItem"
+      ],
+      "parameterCount": 1,
+      "parameters": [
+        {
+          "key": "SelectedApps",
+          "name": "App",
+          "sortOrder": 0,
+          "typePythonName": "com_apple_shortcuts_wfapp_descriptor_parameter_state"
+        }
+      ],
+      "platforms": [
+        "iOS 27 Simulator",
+        "macOS 27"
+      ],
+      "pythonName": "when_notification_received"
+    },
+    "com.apple.shortcuts.WFPlugInTrigger.changes": {
+      "displayName": "Charger",
+      "flags": 5,
+      "id": "com.apple.shortcuts.WFPlugInTrigger.changes",
+      "outputTypeIdentifiers": [
+        "none"
+      ],
+      "parameterCount": 1,
+      "parameters": [
+        {
+          "key": "WFConnectionType",
+          "name": "Connection",
+          "sortOrder": 0,
+          "typePythonName": "com_apple_shortcuts_wfplug_in_trigger_wfconnection_type"
+        }
+      ],
+      "platforms": [
+        "iOS 27 Simulator",
+        "macOS 27"
+      ],
+      "pythonName": "when_charger_changes"
+    },
+    "com.apple.shortcuts.WFScreenshotTrigger.saved": {
+      "displayName": "Screenshot",
+      "flags": 5,
+      "id": "com.apple.shortcuts.WFScreenshotTrigger.saved",
+      "outputTypeIdentifiers": [
+        "file"
+      ],
+      "parameterCount": 1,
+      "parameters": [
+        {
+          "key": "ScreenshotLocations",
+          "name": "Location",
+          "sortOrder": 0,
+          "typePythonName": "com_apple_shortcuts_wfscreenshot_trigger_screenshot_locations"
+        }
+      ],
+      "platforms": [
+        "iOS 27 Simulator",
+        "macOS 27"
+      ],
+      "pythonName": "when_screenshot_saved"
+    },
+    "com.apple.shortcuts.WFSleepTrigger.": {
+      "displayName": "Sleep",
+      "flags": 1,
+      "id": "com.apple.shortcuts.WFSleepTrigger.",
+      "outputTypeIdentifiers": [
+        "none"
+      ],
+      "parameterCount": 1,
+      "parameters": [
+        {
+          "key": "WFSleepMode",
+          "name": "Mode",
+          "sortOrder": 0,
+          "typePythonName": "com_apple_shortcuts_wfsleep_trigger_wfsleep_mode"
+        }
+      ],
+      "platforms": [
+        "iOS 27 Simulator",
+        "macOS 27"
+      ],
+      "pythonName": "when_sleep_wfsleeptrigger"
+    },
+    "com.apple.shortcuts.WFSoundRecognitionTrigger.sound_recognition": {
+      "displayName": "Sound Recognition",
+      "flags": 1,
+      "id": "com.apple.shortcuts.WFSoundRecognitionTrigger.sound_recognition",
+      "outputTypeIdentifiers": [
+        "none"
+      ],
+      "parameterCount": 1,
+      "parameters": [
+        {
+          "key": "WFSounds",
+          "name": "Sound",
+          "sortOrder": 0,
+          "typePythonName": "str"
+        }
+      ],
+      "platforms": [
+        "iOS 27 Simulator",
+        "macOS 27"
+      ],
+      "pythonName": "when_sound_recognition_sound_recognition"
+    },
+    "com.apple.shortcuts.WFStageManagerTrigger.on": {
+      "displayName": "Stage Manager",
+      "flags": 5,
+      "id": "com.apple.shortcuts.WFStageManagerTrigger.on",
+      "outputTypeIdentifiers": [
+        "none"
+      ],
+      "parameterCount": 1,
+      "parameters": [
+        {
+          "key": "WFStageManagerType",
+          "name": "State",
+          "sortOrder": 0,
+          "typePythonName": "com_apple_shortcuts_wfstage_manager_trigger_wfstage_manager_type"
+        }
+      ],
+      "platforms": [
+        "iOS 27 Simulator",
+        "macOS 27"
+      ],
+      "pythonName": "when_stage_manager_on"
+    },
+    "com.apple.shortcuts.WFTimeOfDayTrigger.around_sunrise_on_recurring_day": {
+      "displayName": "Time of Day",
+      "flags": 1,
+      "id": "com.apple.shortcuts.WFTimeOfDayTrigger.around_sunrise_on_recurring_day",
+      "outputTypeIdentifiers": [
+        "none"
+      ],
+      "parameterCount": 2,
+      "parameters": [
+        {
+          "key": "WFTimeOffset",
+          "name": "Offset",
+          "sortOrder": 0,
+          "typePythonName": "com_apple_shortcuts_wftime_of_day_trigger_wftime_offset"
+        },
+        {
+          "key": "WFRecurrence",
+          "name": "Repeat",
+          "sortOrder": 1,
+          "typePythonName": "RecurrenceRule"
+        }
+      ],
+      "platforms": [
+        "iOS 27 Simulator",
+        "macOS 27"
+      ],
+      "pythonName": "when_time_of_day_around_sunrise_on_recurring_day"
+    },
+    "com.apple.shortcuts.WFTimeOfDayTrigger.around_sunset_on_recurring_day": {
+      "displayName": "Time of Day",
+      "flags": 1,
+      "id": "com.apple.shortcuts.WFTimeOfDayTrigger.around_sunset_on_recurring_day",
+      "outputTypeIdentifiers": [
+        "none"
+      ],
+      "parameterCount": 2,
+      "parameters": [
+        {
+          "key": "WFTimeOffset",
+          "name": "Offset",
+          "sortOrder": 0,
+          "typePythonName": "com_apple_shortcuts_wftime_of_day_trigger_wftime_offset"
+        },
+        {
+          "key": "WFRecurrence",
+          "name": "Repeat",
+          "sortOrder": 1,
+          "typePythonName": "RecurrenceRule"
+        }
+      ],
+      "platforms": [
+        "iOS 27 Simulator",
+        "macOS 27"
+      ],
+      "pythonName": "when_time_of_day_around_sunset_on_recurring_day"
+    },
+    "com.apple.shortcuts.WFTimeOfDayTrigger.at_time_on_recurring_day": {
+      "displayName": "Time of Day",
+      "flags": 1,
+      "id": "com.apple.shortcuts.WFTimeOfDayTrigger.at_time_on_recurring_day",
+      "outputTypeIdentifiers": [
+        "none"
+      ],
+      "parameterCount": 2,
+      "parameters": [
+        {
+          "key": "WFTime",
+          "name": "Time",
+          "sortOrder": 0,
+          "typePythonName": "DateTime"
+        },
+        {
+          "key": "WFRecurrence",
+          "name": "Repeat",
+          "sortOrder": 1,
+          "typePythonName": "RecurrenceRule"
+        }
+      ],
+      "platforms": [
+        "iOS 27 Simulator",
+        "macOS 27"
+      ],
+      "pythonName": "when_time_of_day_at_time_on_recurring_day"
+    },
+    "com.apple.shortcuts.WFUserFocusActivityTrigger.enable": {
+      "displayName": "Focus",
+      "flags": 5,
+      "id": "com.apple.shortcuts.WFUserFocusActivityTrigger.enable",
+      "outputTypeIdentifiers": [
+        "none"
+      ],
+      "parameterCount": 2,
+      "parameters": [
+        {
+          "key": "WFFocusMode",
+          "name": "Focus",
+          "sortOrder": 0,
+          "typePythonName": "com_apple_shortcuts_wffocus_mode_content_item"
+        },
+        {
+          "key": "WFFocusEvent",
+          "name": "Event",
+          "sortOrder": 1,
+          "typePythonName": "com_apple_shortcuts_wfuser_focus_activity_trigger_wffocus_event"
+        }
+      ],
+      "platforms": [
+        "iOS 27 Simulator",
+        "macOS 27"
+      ],
+      "pythonName": "when_focus_enable"
+    },
+    "com.apple.shortcuts.WFWalletTransactionTrigger.tap": {
+      "displayName": "Wallet",
+      "flags": 5,
+      "id": "com.apple.shortcuts.WFWalletTransactionTrigger.tap",
+      "outputTypeIdentifiers": [
+        "com.apple.shortcuts.WFWalletTransactionContentItem"
+      ],
+      "parameterCount": 3,
+      "parameters": [
+        {
+          "key": "WFWalletCards",
+          "name": "Cards",
+          "sortOrder": 0,
+          "typePythonName": "com_apple_shortcuts_wfwallet_card_parameter_state"
+        },
+        {
+          "key": "WFWalletMerchantTypes",
+          "name": "Categories",
+          "sortOrder": 1,
+          "typePythonName": "com_apple_shortcuts_wfmerchant_type_parameter_state"
+        },
+        {
+          "key": "WFWalletMerchants",
+          "name": "Merchants",
+          "sortOrder": 2,
+          "typePythonName": "com_apple_shortcuts_wfmerchant_parameter_state"
+        }
+      ],
+      "platforms": [
+        "iOS 27 Simulator",
+        "macOS 27"
+      ],
+      "pythonName": "when_wallet_tap"
+    },
+    "com.apple.shortcuts.WFWifiTrigger.connect_to_any": {
+      "displayName": "Wi-Fi",
+      "flags": 3,
+      "id": "com.apple.shortcuts.WFWifiTrigger.connect_to_any",
+      "outputTypeIdentifiers": [
+        "none"
+      ],
+      "parameterCount": 1,
+      "parameters": [
+        {
+          "key": "WFRunAfterConnectionInterruption",
+          "name": "Run After Connection Interruption",
+          "sortOrder": 0,
+          "typePythonName": "bool"
+        }
+      ],
+      "platforms": [
+        "iOS 27 Simulator",
+        "macOS 27"
+      ],
+      "pythonName": "when_wi_fi_connect_to_any"
+    },
+    "com.apple.shortcuts.WFWifiTrigger.connect_to_selected": {
+      "displayName": "Wi-Fi",
+      "flags": 3,
+      "id": "com.apple.shortcuts.WFWifiTrigger.connect_to_selected",
+      "outputTypeIdentifiers": [
+        "none"
+      ],
+      "parameterCount": 2,
+      "parameters": [
+        {
+          "key": "WFNetworks",
+          "name": "Network",
+          "sortOrder": 0,
+          "typePythonName": "str"
+        },
+        {
+          "key": "WFRunAfterConnectionInterruption",
+          "name": "Run After Connection Interruption",
+          "sortOrder": 1,
+          "typePythonName": "bool"
+        }
+      ],
+      "platforms": [
+        "iOS 27 Simulator",
+        "macOS 27"
+      ],
+      "pythonName": "when_wi_fi_connect_to_selected"
+    },
+    "com.apple.shortcuts.WFWifiTrigger.disconnect_from_any": {
+      "displayName": "Wi-Fi",
+      "flags": 3,
+      "id": "com.apple.shortcuts.WFWifiTrigger.disconnect_from_any",
+      "outputTypeIdentifiers": [
+        "none"
+      ],
+      "parameterCount": 0,
+      "parameters": [],
+      "platforms": [
+        "iOS 27 Simulator",
+        "macOS 27"
+      ],
+      "pythonName": "when_wi_fi_disconnect_from_any"
+    },
+    "com.apple.shortcuts.WFWifiTrigger.disconnect_from_selected": {
+      "displayName": "Wi-Fi",
+      "flags": 3,
+      "id": "com.apple.shortcuts.WFWifiTrigger.disconnect_from_selected",
+      "outputTypeIdentifiers": [
+        "none"
+      ],
+      "parameterCount": 1,
+      "parameters": [
+        {
+          "key": "WFNetworks",
+          "name": "Network",
+          "sortOrder": 0,
+          "typePythonName": "str"
+        }
+      ],
+      "platforms": [
+        "iOS 27 Simulator",
+        "macOS 27"
+      ],
+      "pythonName": "when_wi_fi_disconnect_from_selected"
+    },
+    "com.apple.shortcuts.WFWorkoutTrigger.any": {
+      "displayName": "Apple Watch Workout",
+      "flags": 5,
+      "id": "com.apple.shortcuts.WFWorkoutTrigger.any",
+      "outputTypeIdentifiers": [
+        "none"
+      ],
+      "parameterCount": 1,
+      "parameters": [
+        {
+          "key": "WFWorkoutEvent",
+          "name": "Event",
+          "sortOrder": 0,
+          "typePythonName": "com_apple_shortcuts_wfworkout_trigger_wfworkout_event"
+        }
+      ],
+      "platforms": [
+        "iOS 27 Simulator",
+        "macOS 27"
+      ],
+      "pythonName": "when_apple_watch_workout_any"
+    },
+    "com.apple.shortcuts.WFWorkoutTrigger.specific": {
+      "displayName": "Apple Watch Workout",
+      "flags": 5,
+      "id": "com.apple.shortcuts.WFWorkoutTrigger.specific",
+      "outputTypeIdentifiers": [
+        "none"
+      ],
+      "parameterCount": 2,
+      "parameters": [
+        {
+          "key": "WFWorkoutEvent",
+          "name": "Event",
+          "sortOrder": 0,
+          "typePythonName": "com_apple_shortcuts_wfworkout_trigger_wfworkout_event"
+        },
+        {
+          "key": "WFWorkoutTypes",
+          "name": "Workout",
+          "sortOrder": 1,
+          "typePythonName": "com_apple_shortcuts_wfworkout_type_parameter_state"
+        }
+      ],
+      "platforms": [
+        "iOS 27 Simulator",
+        "macOS 27"
+      ],
+      "pythonName": "when_apple_watch_workout_specific"
+    }
+  },
+  "version": "toolkit-v78-trigger-parameter-keys"
+}
