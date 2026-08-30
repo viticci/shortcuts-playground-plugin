@@ -1,0 +1,2603 @@
+{
+  "bundled_observed_shapes": [
+    {
+      "evidence_id": "log_health_sample_quantity",
+      "note": "An anonymized iOS XML example established this quantity schema; the preserved reference keeps only the parameter shape, not the user's source path.",
+      "observed_parameters": {
+        "WFQuantitySampleAdditionalQuantity": "WFQuantityFieldValue with Unit only",
+        "WFQuantitySampleQuantity": "WFQuantityFieldValue with Magnitude + Unit",
+        "WFQuantitySampleType": "Caffeine"
+      }
+    }
+  ],
+  "bundled_xml_evidence": [
+    {
+      "coverage": [
+        "is.workflow.actions.filter.health.quantity",
+        "WFContentItemFilter",
+        "Type filter row",
+        "WFContentItemLimitEnabled"
+      ],
+      "evidence_id": "find_health_samples_quantity_filter"
+    },
+    {
+      "coverage": [
+        "is.workflow.actions.health.quantity.log",
+        "category type with no visible value row",
+        "WFQuantitySampleType",
+        "WFQuantitySampleQuantity",
+        "WFQuantitySampleAdditionalQuantity"
+      ],
+      "evidence_id": "log_health_sample_category_without_visible_value",
+      "observed_parameters": {
+        "WFQuantitySampleAdditionalQuantity": "WFQuantityFieldValue with Unit only",
+        "WFQuantitySampleQuantity": "WFQuantityFieldValue retained even when the editor hides Value",
+        "WFQuantitySampleType": "Bloating"
+      }
+    },
+    {
+      "coverage": [
+        "is.workflow.actions.health.quantity.log",
+        "category value picker",
+        "WFCategorySampleEnumeration",
+        "WFQuantitySampleQuantity",
+        "WFQuantitySampleAdditionalQuantity"
+      ],
+      "evidence_id": "log_health_sample_category_with_enum_value",
+      "observed_parameters": {
+        "WFCategorySampleEnumeration": "Dry",
+        "WFQuantitySampleAdditionalQuantity": "WFQuantityFieldValue with Unit only",
+        "WFQuantitySampleQuantity": "WFQuantityFieldValue with Magnitude + Unit",
+        "WFQuantitySampleType": "Cervical Mucus Quality"
+      }
+    },
+    {
+      "coverage": [
+        "is.workflow.actions.health.workout.log"
+      ],
+      "evidence_id": "log_workout_identifier_only",
+      "note": "Exported before workout permission/configuration was granted; UUID-only shape is not enough for generated shortcuts."
+    },
+    {
+      "coverage": [
+        "is.workflow.actions.properties.health.quantity",
+        "WFContentItemPropertyName",
+        "WFInput"
+      ],
+      "evidence_id": "get_details_of_health_sample"
+    }
+  ],
+  "category_types": [
+    {
+      "availability": "API_AVAILABLE(ios(9.0), watchos(2.0), macCatalyst(13.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "AppleStandHour",
+      "shortcut_label_guess": "Apple Stand Hour",
+      "symbol": "HKCategoryTypeIdentifierAppleStandHour",
+      "unit_and_aggregation": "HKCategoryValueAppleStandHour"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(14.0), watchos(7.0), macCatalyst(14.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "EnvironmentalAudioExposureEvent",
+      "shortcut_label_guess": "Environmental Audio Exposure Event",
+      "symbol": "HKCategoryTypeIdentifierEnvironmentalAudioExposureEvent",
+      "unit_and_aggregation": "HKCategoryValueEnvironmentalAudioExposureEvent"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(14.2), watchos(7.1), macCatalyst(14.2), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "HeadphoneAudioExposureEvent",
+      "shortcut_label_guess": "Headphone Audio Exposure Event",
+      "symbol": "HKCategoryTypeIdentifierHeadphoneAudioExposureEvent",
+      "unit_and_aggregation": "HKCategoryValueHeadphoneAudioExposureEvent"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(12.2), watchos(5.2), macCatalyst(13.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "HighHeartRateEvent",
+      "shortcut_label_guess": "High Heart Rate Event",
+      "symbol": "HKCategoryTypeIdentifierHighHeartRateEvent",
+      "unit_and_aggregation": "HKCategoryValue"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(26.2), watchos(26.2), macCatalyst(26.2), macos(26.2), visionos(26.2))",
+      "sdk_suffix": "HypertensionEvent",
+      "shortcut_label_guess": "Hypertension Event",
+      "symbol": "HKCategoryTypeIdentifierHypertensionEvent",
+      "unit_and_aggregation": "HKCategoryValue"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(12.2), watchos(5.2), macCatalyst(13.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "IrregularHeartRhythmEvent",
+      "shortcut_label_guess": "Irregular Heart Rhythm Event",
+      "symbol": "HKCategoryTypeIdentifierIrregularHeartRhythmEvent",
+      "unit_and_aggregation": "HKCategoryValue"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(14.3), watchos(7.2), macCatalyst(14.3), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "LowCardioFitnessEvent",
+      "shortcut_label_guess": "Low Cardio Fitness Event",
+      "symbol": "HKCategoryTypeIdentifierLowCardioFitnessEvent",
+      "unit_and_aggregation": "HKCategoryValueLowCardioFitnessEvent"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(12.2), watchos(5.2), macCatalyst(13.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "LowHeartRateEvent",
+      "shortcut_label_guess": "Low Heart Rate Event",
+      "symbol": "HKCategoryTypeIdentifierLowHeartRateEvent",
+      "unit_and_aggregation": "HKCategoryValue"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(10.0), watchos(3.0), macCatalyst(13.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "MindfulSession",
+      "shortcut_label_guess": "Mindful Session",
+      "symbol": "HKCategoryTypeIdentifierMindfulSession",
+      "unit_and_aggregation": "HKCategoryValue"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(15.0), watchos(8.0), macCatalyst(15.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "AppleWalkingSteadinessEvent",
+      "shortcut_label_guess": "Apple Walking Steadiness Event",
+      "symbol": "HKCategoryTypeIdentifierAppleWalkingSteadinessEvent",
+      "unit_and_aggregation": "HKCategoryValueAppleWalkingSteadinessEvent"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(14.0), watchos(7.0), macCatalyst(14.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "HandwashingEvent",
+      "shortcut_label_guess": "Handwashing Event",
+      "symbol": "HKCategoryTypeIdentifierHandwashingEvent",
+      "unit_and_aggregation": "HKCategoryValue"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(13.0), watchos(6.0), macCatalyst(13.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "ToothbrushingEvent",
+      "shortcut_label_guess": "Toothbrushing Event",
+      "symbol": "HKCategoryTypeIdentifierToothbrushingEvent",
+      "unit_and_aggregation": "HKCategoryValue"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(18.0), watchos(11.0), macCatalyst(18.0), macos(15.0), visionos(2.0))",
+      "sdk_suffix": "BleedingAfterPregnancy",
+      "shortcut_label_guess": "Bleeding After Pregnancy",
+      "symbol": "HKCategoryTypeIdentifierBleedingAfterPregnancy",
+      "unit_and_aggregation": "HKCategoryValueVaginalBleeding"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(18.0), watchos(11.0), macCatalyst(18.0), macos(15.0), visionos(2.0))",
+      "sdk_suffix": "BleedingDuringPregnancy",
+      "shortcut_label_guess": "Bleeding During Pregnancy",
+      "symbol": "HKCategoryTypeIdentifierBleedingDuringPregnancy",
+      "unit_and_aggregation": "HKCategoryValueVaginalBleeding"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(9.0), watchos(2.0), macCatalyst(13.0), macos(13.0), visionos(1.0))",
+      "observed_shortcuts_labels": [
+        "Cervical Mucus Quality"
+      ],
+      "sdk_suffix": "CervicalMucusQuality",
+      "shortcut_label_guess": "Cervical Mucus Quality",
+      "symbol": "HKCategoryTypeIdentifierCervicalMucusQuality",
+      "unit_and_aggregation": "HKCategoryValueCervicalMucusQuality"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(14.3), watchos(7.2), macCatalyst(14.3), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "Contraceptive",
+      "shortcut_label_guess": "Contraceptive",
+      "symbol": "HKCategoryTypeIdentifierContraceptive",
+      "unit_and_aggregation": "HKCategoryValueContraceptive"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(16.0), watchos(9.0), macCatalyst(16.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "InfrequentMenstrualCycles",
+      "shortcut_label_guess": "Infrequent Menstrual Cycles",
+      "symbol": "HKCategoryTypeIdentifierInfrequentMenstrualCycles",
+      "unit_and_aggregation": "HKCategoryValue"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(9.0), watchos(2.0), macCatalyst(13.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "IntermenstrualBleeding",
+      "shortcut_label_guess": "Intermenstrual Bleeding",
+      "symbol": "HKCategoryTypeIdentifierIntermenstrualBleeding",
+      "unit_and_aggregation": "HKCategoryValue"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(16.0), watchos(9.0), macCatalyst(16.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "IrregularMenstrualCycles",
+      "shortcut_label_guess": "Irregular Menstrual Cycles",
+      "symbol": "HKCategoryTypeIdentifierIrregularMenstrualCycles",
+      "unit_and_aggregation": "HKCategoryValue"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(14.3), watchos(7.2), macCatalyst(14.3), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "Lactation",
+      "shortcut_label_guess": "Lactation",
+      "symbol": "HKCategoryTypeIdentifierLactation",
+      "unit_and_aggregation": "HKCategoryValue"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(9.0), watchos(2.0), macCatalyst(13.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "MenstrualFlow",
+      "shortcut_label_guess": "Menstrual Flow",
+      "symbol": "HKCategoryTypeIdentifierMenstrualFlow",
+      "unit_and_aggregation": "HKCategoryValueVaginalBleeding"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(9.0), watchos(2.0), macCatalyst(13.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "OvulationTestResult",
+      "shortcut_label_guess": "Ovulation Test Result",
+      "symbol": "HKCategoryTypeIdentifierOvulationTestResult",
+      "unit_and_aggregation": "HKCategoryValueOvulationTestResult"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(16.0), watchos(9.0), macCatalyst(16.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "PersistentIntermenstrualBleeding",
+      "shortcut_label_guess": "Persistent Intermenstrual Bleeding",
+      "symbol": "HKCategoryTypeIdentifierPersistentIntermenstrualBleeding",
+      "unit_and_aggregation": "HKCategoryValue"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(14.3), watchos(7.2), macCatalyst(14.3), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "Pregnancy",
+      "shortcut_label_guess": "Pregnancy",
+      "symbol": "HKCategoryTypeIdentifierPregnancy",
+      "unit_and_aggregation": "HKCategoryValue"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(15.0), watchos(8.0), macCatalyst(15.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "PregnancyTestResult",
+      "shortcut_label_guess": "Pregnancy Test Result",
+      "symbol": "HKCategoryTypeIdentifierPregnancyTestResult",
+      "unit_and_aggregation": "HKCategoryValuePregnancyTestResult"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(15.0), watchos(8.0), macCatalyst(15.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "ProgesteroneTestResult",
+      "shortcut_label_guess": "Progesterone Test Result",
+      "symbol": "HKCategoryTypeIdentifierProgesteroneTestResult",
+      "unit_and_aggregation": "HKCategoryValueProgesteroneTestResult"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(16.0), watchos(9.0), macCatalyst(16.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "ProlongedMenstrualPeriods",
+      "shortcut_label_guess": "Prolonged Menstrual Periods",
+      "symbol": "HKCategoryTypeIdentifierProlongedMenstrualPeriods",
+      "unit_and_aggregation": "HKCategoryValue"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(9.0), watchos(2.0), macCatalyst(13.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "SexualActivity",
+      "shortcut_label_guess": "Sexual Activity",
+      "symbol": "HKCategoryTypeIdentifierSexualActivity",
+      "unit_and_aggregation": "HKCategoryValue"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(18.0), watchos(11.0), macCatalyst(18.0), macos(15.0), visionos(2.0))",
+      "sdk_suffix": "SleepApneaEvent",
+      "shortcut_label_guess": "Sleep Apnea Event",
+      "symbol": "HKCategoryTypeIdentifierSleepApneaEvent",
+      "unit_and_aggregation": "HKCategoryValue"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(8.0), watchos(2.0), macCatalyst(13.0), macos(13.0), visionos(1.0))",
+      "observed_find_samples_labels": [
+        "Sleep"
+      ],
+      "sdk_suffix": "SleepAnalysis",
+      "shortcut_label_guess": "Sleep Analysis",
+      "symbol": "HKCategoryTypeIdentifierSleepAnalysis",
+      "unit_and_aggregation": "HKCategoryValueSleepAnalysis"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(13.6), watchos(7.0), macCatalyst(13.6), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "AbdominalCramps",
+      "shortcut_label_guess": "Abdominal Cramps",
+      "symbol": "HKCategoryTypeIdentifierAbdominalCramps",
+      "unit_and_aggregation": "HKCategoryValueSeverity"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(13.6), watchos(7.0), macCatalyst(13.6), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "Acne",
+      "shortcut_label_guess": "Acne",
+      "symbol": "HKCategoryTypeIdentifierAcne",
+      "unit_and_aggregation": "HKCategoryValueSeverity"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(13.6), watchos(7.0), macCatalyst(13.6), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "AppetiteChanges",
+      "shortcut_label_guess": "Appetite Changes",
+      "symbol": "HKCategoryTypeIdentifierAppetiteChanges",
+      "unit_and_aggregation": "HKCategoryValueAppetiteChanges"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(14.0), watchos(7.0), macCatalyst(14.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "BladderIncontinence",
+      "shortcut_label_guess": "Bladder Incontinence",
+      "symbol": "HKCategoryTypeIdentifierBladderIncontinence",
+      "unit_and_aggregation": "HKCategoryValueSeverity"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(13.6), watchos(7.0), macCatalyst(13.6), macos(13.0), visionos(1.0))",
+      "observed_shortcuts_labels": [
+        "Bloating"
+      ],
+      "sdk_suffix": "Bloating",
+      "shortcut_label_guess": "Bloating",
+      "symbol": "HKCategoryTypeIdentifierBloating",
+      "unit_and_aggregation": "HKCategoryValueSeverity"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(13.6), watchos(7.0), macCatalyst(13.6), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "BreastPain",
+      "shortcut_label_guess": "Breast Pain",
+      "symbol": "HKCategoryTypeIdentifierBreastPain",
+      "unit_and_aggregation": "HKCategoryValueSeverity"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(13.6), watchos(7.0), macCatalyst(13.6), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "ChestTightnessOrPain",
+      "shortcut_label_guess": "Chest Tightness Or Pain",
+      "symbol": "HKCategoryTypeIdentifierChestTightnessOrPain",
+      "unit_and_aggregation": "HKCategoryValueSeverity"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(13.6), watchos(7.0), macCatalyst(13.6), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "Chills",
+      "shortcut_label_guess": "Chills",
+      "symbol": "HKCategoryTypeIdentifierChills",
+      "unit_and_aggregation": "HKCategoryValueSeverity"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(13.6), watchos(7.0), macCatalyst(13.6), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "Constipation",
+      "shortcut_label_guess": "Constipation",
+      "symbol": "HKCategoryTypeIdentifierConstipation",
+      "unit_and_aggregation": "HKCategoryValueSeverity"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(13.6), watchos(7.0), macCatalyst(13.6), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "Coughing",
+      "shortcut_label_guess": "Coughing",
+      "symbol": "HKCategoryTypeIdentifierCoughing",
+      "unit_and_aggregation": "HKCategoryValueSeverity"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(13.6), watchos(7.0), macCatalyst(13.6), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "Diarrhea",
+      "shortcut_label_guess": "Diarrhea",
+      "symbol": "HKCategoryTypeIdentifierDiarrhea",
+      "unit_and_aggregation": "HKCategoryValueSeverity"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(13.6), watchos(7.0), macCatalyst(13.6), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "Dizziness",
+      "shortcut_label_guess": "Dizziness",
+      "symbol": "HKCategoryTypeIdentifierDizziness",
+      "unit_and_aggregation": "HKCategoryValueSeverity"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(14.0), watchos(7.0), macCatalyst(14.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "DrySkin",
+      "shortcut_label_guess": "Dry Skin",
+      "symbol": "HKCategoryTypeIdentifierDrySkin",
+      "unit_and_aggregation": "HKCategoryValueSeverity"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(13.6), watchos(7.0), macCatalyst(13.6), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "Fainting",
+      "shortcut_label_guess": "Fainting",
+      "symbol": "HKCategoryTypeIdentifierFainting",
+      "unit_and_aggregation": "HKCategoryValueSeverity"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(13.6), watchos(7.0), macCatalyst(13.6), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "Fatigue",
+      "shortcut_label_guess": "Fatigue",
+      "symbol": "HKCategoryTypeIdentifierFatigue",
+      "unit_and_aggregation": "HKCategoryValueSeverity"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(13.6), watchos(7.0), macCatalyst(13.6), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "Fever",
+      "shortcut_label_guess": "Fever",
+      "symbol": "HKCategoryTypeIdentifierFever",
+      "unit_and_aggregation": "HKCategoryValueSeverity"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(13.6), watchos(7.0), macCatalyst(13.6), macos(13.0), visionos(1.0))",
+      "observed_shortcuts_labels": [
+        "Body and Muscle Ache"
+      ],
+      "sdk_suffix": "GeneralizedBodyAche",
+      "shortcut_label_guess": "Body and Muscle Ache",
+      "symbol": "HKCategoryTypeIdentifierGeneralizedBodyAche",
+      "unit_and_aggregation": "HKCategoryValueSeverity"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(14.0), watchos(7.0), macCatalyst(14.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "HairLoss",
+      "shortcut_label_guess": "Hair Loss",
+      "symbol": "HKCategoryTypeIdentifierHairLoss",
+      "unit_and_aggregation": "HKCategoryValueSeverity"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(13.6), watchos(7.0), macCatalyst(13.6), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "Headache",
+      "shortcut_label_guess": "Headache",
+      "symbol": "HKCategoryTypeIdentifierHeadache",
+      "unit_and_aggregation": "HKCategoryValueSeverity"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(13.6), watchos(7.0), macCatalyst(13.6), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "Heartburn",
+      "shortcut_label_guess": "Heartburn",
+      "symbol": "HKCategoryTypeIdentifierHeartburn",
+      "unit_and_aggregation": "HKCategoryValueSeverity"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(13.6), watchos(7.0), macCatalyst(13.6), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "HotFlashes",
+      "shortcut_label_guess": "Hot Flashes",
+      "symbol": "HKCategoryTypeIdentifierHotFlashes",
+      "unit_and_aggregation": "HKCategoryValueSeverity"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(13.6), watchos(7.0), macCatalyst(13.6), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "LossOfSmell",
+      "shortcut_label_guess": "Loss Of Smell",
+      "symbol": "HKCategoryTypeIdentifierLossOfSmell",
+      "unit_and_aggregation": "HKCategoryValueSeverity"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(13.6), watchos(7.0), macCatalyst(13.6), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "LossOfTaste",
+      "shortcut_label_guess": "Loss Of Taste",
+      "symbol": "HKCategoryTypeIdentifierLossOfTaste",
+      "unit_and_aggregation": "HKCategoryValueSeverity"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(13.6), watchos(7.0), macCatalyst(13.6), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "LowerBackPain",
+      "shortcut_label_guess": "Lower Back Pain",
+      "symbol": "HKCategoryTypeIdentifierLowerBackPain",
+      "unit_and_aggregation": "HKCategoryValueSeverity"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(14.0), watchos(7.0), macCatalyst(14.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "MemoryLapse",
+      "shortcut_label_guess": "Memory Lapse",
+      "symbol": "HKCategoryTypeIdentifierMemoryLapse",
+      "unit_and_aggregation": "HKCategoryValueSeverity"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(13.6), watchos(7.0), macCatalyst(13.6), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "MoodChanges",
+      "shortcut_label_guess": "Mood Changes",
+      "symbol": "HKCategoryTypeIdentifierMoodChanges",
+      "unit_and_aggregation": "HKCategoryValuePresence"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(13.6), watchos(7.0), macCatalyst(13.6), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "Nausea",
+      "shortcut_label_guess": "Nausea",
+      "symbol": "HKCategoryTypeIdentifierNausea",
+      "unit_and_aggregation": "HKCategoryValueSeverity"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(14.0), watchos(7.0), macCatalyst(14.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "NightSweats",
+      "shortcut_label_guess": "Night Sweats",
+      "symbol": "HKCategoryTypeIdentifierNightSweats",
+      "unit_and_aggregation": "HKCategoryValueSeverity"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(13.6), watchos(7.0), macCatalyst(13.6), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "PelvicPain",
+      "shortcut_label_guess": "Pelvic Pain",
+      "symbol": "HKCategoryTypeIdentifierPelvicPain",
+      "unit_and_aggregation": "HKCategoryValueSeverity"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(13.6), watchos(7.0), macCatalyst(13.6), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "RapidPoundingOrFlutteringHeartbeat",
+      "shortcut_label_guess": "Rapid Pounding Or Fluttering Heartbeat",
+      "symbol": "HKCategoryTypeIdentifierRapidPoundingOrFlutteringHeartbeat",
+      "unit_and_aggregation": "HKCategoryValueSeverity"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(13.6), watchos(7.0), macCatalyst(13.6), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "RunnyNose",
+      "shortcut_label_guess": "Runny Nose",
+      "symbol": "HKCategoryTypeIdentifierRunnyNose",
+      "unit_and_aggregation": "HKCategoryValueSeverity"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(13.6), watchos(7.0), macCatalyst(13.6), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "ShortnessOfBreath",
+      "shortcut_label_guess": "Shortness Of Breath",
+      "symbol": "HKCategoryTypeIdentifierShortnessOfBreath",
+      "unit_and_aggregation": "HKCategoryValueSeverity"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(13.6), watchos(7.0), macCatalyst(13.6), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "SinusCongestion",
+      "shortcut_label_guess": "Sinus Congestion",
+      "symbol": "HKCategoryTypeIdentifierSinusCongestion",
+      "unit_and_aggregation": "HKCategoryValueSeverity"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(13.6), watchos(7.0), macCatalyst(13.6), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "SkippedHeartbeat",
+      "shortcut_label_guess": "Skipped Heartbeat",
+      "symbol": "HKCategoryTypeIdentifierSkippedHeartbeat",
+      "unit_and_aggregation": "HKCategoryValueSeverity"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(13.6), watchos(7.0), macCatalyst(13.6), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "SleepChanges",
+      "shortcut_label_guess": "Sleep Changes",
+      "symbol": "HKCategoryTypeIdentifierSleepChanges",
+      "unit_and_aggregation": "HKCategoryValuePresence"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(13.6), watchos(7.0), macCatalyst(13.6), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "SoreThroat",
+      "shortcut_label_guess": "Sore Throat",
+      "symbol": "HKCategoryTypeIdentifierSoreThroat",
+      "unit_and_aggregation": "HKCategoryValueSeverity"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(14.0), watchos(7.0), macCatalyst(14.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "VaginalDryness",
+      "shortcut_label_guess": "Vaginal Dryness",
+      "symbol": "HKCategoryTypeIdentifierVaginalDryness",
+      "unit_and_aggregation": "HKCategoryValueSeverity"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(13.6), watchos(7.0), macCatalyst(13.6), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "Vomiting",
+      "shortcut_label_guess": "Vomiting",
+      "symbol": "HKCategoryTypeIdentifierVomiting",
+      "unit_and_aggregation": "HKCategoryValueSeverity"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(13.6), watchos(7.0), macCatalyst(13.6), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "Wheezing",
+      "shortcut_label_guess": "Wheezing",
+      "symbol": "HKCategoryTypeIdentifierWheezing",
+      "unit_and_aggregation": "HKCategoryValueSeverity"
+    },
+    {
+      "availability": "API_DEPRECATED_WITH_REPLACEMENT(\"HKCategoryTypeIdentifierEnvironmentalAudioExposureEvent\", ios(13.0, 14.0), watchos(6.0, 7.0))",
+      "sdk_suffix": "AudioExposureEvent",
+      "shortcut_label_guess": "Audio Exposure Event",
+      "symbol": "HKCategoryTypeIdentifierAudioExposureEvent",
+      "unit_and_aggregation": ""
+    }
+  ],
+  "category_values": {
+    "HKCategoryValueAppetiteChanges": [
+      {
+        "shortcut_label_guess": "Unspecified",
+        "symbol": "HKCategoryValueAppetiteChangesUnspecified",
+        "value": 0
+      },
+      {
+        "shortcut_label_guess": "No Change",
+        "symbol": "HKCategoryValueAppetiteChangesNoChange",
+        "value": 1
+      },
+      {
+        "shortcut_label_guess": "Decreased",
+        "symbol": "HKCategoryValueAppetiteChangesDecreased",
+        "value": 2
+      },
+      {
+        "shortcut_label_guess": "Increased",
+        "symbol": "HKCategoryValueAppetiteChangesIncreased",
+        "value": 3
+      }
+    ],
+    "HKCategoryValueAppleStandHour": [
+      {
+        "shortcut_label_guess": "Stood",
+        "symbol": "HKCategoryValueAppleStandHourStood",
+        "value": 0
+      },
+      {
+        "shortcut_label_guess": "Idle",
+        "symbol": "HKCategoryValueAppleStandHourIdle",
+        "value": 1
+      }
+    ],
+    "HKCategoryValueAppleWalkingSteadinessEvent": [
+      {
+        "shortcut_label_guess": "Initial Low",
+        "symbol": "HKCategoryValueAppleWalkingSteadinessEventInitialLow",
+        "value": 1
+      },
+      {
+        "shortcut_label_guess": "Initial Very Low",
+        "symbol": "HKCategoryValueAppleWalkingSteadinessEventInitialVeryLow",
+        "value": 2
+      },
+      {
+        "shortcut_label_guess": "Repeat Low",
+        "symbol": "HKCategoryValueAppleWalkingSteadinessEventRepeatLow",
+        "value": 3
+      },
+      {
+        "shortcut_label_guess": "Repeat Very Low",
+        "symbol": "HKCategoryValueAppleWalkingSteadinessEventRepeatVeryLow",
+        "value": 4
+      }
+    ],
+    "HKCategoryValueAudioExposureEvent": [
+      {
+        "shortcut_label_guess": "Loud Environment",
+        "symbol": "HKCategoryValueAudioExposureEventLoudEnvironment",
+        "value": 1
+      }
+    ],
+    "HKCategoryValueCervicalMucusQuality": [
+      {
+        "shortcut_label_guess": "Dry",
+        "symbol": "HKCategoryValueCervicalMucusQualityDry",
+        "value": 1
+      },
+      {
+        "shortcut_label_guess": "Sticky",
+        "symbol": "HKCategoryValueCervicalMucusQualitySticky",
+        "value": 2
+      },
+      {
+        "shortcut_label_guess": "Creamy",
+        "symbol": "HKCategoryValueCervicalMucusQualityCreamy",
+        "value": 3
+      },
+      {
+        "shortcut_label_guess": "Watery",
+        "symbol": "HKCategoryValueCervicalMucusQualityWatery",
+        "value": 4
+      },
+      {
+        "shortcut_label_guess": "Egg White",
+        "symbol": "HKCategoryValueCervicalMucusQualityEggWhite",
+        "value": 5
+      }
+    ],
+    "HKCategoryValueContraceptive": [
+      {
+        "shortcut_label_guess": "Unspecified",
+        "symbol": "HKCategoryValueContraceptiveUnspecified",
+        "value": 1
+      },
+      {
+        "shortcut_label_guess": "Implant",
+        "symbol": "HKCategoryValueContraceptiveImplant",
+        "value": 2
+      },
+      {
+        "shortcut_label_guess": "Injection",
+        "symbol": "HKCategoryValueContraceptiveInjection",
+        "value": 3
+      },
+      {
+        "shortcut_label_guess": "Intrauterine Device",
+        "symbol": "HKCategoryValueContraceptiveIntrauterineDevice",
+        "value": 4
+      },
+      {
+        "shortcut_label_guess": "Intravaginal Ring",
+        "symbol": "HKCategoryValueContraceptiveIntravaginalRing",
+        "value": 5
+      },
+      {
+        "shortcut_label_guess": "Oral",
+        "symbol": "HKCategoryValueContraceptiveOral",
+        "value": 6
+      },
+      {
+        "shortcut_label_guess": "Patch",
+        "symbol": "HKCategoryValueContraceptivePatch",
+        "value": 7
+      }
+    ],
+    "HKCategoryValueEnvironmentalAudioExposureEvent": [
+      {
+        "shortcut_label_guess": "Momentary Limit",
+        "symbol": "HKCategoryValueEnvironmentalAudioExposureEventMomentaryLimit",
+        "value": 1
+      }
+    ],
+    "HKCategoryValueHeadphoneAudioExposureEvent": [
+      {
+        "shortcut_label_guess": "Seven Day Limit",
+        "symbol": "HKCategoryValueHeadphoneAudioExposureEventSevenDayLimit",
+        "value": 1
+      }
+    ],
+    "HKCategoryValueLowCardioFitnessEvent": [
+      {
+        "shortcut_label_guess": "Low Fitness",
+        "symbol": "HKCategoryValueLowCardioFitnessEventLowFitness",
+        "value": 1
+      }
+    ],
+    "HKCategoryValueMenstrualFlow": [
+      {
+        "shortcut_label_guess": "Unspecified",
+        "symbol": "HKCategoryValueMenstrualFlowUnspecified",
+        "value": 1
+      },
+      {
+        "shortcut_label_guess": "Light",
+        "symbol": "HKCategoryValueMenstrualFlowLight",
+        "value": 2
+      },
+      {
+        "shortcut_label_guess": "Medium",
+        "symbol": "HKCategoryValueMenstrualFlowMedium",
+        "value": 3
+      },
+      {
+        "shortcut_label_guess": "Heavy",
+        "symbol": "HKCategoryValueMenstrualFlowHeavy",
+        "value": 4
+      },
+      {
+        "shortcut_label_guess": "None",
+        "symbol": "HKCategoryValueMenstrualFlowNone",
+        "value": 5
+      }
+    ],
+    "HKCategoryValueOvulationTestResult": [
+      {
+        "shortcut_label_guess": "Negative",
+        "symbol": "HKCategoryValueOvulationTestResultNegative",
+        "value": 1
+      },
+      {
+        "shortcut_label_guess": "Luteinizing Hormone Surge",
+        "symbol": "HKCategoryValueOvulationTestResultLuteinizingHormoneSurge",
+        "value": 2
+      },
+      {
+        "shortcut_label_guess": "Positive",
+        "symbol": "HKCategoryValueOvulationTestResultPositive",
+        "value": "HKCategoryValueOvulationTestResultLuteinizingHormoneSurge"
+      },
+      {
+        "shortcut_label_guess": "Indeterminate",
+        "symbol": "HKCategoryValueOvulationTestResultIndeterminate",
+        "value": 3
+      },
+      {
+        "shortcut_label_guess": "Estrogen Surge",
+        "symbol": "HKCategoryValueOvulationTestResultEstrogenSurge",
+        "value": 4
+      }
+    ],
+    "HKCategoryValuePregnancyTestResult": [
+      {
+        "shortcut_label_guess": "Negative",
+        "symbol": "HKCategoryValuePregnancyTestResultNegative",
+        "value": 1
+      },
+      {
+        "shortcut_label_guess": "Positive",
+        "symbol": "HKCategoryValuePregnancyTestResultPositive",
+        "value": 2
+      },
+      {
+        "shortcut_label_guess": "Indeterminate",
+        "symbol": "HKCategoryValuePregnancyTestResultIndeterminate",
+        "value": 3
+      }
+    ],
+    "HKCategoryValuePresence": [
+      {
+        "shortcut_label_guess": "Present",
+        "symbol": "HKCategoryValuePresencePresent",
+        "value": 0
+      },
+      {
+        "shortcut_label_guess": "Not Present",
+        "symbol": "HKCategoryValuePresenceNotPresent",
+        "value": 1
+      }
+    ],
+    "HKCategoryValueProgesteroneTestResult": [
+      {
+        "shortcut_label_guess": "Negative",
+        "symbol": "HKCategoryValueProgesteroneTestResultNegative",
+        "value": 1
+      },
+      {
+        "shortcut_label_guess": "Positive",
+        "symbol": "HKCategoryValueProgesteroneTestResultPositive",
+        "value": 2
+      },
+      {
+        "shortcut_label_guess": "Indeterminate",
+        "symbol": "HKCategoryValueProgesteroneTestResultIndeterminate",
+        "value": 3
+      }
+    ],
+    "HKCategoryValueSeverity": [
+      {
+        "shortcut_label_guess": "Unspecified",
+        "symbol": "HKCategoryValueSeverityUnspecified",
+        "value": 0
+      },
+      {
+        "shortcut_label_guess": "Not Present",
+        "symbol": "HKCategoryValueSeverityNotPresent",
+        "value": 1
+      },
+      {
+        "shortcut_label_guess": "Mild",
+        "symbol": "HKCategoryValueSeverityMild",
+        "value": 2
+      },
+      {
+        "shortcut_label_guess": "Moderate",
+        "symbol": "HKCategoryValueSeverityModerate",
+        "value": 3
+      },
+      {
+        "shortcut_label_guess": "Severe",
+        "symbol": "HKCategoryValueSeveritySevere",
+        "value": 4
+      }
+    ],
+    "HKCategoryValueSleepAnalysis": [
+      {
+        "shortcut_label_guess": "In Bed",
+        "symbol": "HKCategoryValueSleepAnalysisInBed",
+        "value": 0
+      },
+      {
+        "shortcut_label_guess": "Asleep Unspecified",
+        "symbol": "HKCategoryValueSleepAnalysisAsleepUnspecified",
+        "value": 1
+      },
+      {
+        "shortcut_label_guess": "Asleep",
+        "symbol": "HKCategoryValueSleepAnalysisAsleep",
+        "value": "HKCategoryValueSleepAnalysisAsleepUnspecified"
+      },
+      {
+        "shortcut_label_guess": "Awake",
+        "symbol": "HKCategoryValueSleepAnalysisAwake",
+        "value": 2
+      },
+      {
+        "shortcut_label_guess": "Asleep Core",
+        "symbol": "HKCategoryValueSleepAnalysisAsleepCore",
+        "value": 3
+      },
+      {
+        "shortcut_label_guess": "Asleep Deep",
+        "symbol": "HKCategoryValueSleepAnalysisAsleepDeep",
+        "value": 4
+      },
+      {
+        "shortcut_label_guess": "Asleep REM",
+        "symbol": "HKCategoryValueSleepAnalysisAsleepREM",
+        "value": 5
+      }
+    ],
+    "HKCategoryValueVaginalBleeding": [
+      {
+        "shortcut_label_guess": "Unspecified",
+        "symbol": "HKCategoryValueVaginalBleedingUnspecified",
+        "value": 1
+      },
+      {
+        "shortcut_label_guess": "Light",
+        "symbol": "HKCategoryValueVaginalBleedingLight",
+        "value": 2
+      },
+      {
+        "shortcut_label_guess": "Medium",
+        "symbol": "HKCategoryValueVaginalBleedingMedium",
+        "value": 3
+      },
+      {
+        "shortcut_label_guess": "Heavy",
+        "symbol": "HKCategoryValueVaginalBleedingHeavy",
+        "value": 4
+      },
+      {
+        "shortcut_label_guess": "None",
+        "symbol": "HKCategoryValueVaginalBleedingNone",
+        "value": 5
+      }
+    ]
+  },
+  "characteristic_types": [
+    {
+      "availability": "API_AVAILABLE(ios(14.0), watchos(7.0), macCatalyst(14.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "ActivityMoveMode",
+      "shortcut_label_guess": "Activity Move Mode",
+      "symbol": "HKCharacteristicTypeIdentifierActivityMoveMode",
+      "unit_and_aggregation": "HKActivityMoveModeObject"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(8.0), watchos(2.0), macCatalyst(13.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "BiologicalSex",
+      "shortcut_label_guess": "Biological Sex",
+      "symbol": "HKCharacteristicTypeIdentifierBiologicalSex",
+      "unit_and_aggregation": "HKBiologicalSexObject"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(8.0), watchos(2.0), macCatalyst(13.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "BloodType",
+      "shortcut_label_guess": "Blood Type",
+      "symbol": "HKCharacteristicTypeIdentifierBloodType",
+      "unit_and_aggregation": "HKBloodTypeObject"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(8.0), watchos(2.0), macCatalyst(13.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "DateOfBirth",
+      "shortcut_label_guess": "Date Of Birth",
+      "symbol": "HKCharacteristicTypeIdentifierDateOfBirth",
+      "unit_and_aggregation": "NSDateComponents"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(9.0), watchos(2.0), macCatalyst(13.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "FitzpatrickSkinType",
+      "shortcut_label_guess": "Fitzpatrick Skin Type",
+      "symbol": "HKCharacteristicTypeIdentifierFitzpatrickSkinType",
+      "unit_and_aggregation": "HKFitzpatrickSkinTypeObject"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(10.0), watchos(3.0), macCatalyst(13.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "WheelchairUse",
+      "shortcut_label_guess": "Wheelchair Use",
+      "symbol": "HKCharacteristicTypeIdentifierWheelchairUse",
+      "unit_and_aggregation": "HKWheelchairUseObject"
+    }
+  ],
+  "correlation_types": [
+    {
+      "availability": "API_AVAILABLE(ios(8.0), watchos(2.0), macCatalyst(13.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "BloodPressure",
+      "shortcut_label_guess": "Blood Pressure",
+      "symbol": "HKCorrelationTypeIdentifierBloodPressure",
+      "unit_and_aggregation": ""
+    },
+    {
+      "availability": "API_AVAILABLE(ios(8.0), watchos(2.0), macCatalyst(13.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "Food",
+      "shortcut_label_guess": "Food",
+      "symbol": "HKCorrelationTypeIdentifierFood",
+      "unit_and_aggregation": ""
+    }
+  ],
+  "document_types": [
+    {
+      "availability": "API_AVAILABLE(ios(10.0), watchos(3.0), macCatalyst(13.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "CDA",
+      "shortcut_label_guess": "CDA",
+      "symbol": "HKDocumentTypeIdentifierCDA",
+      "unit_and_aggregation": ""
+    }
+  ],
+  "generated_on": "2026-04-26",
+  "quantity_types": [
+    {
+      "availability": "API_AVAILABLE(ios(16.0), watchos(9.0), macCatalyst(16.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "AppleSleepingWristTemperature",
+      "shortcut_label_guess": "Apple Sleeping Wrist Temperature",
+      "symbol": "HKQuantityTypeIdentifierAppleSleepingWristTemperature",
+      "unit_and_aggregation": "degC, Discrete (Arithmetic)"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(8.0), watchos(2.0), macCatalyst(13.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "BodyFatPercentage",
+      "shortcut_label_guess": "Body Fat Percentage",
+      "symbol": "HKQuantityTypeIdentifierBodyFatPercentage",
+      "unit_and_aggregation": "%, Discrete (Arithmetic)"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(8.0), watchos(2.0), macCatalyst(13.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "BodyMass",
+      "shortcut_label_guess": "Body Mass",
+      "symbol": "HKQuantityTypeIdentifierBodyMass",
+      "unit_and_aggregation": "kg, Discrete (Arithmetic)"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(8.0), watchos(2.0), macCatalyst(13.0), macos(13.0), visionos(1.0))",
+      "observed_shortcuts_labels": [
+        "Body Mass Index"
+      ],
+      "sdk_suffix": "BodyMassIndex",
+      "shortcut_label_guess": "Body Mass Index",
+      "symbol": "HKQuantityTypeIdentifierBodyMassIndex",
+      "unit_and_aggregation": "count, Discrete (Arithmetic)"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(8.0), watchos(2.0), macCatalyst(13.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "ElectrodermalActivity",
+      "shortcut_label_guess": "Electrodermal Activity",
+      "symbol": "HKQuantityTypeIdentifierElectrodermalActivity",
+      "unit_and_aggregation": "S, Discrete (Arithmetic)"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(8.0), watchos(2.0), macCatalyst(13.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "Height",
+      "shortcut_label_guess": "Height",
+      "symbol": "HKQuantityTypeIdentifierHeight",
+      "unit_and_aggregation": "m, Discrete (Arithmetic)"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(8.0), watchos(2.0), macCatalyst(13.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "LeanBodyMass",
+      "shortcut_label_guess": "Lean Body Mass",
+      "symbol": "HKQuantityTypeIdentifierLeanBodyMass",
+      "unit_and_aggregation": "kg, Discrete (Arithmetic)"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(11.0), watchos(4.0), macCatalyst(13.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "WaistCircumference",
+      "shortcut_label_guess": "Waist Circumference",
+      "symbol": "HKQuantityTypeIdentifierWaistCircumference",
+      "unit_and_aggregation": "m, Discrete (Arithmetic)"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(8.0), watchos(2.0), macCatalyst(13.0), macos(13.0), visionos(1.0))",
+      "observed_shortcuts_labels": [
+        "Active Calories"
+      ],
+      "observed_find_samples_labels": [
+        "Active Calories"
+      ],
+      "sdk_suffix": "ActiveEnergyBurned",
+      "shortcut_label_guess": "Active Calories",
+      "symbol": "HKQuantityTypeIdentifierActiveEnergyBurned",
+      "unit_and_aggregation": "kcal, Cumulative"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(9.3), watchos(2.2), macCatalyst(13.0), macos(13.0), visionos(1.0))",
+      "observed_find_samples_labels": [
+        "Exercise Minutes"
+      ],
+      "sdk_suffix": "AppleExerciseTime",
+      "shortcut_label_guess": "Apple Exercise Time",
+      "symbol": "HKQuantityTypeIdentifierAppleExerciseTime",
+      "unit_and_aggregation": "min, Cumulative"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(14.5), watchos(7.4), macCatalyst(14.5), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "AppleMoveTime",
+      "shortcut_label_guess": "Apple Move Time",
+      "symbol": "HKQuantityTypeIdentifierAppleMoveTime",
+      "unit_and_aggregation": "min, Cumulative"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(13.0), watchos(6.0), macCatalyst(13.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "AppleStandTime",
+      "shortcut_label_guess": "Apple Stand Time",
+      "symbol": "HKQuantityTypeIdentifierAppleStandTime",
+      "unit_and_aggregation": "min, Cumulative"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(8.0), watchos(2.0), macCatalyst(13.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "BasalEnergyBurned",
+      "shortcut_label_guess": "Basal Energy Burned",
+      "symbol": "HKQuantityTypeIdentifierBasalEnergyBurned",
+      "unit_and_aggregation": "kcal, Cumulative"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(18.0), watchos(11.0), macCatalyst(18.0), macos(15.0), visionos(2.0))",
+      "sdk_suffix": "CrossCountrySkiingSpeed",
+      "shortcut_label_guess": "Cross Country Skiing Speed",
+      "symbol": "HKQuantityTypeIdentifierCrossCountrySkiingSpeed",
+      "unit_and_aggregation": "m/s, Discrete (Arithmetic)"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(17.0), watchos(10.0), macCatalyst(17.0), macos(14.0), visionos(1.0))",
+      "sdk_suffix": "CyclingCadence",
+      "shortcut_label_guess": "Cycling Cadence",
+      "symbol": "HKQuantityTypeIdentifierCyclingCadence",
+      "unit_and_aggregation": "count/min, Discrete (Arithmetic)"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(17.0), watchos(10.0), macCatalyst(17.0), macos(14.0), visionos(1.0))",
+      "sdk_suffix": "CyclingFunctionalThresholdPower",
+      "shortcut_label_guess": "Cycling Functional Threshold Power",
+      "symbol": "HKQuantityTypeIdentifierCyclingFunctionalThresholdPower",
+      "unit_and_aggregation": "W, Discrete (Arithmetic)"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(17.0), watchos(10.0), macCatalyst(17.0), macos(14.0), visionos(1.0))",
+      "sdk_suffix": "CyclingPower",
+      "shortcut_label_guess": "Cycling Power",
+      "symbol": "HKQuantityTypeIdentifierCyclingPower",
+      "unit_and_aggregation": "W, Discrete (Arithmetic)"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(17.0), watchos(10.0), macCatalyst(17.0), macos(14.0), visionos(1.0))",
+      "sdk_suffix": "CyclingSpeed",
+      "shortcut_label_guess": "Cycling Speed",
+      "symbol": "HKQuantityTypeIdentifierCyclingSpeed",
+      "unit_and_aggregation": "m/s, Discrete (Arithmetic)"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(18.0), watchos(11.0), macCatalyst(18.0), macos(15.0), visionos(2.0))",
+      "sdk_suffix": "DistanceCrossCountrySkiing",
+      "shortcut_label_guess": "Distance Cross Country Skiing",
+      "symbol": "HKQuantityTypeIdentifierDistanceCrossCountrySkiing",
+      "unit_and_aggregation": "m, Cumulative"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(8.0), watchos(2.0), macCatalyst(13.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "DistanceCycling",
+      "shortcut_label_guess": "Distance Cycling",
+      "symbol": "HKQuantityTypeIdentifierDistanceCycling",
+      "unit_and_aggregation": "m, Cumulative"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(11.2), watchos(4.2), macCatalyst(13.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "DistanceDownhillSnowSports",
+      "shortcut_label_guess": "Distance Downhill Snow Sports",
+      "symbol": "HKQuantityTypeIdentifierDistanceDownhillSnowSports",
+      "unit_and_aggregation": "m, Cumulative"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(18.0), watchos(11.0), macCatalyst(18.0), macos(15.0), visionos(2.0))",
+      "sdk_suffix": "DistancePaddleSports",
+      "shortcut_label_guess": "Distance Paddle Sports",
+      "symbol": "HKQuantityTypeIdentifierDistancePaddleSports",
+      "unit_and_aggregation": "m, Cumulative"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(18.0), watchos(11.0), macCatalyst(18.0), macos(15.0), visionos(2.0))",
+      "sdk_suffix": "DistanceRowing",
+      "shortcut_label_guess": "Distance Rowing",
+      "symbol": "HKQuantityTypeIdentifierDistanceRowing",
+      "unit_and_aggregation": "m, Cumulative"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(18.0), watchos(11.0), macCatalyst(18.0), macos(15.0), visionos(2.0))",
+      "sdk_suffix": "DistanceSkatingSports",
+      "shortcut_label_guess": "Distance Skating Sports",
+      "symbol": "HKQuantityTypeIdentifierDistanceSkatingSports",
+      "unit_and_aggregation": "m, Cumulative"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(10.0), watchos(3.0), macCatalyst(13.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "DistanceSwimming",
+      "shortcut_label_guess": "Distance Swimming",
+      "symbol": "HKQuantityTypeIdentifierDistanceSwimming",
+      "unit_and_aggregation": "m, Cumulative"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(8.0), watchos(2.0), macCatalyst(13.0), macos(13.0), visionos(1.0))",
+      "observed_shortcuts_labels": [
+        "Walking + Running Distance"
+      ],
+      "sdk_suffix": "DistanceWalkingRunning",
+      "shortcut_label_guess": "Walking + Running Distance",
+      "symbol": "HKQuantityTypeIdentifierDistanceWalkingRunning",
+      "unit_and_aggregation": "m, Cumulative"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(10.0), watchos(3.0), macCatalyst(13.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "DistanceWheelchair",
+      "shortcut_label_guess": "Distance Wheelchair",
+      "symbol": "HKQuantityTypeIdentifierDistanceWheelchair",
+      "unit_and_aggregation": "m, Cumulative"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(18.0), watchos(11.0), macCatalyst(18.0), macos(15.0), visionos(2.0))",
+      "sdk_suffix": "EstimatedWorkoutEffortScore",
+      "shortcut_label_guess": "Estimated Workout Effort Score",
+      "symbol": "HKQuantityTypeIdentifierEstimatedWorkoutEffortScore",
+      "unit_and_aggregation": "appleEffortScore, Discrete (Arithmetic)"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(8.0), watchos(2.0), macCatalyst(13.0), macos(13.0), visionos(1.0))",
+      "observed_shortcuts_labels": [
+        "Flights Climbed"
+      ],
+      "sdk_suffix": "FlightsClimbed",
+      "shortcut_label_guess": "Flights Climbed",
+      "symbol": "HKQuantityTypeIdentifierFlightsClimbed",
+      "unit_and_aggregation": "count, Cumulative"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(8.0), watchos(2.0), macCatalyst(13.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "NikeFuel",
+      "shortcut_label_guess": "Nike Fuel",
+      "symbol": "HKQuantityTypeIdentifierNikeFuel",
+      "unit_and_aggregation": "count, Cumulative"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(18.0), watchos(11.0), macCatalyst(18.0), macos(15.0), visionos(2.0))",
+      "sdk_suffix": "PaddleSportsSpeed",
+      "shortcut_label_guess": "Paddle Sports Speed",
+      "symbol": "HKQuantityTypeIdentifierPaddleSportsSpeed",
+      "unit_and_aggregation": "m/s, Discrete (Arithmetic)"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(17.0), watchos(10.0), macCatalyst(17.0), macos(14.0), visionos(1.0))",
+      "sdk_suffix": "PhysicalEffort",
+      "shortcut_label_guess": "Physical Effort",
+      "symbol": "HKQuantityTypeIdentifierPhysicalEffort",
+      "unit_and_aggregation": "kcal/(kg*hr), Discrete (Arithmetic)"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(10.0), watchos(3.0), macCatalyst(13.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "PushCount",
+      "shortcut_label_guess": "Push Count",
+      "symbol": "HKQuantityTypeIdentifierPushCount",
+      "unit_and_aggregation": "count, Cumulative"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(18.0), watchos(11.0), macCatalyst(18.0), macos(15.0), visionos(2.0))",
+      "sdk_suffix": "RowingSpeed",
+      "shortcut_label_guess": "Rowing Speed",
+      "symbol": "HKQuantityTypeIdentifierRowingSpeed",
+      "unit_and_aggregation": "m/s, Discrete (Arithmetic)"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(16.0), watchos(9.0), macCatalyst(16.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "RunningPower",
+      "shortcut_label_guess": "Running Power",
+      "symbol": "HKQuantityTypeIdentifierRunningPower",
+      "unit_and_aggregation": "W, Discrete (Arithmetic)"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(16.0), watchos(9.0), macCatalyst(16.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "RunningSpeed",
+      "shortcut_label_guess": "Running Speed",
+      "symbol": "HKQuantityTypeIdentifierRunningSpeed",
+      "unit_and_aggregation": "m/s, Discrete (Arithmetic)"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(8.0), watchos(2.0), macCatalyst(13.0), macos(13.0), visionos(1.0))",
+      "observed_find_samples_labels": [
+        "Steps"
+      ],
+      "observed_shortcuts_labels": [
+        "Step Count"
+      ],
+      "sdk_suffix": "StepCount",
+      "shortcut_label_guess": "Step Count",
+      "symbol": "HKQuantityTypeIdentifierStepCount",
+      "unit_and_aggregation": "count, Cumulative"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(10.0), watchos(3.0), macCatalyst(13.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "SwimmingStrokeCount",
+      "shortcut_label_guess": "Swimming Stroke Count",
+      "symbol": "HKQuantityTypeIdentifierSwimmingStrokeCount",
+      "unit_and_aggregation": "count, Cumulative"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(16.0), watchos(9.0), macCatalyst(16.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "UnderwaterDepth",
+      "shortcut_label_guess": "Underwater Depth",
+      "symbol": "HKQuantityTypeIdentifierUnderwaterDepth",
+      "unit_and_aggregation": "m, Discrete (Arithmetic)"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(18.0), watchos(11.0), macCatalyst(18.0), macos(15.0), visionos(2.0))",
+      "sdk_suffix": "WorkoutEffortScore",
+      "shortcut_label_guess": "Workout Effort Score",
+      "symbol": "HKQuantityTypeIdentifierWorkoutEffortScore",
+      "unit_and_aggregation": "appleEffortScore, Discrete (Arithmetic)"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(13.0), watchos(6.0), macCatalyst(13.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "EnvironmentalAudioExposure",
+      "shortcut_label_guess": "Environmental Audio Exposure",
+      "symbol": "HKQuantityTypeIdentifierEnvironmentalAudioExposure",
+      "unit_and_aggregation": "dBASPL, Discrete (Equivalent Continuous Level)"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(16.0), watchos(9.0), macCatalyst(16.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "EnvironmentalSoundReduction",
+      "shortcut_label_guess": "Environmental Sound Reduction",
+      "symbol": "HKQuantityTypeIdentifierEnvironmentalSoundReduction",
+      "unit_and_aggregation": "dBASPL, Discrete (Equivalent Continuous Level)"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(13.0), watchos(6.0), macCatalyst(13.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "HeadphoneAudioExposure",
+      "shortcut_label_guess": "Headphone Audio Exposure",
+      "symbol": "HKQuantityTypeIdentifierHeadphoneAudioExposure",
+      "unit_and_aggregation": "dBASPL, Discrete (Equivalent Continuous Level)"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(16.0), watchos(9.0), macCatalyst(16.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "AtrialFibrillationBurden",
+      "shortcut_label_guess": "Atrial Fibrillation Burden",
+      "symbol": "HKQuantityTypeIdentifierAtrialFibrillationBurden",
+      "unit_and_aggregation": "%, Discrete (Temporally Weighted)"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(8.0), watchos(2.0), macCatalyst(13.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "HeartRate",
+      "shortcut_label_guess": "Heart Rate",
+      "symbol": "HKQuantityTypeIdentifierHeartRate",
+      "unit_and_aggregation": "count/s, Discrete (Temporally Weighted)"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(16.0), watchos(9.0), macCatalyst(16.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "HeartRateRecoveryOneMinute",
+      "shortcut_label_guess": "Heart Rate Recovery One Minute",
+      "symbol": "HKQuantityTypeIdentifierHeartRateRecoveryOneMinute",
+      "unit_and_aggregation": "count/min, Discrete (Arithmetic)"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(11.0), watchos(4.0), macCatalyst(13.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "HeartRateVariabilitySDNN",
+      "shortcut_label_guess": "Heart Rate Variability SDNN",
+      "symbol": "HKQuantityTypeIdentifierHeartRateVariabilitySDNN",
+      "unit_and_aggregation": "ms, Discrete (Arithmetic)"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(8.0), watchos(2.0), macCatalyst(13.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "PeripheralPerfusionIndex",
+      "shortcut_label_guess": "Peripheral Perfusion Index",
+      "symbol": "HKQuantityTypeIdentifierPeripheralPerfusionIndex",
+      "unit_and_aggregation": "%, Discrete (Arithmetic)"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(11.0), watchos(4.0), macCatalyst(13.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "RestingHeartRate",
+      "shortcut_label_guess": "Resting Heart Rate",
+      "symbol": "HKQuantityTypeIdentifierRestingHeartRate",
+      "unit_and_aggregation": "count/min, Discrete (Arithmetic)"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(11.0), watchos(4.0), macCatalyst(13.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "VO2Max",
+      "shortcut_label_guess": "VO2 Max",
+      "symbol": "HKQuantityTypeIdentifierVO2Max",
+      "unit_and_aggregation": "ml/(kg*min), Discrete (Arithmetic)"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(11.0), watchos(4.0), macCatalyst(13.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "WalkingHeartRateAverage",
+      "shortcut_label_guess": "Walking Heart Rate Average",
+      "symbol": "HKQuantityTypeIdentifierWalkingHeartRateAverage",
+      "unit_and_aggregation": "count/min, Discrete (Arithmetic)"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(15.0), watchos(8.0), macCatalyst(15.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "AppleWalkingSteadiness",
+      "shortcut_label_guess": "Apple Walking Steadiness",
+      "symbol": "HKQuantityTypeIdentifierAppleWalkingSteadiness",
+      "unit_and_aggregation": "%, Discrete (Arithmetic)"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(16.0), watchos(9.0), macCatalyst(16.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "RunningGroundContactTime",
+      "shortcut_label_guess": "Running Ground Contact Time",
+      "symbol": "HKQuantityTypeIdentifierRunningGroundContactTime",
+      "unit_and_aggregation": "ms, Discrete (Arithmetic)"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(16.0), watchos(9.0), macCatalyst(16.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "RunningStrideLength",
+      "shortcut_label_guess": "Running Stride Length",
+      "symbol": "HKQuantityTypeIdentifierRunningStrideLength",
+      "unit_and_aggregation": "m, Discrete (Arithmetic)"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(16.0), watchos(9.0), macCatalyst(16.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "RunningVerticalOscillation",
+      "shortcut_label_guess": "Running Vertical Oscillation",
+      "symbol": "HKQuantityTypeIdentifierRunningVerticalOscillation",
+      "unit_and_aggregation": "cm, Discrete (Arithmetic)"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(14.0), watchos(7.0), macCatalyst(14.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "SixMinuteWalkTestDistance",
+      "shortcut_label_guess": "Six Minute Walk Test Distance",
+      "symbol": "HKQuantityTypeIdentifierSixMinuteWalkTestDistance",
+      "unit_and_aggregation": "m, Discrete (Arithmetic)"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(14.0), watchos(7.0), macCatalyst(14.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "StairAscentSpeed",
+      "shortcut_label_guess": "Stair Ascent Speed",
+      "symbol": "HKQuantityTypeIdentifierStairAscentSpeed",
+      "unit_and_aggregation": "m/s, Discrete (Arithmetic)"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(14.0), watchos(7.0), macCatalyst(14.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "StairDescentSpeed",
+      "shortcut_label_guess": "Stair Descent Speed",
+      "symbol": "HKQuantityTypeIdentifierStairDescentSpeed",
+      "unit_and_aggregation": "m/s, Discrete (Arithmetic)"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(14.0), watchos(7.0), macCatalyst(14.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "WalkingAsymmetryPercentage",
+      "shortcut_label_guess": "Walking Asymmetry Percentage",
+      "symbol": "HKQuantityTypeIdentifierWalkingAsymmetryPercentage",
+      "unit_and_aggregation": "%, Discrete (Arithmetic)"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(14.0), watchos(7.0), macCatalyst(14.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "WalkingDoubleSupportPercentage",
+      "shortcut_label_guess": "Walking Double Support Percentage",
+      "symbol": "HKQuantityTypeIdentifierWalkingDoubleSupportPercentage",
+      "unit_and_aggregation": "%, Discrete (Arithmetic)"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(14.0), watchos(7.0), macCatalyst(14.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "WalkingSpeed",
+      "shortcut_label_guess": "Walking Speed",
+      "symbol": "HKQuantityTypeIdentifierWalkingSpeed",
+      "unit_and_aggregation": "m/s, Discrete (Arithmetic)"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(14.0), watchos(7.0), macCatalyst(14.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "WalkingStepLength",
+      "shortcut_label_guess": "Walking Step Length",
+      "symbol": "HKQuantityTypeIdentifierWalkingStepLength",
+      "unit_and_aggregation": "m, Discrete (Arithmetic)"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(8.0), watchos(2.0), macCatalyst(13.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "DietaryBiotin",
+      "shortcut_label_guess": "Biotin",
+      "symbol": "HKQuantityTypeIdentifierDietaryBiotin",
+      "unit_and_aggregation": "g, Cumulative"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(8.0), watchos(2.0), macCatalyst(13.0), macos(13.0), visionos(1.0))",
+      "observed_shortcuts_labels": [
+        "Caffeine"
+      ],
+      "sdk_suffix": "DietaryCaffeine",
+      "shortcut_label_guess": "Caffeine",
+      "symbol": "HKQuantityTypeIdentifierDietaryCaffeine",
+      "unit_and_aggregation": "g, Cumulative"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(8.0), watchos(2.0), macCatalyst(13.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "DietaryCalcium",
+      "shortcut_label_guess": "Calcium",
+      "symbol": "HKQuantityTypeIdentifierDietaryCalcium",
+      "unit_and_aggregation": "g, Cumulative"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(8.0), watchos(2.0), macCatalyst(13.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "DietaryCarbohydrates",
+      "shortcut_label_guess": "Carbohydrates",
+      "symbol": "HKQuantityTypeIdentifierDietaryCarbohydrates",
+      "unit_and_aggregation": "g, Cumulative"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(8.0), watchos(2.0), macCatalyst(13.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "DietaryChloride",
+      "shortcut_label_guess": "Chloride",
+      "symbol": "HKQuantityTypeIdentifierDietaryChloride",
+      "unit_and_aggregation": "g, Cumulative"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(8.0), watchos(2.0), macCatalyst(13.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "DietaryCholesterol",
+      "shortcut_label_guess": "Cholesterol",
+      "symbol": "HKQuantityTypeIdentifierDietaryCholesterol",
+      "unit_and_aggregation": "g, Cumulative"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(8.0), watchos(2.0), macCatalyst(13.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "DietaryChromium",
+      "shortcut_label_guess": "Chromium",
+      "symbol": "HKQuantityTypeIdentifierDietaryChromium",
+      "unit_and_aggregation": "g, Cumulative"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(8.0), watchos(2.0), macCatalyst(13.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "DietaryCopper",
+      "shortcut_label_guess": "Copper",
+      "symbol": "HKQuantityTypeIdentifierDietaryCopper",
+      "unit_and_aggregation": "g, Cumulative"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(8.0), watchos(2.0), macCatalyst(13.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "DietaryEnergyConsumed",
+      "shortcut_label_guess": "Energy Consumed",
+      "symbol": "HKQuantityTypeIdentifierDietaryEnergyConsumed",
+      "unit_and_aggregation": "kcal, Cumulative"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(8.0), watchos(2.0), macCatalyst(13.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "DietaryFatMonounsaturated",
+      "shortcut_label_guess": "Fat Monounsaturated",
+      "symbol": "HKQuantityTypeIdentifierDietaryFatMonounsaturated",
+      "unit_and_aggregation": "g, Cumulative"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(8.0), watchos(2.0), macCatalyst(13.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "DietaryFatPolyunsaturated",
+      "shortcut_label_guess": "Fat Polyunsaturated",
+      "symbol": "HKQuantityTypeIdentifierDietaryFatPolyunsaturated",
+      "unit_and_aggregation": "g, Cumulative"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(8.0), watchos(2.0), macCatalyst(13.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "DietaryFatSaturated",
+      "shortcut_label_guess": "Fat Saturated",
+      "symbol": "HKQuantityTypeIdentifierDietaryFatSaturated",
+      "unit_and_aggregation": "g, Cumulative"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(8.0), watchos(2.0), macCatalyst(13.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "DietaryFatTotal",
+      "shortcut_label_guess": "Fat Total",
+      "symbol": "HKQuantityTypeIdentifierDietaryFatTotal",
+      "unit_and_aggregation": "g, Cumulative"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(8.0), watchos(2.0), macCatalyst(13.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "DietaryFiber",
+      "shortcut_label_guess": "Fiber",
+      "symbol": "HKQuantityTypeIdentifierDietaryFiber",
+      "unit_and_aggregation": "g, Cumulative"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(8.0), watchos(2.0), macCatalyst(13.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "DietaryFolate",
+      "shortcut_label_guess": "Folate",
+      "symbol": "HKQuantityTypeIdentifierDietaryFolate",
+      "unit_and_aggregation": "g, Cumulative"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(8.0), watchos(2.0), macCatalyst(13.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "DietaryIodine",
+      "shortcut_label_guess": "Iodine",
+      "symbol": "HKQuantityTypeIdentifierDietaryIodine",
+      "unit_and_aggregation": "g, Cumulative"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(8.0), watchos(2.0), macCatalyst(13.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "DietaryIron",
+      "shortcut_label_guess": "Iron",
+      "symbol": "HKQuantityTypeIdentifierDietaryIron",
+      "unit_and_aggregation": "g, Cumulative"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(8.0), watchos(2.0), macCatalyst(13.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "DietaryMagnesium",
+      "shortcut_label_guess": "Magnesium",
+      "symbol": "HKQuantityTypeIdentifierDietaryMagnesium",
+      "unit_and_aggregation": "g, Cumulative"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(8.0), watchos(2.0), macCatalyst(13.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "DietaryManganese",
+      "shortcut_label_guess": "Manganese",
+      "symbol": "HKQuantityTypeIdentifierDietaryManganese",
+      "unit_and_aggregation": "g, Cumulative"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(8.0), watchos(2.0), macCatalyst(13.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "DietaryMolybdenum",
+      "shortcut_label_guess": "Molybdenum",
+      "symbol": "HKQuantityTypeIdentifierDietaryMolybdenum",
+      "unit_and_aggregation": "g, Cumulative"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(8.0), watchos(2.0), macCatalyst(13.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "DietaryNiacin",
+      "shortcut_label_guess": "Niacin",
+      "symbol": "HKQuantityTypeIdentifierDietaryNiacin",
+      "unit_and_aggregation": "g, Cumulative"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(8.0), watchos(2.0), macCatalyst(13.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "DietaryPantothenicAcid",
+      "shortcut_label_guess": "Pantothenic Acid",
+      "symbol": "HKQuantityTypeIdentifierDietaryPantothenicAcid",
+      "unit_and_aggregation": "g, Cumulative"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(8.0), watchos(2.0), macCatalyst(13.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "DietaryPhosphorus",
+      "shortcut_label_guess": "Phosphorus",
+      "symbol": "HKQuantityTypeIdentifierDietaryPhosphorus",
+      "unit_and_aggregation": "g, Cumulative"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(8.0), watchos(2.0), macCatalyst(13.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "DietaryPotassium",
+      "shortcut_label_guess": "Potassium",
+      "symbol": "HKQuantityTypeIdentifierDietaryPotassium",
+      "unit_and_aggregation": "g, Cumulative"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(8.0), watchos(2.0), macCatalyst(13.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "DietaryProtein",
+      "shortcut_label_guess": "Protein",
+      "symbol": "HKQuantityTypeIdentifierDietaryProtein",
+      "unit_and_aggregation": "g, Cumulative"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(8.0), watchos(2.0), macCatalyst(13.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "DietaryRiboflavin",
+      "shortcut_label_guess": "Riboflavin",
+      "symbol": "HKQuantityTypeIdentifierDietaryRiboflavin",
+      "unit_and_aggregation": "g, Cumulative"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(8.0), watchos(2.0), macCatalyst(13.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "DietarySelenium",
+      "shortcut_label_guess": "Selenium",
+      "symbol": "HKQuantityTypeIdentifierDietarySelenium",
+      "unit_and_aggregation": "g, Cumulative"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(8.0), watchos(2.0), macCatalyst(13.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "DietarySodium",
+      "shortcut_label_guess": "Sodium",
+      "symbol": "HKQuantityTypeIdentifierDietarySodium",
+      "unit_and_aggregation": "g, Cumulative"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(8.0), watchos(2.0), macCatalyst(13.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "DietarySugar",
+      "shortcut_label_guess": "Sugar",
+      "symbol": "HKQuantityTypeIdentifierDietarySugar",
+      "unit_and_aggregation": "g, Cumulative"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(8.0), watchos(2.0), macCatalyst(13.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "DietaryThiamin",
+      "shortcut_label_guess": "Thiamin",
+      "symbol": "HKQuantityTypeIdentifierDietaryThiamin",
+      "unit_and_aggregation": "g, Cumulative"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(8.0), watchos(2.0), macCatalyst(13.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "DietaryVitaminA",
+      "shortcut_label_guess": "Vitamin A",
+      "symbol": "HKQuantityTypeIdentifierDietaryVitaminA",
+      "unit_and_aggregation": "g, Cumulative"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(8.0), watchos(2.0), macCatalyst(13.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "DietaryVitaminB12",
+      "shortcut_label_guess": "Vitamin B12",
+      "symbol": "HKQuantityTypeIdentifierDietaryVitaminB12",
+      "unit_and_aggregation": "g, Cumulative"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(8.0), watchos(2.0), macCatalyst(13.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "DietaryVitaminB6",
+      "shortcut_label_guess": "Vitamin B6",
+      "symbol": "HKQuantityTypeIdentifierDietaryVitaminB6",
+      "unit_and_aggregation": "g, Cumulative"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(8.0), watchos(2.0), macCatalyst(13.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "DietaryVitaminC",
+      "shortcut_label_guess": "Vitamin C",
+      "symbol": "HKQuantityTypeIdentifierDietaryVitaminC",
+      "unit_and_aggregation": "g, Cumulative"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(8.0), watchos(2.0), macCatalyst(13.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "DietaryVitaminD",
+      "shortcut_label_guess": "Vitamin D",
+      "symbol": "HKQuantityTypeIdentifierDietaryVitaminD",
+      "unit_and_aggregation": "g, Cumulative"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(8.0), watchos(2.0), macCatalyst(13.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "DietaryVitaminE",
+      "shortcut_label_guess": "Vitamin E",
+      "symbol": "HKQuantityTypeIdentifierDietaryVitaminE",
+      "unit_and_aggregation": "g, Cumulative"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(8.0), watchos(2.0), macCatalyst(13.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "DietaryVitaminK",
+      "shortcut_label_guess": "Vitamin K",
+      "symbol": "HKQuantityTypeIdentifierDietaryVitaminK",
+      "unit_and_aggregation": "g, Cumulative"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(9.0), watchos(2.0), macCatalyst(13.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "DietaryWater",
+      "shortcut_label_guess": "Water",
+      "symbol": "HKQuantityTypeIdentifierDietaryWater",
+      "unit_and_aggregation": "mL, Cumulative"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(8.0), watchos(2.0), macCatalyst(13.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "DietaryZinc",
+      "shortcut_label_guess": "Zinc",
+      "symbol": "HKQuantityTypeIdentifierDietaryZinc",
+      "unit_and_aggregation": "g, Cumulative"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(8.0), watchos(2.0), macCatalyst(13.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "BloodAlcoholContent",
+      "shortcut_label_guess": "Blood Alcohol Content",
+      "symbol": "HKQuantityTypeIdentifierBloodAlcoholContent",
+      "unit_and_aggregation": "%, Discrete (Arithmetic)"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(8.0), watchos(2.0), macCatalyst(13.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "BloodPressureDiastolic",
+      "shortcut_label_guess": "Diastolic Blood Pressure",
+      "symbol": "HKQuantityTypeIdentifierBloodPressureDiastolic",
+      "unit_and_aggregation": "mmHg, Discrete (Arithmetic)"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(8.0), watchos(2.0), macCatalyst(13.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "BloodPressureSystolic",
+      "shortcut_label_guess": "Systolic Blood Pressure",
+      "symbol": "HKQuantityTypeIdentifierBloodPressureSystolic",
+      "unit_and_aggregation": "mmHg, Discrete (Arithmetic)"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(11.0), watchos(4.0), macCatalyst(13.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "InsulinDelivery",
+      "shortcut_label_guess": "Insulin Delivery",
+      "symbol": "HKQuantityTypeIdentifierInsulinDelivery",
+      "unit_and_aggregation": "IU, Cumulative"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(15.0), watchos(8.0), macCatalyst(15.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "NumberOfAlcoholicBeverages",
+      "shortcut_label_guess": "Number Of Alcoholic Beverages",
+      "symbol": "HKQuantityTypeIdentifierNumberOfAlcoholicBeverages",
+      "unit_and_aggregation": "count, Cumulative"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(8.0), watchos(2.0), macCatalyst(13.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "NumberOfTimesFallen",
+      "shortcut_label_guess": "Number Of Times Fallen",
+      "symbol": "HKQuantityTypeIdentifierNumberOfTimesFallen",
+      "unit_and_aggregation": "count, Cumulative"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(17.0), watchos(10.0), macCatalyst(17.0), macos(14.0), visionos(1.0))",
+      "sdk_suffix": "TimeInDaylight",
+      "shortcut_label_guess": "Time In Daylight",
+      "symbol": "HKQuantityTypeIdentifierTimeInDaylight",
+      "unit_and_aggregation": "min, Cumulative"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(9.0), watchos(2.0), macCatalyst(13.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "UVExposure",
+      "shortcut_label_guess": "UV Exposure",
+      "symbol": "HKQuantityTypeIdentifierUVExposure",
+      "unit_and_aggregation": ", Discrete (Arithmetic)"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(16.0), watchos(9.0), macCatalyst(16.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "WaterTemperature",
+      "shortcut_label_guess": "Water Temperature",
+      "symbol": "HKQuantityTypeIdentifierWaterTemperature",
+      "unit_and_aggregation": "degC, Discrete (Arithmetic)"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(9.0), watchos(2.0), macCatalyst(13.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "BasalBodyTemperature",
+      "shortcut_label_guess": "Basal Body Temperature",
+      "symbol": "HKQuantityTypeIdentifierBasalBodyTemperature",
+      "unit_and_aggregation": "degC, Discrete (Arithmetic)"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(18.0), watchos(11.0), macCatalyst(18.0), macos(15.0), visionos(2.0))",
+      "sdk_suffix": "AppleSleepingBreathingDisturbances",
+      "shortcut_label_guess": "Apple Sleeping Breathing Disturbances",
+      "symbol": "HKQuantityTypeIdentifierAppleSleepingBreathingDisturbances",
+      "unit_and_aggregation": "count, Discrete (Arithmetic)"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(8.0), watchos(2.0), macCatalyst(13.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "ForcedExpiratoryVolume1",
+      "shortcut_label_guess": "Forced Expiratory Volume1",
+      "symbol": "HKQuantityTypeIdentifierForcedExpiratoryVolume1",
+      "unit_and_aggregation": "L, Discrete (Arithmetic)"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(8.0), watchos(2.0), macCatalyst(13.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "ForcedVitalCapacity",
+      "shortcut_label_guess": "Forced Vital Capacity",
+      "symbol": "HKQuantityTypeIdentifierForcedVitalCapacity",
+      "unit_and_aggregation": "L, Discrete (Arithmetic)"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(8.0), watchos(2.0), macCatalyst(13.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "InhalerUsage",
+      "shortcut_label_guess": "Inhaler Usage",
+      "symbol": "HKQuantityTypeIdentifierInhalerUsage",
+      "unit_and_aggregation": "count, Cumulative"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(8.0), watchos(2.0), macCatalyst(13.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "OxygenSaturation",
+      "shortcut_label_guess": "Oxygen Saturation",
+      "symbol": "HKQuantityTypeIdentifierOxygenSaturation",
+      "unit_and_aggregation": "%, Discrete (Arithmetic)"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(8.0), watchos(2.0), macCatalyst(13.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "PeakExpiratoryFlowRate",
+      "shortcut_label_guess": "Peak Expiratory Flow Rate",
+      "symbol": "HKQuantityTypeIdentifierPeakExpiratoryFlowRate",
+      "unit_and_aggregation": "L/min, Discrete (Arithmetic)"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(8.0), watchos(2.0), macCatalyst(13.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "RespiratoryRate",
+      "shortcut_label_guess": "Respiratory Rate",
+      "symbol": "HKQuantityTypeIdentifierRespiratoryRate",
+      "unit_and_aggregation": "count/s, Discrete (Arithmetic)"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(8.0), watchos(2.0), macCatalyst(13.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "BloodGlucose",
+      "shortcut_label_guess": "Blood Glucose",
+      "symbol": "HKQuantityTypeIdentifierBloodGlucose",
+      "unit_and_aggregation": "mg/dL, Discrete (Arithmetic)"
+    },
+    {
+      "availability": "API_AVAILABLE(ios(8.0), watchos(2.0), macCatalyst(13.0), macos(13.0), visionos(1.0))",
+      "sdk_suffix": "BodyTemperature",
+      "shortcut_label_guess": "Body Temperature",
+      "symbol": "HKQuantityTypeIdentifierBodyTemperature",
+      "unit_and_aggregation": "degC, Discrete (Arithmetic)"
+    }
+  ],
+  "quantity_unit_hints": [
+    "%",
+    "IU",
+    "L",
+    "L/min",
+    "S",
+    "W",
+    "appleEffortScore",
+    "cm",
+    "count",
+    "count/min",
+    "count/s",
+    "dBASPL",
+    "degC",
+    "g",
+    "kcal",
+    "kcal/(kg*hr)",
+    "kg",
+    "m",
+    "m/s",
+    "mL",
+    "mg/dL",
+    "min",
+    "ml/(kg*min)",
+    "mmHg",
+    "ms"
+  ],
+  "quantity_units": [
+    {
+      "group": "si",
+      "important": true,
+      "unit": "g"
+    },
+    {
+      "group": "si",
+      "important": true,
+      "unit": "m"
+    },
+    {
+      "group": "si",
+      "important": true,
+      "unit": "L"
+    },
+    {
+      "group": "si",
+      "important": true,
+      "unit": "Pa"
+    },
+    {
+      "group": "si",
+      "important": true,
+      "unit": "s"
+    },
+    {
+      "group": "si",
+      "important": true,
+      "unit": "J"
+    },
+    {
+      "group": "si",
+      "important": true,
+      "unit": "K"
+    },
+    {
+      "group": "si",
+      "important": true,
+      "unit": "S"
+    },
+    {
+      "group": "si",
+      "important": false,
+      "unit": "mg"
+    },
+    {
+      "group": "si",
+      "important": false,
+      "unit": "kg"
+    },
+    {
+      "group": "si",
+      "important": false,
+      "unit": "mm"
+    },
+    {
+      "group": "si",
+      "important": false,
+      "unit": "km"
+    },
+    {
+      "group": "si",
+      "important": false,
+      "unit": "mL"
+    },
+    {
+      "group": "si",
+      "important": false,
+      "unit": "kPa"
+    },
+    {
+      "group": "si",
+      "important": false,
+      "unit": "ms"
+    },
+    {
+      "group": "si",
+      "important": false,
+      "unit": "kJ"
+    },
+    {
+      "group": "si",
+      "important": false,
+      "unit": "kK"
+    },
+    {
+      "group": "si",
+      "important": false,
+      "unit": "mS"
+    },
+    {
+      "group": "si",
+      "important": false,
+      "unit": "kS"
+    },
+    {
+      "group": "non_si",
+      "important": true,
+      "unit": "oz"
+    },
+    {
+      "group": "non_si",
+      "important": true,
+      "unit": "lb"
+    },
+    {
+      "group": "non_si",
+      "important": true,
+      "unit": "st"
+    },
+    {
+      "group": "non_si",
+      "important": true,
+      "unit": "in"
+    },
+    {
+      "group": "non_si",
+      "important": true,
+      "unit": "ft"
+    },
+    {
+      "group": "non_si",
+      "important": true,
+      "unit": "mi"
+    },
+    {
+      "group": "non_si",
+      "important": true,
+      "unit": "mmHg"
+    },
+    {
+      "group": "non_si",
+      "important": false,
+      "unit": "cmAq"
+    },
+    {
+      "group": "non_si",
+      "important": true,
+      "unit": "atm"
+    },
+    {
+      "group": "non_si",
+      "important": true,
+      "unit": "fl_oz_us"
+    },
+    {
+      "group": "non_si",
+      "important": false,
+      "unit": "fl_oz_imp"
+    },
+    {
+      "group": "non_si",
+      "important": true,
+      "unit": "pt_us"
+    },
+    {
+      "group": "non_si",
+      "important": true,
+      "unit": "pt_imp"
+    },
+    {
+      "group": "non_si",
+      "important": true,
+      "unit": "min"
+    },
+    {
+      "group": "non_si",
+      "important": true,
+      "unit": "hr"
+    },
+    {
+      "group": "non_si",
+      "important": true,
+      "unit": "d"
+    },
+    {
+      "group": "non_si",
+      "important": false,
+      "unit": "cal"
+    },
+    {
+      "group": "non_si",
+      "important": true,
+      "unit": "kcal"
+    },
+    {
+      "group": "si",
+      "important": true,
+      "unit": "degC"
+    },
+    {
+      "group": "non_si",
+      "important": true,
+      "unit": "degF"
+    },
+    {
+      "group": "non_si",
+      "important": true,
+      "unit": "count"
+    },
+    {
+      "group": "non_si",
+      "important": false,
+      "unit": "%"
+    },
+    {
+      "group": "compound",
+      "important": true,
+      "unit": "count/min"
+    },
+    {
+      "group": "compound",
+      "important": true,
+      "unit": "mg/dl"
+    },
+    {
+      "group": "compound",
+      "important": true,
+      "unit": "J/s"
+    },
+    {
+      "group": "compound",
+      "important": true,
+      "unit": "m/s^2"
+    },
+    {
+      "group": "compound",
+      "important": true,
+      "unit": "m/s"
+    }
+  ],
+  "shortcuts_actions": {
+    "find_health_samples": {
+      "identifier": "is.workflow.actions.filter.health.quantity",
+      "required_parameters": [
+        "WFContentItemFilter"
+      ],
+      "sample_output_name": "Health Samples"
+    },
+    "get_health_sample_detail": {
+      "identifier": "is.workflow.actions.properties.health.quantity",
+      "properties": [
+        "Type",
+        "Value",
+        "Unit",
+        "Start Date",
+        "End Date",
+        "Duration",
+        "Source",
+        "Name"
+      ],
+      "required_parameters": [
+        "WFInput",
+        "WFContentItemPropertyName"
+      ]
+    },
+    "log_health_sample": {
+      "category_parameters": [
+        "WFCategorySampleEnumeration",
+        "WFCategorySampleAdditionalEnumerationKey",
+        "WFQuantitySampleAdditionalEnumeration"
+      ],
+      "date_parameters": [
+        "WFQuantitySampleDate",
+        "WFSampleEndDate"
+      ],
+      "identifier": "is.workflow.actions.health.quantity.log",
+      "quantity_parameters": [
+        "WFQuantitySampleQuantity",
+        "WFQuantitySampleAdditionalQuantity"
+      ],
+      "required_parameters": [
+        "WFQuantitySampleType"
+      ]
+    },
+    "log_workout": {
+      "date_parameters": [
+        "WFWorkoutDate"
+      ],
+      "identifier": "is.workflow.actions.health.workout.log",
+      "quantity_parameters": [
+        "WFWorkoutDuration",
+        "WFWorkoutCaloriesQuantity",
+        "WFWorkoutDistanceQuantity"
+      ],
+      "required_parameters": [
+        "WFWorkoutReadableActivityType"
+      ]
+    }
+  },
+  "source": {
+    "headers": [
+      "HealthKit/HKTypeIdentifiers.h",
+      "HealthKit/HKCategoryValues.h",
+      "HealthKit/HKWorkout.h"
+    ],
+    "sdk_path": "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk",
+    "shortcut_xml_syntax_source": "Anonymized iOS Shortcuts XML examples captured while building this reference; user-specific source paths are intentionally omitted."
+  },
+  "workout_activity_types": [
+    {
+      "shortcut_label_guess": "American Football",
+      "symbol": "HKWorkoutActivityTypeAmericanFootball",
+      "value": 1
+    },
+    {
+      "shortcut_label_guess": "Archery",
+      "symbol": "HKWorkoutActivityTypeArchery",
+      "value": 2
+    },
+    {
+      "shortcut_label_guess": "Australian Football",
+      "symbol": "HKWorkoutActivityTypeAustralianFootball",
+      "value": 3
+    },
+    {
+      "shortcut_label_guess": "Badminton",
+      "symbol": "HKWorkoutActivityTypeBadminton",
+      "value": 4
+    },
+    {
+      "shortcut_label_guess": "Baseball",
+      "symbol": "HKWorkoutActivityTypeBaseball",
+      "value": 5
+    },
+    {
+      "shortcut_label_guess": "Basketball",
+      "symbol": "HKWorkoutActivityTypeBasketball",
+      "value": 6
+    },
+    {
+      "shortcut_label_guess": "Bowling",
+      "symbol": "HKWorkoutActivityTypeBowling",
+      "value": 7
+    },
+    {
+      "shortcut_label_guess": "Boxing",
+      "symbol": "HKWorkoutActivityTypeBoxing",
+      "value": 8
+    },
+    {
+      "shortcut_label_guess": "Climbing",
+      "symbol": "HKWorkoutActivityTypeClimbing",
+      "value": 9
+    },
+    {
+      "shortcut_label_guess": "Cricket",
+      "symbol": "HKWorkoutActivityTypeCricket",
+      "value": 10
+    },
+    {
+      "shortcut_label_guess": "Cross Training",
+      "symbol": "HKWorkoutActivityTypeCrossTraining",
+      "value": 11
+    },
+    {
+      "shortcut_label_guess": "Curling",
+      "symbol": "HKWorkoutActivityTypeCurling",
+      "value": 12
+    },
+    {
+      "shortcut_label_guess": "Cycling",
+      "symbol": "HKWorkoutActivityTypeCycling",
+      "value": 13
+    },
+    {
+      "shortcut_label_guess": "Dance",
+      "symbol": "HKWorkoutActivityTypeDance",
+      "value": 14
+    },
+    {
+      "shortcut_label_guess": "Dance Inspired Training",
+      "symbol": "HKWorkoutActivityTypeDanceInspiredTraining",
+      "value": 15
+    },
+    {
+      "shortcut_label_guess": "Elliptical",
+      "symbol": "HKWorkoutActivityTypeElliptical",
+      "value": 16
+    },
+    {
+      "shortcut_label_guess": "Equestrian Sports",
+      "symbol": "HKWorkoutActivityTypeEquestrianSports",
+      "value": 17
+    },
+    {
+      "shortcut_label_guess": "Fencing",
+      "symbol": "HKWorkoutActivityTypeFencing",
+      "value": 18
+    },
+    {
+      "shortcut_label_guess": "Fishing",
+      "symbol": "HKWorkoutActivityTypeFishing",
+      "value": 19
+    },
+    {
+      "shortcut_label_guess": "Functional Strength Training",
+      "symbol": "HKWorkoutActivityTypeFunctionalStrengthTraining",
+      "value": 20
+    },
+    {
+      "shortcut_label_guess": "Golf",
+      "symbol": "HKWorkoutActivityTypeGolf",
+      "value": 21
+    },
+    {
+      "shortcut_label_guess": "Gymnastics",
+      "symbol": "HKWorkoutActivityTypeGymnastics",
+      "value": 22
+    },
+    {
+      "shortcut_label_guess": "Handball",
+      "symbol": "HKWorkoutActivityTypeHandball",
+      "value": 23
+    },
+    {
+      "shortcut_label_guess": "Hiking",
+      "symbol": "HKWorkoutActivityTypeHiking",
+      "value": 24
+    },
+    {
+      "shortcut_label_guess": "Hockey",
+      "symbol": "HKWorkoutActivityTypeHockey",
+      "value": 25
+    },
+    {
+      "shortcut_label_guess": "Hunting",
+      "symbol": "HKWorkoutActivityTypeHunting",
+      "value": 26
+    },
+    {
+      "shortcut_label_guess": "Lacrosse",
+      "symbol": "HKWorkoutActivityTypeLacrosse",
+      "value": 27
+    },
+    {
+      "shortcut_label_guess": "Martial Arts",
+      "symbol": "HKWorkoutActivityTypeMartialArts",
+      "value": 28
+    },
+    {
+      "shortcut_label_guess": "Mind And Body",
+      "symbol": "HKWorkoutActivityTypeMindAndBody",
+      "value": 29
+    },
+    {
+      "shortcut_label_guess": "Mixed Metabolic Cardio Training",
+      "symbol": "HKWorkoutActivityTypeMixedMetabolicCardioTraining",
+      "value": 30
+    },
+    {
+      "shortcut_label_guess": "Paddle Sports",
+      "symbol": "HKWorkoutActivityTypePaddleSports",
+      "value": 31
+    },
+    {
+      "shortcut_label_guess": "Play",
+      "symbol": "HKWorkoutActivityTypePlay",
+      "value": 32
+    },
+    {
+      "shortcut_label_guess": "Preparation And Recovery",
+      "symbol": "HKWorkoutActivityTypePreparationAndRecovery",
+      "value": 33
+    },
+    {
+      "shortcut_label_guess": "Racquetball",
+      "symbol": "HKWorkoutActivityTypeRacquetball",
+      "value": 34
+    },
+    {
+      "shortcut_label_guess": "Rowing",
+      "symbol": "HKWorkoutActivityTypeRowing",
+      "value": 35
+    },
+    {
+      "shortcut_label_guess": "Rugby",
+      "symbol": "HKWorkoutActivityTypeRugby",
+      "value": 36
+    },
+    {
+      "shortcut_label_guess": "Running",
+      "symbol": "HKWorkoutActivityTypeRunning",
+      "value": 37
+    },
+    {
+      "shortcut_label_guess": "Sailing",
+      "symbol": "HKWorkoutActivityTypeSailing",
+      "value": 38
+    },
+    {
+      "shortcut_label_guess": "Skating Sports",
+      "symbol": "HKWorkoutActivityTypeSkatingSports",
+      "value": 39
+    },
+    {
+      "shortcut_label_guess": "Snow Sports",
+      "symbol": "HKWorkoutActivityTypeSnowSports",
+      "value": 40
+    },
+    {
+      "shortcut_label_guess": "Soccer",
+      "symbol": "HKWorkoutActivityTypeSoccer",
+      "value": 41
+    },
+    {
+      "shortcut_label_guess": "Softball",
+      "symbol": "HKWorkoutActivityTypeSoftball",
+      "value": 42
+    },
+    {
+      "shortcut_label_guess": "Squash",
+      "symbol": "HKWorkoutActivityTypeSquash",
+      "value": 43
+    },
+    {
+      "shortcut_label_guess": "Stair Climbing",
+      "symbol": "HKWorkoutActivityTypeStairClimbing",
+      "value": 44
+    },
+    {
+      "shortcut_label_guess": "Surfing Sports",
+      "symbol": "HKWorkoutActivityTypeSurfingSports",
+      "value": 45
+    },
+    {
+      "shortcut_label_guess": "Swimming",
+      "symbol": "HKWorkoutActivityTypeSwimming",
+      "value": 46
+    },
+    {
+      "shortcut_label_guess": "Table Tennis",
+      "symbol": "HKWorkoutActivityTypeTableTennis",
+      "value": 47
+    },
+    {
+      "shortcut_label_guess": "Tennis",
+      "symbol": "HKWorkoutActivityTypeTennis",
+      "value": 48
+    },
+    {
+      "shortcut_label_guess": "Track And Field",
+      "symbol": "HKWorkoutActivityTypeTrackAndField",
+      "value": 49
+    },
+    {
+      "shortcut_label_guess": "Traditional Strength Training",
+      "symbol": "HKWorkoutActivityTypeTraditionalStrengthTraining",
+      "value": 50
+    },
+    {
+      "shortcut_label_guess": "Volleyball",
+      "symbol": "HKWorkoutActivityTypeVolleyball",
+      "value": 51
+    },
+    {
+      "shortcut_label_guess": "Walking",
+      "symbol": "HKWorkoutActivityTypeWalking",
+      "value": 52
+    },
+    {
+      "shortcut_label_guess": "Water Fitness",
+      "symbol": "HKWorkoutActivityTypeWaterFitness",
+      "value": 53
+    },
+    {
+      "shortcut_label_guess": "Water Polo",
+      "symbol": "HKWorkoutActivityTypeWaterPolo",
+      "value": 54
+    },
+    {
+      "shortcut_label_guess": "Water Sports",
+      "symbol": "HKWorkoutActivityTypeWaterSports",
+      "value": 55
+    },
+    {
+      "shortcut_label_guess": "Wrestling",
+      "symbol": "HKWorkoutActivityTypeWrestling",
+      "value": 56
+    },
+    {
+      "shortcut_label_guess": "Yoga",
+      "symbol": "HKWorkoutActivityTypeYoga",
+      "value": 57
+    },
+    {
+      "shortcut_label_guess": "Barre",
+      "symbol": "HKWorkoutActivityTypeBarre",
+      "value": 58
+    },
+    {
+      "shortcut_label_guess": "Core Training",
+      "symbol": "HKWorkoutActivityTypeCoreTraining",
+      "value": 59
+    },
+    {
+      "shortcut_label_guess": "Cross Country Skiing",
+      "symbol": "HKWorkoutActivityTypeCrossCountrySkiing",
+      "value": 60
+    },
+    {
+      "shortcut_label_guess": "Downhill Skiing",
+      "symbol": "HKWorkoutActivityTypeDownhillSkiing",
+      "value": 61
+    },
+    {
+      "shortcut_label_guess": "Flexibility",
+      "symbol": "HKWorkoutActivityTypeFlexibility",
+      "value": 62
+    },
+    {
+      "shortcut_label_guess": "High Intensity Interval Training",
+      "symbol": "HKWorkoutActivityTypeHighIntensityIntervalTraining",
+      "value": 63
+    },
+    {
+      "shortcut_label_guess": "Jump Rope",
+      "symbol": "HKWorkoutActivityTypeJumpRope",
+      "value": 64
+    },
+    {
+      "shortcut_label_guess": "Kickboxing",
+      "symbol": "HKWorkoutActivityTypeKickboxing",
+      "value": 65
+    },
+    {
+      "shortcut_label_guess": "Pilates",
+      "symbol": "HKWorkoutActivityTypePilates",
+      "value": 66
+    },
+    {
+      "shortcut_label_guess": "Snowboarding",
+      "symbol": "HKWorkoutActivityTypeSnowboarding",
+      "value": 67
+    },
+    {
+      "shortcut_label_guess": "Stairs",
+      "symbol": "HKWorkoutActivityTypeStairs",
+      "value": 68
+    },
+    {
+      "shortcut_label_guess": "Step Training",
+      "symbol": "HKWorkoutActivityTypeStepTraining",
+      "value": 69
+    },
+    {
+      "shortcut_label_guess": "Wheelchair Walk Pace",
+      "symbol": "HKWorkoutActivityTypeWheelchairWalkPace",
+      "value": 70
+    },
+    {
+      "shortcut_label_guess": "Wheelchair Run Pace",
+      "symbol": "HKWorkoutActivityTypeWheelchairRunPace",
+      "value": 71
+    },
+    {
+      "shortcut_label_guess": "Tai Chi",
+      "symbol": "HKWorkoutActivityTypeTaiChi",
+      "value": 72
+    },
+    {
+      "shortcut_label_guess": "Mixed Cardio",
+      "symbol": "HKWorkoutActivityTypeMixedCardio",
+      "value": 73
+    },
+    {
+      "shortcut_label_guess": "Hand Cycling",
+      "symbol": "HKWorkoutActivityTypeHandCycling",
+      "value": 74
+    },
+    {
+      "shortcut_label_guess": "Disc Sports",
+      "symbol": "HKWorkoutActivityTypeDiscSports",
+      "value": 75
+    },
+    {
+      "shortcut_label_guess": "Fitness Gaming",
+      "symbol": "HKWorkoutActivityTypeFitnessGaming",
+      "value": 76
+    },
+    {
+      "shortcut_label_guess": "Cardio Dance",
+      "symbol": "HKWorkoutActivityTypeCardioDance",
+      "value": 77
+    },
+    {
+      "shortcut_label_guess": "Social Dance",
+      "symbol": "HKWorkoutActivityTypeSocialDance",
+      "value": 78
+    },
+    {
+      "shortcut_label_guess": "Pickleball",
+      "symbol": "HKWorkoutActivityTypePickleball",
+      "value": 79
+    },
+    {
+      "shortcut_label_guess": "Cooldown",
+      "symbol": "HKWorkoutActivityTypeCooldown",
+      "value": 80
+    },
+    {
+      "shortcut_label_guess": "Swim Bike Run",
+      "symbol": "HKWorkoutActivityTypeSwimBikeRun",
+      "value": 82
+    },
+    {
+      "shortcut_label_guess": "Transition",
+      "symbol": "HKWorkoutActivityTypeTransition",
+      "value": 83
+    },
+    {
+      "shortcut_label_guess": "Underwater Diving",
+      "symbol": "HKWorkoutActivityTypeUnderwaterDiving",
+      "value": 84
+    },
+    {
+      "shortcut_label_guess": "Other",
+      "symbol": "HKWorkoutActivityTypeOther",
+      "value": 3000
+    }
+  ]
+}

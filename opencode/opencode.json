@@ -1,0 +1,30 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "plugin": ["./opencode/plugin/validator.ts"],
+  "command": {
+    "build-shortcut": {
+      "template": "Delegate to the shortcut-builder subagent to design, build, validate, sign, and archive a macOS/iOS Shortcut that satisfies: $ARGUMENTS. The agent owns the full workflow — resolving output dir, reading the shared skill catalog (claude/skills/shortcuts-playground/ or skills/shortcuts-playground/), picking an icon via select_shortcut_icon_color.py, drafting, Craig-Loop validating via tool.execute.after, archiving, signing, and verifying the signed .shortcut exists.",
+      "description": "Build a macOS/iOS Shortcut from a natural-language brief (Shortcuts Playground)",
+      "agent": "shortcut-builder",
+      "subtask": true
+    },
+    "remix-shortcut": {
+      "template": "Delegate to the shortcut-remixer subagent to apply a surgical diff to an existing unsigned Shortcuts XML file. Input: $ARGUMENTS (must contain an absolute .xml path + natural-language remix idea). The agent validates the source is unsigned XML, baselines it, plans a minimal diff, writes to <OUTPUT_DIR>/drafts/<new name>.xml, Craig-Loop validates, archives + signs, and verifies the signed .shortcut exists.",
+      "description": "Remix an existing unsigned Shortcuts XML with a natural-language diff",
+      "agent": "shortcut-remixer",
+      "subtask": true
+    }
+  },
+  "agent": {
+    "shortcut-builder": {
+      "description": "Specialized subagent that designs, builds, validates, signs, and archives macOS/iOS Shortcuts",
+      "mode": "subagent",
+      "prompt": "{file:./opencode/agents/shortcut-builder.md}"
+    },
+    "shortcut-remixer": {
+      "description": "Specialized subagent that remixes an existing .xml Shortcuts plist by applying a natural-language diff",
+      "mode": "subagent",
+      "prompt": "{file:./opencode/agents/shortcut-remixer.md}"
+    }
+  }
+}

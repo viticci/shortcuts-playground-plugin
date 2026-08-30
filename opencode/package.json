@@ -1,0 +1,49 @@
+{
+  "name": "shortcuts-playground",
+  "version": "1.2.4",
+  "description": "Build, validate, sign, and archive macOS/iOS Shortcuts from OpenCode — thin skill wrapper over ToolKit v78 catalog, /build-shortcut and /remix-shortcut commands, and tool.execute.after validator",
+  "type": "module",
+  "license": "MIT",
+  "author": {
+    "name": "Federico Viticci",
+    "url": "https://www.macstories.net"
+  },
+  "homepage": "https://www.macstories.net",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/viticci/shortcuts-playground-plugin.git",
+    "directory": "opencode"
+  },
+  "keywords": [
+    "opencode",
+    "shortcuts",
+    "macos",
+    "ios",
+    "automation",
+    "apple",
+    "plugin"
+  ],
+  "main": "plugin/validator.ts",
+  "files": [
+    "plugin/",
+    "skills/",
+    "commands/",
+    "agents/",
+    "opencode.json",
+    "README.md"
+  ],
+  "exports": {
+    ".": "./plugin/validator.ts",
+    "./plugin": "./plugin/validator.ts",
+    "./server": "./plugin/validator.ts"
+  },
+  "peerDependencies": {
+    "@opencode-ai/plugin": "^1.17.0"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
