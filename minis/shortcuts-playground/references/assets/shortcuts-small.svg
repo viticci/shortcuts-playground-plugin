@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="Shortcuts-style icon in black and white">
+  <!-- Background (rounded app icon) -->
+  <rect x="0" y="0" width="200" height="200" rx="45" fill="#000"></rect>
+
+  <!-- Bottom diamond -->
+  <g transform="translate(100 133)">
+    <rect x="-44" y="-44" width="88" height="88" rx="18" fill="#d9d9d9" transform="rotate(45)"></rect>
+  </g>
+
+  <!-- Top diamond -->
+  <g transform="translate(100 74)">
+    <rect x="-44" y="-44" width="88" height="88" rx="18" fill="#ffffff" transform="rotate(45)"></rect>
+  </g>
+</svg>

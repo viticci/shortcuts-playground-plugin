@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# Portable Minis wrapper; no Claude/Codex plugin environment required.
+set -u
+ROOT="$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)"
+PY="${SHORTCUTS_PLAYGROUND_PYTHON:-python3}"
+if ! command -v "$PY" >/dev/null 2>&1; then
+  printf 'shortcuts-playground: python3 not found on PATH.\n' >&2; exit 127
+fi
+if ! "$PY" -c 'import sys; sys.exit(0 if sys.version_info >= (3, 10) else 1)'; then
+  printf 'shortcuts-playground: Python 3.10+ required.\n' >&2; exit 2
+fi
+exec "$PY" "$ROOT/references/scripts/validate_shortcut.py" "$@"

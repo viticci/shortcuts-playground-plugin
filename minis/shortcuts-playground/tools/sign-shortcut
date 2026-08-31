@@ -1,0 +1,48 @@
+#!/usr/bin/env bash
+# Portable Minis wrapper: signing itself still requires a macOS shortcuts CLI.
+set -u
+ROOT="$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)"
+INPUT=""; NAME=""; MODE="people-who-know-me"; OUTPUT_DIR="${SHORTCUTS_PLAYGROUND_OUTPUT_DIR:-$HOME/Documents/Shortcuts Playground}"
+while [ $# -gt 0 ]; do
+  case "$1" in
+    --name) [ $# -ge 2 ] || exit 64; NAME="$2"; shift 2;;
+    --mode) [ $# -ge 2 ] || exit 64; MODE="$2"; shift 2;;
+    --output-dir) [ $# -ge 2 ] || exit 64; OUTPUT_DIR="$2"; shift 2;;
+    -h|--help) echo 'Usage: tools/sign-shortcut input [--name NAME] [--mode anyone|people-who-know-me] [--output-dir DIR]'; exit 0;;
+    *) [ -z "$INPUT" ] || { echo "unexpected argument: $1" >&2; exit 64; }; INPUT="$1"; shift;;
+  esac
+done
+[ -n "$INPUT" ] || { echo 'input is required' >&2; exit 64; }
+[ -f "$INPUT" ] || { echo "input not found: $INPUT" >&2; exit 2; }
+case "$MODE" in anyone|people-who-know-me) ;; *) echo 'invalid signing mode' >&2; exit 64;; esac
+command -v shortcuts >/dev/null 2>&1 || { echo 'Apple shortcuts CLI not found; use macOS or a configured Mac bridge.' >&2; exit 127; }
+[ -n "$NAME" ] || NAME="$(basename "$INPUT")"; NAME="${NAME%.*}"
+case "$NAME" in */*|*\\*|.|..) echo 'invalid shortcut name' >&2; exit 64;; esac
+mkdir -p "$OUTPUT_DIR/$(date +%F)"
+ARCHIVE="$OUTPUT_DIR/$(date +%F)/$NAME-$(date +%H%M%S).xml"
+TMP_IN="$OUTPUT_DIR/.${NAME}-sign-input-$$.shortcut"
+TMP_OUT="$OUTPUT_DIR/.${NAME}-sign-output-$$.shortcut"
+SIGNED="$OUTPUT_DIR/$NAME.shortcut"
+cleanup(){ rm -f "$TMP_IN" "$TMP_OUT"; }
+trap cleanup EXIT
+cp "$INPUT" "$ARCHIVE"
+cp "$INPUT" "$TMP_IN"
+set +e
+shortcuts sign --mode "$MODE" --input "$TMP_IN" --output "$TMP_OUT"
+status=$?
+set -e
+if [ "$status" -ne 0 ]; then
+  rm -f "$TMP_OUT"
+  if command -v plutil >/dev/null 2>&1 && plutil -lint "$TMP_IN" >/dev/null 2>&1 && plutil -convert binary1 "$TMP_IN" >/dev/null 2>&1; then
+    set +e
+    shortcuts sign --mode "$MODE" --input "$TMP_IN" --output "$TMP_OUT"
+    status=$?
+    set -e
+  fi
+fi
+[ "$status" -eq 0 ] || { echo "shortcuts sign failed with status $status" >&2; exit "$status"; }
+[ -s "$TMP_OUT" ] || { echo 'signing produced no file' >&2; exit 1; }
+MAGIC="$(od -An -tx1 -N4 "$TMP_OUT" | tr -d ' \\n')"
+[ "$MAGIC" = 41454131 ] || { echo "unexpected signed header: $MAGIC" >&2; exit 1; }
+mv "$TMP_OUT" "$SIGNED"
+printf '{"archive":"%s","signed":"%s","mode":"%s"}\n' "$ARCHIVE" "$SIGNED" "$MODE"

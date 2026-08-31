@@ -1,0 +1,6 @@
+{
+  "source": "https://github.com/OpenMinis/OpenMinis",
+  "ref": "main",
+  "commit": "09fc199928de0f26685e766c34e6d541c7a69e5a",
+  "purpose": "Optional OpenMinis AppIntent and AppShortcuts reference"
+}

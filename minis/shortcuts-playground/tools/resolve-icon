@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+# shortcuts-playground: Icon and color resolver wrapper.
+# Usage:
+#   resolve-icon --prompt "<user prompt>" [--icon "robot"] [--color "purple"]
+set -u
+
+ROOT="$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)"
+PY="${SHORTCUTS_PLAYGROUND_PYTHON:-python3}"
+if ! command -v "$PY" >/dev/null 2>&1; then
+  printf 'shortcuts-playground: python3 not found on PATH. Install Python 3.10+ or set SHORTCUTS_PLAYGROUND_PYTHON.\n' >&2
+  exit 127
+fi
+if ! "$PY" -c 'import sys; sys.exit(0 if sys.version_info >= (3, 10) else 1)'; then
+  printf 'shortcuts-playground: %s is older than 3.10; the validator uses PEP 604 union syntax.\n' "$PY" >&2
+  exit 2
+fi
+exec "$PY" "$ROOT/references/scripts/select_shortcut_icon_color.py" "$@"
