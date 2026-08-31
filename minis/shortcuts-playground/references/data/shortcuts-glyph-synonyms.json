@@ -1,0 +1,5102 @@
+{
+  "59392": {
+    "name": "ellipsis",
+    "synonyms": [
+      "more",
+      "menu",
+      "dots",
+      "three dots",
+      "options"
+    ]
+  },
+  "59395": {
+    "name": "dollarSign",
+    "synonyms": [
+      "dollar",
+      "money",
+      "currency",
+      "usd",
+      "cash",
+      "price",
+      "expense",
+      "expenses",
+      "finance",
+      "financial",
+      "budget",
+      "budgeting",
+      "accounting",
+      "bookkeeping",
+      "invoice",
+      "receipt",
+      "reimbursement",
+      "cost tracking"
+    ]
+  },
+  "59402": {
+    "name": "movieCamera",
+    "synonyms": [
+      "movie",
+      "film",
+      "camera",
+      "recording",
+      "cinema",
+      "shoot"
+    ]
+  },
+  "59403": {
+    "name": "messageBubbles",
+    "synonyms": [
+      "messages",
+      "conversation",
+      "chat bubbles",
+      "texting",
+      "sms"
+    ]
+  },
+  "59405": {
+    "name": "twelveSquares",
+    "synonyms": [
+      "grid",
+      "twelve",
+      "squares",
+      "layout",
+      "tiles"
+    ]
+  },
+  "59412": {
+    "name": "globe",
+    "synonyms": [
+      "world",
+      "earth",
+      "international",
+      "global",
+      "planet",
+      "web",
+      "translate",
+      "translation",
+      "language",
+      "languages",
+      "localize",
+      "localization",
+      "dictionary",
+      "glossary",
+      "multilingual",
+      "polyglot"
+    ]
+  },
+  "59414": {
+    "name": "chatBubble",
+    "synonyms": [
+      "chat",
+      "conversation",
+      "message",
+      "talk",
+      "dialogue",
+      "text",
+      "chatbot",
+      "assistant chat"
+    ]
+  },
+  "59433": {
+    "name": "bumps",
+    "synonyms": [
+      "rough",
+      "texture",
+      "surface",
+      "tactile",
+      "uneven"
+    ]
+  },
+  "59436": {
+    "name": "laptop",
+    "synonyms": [
+      "computer",
+      "notebook",
+      "macbook",
+      "pc",
+      "portable computer"
+    ]
+  },
+  "59437": {
+    "name": "person2",
+    "synonyms": [
+      "two users",
+      "users",
+      "people",
+      "accounts",
+      "profiles"
+    ]
+  },
+  "59445": {
+    "name": "list",
+    "synonyms": [
+      "menu",
+      "items",
+      "bullet list",
+      "lines",
+      "tasks"
+    ]
+  },
+  "59446": {
+    "name": "keyboard",
+    "synonyms": [
+      "typing",
+      "input",
+      "keys",
+      "type",
+      "computer keyboard"
+    ]
+  },
+  "59448": {
+    "name": "euroSign",
+    "synonyms": [
+      "euro",
+      "eur",
+      "european",
+      "currency eur",
+      "euros"
+    ]
+  },
+  "59452": {
+    "name": "car",
+    "synonyms": [
+      "vehicle",
+      "auto",
+      "automobile",
+      "driving",
+      "transport"
+    ]
+  },
+  "59454": {
+    "name": "targetAlt",
+    "synonyms": [
+      "target alt",
+      "bullseye alt",
+      "aim alt",
+      "focus alt"
+    ]
+  },
+  "59455": {
+    "name": "stripe",
+    "synonyms": [
+      "line",
+      "bar",
+      "stripe",
+      "divider",
+      "separator"
+    ]
+  },
+  "59456": {
+    "name": "football",
+    "synonyms": [
+      "soccer",
+      "football",
+      "sport",
+      "ball game",
+      "pitch"
+    ]
+  },
+  "59459": {
+    "name": "cloudService",
+    "synonyms": [
+      "cloud storage",
+      "sync",
+      "icloud",
+      "cloud sync",
+      "online storage"
+    ]
+  },
+  "59461": {
+    "name": "pill",
+    "synonyms": [
+      "medication",
+      "tablet",
+      "capsule",
+      "drug",
+      "supplement"
+    ]
+  },
+  "59465": {
+    "name": "openBook",
+    "synonyms": [
+      "book",
+      "reading",
+      "open",
+      "study",
+      "learn",
+      "dictionary",
+      "definitions",
+      "phrasebook",
+      "language reference",
+      "study language"
+    ]
+  },
+  "59468": {
+    "name": "flower",
+    "synonyms": [
+      "plant",
+      "blossom",
+      "nature",
+      "floral",
+      "bloom",
+      "garden"
+    ]
+  },
+  "59473": {
+    "name": "hammerAlt",
+    "synonyms": [
+      "sledgehammer",
+      "mallet",
+      "heavy hammer",
+      "pound",
+      "smash"
+    ]
+  },
+  "59489": {
+    "name": "battery",
+    "synonyms": [
+      "power",
+      "charge",
+      "energy",
+      "electricity",
+      "device power"
+    ]
+  },
+  "59494": {
+    "name": "keyboardOld",
+    "synonyms": [
+      "vintage keyboard",
+      "old keyboard",
+      "retro keyboard",
+      "typewriter"
+    ]
+  },
+  "59496": {
+    "name": "documentOutlineAlt",
+    "synonyms": [
+      "alt doc",
+      "alternative doc",
+      "document variant",
+      "file alt"
+    ]
+  },
+  "59497": {
+    "name": "feed",
+    "synonyms": [
+      "rss",
+      "news feed",
+      "updates",
+      "stream",
+      "timeline"
+    ]
+  },
+  "59508": {
+    "name": "play",
+    "synonyms": [
+      "start",
+      "media",
+      "video",
+      "begin",
+      "playback"
+    ]
+  },
+  "59511": {
+    "name": "magicWand",
+    "synonyms": [
+      "magic",
+      "wand",
+      "sparkle",
+      "wizard",
+      "effect",
+      "transform"
+    ]
+  },
+  "59512": {
+    "name": "poundSign",
+    "synonyms": [
+      "pound",
+      "gbp",
+      "british",
+      "sterling",
+      "uk currency"
+    ]
+  },
+  "59514": {
+    "name": "yenSign",
+    "synonyms": [
+      "yen",
+      "jpy",
+      "japanese",
+      "currency",
+      "japan"
+    ]
+  },
+  "59515": {
+    "name": "bitcoin",
+    "synonyms": [
+      "crypto",
+      "cryptocurrency",
+      "btc",
+      "blockchain",
+      "digital currency"
+    ]
+  },
+  "59516": {
+    "name": "loadingIndicatorAlt",
+    "synonyms": [
+      "loader",
+      "loading alt",
+      "spinner alt",
+      "processing alt"
+    ]
+  },
+  "59519": {
+    "name": "database",
+    "synonyms": [
+      "data",
+      "storage",
+      "server",
+      "db",
+      "records",
+      "tables"
+    ]
+  },
+  "59520": {
+    "name": "circledA",
+    "synonyms": [
+      "letter a",
+      "a button",
+      "grade",
+      "alpha",
+      "a symbol"
+    ]
+  },
+  "59542": {
+    "name": "circledHeart",
+    "synonyms": [
+      "favorite",
+      "like",
+      "loved",
+      "hearted",
+      "preferred"
+    ]
+  },
+  "59583": {
+    "name": "facetime",
+    "synonyms": [
+      "video call",
+      "call",
+      "video chat",
+      "face time",
+      "video"
+    ]
+  },
+  "59648": {
+    "name": "airplane",
+    "synonyms": [
+      "plane",
+      "flight",
+      "travel",
+      "aviation",
+      "airport",
+      "flying"
+    ]
+  },
+  "59649": {
+    "name": "alarmClock",
+    "synonyms": [
+      "alarm",
+      "wake up",
+      "morning",
+      "timer",
+      "clock",
+      "reminder"
+    ]
+  },
+  "59650": {
+    "name": "alertTriangle",
+    "synonyms": [
+      "warning",
+      "alert",
+      "caution",
+      "danger",
+      "error",
+      "attention"
+    ]
+  },
+  "59651": {
+    "name": "alien",
+    "synonyms": [
+      "ufo",
+      "extraterrestrial",
+      "space",
+      "sci-fi",
+      "unknown",
+      "outer space"
+    ]
+  },
+  "59652": {
+    "name": "ambulance",
+    "synonyms": [
+      "emergency",
+      "medical",
+      "ems",
+      "paramedic",
+      "hospital",
+      "urgent care"
+    ]
+  },
+  "59653": {
+    "name": "archive",
+    "synonyms": [
+      "storage",
+      "save",
+      "backup",
+      "old files",
+      "preserved",
+      "stored"
+    ]
+  },
+  "59654": {
+    "name": "arrowCurvedLeft",
+    "synonyms": [
+      "back",
+      "return",
+      "undo",
+      "previous",
+      "reverse"
+    ]
+  },
+  "59655": {
+    "name": "arrowCurvedRight",
+    "synonyms": [
+      "forward",
+      "next",
+      "redo",
+      "continue",
+      "proceed"
+    ]
+  },
+  "59656": {
+    "name": "asterisk",
+    "synonyms": [
+      "star symbol",
+      "multiply",
+      "wildcard",
+      "special",
+      "footnote"
+    ]
+  },
+  "59657": {
+    "name": "atom",
+    "synonyms": [
+      "science",
+      "physics",
+      "molecule",
+      "nuclear",
+      "chemistry",
+      "particle"
+    ]
+  },
+  "59658": {
+    "name": "babyGirl",
+    "synonyms": [
+      "baby girl",
+      "infant girl",
+      "newborn girl",
+      "girl"
+    ]
+  },
+  "59659": {
+    "name": "babyBoy",
+    "synonyms": [
+      "baby boy",
+      "infant boy",
+      "newborn",
+      "child",
+      "boy"
+    ]
+  },
+  "59660": {
+    "name": "bandage",
+    "synonyms": [
+      "first aid",
+      "injury",
+      "medical tape",
+      "wound",
+      "healthcare",
+      "patch"
+    ]
+  },
+  "59661": {
+    "name": "barcode",
+    "synonyms": [
+      "upc",
+      "product code",
+      "retail",
+      "inventory",
+      "scanning code",
+      "sku",
+      "inventory code",
+      "product scanner"
+    ]
+  },
+  "59662": {
+    "name": "barGraph",
+    "synonyms": [
+      "chart",
+      "graph",
+      "statistics",
+      "data",
+      "analytics",
+      "metrics",
+      "finance report",
+      "analytics dashboard",
+      "kpi",
+      "metrics tracking",
+      "data visualization"
+    ]
+  },
+  "59663": {
+    "name": "baseball",
+    "synonyms": [
+      "sport",
+      "ball",
+      "game",
+      "athletics",
+      "mlb"
+    ]
+  },
+  "59664": {
+    "name": "basketball",
+    "synonyms": [
+      "hoops",
+      "nba",
+      "sports",
+      "court",
+      "dribble"
+    ]
+  },
+  "59665": {
+    "name": "bathtub",
+    "synonyms": [
+      "bath",
+      "tub",
+      "bathroom",
+      "relaxation",
+      "shower alternative"
+    ]
+  },
+  "59666": {
+    "name": "bed",
+    "synonyms": [
+      "sleep",
+      "bedroom",
+      "rest",
+      "night",
+      "sleeping"
+    ]
+  },
+  "59667": {
+    "name": "bell",
+    "synonyms": [
+      "notification",
+      "ring",
+      "chime",
+      "sound",
+      "notify"
+    ]
+  },
+  "59668": {
+    "name": "bike",
+    "synonyms": [
+      "bicycle",
+      "cycling",
+      "riding",
+      "exercise",
+      "transportation"
+    ]
+  },
+  "59669": {
+    "name": "binoculars",
+    "synonyms": [
+      "viewing",
+      "observe",
+      "watch",
+      "sight",
+      "vision",
+      "telescope"
+    ]
+  },
+  "59670": {
+    "name": "bookmark",
+    "synonyms": [
+      "saved",
+      "favorite",
+      "marked",
+      "reading list",
+      "save page"
+    ]
+  },
+  "59671": {
+    "name": "bookshelf",
+    "synonyms": [
+      "books",
+      "library",
+      "reading",
+      "shelf",
+      "literature",
+      "collection"
+    ]
+  },
+  "59672": {
+    "name": "sashBook",
+    "synonyms": [
+      "book",
+      "sash",
+      "bookmark",
+      "reading",
+      "marked book"
+    ]
+  },
+  "59673": {
+    "name": "boxFilled",
+    "synonyms": [
+      "solid box",
+      "filled square",
+      "block",
+      "checkbox filled"
+    ]
+  },
+  "59674": {
+    "name": "boxOutline",
+    "synonyms": [
+      "checkbox",
+      "square outline",
+      "empty box",
+      "unchecked"
+    ]
+  },
+  "59675": {
+    "name": "braille",
+    "synonyms": [
+      "accessibility",
+      "blind",
+      "tactile",
+      "dots",
+      "visually impaired"
+    ]
+  },
+  "59676": {
+    "name": "briefcase",
+    "synonyms": [
+      "work",
+      "business",
+      "office",
+      "professional",
+      "job",
+      "career"
+    ]
+  },
+  "59677": {
+    "name": "buildings",
+    "synonyms": [
+      "city",
+      "urban",
+      "downtown",
+      "skyline",
+      "architecture",
+      "offices"
+    ]
+  },
+  "59678": {
+    "name": "bus",
+    "synonyms": [
+      "transit",
+      "public transport",
+      "commute",
+      "transportation",
+      "shuttle"
+    ]
+  },
+  "59679": {
+    "name": "cake",
+    "synonyms": [
+      "birthday",
+      "dessert",
+      "celebration",
+      "party",
+      "sweet",
+      "treat"
+    ]
+  },
+  "59680": {
+    "name": "calculator",
+    "synonyms": [
+      "math",
+      "calculate",
+      "numbers",
+      "arithmetic",
+      "compute",
+      "expense tracker",
+      "totals",
+      "sum",
+      "spreadsheet",
+      "calculation"
+    ]
+  },
+  "59681": {
+    "name": "calendar",
+    "synonyms": [
+      "date",
+      "schedule",
+      "day",
+      "month",
+      "year",
+      "planner"
+    ]
+  },
+  "59682": {
+    "name": "camera",
+    "synonyms": [
+      "photo",
+      "picture",
+      "snapshot",
+      "photography",
+      "capture",
+      "image"
+    ]
+  },
+  "59683": {
+    "name": "carrot",
+    "synonyms": [
+      "vegetable",
+      "veggie",
+      "healthy food",
+      "produce",
+      "orange"
+    ]
+  },
+  "59684": {
+    "name": "cat",
+    "synonyms": [
+      "pet",
+      "kitten",
+      "feline",
+      "kitty",
+      "animal"
+    ]
+  },
+  "59685": {
+    "name": "chainlink",
+    "synonyms": [
+      "link",
+      "chain",
+      "connection",
+      "url",
+      "hyperlink",
+      "bond"
+    ]
+  },
+  "59686": {
+    "name": "chemical",
+    "synonyms": [
+      "lab",
+      "beaker",
+      "experiment",
+      "flask",
+      "laboratory",
+      "chemistry"
+    ]
+  },
+  "59687": {
+    "name": "child",
+    "synonyms": [
+      "kid",
+      "young",
+      "youth",
+      "minor",
+      "children"
+    ]
+  },
+  "59688": {
+    "name": "church",
+    "synonyms": [
+      "religion",
+      "worship",
+      "faith",
+      "temple",
+      "chapel",
+      "spiritual"
+    ]
+  },
+  "59690": {
+    "name": "circledCheckmark",
+    "synonyms": [
+      "check",
+      "done",
+      "complete",
+      "verified",
+      "confirmed",
+      "approved"
+    ]
+  },
+  "59692": {
+    "name": "circledDownArrow",
+    "synonyms": [
+      "download circle",
+      "down",
+      "descend",
+      "decrease"
+    ]
+  },
+  "59693": {
+    "name": "downloadArrow",
+    "synonyms": [
+      "download",
+      "save",
+      "get",
+      "fetch",
+      "pull down"
+    ]
+  },
+  "59695": {
+    "name": "circledFastForward",
+    "synonyms": [
+      "skip",
+      "fast forward",
+      "speed up",
+      "next",
+      "advance"
+    ]
+  },
+  "59696": {
+    "name": "circleLeftArrow",
+    "synonyms": [
+      "circle back",
+      "previous circle",
+      "left navigation",
+      "rotate left"
+    ]
+  },
+  "59697": {
+    "name": "circledI",
+    "synonyms": [
+      "info",
+      "information",
+      "help",
+      "details",
+      "about"
+    ]
+  },
+  "59698": {
+    "name": "circledPi",
+    "synonyms": [
+      "pi",
+      "math symbol",
+      "mathematical",
+      "geometry",
+      "3.14"
+    ]
+  },
+  "59699": {
+    "name": "circledPlay",
+    "synonyms": [
+      "play button",
+      "start",
+      "media",
+      "video play",
+      "begin"
+    ]
+  },
+  "59700": {
+    "name": "circledPlus",
+    "synonyms": [
+      "add",
+      "new",
+      "create",
+      "plus",
+      "increase"
+    ]
+  },
+  "59702": {
+    "name": "circledPower",
+    "synonyms": [
+      "power button",
+      "on off",
+      "shutdown",
+      "restart",
+      "boot"
+    ]
+  },
+  "59703": {
+    "name": "circledQuestionMark",
+    "synonyms": [
+      "question",
+      "help circle",
+      "support",
+      "unknown",
+      "faq"
+    ]
+  },
+  "59704": {
+    "name": "circledRewind",
+    "synonyms": [
+      "rewind",
+      "backwards",
+      "reverse play",
+      "previous"
+    ]
+  },
+  "59705": {
+    "name": "circleRightArrow",
+    "synonyms": [
+      "circle forward",
+      "next circle",
+      "right navigation",
+      "rotate right"
+    ]
+  },
+  "59706": {
+    "name": "circledStop",
+    "synonyms": [
+      "stop button",
+      "halt",
+      "end",
+      "terminate",
+      "pause"
+    ]
+  },
+  "59707": {
+    "name": "circledUpArrow",
+    "synonyms": [
+      "upload circle",
+      "up",
+      "ascend",
+      "increase"
+    ]
+  },
+  "59708": {
+    "name": "uploadArrow",
+    "synonyms": [
+      "upload",
+      "share",
+      "send up",
+      "upload file",
+      "push"
+    ]
+  },
+  "59709": {
+    "name": "circledX",
+    "synonyms": [
+      "close",
+      "cancel",
+      "delete",
+      "remove",
+      "exit",
+      "dismiss"
+    ]
+  },
+  "59711": {
+    "name": "clipboard",
+    "synonyms": [
+      "copy",
+      "paste",
+      "notes",
+      "copied",
+      "board",
+      "pasteboard",
+      "clipboard manager",
+      "copy buffer",
+      "snippet"
+    ]
+  },
+  "59712": {
+    "name": "clock",
+    "synonyms": [
+      "time",
+      "hour",
+      "minute",
+      "watch",
+      "timing"
+    ]
+  },
+  "59713": {
+    "name": "clothesHanger",
+    "synonyms": [
+      "hanger",
+      "closet",
+      "clothes",
+      "wardrobe",
+      "clothing"
+    ]
+  },
+  "59714": {
+    "name": "cloud",
+    "synonyms": [
+      "weather",
+      "sky",
+      "cloudy",
+      "overcast",
+      "storm"
+    ]
+  },
+  "59715": {
+    "name": "raincloud",
+    "synonyms": [
+      "rain",
+      "rainy",
+      "weather",
+      "storm",
+      "precipitation"
+    ]
+  },
+  "59716": {
+    "name": "eyedropper",
+    "synonyms": [
+      "color picker",
+      "dropper",
+      "sample",
+      "pick color",
+      "pipette"
+    ]
+  },
+  "59717": {
+    "name": "compass",
+    "synonyms": [
+      "navigation",
+      "direction",
+      "north",
+      "orient",
+      "wayfinding",
+      "maps"
+    ]
+  },
+  "59718": {
+    "name": "Connected",
+    "synonyms": [
+      "linked",
+      "network",
+      "connection",
+      "joined",
+      "synced",
+      "paired"
+    ]
+  },
+  "59719": {
+    "name": "creditCard",
+    "synonyms": [
+      "payment",
+      "card",
+      "money",
+      "purchase",
+      "credit",
+      "debit"
+    ]
+  },
+  "59720": {
+    "name": "crop",
+    "synonyms": [
+      "trim",
+      "cut",
+      "resize",
+      "edit",
+      "adjust"
+    ]
+  },
+  "59721": {
+    "name": "cube",
+    "synonyms": [
+      "3d",
+      "box",
+      "square",
+      "three dimensional",
+      "geometric"
+    ]
+  },
+  "59722": {
+    "name": "server",
+    "synonyms": [
+      "server",
+      "hosting",
+      "backend",
+      "infrastructure",
+      "cloud"
+    ]
+  },
+  "59723": {
+    "name": "dice",
+    "synonyms": [
+      "random",
+      "game",
+      "gambling",
+      "roll",
+      "chance",
+      "luck"
+    ]
+  },
+  "59724": {
+    "name": "signs",
+    "synonyms": [
+      "signage",
+      "road sign",
+      "street sign",
+      "directions",
+      "traffic sign"
+    ]
+  },
+  "59725": {
+    "name": "document",
+    "synonyms": [
+      "file",
+      "doc",
+      "paper",
+      "text file",
+      "document"
+    ]
+  },
+  "59726": {
+    "name": "documentFilled",
+    "synonyms": [
+      "filled doc",
+      "solid document",
+      "file filled",
+      "text document"
+    ]
+  },
+  "59727": {
+    "name": "documentOutline",
+    "synonyms": [
+      "empty doc",
+      "doc outline",
+      "file outline",
+      "blank document"
+    ]
+  },
+  "59728": {
+    "name": "dog",
+    "synonyms": [
+      "puppy",
+      "canine",
+      "pet dog",
+      "doggy",
+      "hound"
+    ]
+  },
+  "59729": {
+    "name": "doubleQuote",
+    "synonyms": [
+      "quote",
+      "quotation",
+      "speech",
+      "citation",
+      "quotes"
+    ]
+  },
+  "59730": {
+    "name": "dramaMask",
+    "synonyms": [
+      "theater",
+      "drama",
+      "acting",
+      "performance",
+      "stage",
+      "play"
+    ]
+  },
+  "59731": {
+    "name": "pineTree",
+    "synonyms": [
+      "tree",
+      "pine",
+      "evergreen",
+      "forest",
+      "nature",
+      "christmas"
+    ]
+  },
+  "59732": {
+    "name": "feedRight",
+    "synonyms": [
+      "feed arrow",
+      "next feed",
+      "feed forward",
+      "rss next"
+    ]
+  },
+  "59733": {
+    "name": "filmstrip",
+    "synonyms": [
+      "film",
+      "movie",
+      "video",
+      "cinema",
+      "reel",
+      "footage"
+    ]
+  },
+  "59734": {
+    "name": "fire",
+    "synonyms": [
+      "flame",
+      "hot",
+      "burn",
+      "heat",
+      "burning"
+    ]
+  },
+  "59735": {
+    "name": "fish",
+    "synonyms": [
+      "fishing",
+      "aquatic",
+      "seafood",
+      "ocean",
+      "marine"
+    ]
+  },
+  "59736": {
+    "name": "flag",
+    "synonyms": [
+      "marker",
+      "report",
+      "mark",
+      "banner",
+      "signal"
+    ]
+  },
+  "59737": {
+    "name": "folder",
+    "synonyms": [
+      "directory",
+      "files",
+      "organize",
+      "filing",
+      "storage"
+    ]
+  },
+  "59738": {
+    "name": "footprints",
+    "synonyms": [
+      "steps",
+      "walking",
+      "tracks",
+      "trail",
+      "path"
+    ]
+  },
+  "59739": {
+    "name": "fourSquares",
+    "synonyms": [
+      "grid",
+      "layout",
+      "four boxes",
+      "quadrants",
+      "tiles"
+    ]
+  },
+  "59740": {
+    "name": "apple",
+    "synonyms": [
+      "fruit",
+      "apple logo",
+      "healthy",
+      "food",
+      "nutrition"
+    ]
+  },
+  "59741": {
+    "name": "fuelstation",
+    "synonyms": [
+      "gas station",
+      "fuel",
+      "gas",
+      "petrol",
+      "refuel",
+      "pump"
+    ]
+  },
+  "59742": {
+    "name": "gameController",
+    "synonyms": [
+      "gaming",
+      "controller",
+      "joystick",
+      "console",
+      "games",
+      "xbox"
+    ]
+  },
+  "59743": {
+    "name": "gear",
+    "synonyms": [
+      "settings",
+      "preferences",
+      "options",
+      "config",
+      "configuration",
+      "developer settings",
+      "advanced settings",
+      "system settings",
+      "preferences pane"
+    ]
+  },
+  "59744": {
+    "name": "gift",
+    "synonyms": [
+      "present",
+      "reward",
+      "prize",
+      "giveaway",
+      "package"
+    ]
+  },
+  "59745": {
+    "name": "glasses",
+    "synonyms": [
+      "eyeglasses",
+      "spectacles",
+      "reading",
+      "vision",
+      "eyewear"
+    ]
+  },
+  "59746": {
+    "name": "graduate",
+    "synonyms": [
+      "graduation",
+      "education",
+      "degree",
+      "student",
+      "academic",
+      "diploma"
+    ]
+  },
+  "59747": {
+    "name": "groceryStore",
+    "synonyms": [
+      "grocery",
+      "supermarket",
+      "shopping",
+      "store",
+      "market",
+      "food store"
+    ]
+  },
+  "59748": {
+    "name": "hammer",
+    "synonyms": [
+      "tool",
+      "build",
+      "construction",
+      "repair",
+      "fix",
+      "nail"
+    ]
+  },
+  "59749": {
+    "name": "tools",
+    "synonyms": [
+      "toolbox",
+      "repair",
+      "fix",
+      "build",
+      "maintenance",
+      "developer tools",
+      "debugging",
+      "ops",
+      "tooling"
+    ]
+  },
+  "59750": {
+    "name": "handbag",
+    "synonyms": [
+      "purse",
+      "bag",
+      "shopping bag",
+      "tote",
+      "accessory"
+    ]
+  },
+  "59751": {
+    "name": "hand",
+    "synonyms": [
+      "palm",
+      "stop",
+      "high five",
+      "wave",
+      "gesture"
+    ]
+  },
+  "59752": {
+    "name": "hardDrive",
+    "synonyms": [
+      "drive",
+      "disk",
+      "hdd",
+      "storage drive",
+      "external drive"
+    ]
+  },
+  "59753": {
+    "name": "headphones",
+    "synonyms": [
+      "audio",
+      "listening",
+      "music",
+      "ears",
+      "sound"
+    ]
+  },
+  "59754": {
+    "name": "heart",
+    "synonyms": [
+      "love",
+      "like",
+      "favorite",
+      "health",
+      "cardio"
+    ]
+  },
+  "59755": {
+    "name": "house",
+    "synonyms": [
+      "home",
+      "residence",
+      "building",
+      "dwelling",
+      "property"
+    ]
+  },
+  "59756": {
+    "name": "horse",
+    "synonyms": [
+      "equine",
+      "pony",
+      "stallion",
+      "mare",
+      "riding"
+    ]
+  },
+  "59757": {
+    "name": "hourglass",
+    "synonyms": [
+      "time",
+      "waiting",
+      "loading",
+      "countdown",
+      "timer",
+      "sandglass"
+    ]
+  },
+  "59758": {
+    "name": "infinity",
+    "synonyms": [
+      "infinite",
+      "endless",
+      "forever",
+      "unlimited",
+      "loop"
+    ]
+  },
+  "59759": {
+    "name": "inhaler",
+    "synonyms": [
+      "asthma",
+      "medicine",
+      "respiratory",
+      "breathing",
+      "pump"
+    ]
+  },
+  "59760": {
+    "name": "key",
+    "synonyms": [
+      "unlock",
+      "access",
+      "password",
+      "security",
+      "lock key"
+    ]
+  },
+  "59761": {
+    "name": "laundryMachine",
+    "synonyms": [
+      "washer",
+      "washing machine",
+      "laundry",
+      "cleaning",
+      "wash"
+    ]
+  },
+  "59762": {
+    "name": "lifePreserver",
+    "synonyms": [
+      "life ring",
+      "safety",
+      "rescue",
+      "help",
+      "emergency ring"
+    ]
+  },
+  "59763": {
+    "name": "lightbulb",
+    "synonyms": [
+      "light",
+      "idea",
+      "bulb",
+      "illumination",
+      "bright",
+      "lamp"
+    ]
+  },
+  "59764": {
+    "name": "lightningBolt",
+    "synonyms": [
+      "lightning",
+      "bolt",
+      "electric",
+      "fast",
+      "speed",
+      "charge"
+    ]
+  },
+  "59767": {
+    "name": "loadingIndicator",
+    "synonyms": [
+      "loading",
+      "spinner",
+      "wait",
+      "processing",
+      "busy"
+    ]
+  },
+  "59768": {
+    "name": "locationArrow",
+    "synonyms": [
+      "location",
+      "gps",
+      "position",
+      "whereami",
+      "locate"
+    ]
+  },
+  "59769": {
+    "name": "locationPin",
+    "synonyms": [
+      "pin",
+      "map pin",
+      "place",
+      "marker",
+      "address"
+    ]
+  },
+  "59770": {
+    "name": "lock",
+    "synonyms": [
+      "locked",
+      "secure",
+      "private",
+      "protected",
+      "password"
+    ]
+  },
+  "59771": {
+    "name": "magicWandAlt",
+    "synonyms": [
+      "magic alt",
+      "wand alt",
+      "enchant",
+      "spell"
+    ]
+  },
+  "59772": {
+    "name": "magnifyingGlass",
+    "synonyms": [
+      "search",
+      "find",
+      "look",
+      "zoom",
+      "inspect",
+      "explore"
+    ]
+  },
+  "59773": {
+    "name": "envelope",
+    "synonyms": [
+      "mail",
+      "email",
+      "letter",
+      "send",
+      "inbox"
+    ]
+  },
+  "59774": {
+    "name": "envelopeOpen",
+    "synonyms": [
+      "open mail",
+      "read email",
+      "opened letter",
+      "mail opened"
+    ]
+  },
+  "59775": {
+    "name": "man",
+    "synonyms": [
+      "male",
+      "guy",
+      "gentleman",
+      "men",
+      "masculine"
+    ]
+  },
+  "59776": {
+    "name": "martini",
+    "synonyms": [
+      "cocktail",
+      "drink",
+      "alcohol",
+      "bar",
+      "beverage"
+    ]
+  },
+  "59777": {
+    "name": "mask",
+    "synonyms": [
+      "face mask",
+      "disguise",
+      "protection",
+      "covid",
+      "safety mask"
+    ]
+  },
+  "59778": {
+    "name": "medicineBottle",
+    "synonyms": [
+      "pill bottle",
+      "prescription bottle",
+      "medication bottle",
+      "pharmacy bottle"
+    ]
+  },
+  "59779": {
+    "name": "textBubble",
+    "synonyms": [
+      "text",
+      "bubble",
+      "message",
+      "dialogue",
+      "speech bubble"
+    ]
+  },
+  "59780": {
+    "name": "microphone",
+    "synonyms": [
+      "mic",
+      "record",
+      "voice",
+      "audio input",
+      "recording"
+    ]
+  },
+  "59781": {
+    "name": "microscope",
+    "synonyms": [
+      "science",
+      "research",
+      "lab",
+      "examine",
+      "microscopic",
+      "study"
+    ]
+  },
+  "59782": {
+    "name": "moon",
+    "synonyms": [
+      "night",
+      "lunar",
+      "dark mode",
+      "evening",
+      "moonlight"
+    ]
+  },
+  "59783": {
+    "name": "motorcycle",
+    "synonyms": [
+      "bike",
+      "motorbike",
+      "riding",
+      "motor",
+      "cycle"
+    ]
+  },
+  "59784": {
+    "name": "picture",
+    "synonyms": [
+      "image",
+      "photo",
+      "pic",
+      "photograph",
+      "frame"
+    ]
+  },
+  "59785": {
+    "name": "mountain",
+    "synonyms": [
+      "peak",
+      "hiking",
+      "climb",
+      "outdoors",
+      "nature",
+      "summit"
+    ]
+  },
+  "59786": {
+    "name": "moveArrow",
+    "synonyms": [
+      "move",
+      "drag",
+      "reposition",
+      "shift",
+      "relocate"
+    ]
+  },
+  "59788": {
+    "name": "ticket",
+    "synonyms": [
+      "ticket",
+      "admission",
+      "event",
+      "pass",
+      "entry"
+    ]
+  },
+  "59789": {
+    "name": "mug",
+    "synonyms": [
+      "coffee",
+      "cup",
+      "drink",
+      "tea",
+      "beverage"
+    ]
+  },
+  "59790": {
+    "name": "musicNote",
+    "synonyms": [
+      "music",
+      "song",
+      "note",
+      "melody",
+      "tune",
+      "audio"
+    ]
+  },
+  "59791": {
+    "name": "newsArticle",
+    "synonyms": [
+      "news",
+      "article",
+      "paper",
+      "journalism",
+      "reading",
+      "story"
+    ]
+  },
+  "59792": {
+    "name": "oven",
+    "synonyms": [
+      "cooking",
+      "baking",
+      "kitchen",
+      "stove",
+      "bake"
+    ]
+  },
+  "59793": {
+    "name": "paintbrush",
+    "synonyms": [
+      "paint",
+      "brush",
+      "art",
+      "drawing",
+      "creative",
+      "design"
+    ]
+  },
+  "59794": {
+    "name": "paperclip",
+    "synonyms": [
+      "attach",
+      "attachment",
+      "clip",
+      "file",
+      "attached"
+    ]
+  },
+  "59795": {
+    "name": "parking",
+    "synonyms": [
+      "park",
+      "parking lot",
+      "parking space",
+      "garage",
+      "parked"
+    ]
+  },
+  "59796": {
+    "name": "pawPrint",
+    "synonyms": [
+      "paw",
+      "pet",
+      "animal print",
+      "dog print",
+      "cat print"
+    ]
+  },
+  "59797": {
+    "name": "peaceSign",
+    "synonyms": [
+      "peace",
+      "hippie",
+      "tranquility",
+      "calm",
+      "pacifist"
+    ]
+  },
+  "59798": {
+    "name": "pencil",
+    "synonyms": [
+      "write",
+      "edit",
+      "draw",
+      "writing",
+      "pen",
+      "compose"
+    ]
+  },
+  "59799": {
+    "name": "people3",
+    "synonyms": [
+      "group",
+      "three people",
+      "team",
+      "crowd",
+      "multiple"
+    ]
+  },
+  "59800": {
+    "name": "people2",
+    "synonyms": [
+      "two people",
+      "couple",
+      "pair",
+      "duo",
+      "partners"
+    ]
+  },
+  "59801": {
+    "name": "person",
+    "synonyms": [
+      "user",
+      "profile",
+      "account",
+      "individual",
+      "human",
+      "avatar"
+    ]
+  },
+  "59802": {
+    "name": "personAlter",
+    "synonyms": [
+      "person alt",
+      "user alt",
+      "alternative person",
+      "profile alt"
+    ]
+  },
+  "59803": {
+    "name": "personDancer",
+    "synonyms": [
+      "dancer",
+      "dancing",
+      "dance",
+      "party",
+      "moves"
+    ]
+  },
+  "59804": {
+    "name": "personSpeech",
+    "synonyms": [
+      "speaking",
+      "talking",
+      "presentation",
+      "speech",
+      "talk"
+    ]
+  },
+  "59805": {
+    "name": "personHiking",
+    "synonyms": [
+      "hiking",
+      "hiker",
+      "trekking",
+      "walk",
+      "outdoor"
+    ]
+  },
+  "59806": {
+    "name": "wheelchair",
+    "synonyms": [
+      "accessibility",
+      "disabled",
+      "wheelchair",
+      "mobility",
+      "handicap"
+    ]
+  },
+  "59807": {
+    "name": "personLifting",
+    "synonyms": [
+      "weightlifting",
+      "gym",
+      "fitness",
+      "strength",
+      "workout"
+    ]
+  },
+  "59808": {
+    "name": "personRunning",
+    "synonyms": [
+      "running",
+      "runner",
+      "jogging",
+      "run",
+      "cardio"
+    ]
+  },
+  "59809": {
+    "name": "personSkiing",
+    "synonyms": [
+      "skiing",
+      "skier",
+      "ski",
+      "snow sport",
+      "winter"
+    ]
+  },
+  "59810": {
+    "name": "personSnowboarding",
+    "synonyms": [
+      "snowboarding",
+      "snowboarder",
+      "snowboard",
+      "winter sport"
+    ]
+  },
+  "59811": {
+    "name": "personSwimming",
+    "synonyms": [
+      "swimming",
+      "swimmer",
+      "swim",
+      "pool",
+      "water sport"
+    ]
+  },
+  "59812": {
+    "name": "personWalking",
+    "synonyms": [
+      "walking",
+      "walker",
+      "walk",
+      "stroll",
+      "pedestrian"
+    ]
+  },
+  "59813": {
+    "name": "personWalkingCane",
+    "synonyms": [
+      "cane",
+      "walking stick",
+      "elderly",
+      "mobility",
+      "assisted walking"
+    ]
+  },
+  "59814": {
+    "name": "phone",
+    "synonyms": [
+      "telephone",
+      "call",
+      "calling",
+      "ring",
+      "dial"
+    ]
+  },
+  "59815": {
+    "name": "medicine",
+    "synonyms": [
+      "medication",
+      "pills",
+      "drugs",
+      "pharmacy",
+      "prescription",
+      "health"
+    ]
+  },
+  "59816": {
+    "name": "podcasts",
+    "synonyms": [
+      "podcast",
+      "audio show",
+      "listening",
+      "episodes",
+      "broadcast"
+    ]
+  },
+  "59817": {
+    "name": "printer",
+    "synonyms": [
+      "print",
+      "printing",
+      "copy",
+      "output",
+      "paper"
+    ]
+  },
+  "59818": {
+    "name": "puzzlePiece",
+    "synonyms": [
+      "puzzle",
+      "piece",
+      "jigsaw",
+      "fit",
+      "component"
+    ]
+  },
+  "59819": {
+    "name": "QRCode",
+    "synonyms": [
+      "qr",
+      "scan",
+      "barcode",
+      "scanner",
+      "code",
+      "digital code",
+      "two factor",
+      "2fa",
+      "otp qr",
+      "pairing code"
+    ]
+  },
+  "59820": {
+    "name": "recycle",
+    "synonyms": [
+      "recycling",
+      "eco",
+      "green",
+      "environment",
+      "reuse",
+      "sustainable"
+    ]
+  },
+  "59821": {
+    "name": "repostArrows",
+    "synonyms": [
+      "repost",
+      "share",
+      "retweet",
+      "repeat",
+      "forward"
+    ]
+  },
+  "59822": {
+    "name": "rocket",
+    "synonyms": [
+      "launch",
+      "space",
+      "startup",
+      "blast off",
+      "spaceship"
+    ]
+  },
+  "59823": {
+    "name": "sailboat",
+    "synonyms": [
+      "boat",
+      "sailing",
+      "yacht",
+      "nautical",
+      "ocean"
+    ]
+  },
+  "59824": {
+    "name": "scissors",
+    "synonyms": [
+      "cut",
+      "cutting",
+      "trim",
+      "snip",
+      "shears"
+    ]
+  },
+  "59825": {
+    "name": "screwdriver",
+    "synonyms": [
+      "tool",
+      "screw",
+      "repair",
+      "fix",
+      "maintenance"
+    ]
+  },
+  "59826": {
+    "name": "networkStorage",
+    "synonyms": [
+      "nas",
+      "network drive",
+      "shared storage",
+      "file server"
+    ]
+  },
+  "59827": {
+    "name": "shirt",
+    "synonyms": [
+      "clothing",
+      "apparel",
+      "clothes",
+      "t-shirt",
+      "wear"
+    ]
+  },
+  "59828": {
+    "name": "shoppingCart",
+    "synonyms": [
+      "cart",
+      "shopping",
+      "purchase",
+      "buy",
+      "checkout",
+      "store"
+    ]
+  },
+  "59829": {
+    "name": "shower",
+    "synonyms": [
+      "shower",
+      "bathroom",
+      "water",
+      "bathing",
+      "wash"
+    ]
+  },
+  "59830": {
+    "name": "shrinkArrow",
+    "synonyms": [
+      "shrink",
+      "minimize",
+      "collapse",
+      "reduce",
+      "smaller"
+    ]
+  },
+  "59832": {
+    "name": "shuffleArrows",
+    "synonyms": [
+      "shuffle",
+      "random",
+      "mix",
+      "randomize",
+      "rearrange"
+    ]
+  },
+  "59833": {
+    "name": "sliders",
+    "synonyms": [
+      "adjust",
+      "controls",
+      "settings",
+      "levels",
+      "tuning"
+    ]
+  },
+  "59834": {
+    "name": "smileyFace",
+    "synonyms": [
+      "smiley",
+      "happy",
+      "smile",
+      "joy",
+      "cheerful"
+    ]
+  },
+  "59835": {
+    "name": "snowflake",
+    "synonyms": [
+      "snow",
+      "winter",
+      "cold",
+      "frozen",
+      "ice"
+    ]
+  },
+  "59836": {
+    "name": "paperAirplane",
+    "synonyms": [
+      "send",
+      "sent",
+      "message",
+      "deliver",
+      "fly"
+    ]
+  },
+  "59837": {
+    "name": "soccerBall",
+    "synonyms": [
+      "soccer",
+      "football",
+      "sport",
+      "ball",
+      "goal"
+    ]
+  },
+  "59838": {
+    "name": "sparklingBell",
+    "synonyms": [
+      "special notification",
+      "important bell",
+      "highlighted alert",
+      "priority notification"
+    ]
+  },
+  "59839": {
+    "name": "volumeLow",
+    "synonyms": [
+      "quiet",
+      "low volume",
+      "soft",
+      "volume down",
+      "whisper"
+    ]
+  },
+  "59840": {
+    "name": "stairs",
+    "synonyms": [
+      "steps",
+      "staircase",
+      "climb",
+      "up",
+      "stairs"
+    ]
+  },
+  "59841": {
+    "name": "star",
+    "synonyms": [
+      "favorite",
+      "rating",
+      "starred",
+      "featured",
+      "highlight"
+    ]
+  },
+  "59842": {
+    "name": "steamingBowl",
+    "synonyms": [
+      "bowl",
+      "food",
+      "hot food",
+      "steaming",
+      "soup",
+      "meal"
+    ]
+  },
+  "59843": {
+    "name": "stethoscope",
+    "synonyms": [
+      "doctor",
+      "medical",
+      "health",
+      "diagnosis",
+      "physician"
+    ]
+  },
+  "59844": {
+    "name": "stopwatch",
+    "synonyms": [
+      "timer",
+      "timing",
+      "stopwatch",
+      "lap",
+      "track time"
+    ]
+  },
+  "59845": {
+    "name": "sun",
+    "synonyms": [
+      "sunny",
+      "sunshine",
+      "bright",
+      "day",
+      "light mode"
+    ]
+  },
+  "59846": {
+    "name": "syncArrows",
+    "synonyms": [
+      "sync",
+      "refresh",
+      "reload",
+      "update",
+      "synchronize"
+    ]
+  },
+  "59847": {
+    "name": "syringe",
+    "synonyms": [
+      "injection",
+      "vaccine",
+      "shot",
+      "needle",
+      "immunization"
+    ]
+  },
+  "59848": {
+    "name": "tag",
+    "synonyms": [
+      "label",
+      "price tag",
+      "tag",
+      "badge",
+      "category"
+    ]
+  },
+  "59849": {
+    "name": "Target",
+    "synonyms": [
+      "bullseye",
+      "aim",
+      "goal",
+      "focus",
+      "objective",
+      "center"
+    ]
+  },
+  "59850": {
+    "name": "telescope",
+    "synonyms": [
+      "astronomy",
+      "stars",
+      "space",
+      "viewing",
+      "observation"
+    ]
+  },
+  "59851": {
+    "name": "tv",
+    "synonyms": [
+      "television",
+      "screen",
+      "monitor",
+      "display",
+      "tv screen"
+    ]
+  },
+  "59852": {
+    "name": "tennisBall",
+    "synonyms": [
+      "tennis",
+      "sport",
+      "ball",
+      "court",
+      "racket"
+    ]
+  },
+  "59853": {
+    "name": "textSymbol",
+    "synonyms": [
+      "text",
+      "typography",
+      "font",
+      "letters",
+      "writing"
+    ]
+  },
+  "59854": {
+    "name": "thermometer",
+    "synonyms": [
+      "temperature",
+      "temp",
+      "weather",
+      "heat",
+      "cold"
+    ]
+  },
+  "59856": {
+    "name": "threeCircles",
+    "synonyms": [
+      "three dots",
+      "circles",
+      "dots",
+      "more options",
+      "menu"
+    ]
+  },
+  "59857": {
+    "name": "thumbsUp",
+    "synonyms": [
+      "like",
+      "approve",
+      "yes",
+      "good",
+      "thumbs up"
+    ]
+  },
+  "59859": {
+    "name": "trashcan",
+    "synonyms": [
+      "trash",
+      "delete",
+      "remove",
+      "bin",
+      "garbage",
+      "discard"
+    ]
+  },
+  "59860": {
+    "name": "trophy",
+    "synonyms": [
+      "award",
+      "win",
+      "achievement",
+      "prize",
+      "champion",
+      "winner"
+    ]
+  },
+  "59861": {
+    "name": "umbrella",
+    "synonyms": [
+      "rain",
+      "umbrella",
+      "protection",
+      "weather",
+      "shelter"
+    ]
+  },
+  "59862": {
+    "name": "unlockButton",
+    "synonyms": [
+      "unlock",
+      "open",
+      "unlocked",
+      "access granted",
+      "unsecured"
+    ]
+  },
+  "59863": {
+    "name": "utensils",
+    "synonyms": [
+      "fork",
+      "knife",
+      "dining",
+      "eating",
+      "restaurant",
+      "food"
+    ]
+  },
+  "59864": {
+    "name": "videoIcon",
+    "synonyms": [
+      "video",
+      "camera",
+      "recording",
+      "film",
+      "capture video"
+    ]
+  },
+  "59865": {
+    "name": "watch",
+    "synonyms": [
+      "wristwatch",
+      "time",
+      "watch",
+      "timepiece",
+      "clock"
+    ]
+  },
+  "59866": {
+    "name": "waterDrop",
+    "synonyms": [
+      "water",
+      "drop",
+      "liquid",
+      "hydration",
+      "droplet"
+    ]
+  },
+  "59867": {
+    "name": "wifi",
+    "synonyms": [
+      "wifi",
+      "wireless",
+      "internet",
+      "network",
+      "connection"
+    ]
+  },
+  "59868": {
+    "name": "wineBottle",
+    "synonyms": [
+      "wine",
+      "bottle",
+      "alcohol",
+      "drink",
+      "beverage"
+    ]
+  },
+  "59869": {
+    "name": "woman",
+    "synonyms": [
+      "female",
+      "lady",
+      "women",
+      "girl",
+      "feminine"
+    ]
+  },
+  "59870": {
+    "name": "wrench",
+    "synonyms": [
+      "wrench",
+      "tool",
+      "fix",
+      "repair",
+      "adjust",
+      "spanner",
+      "troubleshooting",
+      "fix issue",
+      "repair task",
+      "debug"
+    ]
+  },
+  "61440": {
+    "name": "shortcuts",
+    "synonyms": [
+      "shortcuts app",
+      "automation",
+      "workflow",
+      "apple shortcuts",
+      "automation shortcut",
+      "apple automation",
+      "workflow builder",
+      "shortcut app"
+    ]
+  },
+  "61442": {
+    "name": "closedBook",
+    "synonyms": [
+      "book closed",
+      "closed volume",
+      "book",
+      "hardcover",
+      "dictionary",
+      "reference book",
+      "manual",
+      "guidebook"
+    ]
+  },
+  "61444": {
+    "name": "map",
+    "synonyms": [
+      "maps",
+      "navigate",
+      "directions",
+      "location",
+      "route"
+    ]
+  },
+  "61446": {
+    "name": "carMultiple",
+    "synonyms": [
+      "cars",
+      "traffic",
+      "parking lot",
+      "vehicles",
+      "fleet"
+    ]
+  },
+  "61447": {
+    "name": "electricCar",
+    "synonyms": [
+      "ev",
+      "electric vehicle",
+      "tesla",
+      "eco car",
+      "green car"
+    ]
+  },
+  "61448": {
+    "name": "busDouble",
+    "synonyms": [
+      "double decker",
+      "tour bus",
+      "big bus",
+      "transit bus"
+    ]
+  },
+  "61449": {
+    "name": "tram",
+    "synonyms": [
+      "tram",
+      "trolley",
+      "train",
+      "light rail",
+      "streetcar"
+    ]
+  },
+  "61450": {
+    "name": "tramTunnel",
+    "synonyms": [
+      "tunnel",
+      "tram tunnel",
+      "underground",
+      "subway",
+      "metro"
+    ]
+  },
+  "61452": {
+    "name": "gauge",
+    "synonyms": [
+      "meter",
+      "dial",
+      "measure",
+      "indicator",
+      "speedometer"
+    ]
+  },
+  "61453": {
+    "name": "speedometer",
+    "synonyms": [
+      "speed",
+      "fast",
+      "velocity",
+      "performance",
+      "dashboard"
+    ]
+  },
+  "61454": {
+    "name": "barometer",
+    "synonyms": [
+      "pressure",
+      "weather",
+      "atmospheric",
+      "measurement",
+      "gauge"
+    ]
+  },
+  "61455": {
+    "name": "network",
+    "synonyms": [
+      "internet",
+      "wifi",
+      "connectivity",
+      "nodes",
+      "connected"
+    ]
+  },
+  "61456": {
+    "name": "rectangleStack",
+    "synonyms": [
+      "stack",
+      "layers",
+      "multiple",
+      "stacked",
+      "pile"
+    ]
+  },
+  "61457": {
+    "name": "squareStack",
+    "synonyms": [
+      "squares",
+      "stack",
+      "layers",
+      "boxes",
+      "multiple squares"
+    ]
+  },
+  "61458": {
+    "name": "threeDSquareStack",
+    "synonyms": [
+      "3d stack",
+      "three d",
+      "dimensional",
+      "depth",
+      "3d layers"
+    ]
+  },
+  "61459": {
+    "name": "photoStack",
+    "synonyms": [
+      "photos",
+      "images",
+      "pictures",
+      "gallery",
+      "photo album"
+    ]
+  },
+  "61460": {
+    "name": "photoStackAlt",
+    "synonyms": [
+      "photo stack alt",
+      "images alt",
+      "gallery alt",
+      "pictures alt"
+    ]
+  },
+  "61461": {
+    "name": "aperture",
+    "synonyms": [
+      "camera aperture",
+      "lens",
+      "photography",
+      "f-stop",
+      "exposure",
+      "shutter"
+    ]
+  },
+  "61462": {
+    "name": "paperAirplaneCircle",
+    "synonyms": [
+      "send circle",
+      "send icon",
+      "deliver icon",
+      "message sent"
+    ]
+  },
+  "61464": {
+    "name": "note",
+    "synonyms": [
+      "sticky note",
+      "reminder",
+      "memo",
+      "note",
+      "post-it"
+    ]
+  },
+  "61465": {
+    "name": "noteText",
+    "synonyms": [
+      "text note",
+      "written note",
+      "note with text",
+      "memo text"
+    ]
+  },
+  "61466": {
+    "name": "noteTextPlus",
+    "synonyms": [
+      "add note",
+      "new note",
+      "create note",
+      "note plus"
+    ]
+  },
+  "61467": {
+    "name": "sendMessage",
+    "synonyms": [
+      "send",
+      "message",
+      "deliver",
+      "transmit",
+      "send text"
+    ]
+  },
+  "61468": {
+    "name": "addMessage",
+    "synonyms": [
+      "new message",
+      "compose",
+      "write",
+      "create message",
+      "add chat"
+    ]
+  },
+  "61470": {
+    "name": "volumeMid",
+    "synonyms": [
+      "medium volume",
+      "mid volume",
+      "moderate",
+      "normal volume"
+    ]
+  },
+  "61471": {
+    "name": "volumeHigh",
+    "synonyms": [
+      "loud",
+      "max volume",
+      "high volume",
+      "volume up",
+      "blast"
+    ]
+  },
+  "61472": {
+    "name": "mute",
+    "synonyms": [
+      "silence",
+      "quiet",
+      "muted",
+      "silent",
+      "no sound"
+    ]
+  },
+  "61473": {
+    "name": "speaker",
+    "synonyms": [
+      "audio",
+      "sound",
+      "loudspeaker",
+      "volume",
+      "speaker icon"
+    ]
+  },
+  "61474": {
+    "name": "desktopSpeaker",
+    "synonyms": [
+      "speaker",
+      "audio",
+      "sound system",
+      "desktop audio",
+      "computer speaker"
+    ]
+  },
+  "61475": {
+    "name": "earPods",
+    "synonyms": [
+      "earpods",
+      "wired earbuds",
+      "apple headphones",
+      "headphones",
+      "wired"
+    ]
+  },
+  "61476": {
+    "name": "airPods",
+    "synonyms": [
+      "airpods",
+      "earbuds",
+      "wireless earbuds",
+      "apple earbuds",
+      "bluetooth buds"
+    ]
+  },
+  "61477": {
+    "name": "airPodsPro",
+    "synonyms": [
+      "airpods pro",
+      "pro earbuds",
+      "noise cancelling",
+      "anc",
+      "premium earbuds"
+    ]
+  },
+  "61478": {
+    "name": "hifiSpeaker",
+    "synonyms": [
+      "hi-fi",
+      "stereo",
+      "audio system",
+      "home audio",
+      "tower speaker"
+    ]
+  },
+  "61479": {
+    "name": "headphonesCircle",
+    "synonyms": [
+      "headphone icon",
+      "audio circle",
+      "listening icon",
+      "music icon"
+    ]
+  },
+  "61480": {
+    "name": "radio",
+    "synonyms": [
+      "radio",
+      "fm",
+      "am",
+      "broadcast",
+      "station",
+      "tuner"
+    ]
+  },
+  "61481": {
+    "name": "ear",
+    "synonyms": [
+      "hearing",
+      "listen",
+      "audio",
+      "sound",
+      "acoustic"
+    ]
+  },
+  "61482": {
+    "name": "appleTV",
+    "synonyms": [
+      "apple tv",
+      "streaming box",
+      "tv",
+      "entertainment",
+      "media player"
+    ]
+  },
+  "61483": {
+    "name": "homePod",
+    "synonyms": [
+      "homepod",
+      "smart speaker",
+      "siri speaker",
+      "home speaker",
+      "apple speaker"
+    ]
+  },
+  "61484": {
+    "name": "appleWatchWaves",
+    "synonyms": [
+      "apple watch",
+      "smartwatch",
+      "wearable",
+      "watch",
+      "fitness tracker"
+    ]
+  },
+  "61486": {
+    "name": "iPhone",
+    "synonyms": [
+      "iphone",
+      "smartphone",
+      "phone",
+      "mobile",
+      "apple phone"
+    ]
+  },
+  "61487": {
+    "name": "iPhoneWave",
+    "synonyms": [
+      "iphone signal",
+      "phone waves",
+      "cellular",
+      "mobile signal"
+    ]
+  },
+  "61488": {
+    "name": "iPhoneApps",
+    "synonyms": [
+      "iphone apps",
+      "app icons",
+      "home screen",
+      "apps",
+      "mobile apps"
+    ]
+  },
+  "61489": {
+    "name": "iPad",
+    "synonyms": [
+      "ipad",
+      "tablet",
+      "apple tablet",
+      "pad",
+      "touchscreen"
+    ]
+  },
+  "61490": {
+    "name": "iPadAlt",
+    "synonyms": [
+      "ipad alt",
+      "tablet alt",
+      "ipad variant",
+      "alternative ipad"
+    ]
+  },
+  "61491": {
+    "name": "iPod",
+    "synonyms": [
+      "ipod",
+      "music player",
+      "mp3",
+      "portable music",
+      "classic ipod"
+    ]
+  },
+  "61493": {
+    "name": "personRunningCircle",
+    "synonyms": [
+      "running icon",
+      "run circle",
+      "runner icon",
+      "jog icon"
+    ]
+  },
+  "61494": {
+    "name": "personSprinting",
+    "synonyms": [
+      "sprinting",
+      "sprint",
+      "fast running",
+      "racing",
+      "speed"
+    ]
+  },
+  "61495": {
+    "name": "personClose",
+    "synonyms": [
+      "close person",
+      "person nearby",
+      "proximity",
+      "near"
+    ]
+  },
+  "61496": {
+    "name": "personOpen",
+    "synonyms": [
+      "open person",
+      "person away",
+      "distance",
+      "far"
+    ]
+  },
+  "61497": {
+    "name": "arrowDiamond",
+    "synonyms": [
+      "direction",
+      "navigation",
+      "pointer",
+      "diamond arrow",
+      "indicator"
+    ]
+  },
+  "61498": {
+    "name": "directionsRight",
+    "synonyms": [
+      "directions",
+      "route",
+      "turn right",
+      "navigate",
+      "gps"
+    ]
+  },
+  "61499": {
+    "name": "airplayAudio",
+    "synonyms": [
+      "airplay",
+      "stream audio",
+      "wireless audio",
+      "cast audio",
+      "audio streaming"
+    ]
+  },
+  "61500": {
+    "name": "airplayVideo",
+    "synonyms": [
+      "airplay video",
+      "stream video",
+      "cast",
+      "screen mirror",
+      "video streaming"
+    ]
+  },
+  "61501": {
+    "name": "airdrop",
+    "synonyms": [
+      "airdrop",
+      "share",
+      "wireless transfer",
+      "file share",
+      "nearby share"
+    ]
+  },
+  "61502": {
+    "name": "musicNoteList",
+    "synonyms": [
+      "playlist",
+      "song list",
+      "music list",
+      "tracks"
+    ]
+  },
+  "61503": {
+    "name": "musicNoteAlt",
+    "synonyms": [
+      "music alt",
+      "note alt",
+      "musical note",
+      "sound note"
+    ]
+  },
+  "61504": {
+    "name": "musicSquareStack",
+    "synonyms": [
+      "album",
+      "albums",
+      "music stack",
+      "collection"
+    ]
+  },
+  "61505": {
+    "name": "musicWaveForm",
+    "synonyms": [
+      "waveform",
+      "audio wave",
+      "sound wave",
+      "equalizer",
+      "music viz"
+    ]
+  },
+  "61506": {
+    "name": "livePlay",
+    "synonyms": [
+      "live",
+      "broadcast",
+      "streaming",
+      "live stream",
+      "on air"
+    ]
+  },
+  "61507": {
+    "name": "livePhoto",
+    "synonyms": [
+      "live photo",
+      "animated photo",
+      "moving photo",
+      "photo live"
+    ]
+  },
+  "61508": {
+    "name": "sloMo",
+    "synonyms": [
+      "slow motion",
+      "slo-mo",
+      "slow",
+      "replay",
+      "slow video"
+    ]
+  },
+  "61509": {
+    "name": "timeLapse",
+    "synonyms": [
+      "time lapse",
+      "timelapse",
+      "fast forward",
+      "time compression"
+    ]
+  },
+  "61510": {
+    "name": "calendarPlus",
+    "synonyms": [
+      "add event",
+      "new event",
+      "create event",
+      "schedule new"
+    ]
+  },
+  "61511": {
+    "name": "calendarExclamation",
+    "synonyms": [
+      "important date",
+      "deadline",
+      "urgent event",
+      "priority date"
+    ]
+  },
+  "61512": {
+    "name": "timer",
+    "synonyms": [
+      "countdown",
+      "timer",
+      "alarm",
+      "count down",
+      "timing"
+    ]
+  },
+  "61513": {
+    "name": "timerSquare",
+    "synonyms": [
+      "timer square",
+      "countdown square",
+      "timing square",
+      "timer icon"
+    ]
+  },
+  "61514": {
+    "name": "compose",
+    "synonyms": [
+      "write new",
+      "create new",
+      "pencil square",
+      "new document"
+    ]
+  },
+  "61515": {
+    "name": "duplicate",
+    "synonyms": [
+      "copy",
+      "clone",
+      "replicate",
+      "double",
+      "two documents"
+    ]
+  },
+  "61517": {
+    "name": "moonCircle",
+    "synonyms": [
+      "moon icon",
+      "night mode",
+      "dark circle",
+      "lunar circle"
+    ]
+  },
+  "61518": {
+    "name": "nightShift",
+    "synonyms": [
+      "night shift",
+      "blue light",
+      "warm display",
+      "evening mode"
+    ]
+  },
+  "61519": {
+    "name": "trueTone",
+    "synonyms": [
+      "true tone",
+      "display",
+      "color",
+      "screen",
+      "adaptive"
+    ]
+  },
+  "61520": {
+    "name": "dialMin",
+    "synonyms": [
+      "minimum",
+      "min",
+      "lowest",
+      "off",
+      "turned down"
+    ]
+  },
+  "61521": {
+    "name": "dialMax",
+    "synonyms": [
+      "maximum",
+      "max",
+      "highest",
+      "full",
+      "turned up"
+    ]
+  },
+  "61522": {
+    "name": "QRViewFinder",
+    "synonyms": [
+      "qr scanner",
+      "viewfinder",
+      "frame",
+      "capture",
+      "scanning"
+    ]
+  },
+  "61523": {
+    "name": "cameraViewFinder",
+    "synonyms": [
+      "photo frame",
+      "camera frame",
+      "focus frame",
+      "picture frame"
+    ]
+  },
+  "61524": {
+    "name": "walletPass",
+    "synonyms": [
+      "wallet",
+      "pass",
+      "card",
+      "ticket",
+      "digital wallet"
+    ]
+  },
+  "61525": {
+    "name": "appearance",
+    "synonyms": [
+      "theme",
+      "display",
+      "look",
+      "style",
+      "interface",
+      "visual"
+    ]
+  },
+  "61528": {
+    "name": "noSign",
+    "synonyms": [
+      "no",
+      "prohibited",
+      "not allowed",
+      "banned",
+      "forbidden"
+    ]
+  },
+  "61529": {
+    "name": "command",
+    "synonyms": [
+      "cmd",
+      "command key",
+      "keyboard",
+      "modifier",
+      "mac key",
+      "terminal",
+      "shell",
+      "command line",
+      "cli",
+      "developer",
+      "devtools",
+      "coding",
+      "script",
+      "bash",
+      "zsh"
+    ]
+  },
+  "61530": {
+    "name": "commandCircle",
+    "synonyms": [
+      "cmd circle",
+      "command button",
+      "mac command",
+      "modifier key",
+      "command line",
+      "terminal"
+    ]
+  },
+  "61531": {
+    "name": "commandSquare",
+    "synonyms": [
+      "cmd square",
+      "command box",
+      "keyboard shortcut",
+      "hotkey",
+      "key combo"
+    ]
+  },
+  "61532": {
+    "name": "brainHead",
+    "synonyms": [
+      "psychology",
+      "mindset",
+      "consciousness",
+      "thought",
+      "awareness"
+    ]
+  },
+  "61533": {
+    "name": "brain",
+    "synonyms": [
+      "thinking",
+      "mind",
+      "intelligence",
+      "mental",
+      "cognitive",
+      "smart"
+    ]
+  },
+  "61534": {
+    "name": "faceGrinning",
+    "synonyms": [
+      "grin",
+      "happy",
+      "smile",
+      "cheerful",
+      "joy"
+    ]
+  },
+  "61535": {
+    "name": "faceSmiling",
+    "synonyms": [
+      "smiling",
+      "content",
+      "pleased",
+      "satisfied",
+      "gentle smile"
+    ]
+  },
+  "61536": {
+    "name": "faceGrinningSquint",
+    "synonyms": [
+      "laughing",
+      "lol",
+      "haha",
+      "funny",
+      "hilarious"
+    ]
+  },
+  "61537": {
+    "name": "faceTears",
+    "synonyms": [
+      "crying",
+      "tears",
+      "sad",
+      "weeping",
+      "emotional"
+    ]
+  },
+  "61538": {
+    "name": "faceRolling",
+    "synonyms": [
+      "eye roll",
+      "sarcasm",
+      "whatever",
+      "annoyed",
+      "ugh"
+    ]
+  },
+  "61539": {
+    "name": "faceWink",
+    "synonyms": [
+      "wink",
+      "winky",
+      "playful",
+      "flirt",
+      "knowing"
+    ]
+  },
+  "61540": {
+    "name": "faceGrimacing",
+    "synonyms": [
+      "grimace",
+      "yikes",
+      "uncomfortable",
+      "awkward",
+      "cringe"
+    ]
+  },
+  "61541": {
+    "name": "faceLove",
+    "synonyms": [
+      "in love",
+      "loving face",
+      "smitten",
+      "adoring"
+    ]
+  },
+  "61542": {
+    "name": "faceKiss",
+    "synonyms": [
+      "kiss",
+      "smooch",
+      "blow kiss",
+      "kissing",
+      "mwah"
+    ]
+  },
+  "61543": {
+    "name": "faceHearts",
+    "synonyms": [
+      "heart eyes",
+      "love face",
+      "adore",
+      "loving",
+      "infatuated"
+    ]
+  },
+  "61544": {
+    "name": "faceSunglasses",
+    "synonyms": [
+      "cool",
+      "sunglasses",
+      "shades",
+      "awesome",
+      "chill"
+    ]
+  },
+  "61545": {
+    "name": "faceStarry",
+    "synonyms": [
+      "starstruck",
+      "amazed",
+      "impressed",
+      "wow",
+      "starry eyed"
+    ]
+  },
+  "61546": {
+    "name": "memoji",
+    "synonyms": [
+      "memoji",
+      "avatar",
+      "emoji",
+      "cartoon face",
+      "personal emoji"
+    ]
+  },
+  "61547": {
+    "name": "thumbsUpEmoji",
+    "synonyms": [
+      "thumbs up emoji",
+      "like emoji",
+      "approval emoji",
+      "good emoji"
+    ]
+  },
+  "61548": {
+    "name": "peace",
+    "synonyms": [
+      "peace sign",
+      "victory",
+      "v sign",
+      "peaceful",
+      "harmony"
+    ]
+  },
+  "61549": {
+    "name": "loveGesture",
+    "synonyms": [
+      "love you",
+      "i love you",
+      "hand heart",
+      "love sign"
+    ]
+  },
+  "61550": {
+    "name": "closedFist",
+    "synonyms": [
+      "fist",
+      "punch",
+      "strength",
+      "power",
+      "grip"
+    ]
+  },
+  "61551": {
+    "name": "surgicalMask",
+    "synonyms": [
+      "surgical mask",
+      "medical mask",
+      "face covering",
+      "protective mask"
+    ]
+  },
+  "61552": {
+    "name": "oneProngPuzzlePiece",
+    "synonyms": [
+      "puzzle piece",
+      "puzzle",
+      "extension",
+      "plugin",
+      "add-on"
+    ]
+  },
+  "61553": {
+    "name": "takeout",
+    "synonyms": [
+      "takeout",
+      "food",
+      "delivery",
+      "restaurant",
+      "to-go"
+    ]
+  },
+  "61554": {
+    "name": "bear",
+    "synonyms": [
+      "animal",
+      "wildlife",
+      "mammal",
+      "forest",
+      "grizzly"
+    ]
+  },
+  "61555": {
+    "name": "tiger",
+    "synonyms": [
+      "tiger",
+      "big cat",
+      "animal",
+      "feline",
+      "striped"
+    ]
+  },
+  "61556": {
+    "name": "monkey",
+    "synonyms": [
+      "primate",
+      "ape",
+      "chimp",
+      "animal",
+      "jungle"
+    ]
+  },
+  "61557": {
+    "name": "ram",
+    "synonyms": [
+      "sheep",
+      "ram",
+      "animal",
+      "horns",
+      "livestock"
+    ]
+  },
+  "61558": {
+    "name": "rabbit",
+    "synonyms": [
+      "bunny",
+      "hare",
+      "animal",
+      "easter",
+      "hop"
+    ]
+  },
+  "61559": {
+    "name": "snake",
+    "synonyms": [
+      "serpent",
+      "reptile",
+      "python",
+      "cobra",
+      "slither"
+    ]
+  },
+  "61560": {
+    "name": "chicken",
+    "synonyms": [
+      "poultry",
+      "bird",
+      "farm",
+      "rooster",
+      "hen"
+    ]
+  },
+  "61561": {
+    "name": "pig",
+    "synonyms": [
+      "piggy",
+      "swine",
+      "farm animal",
+      "pork",
+      "hog"
+    ]
+  },
+  "61562": {
+    "name": "mouse",
+    "synonyms": [
+      "rodent",
+      "animal",
+      "small animal",
+      "mice",
+      "creature"
+    ]
+  },
+  "61563": {
+    "name": "cow",
+    "synonyms": [
+      "cattle",
+      "farm animal",
+      "dairy",
+      "livestock",
+      "bovine"
+    ]
+  },
+  "61564": {
+    "name": "dragon",
+    "synonyms": [
+      "mythical",
+      "fantasy",
+      "creature",
+      "legend",
+      "monster"
+    ]
+  },
+  "61565": {
+    "name": "retroAlien",
+    "synonyms": [
+      "retro alien",
+      "vintage alien",
+      "space invader",
+      "pixel alien"
+    ]
+  },
+  "61566": {
+    "name": "robot",
+    "synonyms": [
+      "bot",
+      "ai",
+      "automation",
+      "android",
+      "machine",
+      "assistant",
+      "ai assistant",
+      "chatbot",
+      "llm",
+      "agent"
+    ]
+  },
+  "61567": {
+    "name": "ghost",
+    "synonyms": [
+      "spooky",
+      "spirit",
+      "phantom",
+      "halloween",
+      "boo"
+    ]
+  },
+  "61568": {
+    "name": "poop",
+    "synonyms": [
+      "poop emoji",
+      "funny",
+      "waste",
+      "bathroom",
+      "silly"
+    ]
+  },
+  "61569": {
+    "name": "skull",
+    "synonyms": [
+      "death",
+      "skeleton",
+      "bones",
+      "spooky",
+      "danger"
+    ]
+  },
+  "61570": {
+    "name": "folderOutline",
+    "synonyms": [
+      "empty folder",
+      "folder outline",
+      "new folder",
+      "folder shell"
+    ]
+  },
+  "61571": {
+    "name": "folderGear",
+    "synonyms": [
+      "folder settings",
+      "config folder",
+      "folder options",
+      "folder prefs"
+    ]
+  },
+  "61572": {
+    "name": "twoxTwoRectangles",
+    "synonyms": [
+      "2x2",
+      "four rectangles",
+      "grid 2x2",
+      "quadrants"
+    ]
+  },
+  "61573": {
+    "name": "twoxTwoRectanglesOutline",
+    "synonyms": [
+      "2x2 outline",
+      "four rectangles outline",
+      "grid outline"
+    ]
+  },
+  "61574": {
+    "name": "rectangleSplit",
+    "synonyms": [
+      "split view",
+      "divide",
+      "split screen",
+      "two panes"
+    ]
+  },
+  "61575": {
+    "name": "rectangleSplitThree",
+    "synonyms": [
+      "three split",
+      "three panes",
+      "triple split",
+      "three columns"
+    ]
+  },
+  "61576": {
+    "name": "rectangleSplitThreeOutline",
+    "synonyms": [
+      "three split outline",
+      "three panes outline",
+      "triple outline"
+    ]
+  },
+  "61577": {
+    "name": "cartoonHeart",
+    "synonyms": [
+      "love",
+      "heart emoji",
+      "cute heart",
+      "affection",
+      "romance"
+    ]
+  },
+  "61578": {
+    "name": "twoCartoonHearts",
+    "synonyms": [
+      "two hearts",
+      "double hearts",
+      "hearts",
+      "love hearts"
+    ]
+  },
+  "61579": {
+    "name": "starHalf",
+    "synonyms": [
+      "half star",
+      "half rating",
+      "partial star",
+      "rating half"
+    ]
+  },
+  "61581": {
+    "name": "sparkles",
+    "synonyms": [
+      "sparkle",
+      "shine",
+      "glitter",
+      "magic",
+      "stars",
+      "shimmer",
+      "ai",
+      "generative ai",
+      "rewrite",
+      "enhance",
+      "improve",
+      "polish text"
+    ]
+  },
+  "61582": {
+    "name": "sendMessageOutline",
+    "synonyms": [
+      "send outline",
+      "message outline",
+      "send icon outline"
+    ]
+  },
+  "61583": {
+    "name": "doubleQuoteOutline",
+    "synonyms": [
+      "quote outline",
+      "quotation marks",
+      "quote marks",
+      "citation marks"
+    ]
+  },
+  "61584": {
+    "name": "handSlash",
+    "synonyms": [
+      "no touch",
+      "stop hand",
+      "forbidden",
+      "do not touch"
+    ]
+  },
+  "61585": {
+    "name": "handSlashOutline",
+    "synonyms": [
+      "hand prohibited",
+      "no contact",
+      "do not enter",
+      "restricted"
+    ]
+  },
+  "61586": {
+    "name": "waveform",
+    "synonyms": [
+      "audio",
+      "sound wave",
+      "frequency",
+      "audio visual",
+      "wave"
+    ]
+  },
+  "61587": {
+    "name": "checklist",
+    "synonyms": [
+      "todo",
+      "tasks",
+      "list",
+      "items",
+      "checkboxes",
+      "to-do",
+      "task manager",
+      "to do",
+      "todo list",
+      "action items",
+      "check off"
+    ]
+  },
+  "61588": {
+    "name": "textBox",
+    "synonyms": [
+      "text box",
+      "input",
+      "text field",
+      "typing box",
+      "text area"
+    ]
+  },
+  "61589": {
+    "name": "xSquare",
+    "synonyms": [
+      "x",
+      "close square",
+      "cancel square",
+      "delete square",
+      "x icon"
+    ]
+  },
+  "61796": {
+    "name": "shazam",
+    "synonyms": [
+      "shazam",
+      "music recognition",
+      "identify",
+      "song finder",
+      "music id"
+    ]
+  },
+  "62212": {
+    "name": "keyRadiowaves",
+    "synonyms": [
+      "digital key",
+      "wireless key",
+      "key waves",
+      "car key",
+      "remote key"
+    ]
+  },
+  "62213": {
+    "name": "appleIntelligence",
+    "synonyms": [
+      "ai",
+      "apple ai",
+      "intelligence",
+      "smart",
+      "machine learning"
+    ]
+  },
+  "62214": {
+    "name": "handPointUpLeft",
+    "synonyms": [
+      "point left",
+      "pointing",
+      "left",
+      "gesture",
+      "indicate"
+    ]
+  },
+  "62215": {
+    "name": "handTap",
+    "synonyms": [
+      "tap",
+      "touch",
+      "press",
+      "finger tap",
+      "click"
+    ]
+  },
+  "62216": {
+    "name": "handDraw",
+    "synonyms": [
+      "draw",
+      "drawing",
+      "sketch",
+      "pencil hand",
+      "hand drawing"
+    ]
+  },
+  "62217": {
+    "name": "shippingBox",
+    "synonyms": [
+      "box",
+      "package",
+      "shipping",
+      "delivery",
+      "parcel"
+    ]
+  },
+  "62224": {
+    "name": "engineCombustion",
+    "synonyms": [
+      "engine",
+      "motor",
+      "combustion",
+      "car engine",
+      "mechanical"
+    ]
+  },
+  "62225": {
+    "name": "pc",
+    "synonyms": [
+      "computer",
+      "desktop",
+      "pc",
+      "windows",
+      "tower"
+    ]
+  },
+  "62226": {
+    "name": "bellBadge",
+    "synonyms": [
+      "notification badge",
+      "alert badge",
+      "bell with badge",
+      "unread"
+    ]
+  },
+  "62227": {
+    "name": "bellAnnounce",
+    "synonyms": [
+      "announce",
+      "announcement",
+      "broadcast bell",
+      "alert all"
+    ]
+  },
+  "62228": {
+    "name": "bellSlash",
+    "synonyms": [
+      "notifications off",
+      "bell off",
+      "mute notifications",
+      "no alerts"
+    ]
+  },
+  "62229": {
+    "name": "bellAndWaves",
+    "synonyms": [
+      "ringing",
+      "bell ringing",
+      "active bell",
+      "alert sound"
+    ]
+  },
+  "62230": {
+    "name": "swatchPalette",
+    "synonyms": [
+      "colors",
+      "palette",
+      "color picker",
+      "swatch",
+      "design"
+    ]
+  },
+  "62231": {
+    "name": "mugAlt",
+    "synonyms": [
+      "mug alt",
+      "coffee alt",
+      "cup alt",
+      "tea cup"
+    ]
+  },
+  "62232": {
+    "name": "oilCan",
+    "synonyms": [
+      "oil",
+      "lubrication",
+      "can",
+      "grease",
+      "maintenance oil"
+    ]
+  },
+  "62233": {
+    "name": "newspaper",
+    "synonyms": [
+      "news",
+      "paper",
+      "press",
+      "media",
+      "articles"
+    ]
+  },
+  "62240": {
+    "name": "a11y",
+    "synonyms": [
+      "accessibility",
+      "accessible",
+      "a11y",
+      "inclusive",
+      "universal access"
+    ]
+  },
+  "62241": {
+    "name": "megaphone",
+    "synonyms": [
+      "announce",
+      "megaphone",
+      "broadcast",
+      "loudspeaker",
+      "shout"
+    ]
+  },
+  "62242": {
+    "name": "shieldSwap",
+    "synonyms": [
+      "security swap",
+      "shield exchange",
+      "protection swap",
+      "security"
+    ]
+  },
+  "62243": {
+    "name": "basket",
+    "synonyms": [
+      "basket",
+      "shopping basket",
+      "cart",
+      "container",
+      "collection"
+    ]
+  },
+  "62244": {
+    "name": "level",
+    "synonyms": [
+      "level",
+      "balance",
+      "straight",
+      "alignment",
+      "even"
+    ]
+  },
+  "62245": {
+    "name": "fileVault",
+    "synonyms": [
+      "vault",
+      "secure",
+      "encrypted",
+      "safe",
+      "protected files"
+    ]
+  },
+  "62246": {
+    "name": "fireplace",
+    "synonyms": [
+      "fireplace",
+      "hearth",
+      "fire",
+      "cozy",
+      "warmth"
+    ]
+  },
+  "62247": {
+    "name": "cabinet",
+    "synonyms": [
+      "cabinet",
+      "storage",
+      "cupboard",
+      "furniture",
+      "drawer"
+    ]
+  },
+  "62248": {
+    "name": "dryer",
+    "synonyms": [
+      "dryer",
+      "laundry dryer",
+      "clothes dryer",
+      "tumble dry"
+    ]
+  },
+  "62249": {
+    "name": "sink",
+    "synonyms": [
+      "sink",
+      "kitchen sink",
+      "wash",
+      "bathroom sink",
+      "basin"
+    ]
+  },
+  "62256": {
+    "name": "pin",
+    "synonyms": [
+      "pin",
+      "tack",
+      "pushpin",
+      "attach",
+      "pinned"
+    ]
+  },
+  "62257": {
+    "name": "shoe",
+    "synonyms": [
+      "shoe",
+      "footwear",
+      "sneaker",
+      "shoes",
+      "boot"
+    ]
+  },
+  "62258": {
+    "name": "buildingBlock",
+    "synonyms": [
+      "block",
+      "toy",
+      "lego",
+      "building",
+      "construction toy"
+    ]
+  },
+  "62259": {
+    "name": "dPad",
+    "synonyms": [
+      "d-pad",
+      "directional",
+      "gamepad",
+      "controller",
+      "arrows"
+    ]
+  },
+  "62260": {
+    "name": "waterBottle",
+    "synonyms": [
+      "bottle",
+      "water",
+      "hydration",
+      "drink bottle",
+      "reusable"
+    ]
+  },
+  "62261": {
+    "name": "sdCard",
+    "synonyms": [
+      "sd card",
+      "memory card",
+      "storage card",
+      "flash card"
+    ]
+  },
+  "62262": {
+    "name": "sdCard2",
+    "synonyms": [
+      "sd card alt",
+      "memory card alt",
+      "storage alt"
+    ]
+  },
+  "62263": {
+    "name": "chip",
+    "synonyms": [
+      "chip",
+      "processor",
+      "cpu",
+      "silicon",
+      "microchip"
+    ]
+  },
+  "62264": {
+    "name": "weight",
+    "synonyms": [
+      "weight",
+      "heavy",
+      "scale",
+      "mass",
+      "dumbbell"
+    ]
+  },
+  "62265": {
+    "name": "dollar",
+    "synonyms": [
+      "dollar",
+      "usd",
+      "currency",
+      "money",
+      "cash"
+    ]
+  },
+  "62272": {
+    "name": "yoyo",
+    "synonyms": [
+      "yoyo",
+      "toy",
+      "yo-yo",
+      "game",
+      "play"
+    ]
+  },
+  "62273": {
+    "name": "americanFootball",
+    "synonyms": [
+      "football",
+      "american football",
+      "nfl",
+      "sport",
+      "gridiron"
+    ]
+  },
+  "62274": {
+    "name": "americanFootballStriped",
+    "synonyms": [
+      "football striped",
+      "nfl ball",
+      "sport ball",
+      "striped football"
+    ]
+  },
+  "62275": {
+    "name": "beachUmbrella",
+    "synonyms": [
+      "beach",
+      "umbrella",
+      "vacation",
+      "summer",
+      "parasol"
+    ]
+  },
+  "62276": {
+    "name": "spade",
+    "synonyms": [
+      "spade",
+      "cards",
+      "suit",
+      "playing cards",
+      "card game"
+    ]
+  },
+  "62278": {
+    "name": "club",
+    "synonyms": [
+      "club",
+      "card suit",
+      "clubs",
+      "playing card",
+      "card symbol"
+    ]
+  },
+  "62279": {
+    "name": "showerHandheld",
+    "synonyms": [
+      "handheld shower",
+      "shower head",
+      "spray",
+      "bathroom"
+    ]
+  },
+  "62280": {
+    "name": "signpostRight",
+    "synonyms": [
+      "signpost",
+      "direction sign",
+      "arrow sign",
+      "way"
+    ]
+  },
+  "62281": {
+    "name": "macProGen3",
+    "synonyms": [
+      "mac pro",
+      "mac pro gen 3",
+      "apple computer",
+      "workstation"
+    ]
+  },
+  "62288": {
+    "name": "macProGen2",
+    "synonyms": [
+      "mac pro gen 2",
+      "tower",
+      "professional mac",
+      "gen 2"
+    ]
+  },
+  "62289": {
+    "name": "macProGen1",
+    "synonyms": [
+      "mac pro gen 1",
+      "classic mac pro",
+      "tower mac",
+      "gen 1"
+    ]
+  },
+  "62290": {
+    "name": "homepodMini",
+    "synonyms": [
+      "homepod mini",
+      "mini speaker",
+      "small speaker",
+      "siri mini"
+    ]
+  },
+  "62291": {
+    "name": "homepod2",
+    "synonyms": [
+      "homepod 2",
+      "homepod gen 2",
+      "smart speaker 2",
+      "second gen"
+    ]
+  },
+  "62292": {
+    "name": "carSideSUV",
+    "synonyms": [
+      "suv",
+      "car side",
+      "vehicle",
+      "sport utility",
+      "truck"
+    ]
+  },
+  "62293": {
+    "name": "carSideSedan",
+    "synonyms": [
+      "sedan",
+      "car",
+      "vehicle side",
+      "automobile"
+    ]
+  },
+  "62294": {
+    "name": "carSideConvertable",
+    "synonyms": [
+      "convertible",
+      "sports car",
+      "cabrio",
+      "open top"
+    ]
+  },
+  "62295": {
+    "name": "hornBlast",
+    "synonyms": [
+      "horn",
+      "car horn",
+      "honk",
+      "blast",
+      "alert"
+    ]
+  },
+  "62296": {
+    "name": "vaccinationCard",
+    "synonyms": [
+      "vaccine card",
+      "vaccination",
+      "immunization card",
+      "health card"
+    ]
+  },
+  "62297": {
+    "name": "ivFluidBag",
+    "synonyms": [
+      "iv",
+      "iv bag",
+      "medical",
+      "fluid",
+      "hospital"
+    ]
+  },
+  "62304": {
+    "name": "hatWideBrim",
+    "synonyms": [
+      "hat",
+      "wide brim",
+      "sun hat",
+      "beach hat",
+      "fashion"
+    ]
+  },
+  "62305": {
+    "name": "globeDesk",
+    "synonyms": [
+      "globe",
+      "desk globe",
+      "world",
+      "geography",
+      "earth model"
+    ]
+  },
+  "62306": {
+    "name": "mugHot",
+    "synonyms": [
+      "hot coffee",
+      "hot drink",
+      "steaming mug",
+      "hot beverage"
+    ]
+  },
+  "62307": {
+    "name": "networkConnected",
+    "synonyms": [
+      "connected",
+      "network active",
+      "online",
+      "linked network"
+    ]
+  },
+  "62308": {
+    "name": "appConnection",
+    "synonyms": [
+      "app link",
+      "connection",
+      "integration",
+      "linked apps"
+    ]
+  },
+  "62310": {
+    "name": "mustache",
+    "synonyms": [
+      "mustache",
+      "facial hair",
+      "stache",
+      "grooming",
+      "beard"
+    ]
+  },
+  "62311": {
+    "name": "flipPhone",
+    "synonyms": [
+      "flip phone",
+      "old phone",
+      "retro phone",
+      "feature phone"
+    ]
+  },
+  "62312": {
+    "name": "siri",
+    "synonyms": [
+      "siri",
+      "voice assistant",
+      "assistant",
+      "ai assistant",
+      "apple assistant"
+    ]
+  },
+  "62313": {
+    "name": "appStore",
+    "synonyms": [
+      "app store",
+      "apps",
+      "download",
+      "store",
+      "apple store"
+    ]
+  },
+  "62320": {
+    "name": "carPlay",
+    "synonyms": [
+      "carplay",
+      "car integration",
+      "apple car",
+      "car system"
+    ]
+  },
+  "62321": {
+    "name": "textAppend",
+    "synonyms": [
+      "append",
+      "add text",
+      "insert",
+      "text add",
+      "suffix"
+    ]
+  },
+  "62322": {
+    "name": "appleCash",
+    "synonyms": [
+      "apple cash",
+      "apple pay",
+      "cash",
+      "payment",
+      "money transfer"
+    ]
+  },
+  "62323": {
+    "name": "appleMathNotes",
+    "synonyms": [
+      "math notes",
+      "calculator notes",
+      "math app",
+      "apple math"
+    ]
+  },
+  "62324": {
+    "name": "appleMindfulness",
+    "synonyms": [
+      "mindfulness",
+      "meditation",
+      "wellness",
+      "mental health"
+    ]
+  },
+  "62325": {
+    "name": "appleBreathe",
+    "synonyms": [
+      "breathe",
+      "breathing",
+      "calm",
+      "relax",
+      "meditation"
+    ]
+  },
+  "62326": {
+    "name": "appleReflect",
+    "synonyms": [
+      "reflect",
+      "reflection",
+      "journal",
+      "thinking",
+      "contemplation"
+    ]
+  },
+  "62327": {
+    "name": "appleMeditate",
+    "synonyms": [
+      "meditate",
+      "meditation",
+      "zen",
+      "mindfulness",
+      "peace"
+    ]
+  },
+  "62328": {
+    "name": "appleStateOfMind",
+    "synonyms": [
+      "state of mind",
+      "mood",
+      "mental state",
+      "feelings"
+    ]
+  },
+  "62329": {
+    "name": "appleCycleTracking",
+    "synonyms": [
+      "cycle tracking",
+      "period",
+      "menstrual",
+      "health tracking"
+    ]
+  },
+  "62336": {
+    "name": "appleNews",
+    "synonyms": [
+      "apple news",
+      "news app",
+      "articles",
+      "news feed"
+    ]
+  },
+  "62337": {
+    "name": "appleHealthTrends",
+    "synonyms": [
+      "health trends",
+      "health data",
+      "trends",
+      "wellness data"
+    ]
+  },
+  "62338": {
+    "name": "applePages",
+    "synonyms": [
+      "pages",
+      "word processor",
+      "document editor",
+      "apple pages"
+    ]
+  },
+  "62339": {
+    "name": "appleKeynote",
+    "synonyms": [
+      "keynote",
+      "presentation",
+      "slides",
+      "apple keynote"
+    ]
+  },
+  "62340": {
+    "name": "appleNumbers",
+    "synonyms": [
+      "numbers",
+      "spreadsheet",
+      "excel",
+      "apple numbers"
+    ]
+  },
+  "62341": {
+    "name": "bezierCurve",
+    "synonyms": [
+      "bezier",
+      "curve",
+      "path",
+      "vector",
+      "design"
+    ]
+  },
+  "62342": {
+    "name": "roadCurvedLeft",
+    "synonyms": [
+      "road",
+      "curved road",
+      "turn left",
+      "winding",
+      "curve"
+    ]
+  },
+  "62343": {
+    "name": "roadCurvedRight",
+    "synonyms": [
+      "road right",
+      "turn right",
+      "curved right",
+      "bend"
+    ]
+  },
+  "62344": {
+    "name": "pointsConnection",
+    "synonyms": [
+      "connected points",
+      "nodes",
+      "links",
+      "network points"
+    ]
+  },
+  "62345": {
+    "name": "pointsCurvedSPath",
+    "synonyms": [
+      "s curve",
+      "path",
+      "curved path",
+      "s-path",
+      "wavy"
+    ]
+  },
+  "62352": {
+    "name": "sparkle",
+    "synonyms": [
+      "sparkle",
+      "star",
+      "shine",
+      "twinkle",
+      "glint"
+    ]
+  },
+  "62353": {
+    "name": "arrowUpRight",
+    "synonyms": [
+      "up right",
+      "northeast",
+      "diagonal up",
+      "arrow ne"
+    ]
+  },
+  "62354": {
+    "name": "arrowUpLeft",
+    "synonyms": [
+      "up left",
+      "northwest",
+      "diagonal left",
+      "arrow nw"
+    ]
+  },
+  "62355": {
+    "name": "textInsert",
+    "synonyms": [
+      "insert text",
+      "cursor",
+      "text input",
+      "typing"
+    ]
+  },
+  "62356": {
+    "name": "textQuote",
+    "synonyms": [
+      "quote",
+      "quotation",
+      "cite",
+      "quoted text"
+    ]
+  },
+  "62357": {
+    "name": "textAlignLeft",
+    "synonyms": [
+      "left align",
+      "align left",
+      "text left",
+      "justify left"
+    ]
+  },
+  "62358": {
+    "name": "textAlignCenter",
+    "synonyms": [
+      "center align",
+      "center text",
+      "align center",
+      "centered"
+    ]
+  },
+  "62359": {
+    "name": "textAlignRight",
+    "synonyms": [
+      "right align",
+      "align right",
+      "text right",
+      "justify right"
+    ]
+  },
+  "62360": {
+    "name": "textJustify",
+    "synonyms": [
+      "justify",
+      "text justify",
+      "full justify",
+      "aligned"
+    ]
+  },
+  "62464": {
+    "name": "suitcases",
+    "synonyms": [
+      "luggage",
+      "suitcase",
+      "baggage",
+      "travel bags",
+      "trip"
+    ]
+  },
+  "62465": {
+    "name": "petCarrier",
+    "synonyms": [
+      "pet carrier",
+      "pet",
+      "carrier",
+      "animal carrier",
+      "crate"
+    ]
+  },
+  "62466": {
+    "name": "airplaneLanded",
+    "synonyms": [
+      "landed",
+      "arrival",
+      "airport arrival",
+      "plane landed"
+    ]
+  },
+  "62467": {
+    "name": "airplaneCloud",
+    "synonyms": [
+      "plane cloud",
+      "flying",
+      "in flight",
+      "airborne"
+    ]
+  },
+  "62468": {
+    "name": "airplaneTicket",
+    "synonyms": [
+      "plane ticket",
+      "boarding pass",
+      "ticket",
+      "flight ticket"
+    ]
+  },
+  "62469": {
+    "name": "airplaneSeat",
+    "synonyms": [
+      "seat",
+      "airplane seat",
+      "flight seat",
+      "passenger"
+    ]
+  },
+  "62470": {
+    "name": "personWalkingSuitcase",
+    "synonyms": [
+      "traveler",
+      "walking luggage",
+      "travel",
+      "tourist",
+      "passenger"
+    ]
+  },
+  "62471": {
+    "name": "appleClassicalPages",
+    "synonyms": [
+      "classical pages",
+      "pages classical",
+      "document classical"
+    ]
+  },
+  "62472": {
+    "name": "textSquareFilled",
+    "synonyms": [
+      "text filled",
+      "filled text",
+      "text block",
+      "solid text"
+    ]
+  },
+  "62473": {
+    "name": "characterTextJustify",
+    "synonyms": [
+      "character justify",
+      "text character",
+      "char justify"
+    ]
+  },
+  "62480": {
+    "name": "graph2D",
+    "synonyms": [
+      "2d graph",
+      "chart",
+      "plot",
+      "graph",
+      "diagram"
+    ]
+  },
+  "62481": {
+    "name": "mathOperators",
+    "synonyms": [
+      "operators",
+      "math",
+      "symbols",
+      "calculation",
+      "equation"
+    ]
+  },
+  "62482": {
+    "name": "circle",
+    "synonyms": [
+      "circle",
+      "round",
+      "ring",
+      "circular",
+      "shape"
+    ]
+  },
+  "62483": {
+    "name": "capsulePortrait",
+    "synonyms": [
+      "capsule",
+      "pill shape",
+      "rounded",
+      "oblong"
+    ]
+  },
+  "62484": {
+    "name": "rectangle",
+    "synonyms": [
+      "rectangle",
+      "box",
+      "rect",
+      "rectangular",
+      "square"
+    ]
+  },
+  "62485": {
+    "name": "rectanglePortrait",
+    "synonyms": [
+      "portrait",
+      "vertical",
+      "tall",
+      "upright"
+    ]
+  },
+  "62486": {
+    "name": "oval",
+    "synonyms": [
+      "oval",
+      "ellipse",
+      "egg",
+      "rounded shape"
+    ]
+  },
+  "62487": {
+    "name": "ovalPortrait",
+    "synonyms": [
+      "oval portrait",
+      "vertical oval",
+      "tall oval"
+    ]
+  },
+  "62488": {
+    "name": "triangle",
+    "synonyms": [
+      "triangle",
+      "three sides",
+      "triangular",
+      "delta"
+    ]
+  },
+  "62489": {
+    "name": "diamond",
+    "synonyms": [
+      "diamond",
+      "rhombus",
+      "gem",
+      "jewel",
+      "precious"
+    ]
+  },
+  "62496": {
+    "name": "octagon",
+    "synonyms": [
+      "octagon",
+      "eight sides",
+      "stop sign",
+      "octagonal"
+    ]
+  },
+  "62497": {
+    "name": "hexagon",
+    "synonyms": [
+      "hexagon",
+      "six sides",
+      "hex",
+      "hexagonal"
+    ]
+  },
+  "62498": {
+    "name": "pentagon",
+    "synonyms": [
+      "pentagon",
+      "five sides",
+      "pentagonal"
+    ]
+  },
+  "62499": {
+    "name": "seal",
+    "synonyms": [
+      "seal",
+      "stamp",
+      "badge",
+      "medallion",
+      "award"
+    ]
+  },
+  "62500": {
+    "name": "rhombus",
+    "synonyms": [
+      "rhombus",
+      "diamond shape",
+      "parallelogram",
+      "angled"
+    ]
+  },
+  "62501": {
+    "name": "shield",
+    "synonyms": [
+      "shield",
+      "protection",
+      "security",
+      "defend",
+      "safe"
+    ]
+  },
+  "999999": {
+    "name": "blank",
+    "synonyms": [
+      "empty",
+      "none",
+      "clear",
+      "nothing",
+      "transparent"
+    ]
+  }
+}

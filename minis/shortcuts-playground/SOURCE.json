@@ -1,0 +1,7 @@
+{
+  "source": "https://github.com/viticci/shortcuts-playground-plugin",
+  "ref": "main",
+  "commit": "2de03bffe4ce8802e06d184931d9e4ec366a2ef2",
+  "preset": "shortcuts-playground",
+  "converter": "github-to-minis-skill"
+}
