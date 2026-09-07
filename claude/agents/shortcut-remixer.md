@@ -69,7 +69,7 @@ Before any other work, run this Bash command:
 CONFIGURED_OUTPUT_DIR="${user_config.output_dir}"
 CONFIGURED_SIGNING_MODE="${user_config.signing_mode}"
 case "$CONFIGURED_OUTPUT_DIR" in
-  ""|'${user_config.output_dir}') OUTPUT_DIR="${CLAUDE_PLUGIN_OPTION_OUTPUT_DIR:-$HOME/Documents/Shortcuts Playground}" ;;
+  ""|'${'*) OUTPUT_DIR="${CLAUDE_PLUGIN_OPTION_OUTPUT_DIR:-$HOME/Documents/Shortcuts Playground}" ;;
   *) OUTPUT_DIR="$CONFIGURED_OUTPUT_DIR" ;;
 esac
 case "$OUTPUT_DIR" in
@@ -79,7 +79,7 @@ case "$OUTPUT_DIR" in
   '$HOME/'*) OUTPUT_DIR="$HOME/${OUTPUT_DIR#\$HOME/}" ;;
 esac
 case "$CONFIGURED_SIGNING_MODE" in
-  ""|'${user_config.signing_mode}') SIGNING_MODE="${CLAUDE_PLUGIN_OPTION_SIGNING_MODE:-anyone}" ;;
+  ""|'${'*) SIGNING_MODE="${CLAUDE_PLUGIN_OPTION_SIGNING_MODE:-anyone}" ;;
   *) SIGNING_MODE="$CONFIGURED_SIGNING_MODE" ;;
 esac
 mkdir -p "$OUTPUT_DIR/drafts"
