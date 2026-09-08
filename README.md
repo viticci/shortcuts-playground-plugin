@@ -74,7 +74,7 @@ Claude Code clones the repository into its plugin cache on first install. If the
 
 ## Installation in Codex
 
-Codex installs plugins from marketplaces. This repository includes a Codex marketplace at `.agents/plugins/marketplace.json`, which points at the Codex package in `./codex`.
+Codex installs plugins from marketplaces. The commands below target the published upstream marketplace. This checkout keeps the packages in `./claude` and `./codex` but omits root catalogs to prevent local marketplace discovery.
 
 ### In the terminal
 
@@ -90,11 +90,7 @@ codex
 
 Inside Codex, type `/plugins`, choose the Shortcuts Playground marketplace, open Shortcuts Playground, and select `Install plugin`. Start a new session to load the plugin.
 
-For local development from a cloned checkout, register the checkout instead of GitHub:
-
-```bash
-codex plugin marketplace add /absolute/path/to/shortcuts-playground-plugin
-```
+For local development, reference the `./codex` package from a separately managed marketplace.
 
 ### In the Codex app
 
@@ -233,7 +229,7 @@ This repository ships plugins for two agent runtimes:
 | [`claude/`](claude/) | Claude Code | Full plugin with skill, slash commands, specialized agents, PostToolUse hook, and CLI wrappers. |
 | [`codex/`](codex/) | Codex | Codex-compatible plugin with bundled skill, validator/signing scripts, and opt-in PostToolUse validation hook. |
 
-The root `.claude-plugin/marketplace.json` installs the Claude Code plugin from `./claude`. The root `.agents/plugins/marketplace.json` installs the Codex plugin from `./codex`.
+The Claude Code package is in `./claude`, and the Codex package is in `./codex`. A separately managed marketplace can reference these packages.
 
 For detailed technical documentation, see [`claude/README.md`](claude/README.md) and [`claude/INSTALL.md`](claude/INSTALL.md).
 
