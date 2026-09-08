@@ -30,7 +30,7 @@ Writing valid Shortcuts plists by hand — even with an LLM — is miserable. Th
 
 ## Installation
 
-This repository contains both Claude and Codex packages. The Claude Code plugin lives in `claude/`, and the repository root includes a Claude marketplace that points to that folder. Three install options, ordered from quickest to most-durable:
+This repository contains both Claude and Codex packages. The Claude Code plugin lives in `claude/`; this checkout omits the root marketplace catalog. Three install options, ordered from quickest to most-durable:
 
 ### Option A — quickest: `--plugin-dir` (for a single session)
 
@@ -42,7 +42,7 @@ Inside the session, ask for a shortcut or run `/shortcuts-playground:build <brie
 
 ### Option B — local dev marketplace (for ongoing local development)
 
-Create a separate marketplace directory that references this repository via a symlink. The marketplace is its own git repo and points at `./shortcuts-playground-plugin`, whose root `.claude-plugin/marketplace.json` installs the Claude plugin from `./claude`:
+Create a separate marketplace directory that references this repository via a symlink. The marketplace is its own git repo and references the plugin package at `./shortcuts-playground-plugin/claude`:
 
 ```bash
 mkdir -p ~/Projects/shortcuts-playground-dev-marketplace/.claude-plugin
