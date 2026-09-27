@@ -232,7 +232,7 @@ shortcuts-playground-plugin/
 │       ├── PARAMETER_TYPES.md
 │       ├── ...                  # reference markdown files
 │       ├── data/                # ToolKit ID snapshots + glyph/color JSON
-│       ├── golden-shortcuts/    # 19 curated example XMLs
+│       ├── golden-shortcuts/    # 21 curated example XMLs
 │       └── scripts/             # Python implementations
 ├── agents/
 │   ├── shortcut-builder.md      # build-from-scratch agent

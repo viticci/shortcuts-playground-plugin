@@ -2368,6 +2368,61 @@ class ToolkitSnapshotTests(unittest.TestCase):
             )
 
 
+    def test_run_shortcut_golden_pair_validates(self) -> None:
+        import plistlib
+
+        caller_id = "6035f81afe6d43c38e06e0fd5d7351f7"
+        callee_id = "b0a951e23fad43f4b67886f82b8e6c20"
+        for rel_path in (
+            "claude/skills/shortcuts-playground/scripts/validate_shortcut.py",
+            "codex/skills/shortcuts-playground/scripts/validate_shortcut.py",
+        ):
+            module, module_path = self.load_validator_module(rel_path)
+            skill_dir = module_path.parents[1]
+            index_ids = {
+                json.loads(line)["id"]
+                for line in (skill_dir / "golden-shortcuts/index.jsonl").read_text(encoding="utf-8").splitlines()
+                if line.strip()
+            }
+            self.assertLessEqual({caller_id, callee_id}, index_ids, rel_path)
+
+            plists = {}
+            for golden_id in (caller_id, callee_id):
+                with (skill_dir / f"golden-shortcuts/xml/{golden_id}.xml").open("rb") as handle:
+                    plists[golden_id] = plistlib.load(handle)
+                for target_macos in (26, 27):
+                    errors, _ = module.validate(
+                        plists[golden_id],
+                        module.load_allowed_ids(skill_dir, target_macos_major=target_macos),
+                    )
+                    self.assertEqual([], errors, f"{rel_path} {golden_id} macOS {target_macos}")
+
+            run_params = next(
+                action["WFWorkflowActionParameters"]
+                for action in plists[caller_id]["WFWorkflowActions"]
+                if action["WFWorkflowActionIdentifier"] == "is.workflow.actions.runworkflow"
+            )
+            callee = plists[callee_id]
+            self.assertEqual(callee["WFWorkflowName"], run_params["WFWorkflowName"], rel_path)
+            self.assertEqual(callee["WFWorkflowName"], run_params["WFWorkflow"]["workflowName"], rel_path)
+            self.assertIs(False, run_params["WFWorkflow"]["isSelf"], rel_path)
+            self.assertTrue(callee["WFWorkflowHasShortcutInputVariables"], rel_path)
+            self.assertEqual(
+                "WFWorkflowNoInputBehaviorShowError",
+                callee["WFWorkflowNoInputBehavior"]["Name"],
+                rel_path,
+            )
+            self.assertEqual(["WFWorkflowTypeShowInSearch"], callee["WFWorkflowTypes"], rel_path)
+            self.assertEqual(["WFStringContentItem"], callee["WFWorkflowInputContentItemClasses"], rel_path)
+            self.assertEqual(["WFStringContentItem"], callee["WFWorkflowOutputContentItemClasses"], rel_path)
+            output_params = next(
+                action["WFWorkflowActionParameters"]
+                for action in callee["WFWorkflowActions"]
+                if action["WFWorkflowActionIdentifier"] == "is.workflow.actions.output"
+            )
+            self.assertEqual("WFTextTokenString", output_params["WFOutput"]["WFSerializationType"], rel_path)
+            self.assertNotIn("WFNoOutputSurfaceBehavior", output_params, rel_path)
+
 class AppleGroundingCatalogTests(unittest.TestCase):
     CATALOG_PATHS = (
         "claude/skills/shortcuts-playground/data/macos27-shortpy-grounding.json",

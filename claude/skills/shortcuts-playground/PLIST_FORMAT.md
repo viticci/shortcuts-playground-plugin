@@ -85,6 +85,7 @@ A `.shortcut` file is a binary plist (can be written as XML, then converted). Th
 | `WFWorkflowOutputContentItemClasses` | Array | No | Output types |
 | `WFWorkflowTypes` | Array | No | Workflow types |
 | `WFWorkflowHasShortcutInputVariables` | Boolean | No | True if shortcut uses input variables |
+| `WFWorkflowNoInputBehavior` | Dict | No | What happens when the shortcut runs without input; see "Sub-shortcut Root Keys" |
 | `WFWorkflowIsDisabledOnLockScreen` | Boolean | No | Prevents execution from Lock Screen |
 | `WFWorkflowQuickActionSurfaces` | Array | No | Surfaces where shortcut appears as quick action |
 
@@ -203,6 +204,45 @@ These define what input types the shortcut accepts:
     <string>WFURLContentItem</string>
 </array>
 ```
+
+## Sub-shortcut Root Keys
+
+A shortcut meant to be called with **Run Shortcut** (see ACTIONS.md "Run Shortcut and Sub-shortcuts") uses these root keys (verified for a text-in/text-out sub-shortcut).
+
+```xml
+<key>WFWorkflowHasShortcutInputVariables</key>
+<true/>
+<key>WFWorkflowInputContentItemClasses</key>
+<array>
+    <string>WFStringContentItem</string>
+</array>
+<key>WFWorkflowNoInputBehavior</key>
+<dict>
+    <key>Name</key>
+    <string>WFWorkflowNoInputBehaviorShowError</string>
+    <key>Parameters</key>
+    <dict>
+        <key>Error</key>
+        <string>Missing input</string>
+    </dict>
+</dict>
+<key>WFWorkflowOutputContentItemClasses</key>
+<array>
+    <string>WFStringContentItem</string>
+</array>
+<key>WFWorkflowTypes</key>
+<array>
+    <string>WFWorkflowTypeShowInSearch</string>
+</array>
+```
+
+| Key | Notes |
+|-----|-------|
+| `WFWorkflowHasShortcutInputVariables` | `true` when actions reference Shortcut Input (`ExtensionInput`). |
+| `WFWorkflowNoInputBehavior` | `WFWorkflowNoInputBehaviorShowError` with `Parameters.Error` (Shortcuts saves `Missing input`) reports an error when the sub-shortcut runs without input instead of prompting or reading the clipboard. |
+| `WFWorkflowInputContentItemClasses` | Restrict to the types the callee accepts, e.g. `WFStringContentItem` for text. Must be non-empty when Shortcut Input is used. |
+| `WFWorkflowOutputContentItemClasses` | Types returned by **Stop and Output**, e.g. `WFStringContentItem`. |
+| `WFWorkflowTypes` | `WFWorkflowTypeShowInSearch` only. Leave out `ActionExtension` and `NCWidget` so a helper shortcut stays off the share sheet and widgets. |
 
 ## Binary vs XML Plist
 

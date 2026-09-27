@@ -195,7 +195,7 @@ The earlier Automators iOS 18 to OS 26.1 thread lists a few rows that are also v
 | `choosefrommenu` | WFChooseFromMenuAction | Menu with cases |
 | `choosefromlist` | WFChooseFromListAction | Choose from list |
 | `exit` | WFExitAction | Exit shortcut |
-| `output` | WFOutputAction | Set output |
+| `output` | WFOutputAction | Stop and Output (return a result to the caller); see "Run Shortcut and Sub-shortcuts" |
 
 ### Files & Documents
 
@@ -225,11 +225,117 @@ The earlier Automators iOS 18 to OS 26.1 thread lists a few rows that are also v
 |------------|-------|-------------|
 | `openapp` | WFOpenAppAction | Open app |
 | `getcurrentapp` | WFGetCurrentAppAction | Get current app |
-| `runworkflow` | WFRunWorkflowAction | Run another shortcut |
+| `runworkflow` | WFRunWorkflowAction | Run another shortcut; see "Run Shortcut and Sub-shortcuts" |
 | `runshellscript` | WFRunShellScriptAction | Run shell script |
 | `getdevicedetails` | WFGetDeviceDetailsAction | Get device info |
 | `getclipboard` | WFGetClipboardAction | Get clipboard |
 | `setclipboard` | WFSetClipboardAction | Set clipboard |
+
+#### Run Shortcut and Sub-shortcuts
+
+Shapes below are verified against Shortcuts-exported iPadOS samples. The golden pair `golden-shortcuts/xml/6035f81afe6d43c38e06e0fd5d7351f7.xml` (caller) and `golden-shortcuts/xml/b0a951e23fad43f4b67886f82b8e6c20.xml` (text-in/text-out callee) shows them end to end.
+
+**Run Shortcut** (`is.workflow.actions.runworkflow`):
+
+| Key | Shape | Notes |
+|-----|-------|-------|
+| `WFInput` | `WFTextTokenAttachment` with an `ActionOutput` (or `Variable`) `Value` | What the callee receives as Shortcut Input. |
+| `WFWorkflow` | Dict: `isSelf` (`false`), `workflowIdentifier` (uppercase UUID string), `workflowName` (callee name) | Identifies the callee. |
+| `WFWorkflowName` | String, the callee name | Mirrors `WFWorkflow.workflowName`. |
+
+```xml
+<dict>
+    <key>WFWorkflowActionIdentifier</key>
+    <string>is.workflow.actions.runworkflow</string>
+    <key>WFWorkflowActionParameters</key>
+    <dict>
+        <key>UUID</key>
+        <string>RUN-SHORTCUT-UUID</string>
+        <key>WFInput</key>
+        <dict>
+            <key>Value</key>
+            <dict>
+                <key>OutputName</key>
+                <string>Text</string>
+                <key>OutputUUID</key>
+                <string>TEXT-ACTION-UUID</string>
+                <key>Type</key>
+                <string>ActionOutput</string>
+            </dict>
+            <key>WFSerializationType</key>
+            <string>WFTextTokenAttachment</string>
+        </dict>
+        <key>WFWorkflow</key>
+        <dict>
+            <key>isSelf</key>
+            <false/>
+            <key>workflowIdentifier</key>
+            <string>TARGET-SHORTCUT-UUID</string>
+            <key>workflowName</key>
+            <string>Target Shortcut</string>
+        </dict>
+        <key>WFWorkflowName</key>
+        <string>Target Shortcut</string>
+    </dict>
+</dict>
+```
+
+- The callee is resolved by **name**. A freshly generated `workflowIdentifier` that does not match the callee's on-device ID still resolves by `workflowName` after import. Generate a new uppercase UUID and set both name fields to the callee's exact name.
+- Reference the callee's result downstream as the Run Shortcut action output. The golden caller uses `OutputName` `Shortcut Result` (the editor's label for this output); the saved samples did not consume the result, so that name is not export-verified.
+
+**Stop and Output** (`is.workflow.actions.output`) returns a result to the caller:
+
+```xml
+<dict>
+    <key>WFWorkflowActionIdentifier</key>
+    <string>is.workflow.actions.output</string>
+    <key>WFWorkflowActionParameters</key>
+    <dict>
+        <key>WFOutput</key>
+        <dict>
+            <key>Value</key>
+            <dict>
+                <key>attachmentsByRange</key>
+                <dict>
+                    <key>{0, 1}</key>
+                    <dict>
+                        <key>OutputName</key>
+                        <string>Text</string>
+                        <key>OutputUUID</key>
+                        <string>RESULT-ACTION-UUID</string>
+                        <key>Type</key>
+                        <string>ActionOutput</string>
+                    </dict>
+                </dict>
+                <key>string</key>
+                <string>￼</string>
+            </dict>
+            <key>WFSerializationType</key>
+            <string>WFTextTokenString</string>
+        </dict>
+    </dict>
+</dict>
+```
+
+- `WFOutput` is a `WFTextTokenString`. The attachment can also be `{Type: ExtensionInput}` to return Shortcut Input unchanged.
+- Shortcuts omits `WFNoOutputSurfaceBehavior` when the default ("If there's nowhere to output") is kept. Leave it out unless the brief asks for a specific fallback.
+
+**Reading Shortcut Input in the callee.** Reference Shortcut Input with an `ExtensionInput` attachment. Do not emit the Shortcut Input action. To receive a Dictionary, use **Get Dictionary from Input** (`is.workflow.actions.detect.dictionary`) on it, then **Get Dictionary Value**:
+
+```xml
+<key>WFInput</key>
+<dict>
+    <key>Value</key>
+    <dict>
+        <key>Type</key>
+        <string>ExtensionInput</string>
+    </dict>
+    <key>WFSerializationType</key>
+    <string>WFTextTokenAttachment</string>
+</dict>
+```
+
+**Callee root keys.** A sub-shortcut sets `WFWorkflowHasShortcutInputVariables`, `WFWorkflowNoInputBehavior`, input/output content classes and `WFWorkflowTypes`; see PLIST_FORMAT.md "Sub-shortcut Root Keys".
 
 ### Lists & Data
 
