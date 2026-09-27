@@ -348,6 +348,7 @@ On macOS 27, imported shortcuts using that repeated-name list pattern can show a
 - Code `4` is the string `is` (exact equality). Code `99` is the string `contains` (substring). They are NOT interchangeable.
 - Code `0` is `is less than`, NOT `equals`. There is no numeric "equals" code in the modern Shortcuts conditional action — to check equality of two numbers, use `is greater than or equal to` AND `is less than or equal to` (Any-of-two pattern below) or compare via Text equality (code `4`).
 - Code `2` is `is greater than`, code `3` is `is greater than or equal to`. They differ by inclusivity — easy to swap by mistake.
+- Boolean variables use code `4` with a `WFBooleanContentItem` coercion and no `WFConditionalActionString`. See "Boolean If" below.
 
 ### Input rule (uniform across all codes)
 
@@ -432,6 +433,59 @@ The between condition needs both a lower bound (`WFNumberValue`, a literal strin
     </dict>
 </dict>
 ```
+
+### Boolean If (code 4 with Boolean coercion)
+
+To branch on a Boolean value (for example a Boolean item from a **Dictionary** action read with **Get Dictionary Value**), use the shape Shortcuts itself saves: code `4` with a `WFBooleanContentItem` coercion aggrandizement on the input, `WFNumberValue` `"0"`, and **no** `WFConditionalActionString`. The editor only offers `is` for Booleans and stores no operand: the If branch runs when the value is true.
+
+```xml
+<dict>
+    <key>WFWorkflowActionIdentifier</key>
+    <string>is.workflow.actions.conditional</string>
+    <key>WFWorkflowActionParameters</key>
+    <dict>
+        <key>GroupingIdentifier</key>
+        <string>IF-BOOLEAN-UUID</string>
+        <key>WFControlFlowMode</key>
+        <integer>0</integer>
+        <key>WFCondition</key>
+        <integer>4</integer>
+        <key>WFInput</key>
+        <dict>
+            <key>Type</key>
+            <string>Variable</string>
+            <key>Variable</key>
+            <dict>
+                <key>Value</key>
+                <dict>
+                    <key>Aggrandizements</key>
+                    <array>
+                        <dict>
+                            <key>CoercionItemClass</key>
+                            <string>WFBooleanContentItem</string>
+                            <key>Type</key>
+                            <string>WFCoercionVariableAggrandizement</string>
+                        </dict>
+                    </array>
+                    <key>Type</key>
+                    <string>Variable</string>
+                    <key>VariableName</key>
+                    <string>Example Flag</string>
+                </dict>
+                <key>WFSerializationType</key>
+                <string>WFTextTokenAttachment</string>
+            </dict>
+        </dict>
+        <key>WFNumberValue</key>
+        <string>0</string>
+    </dict>
+</dict>
+```
+
+- The validator accepts code `4` without `WFConditionalActionString` **only** when `WFInput` carries the `WFBooleanContentItem` coercion. Every other code `4` still needs `WFConditionalActionString`.
+- Do **not** use `is greater than 0` (code `2`) on a Boolean variable. It imports, but the editor shows the condition in red.
+- There is no `is false` form. To act only when the value is false, leave the If branch empty and put the actions in Otherwise.
+- Verified against a Shortcuts-exported iPadOS sample.
 
 ### Multi-condition If (Any are true / All are true)
 

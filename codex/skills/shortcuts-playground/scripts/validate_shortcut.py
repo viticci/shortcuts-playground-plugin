@@ -1681,6 +1681,25 @@ def _conditional_input_is_wrapped(value) -> bool:
     return isinstance(value, dict) and value.get("Type") == "Variable" and isinstance(value.get("Variable"), dict)
 
 
+def _conditional_input_has_boolean_coercion(value) -> bool:
+    # Shortcuts saves "If <Boolean> is true" as code 4 with a WFBooleanContentItem
+    # coercion on the input and no WFConditionalActionString.
+    if not _conditional_input_is_wrapped(value):
+        return False
+    inner = value["Variable"].get("Value")
+    if not isinstance(inner, dict):
+        return False
+    aggrandizements = inner.get("Aggrandizements")
+    if not isinstance(aggrandizements, list):
+        return False
+    return any(
+        isinstance(agg, dict)
+        and agg.get("Type") == "WFCoercionVariableAggrandizement"
+        and agg.get("CoercionItemClass") == "WFBooleanContentItem"
+        for agg in aggrandizements
+    )
+
+
 def _wrapped_variable_contains_action_output(value) -> bool:
     if not isinstance(value, dict):
         return False
@@ -3056,7 +3075,12 @@ def validate(
                     f"Conditional WFInput must use Type=Variable wrapper for editor visibility at index {idx}"
                 )
             # Per-code field requirements.
-            if cond in STRING_CONDITION_CODES:
+            is_boolean_if = (
+                cond == 4
+                and "WFConditionalActionString" not in params
+                and _conditional_input_has_boolean_coercion(inp)
+            )
+            if cond in STRING_CONDITION_CODES and not is_boolean_if:
                 if not params.get("WFConditionalActionString"):
                     errors.append(
                         f"Conditional (string code {cond}) missing WFConditionalActionString at index {idx}"

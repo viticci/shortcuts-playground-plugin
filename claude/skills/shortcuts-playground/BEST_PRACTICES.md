@@ -19,7 +19,8 @@ These guidelines are mandatory for every shortcut built with this skill. If guid
 - For Authorization headers, use `Basic {base64(user:pass)}` or `Bearer {token}` as required by the API.
 - After **Get Contents of URL**, parse structured responses with **Detect Dictionary** and **Get Dictionary Value** (dot notation for nested keys) instead of string parsing; guard optional parents before reading nested keys (for example, do not call `error.message` directly before checking `error` exists).
 - JSON booleans extracted via **Detect Dictionary** + **Get Dictionary Value** are often coerced to numeric `1`/`0` in Shortcuts, not string `true`/`false`; do not use string checks like `Contains "true"` on those values.
-- For API boolean branching, prefer numeric conditions (`Is Greater Than 0` or `Equals 1`) or normalize through a **Text** action and compare to `"1"`/`"0"`.
+- For API boolean branching on values that arrive as numeric `1`/`0`, prefer numeric conditions (`Is Greater Than 0` or `Equals 1`) or normalize through a **Text** action and compare to `"1"`/`"0"`.
+- For values Shortcuts holds as a real Boolean (for example a Boolean item from a **Dictionary** action read with **Get Dictionary Value**), use the Boolean If shape: code `4` with a `WFBooleanContentItem` coercion on `WFInput` and no `WFConditionalActionString` (see CONTROL_FLOW.md "Boolean If"). `Is Greater Than 0` on a Boolean variable shows the condition in red in the editor.
 - JSON `null` values are coerced to empty/nothing in Shortcuts; do not compare to the string `"null"` and always guard optional fields before branching.
 - For JSON API responses, keep `ShowHeaders` disabled unless explicitly needed; if enabled, account for changed output shape before dictionary extraction.
 - For JSON request bodies, use `WFJSONValues` for flat key/value payloads so the body is preserved in the Shortcuts editor.
@@ -217,6 +218,7 @@ After generating a shortcut, run the local validator and loop until it passes. T
   - Code `0` is `is less than` — there is no numeric "equals" code in the modern conditional. To compare two numbers for equality, either use code `4` (string equals) on text-coerced numbers, or build an Any-of-two block with `is greater than or equal to N` AND `is less than or equal to N`.
   - Code `2` (`is greater than`) and code `3` (`is greater than or equal to`) differ by inclusivity — easy to swap.
   - Code `4` (string equals) and code `99` (substring contains) are NOT interchangeable.
+  - Boolean variables use code `4` with a `WFBooleanContentItem` coercion aggrandizement on `WFInput` and no `WFConditionalActionString`; this is the only code `4` form without a string literal. See CONTROL_FLOW.md "Boolean If".
 
   **`WFInput` is uniform across all codes.** Set it as `{ Type: "Variable", Variable: { Value: <ActionOutput or Variable>, WFSerializationType: "WFTextTokenAttachment" } }`. The previously documented "implicit input for numeric codes 0–3" rule was incorrect; verified against the Apple sample, every conditional including codes 0/1/2/3/1003 sets `WFInput` explicitly.
 
