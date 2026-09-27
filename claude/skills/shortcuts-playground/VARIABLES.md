@@ -409,7 +409,7 @@ Used for durations and measurements with units (delays, file sizes, etc.):
 ```
 
 **Structure:**
-- `Magnitude`: The numeric value (e.g., 5.0 for 5 minutes)
+- `Magnitude`: The numeric value (e.g., 5.0 for 5 minutes). For a variable amount in **Adjust Date**, use a bare `{Type: Variable, VariableName}` or `{Type: ActionOutput, OutputName, OutputUUID}` dict, not a `WFTextTokenAttachment` wrapper (see PARAMETER_TYPES.md "Variable Magnitude")
 - `Unit`: The unit abbreviation (e.g., "min", "hr", "days", "sec")
 
 **Common duration units:**

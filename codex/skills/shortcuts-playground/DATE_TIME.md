@@ -25,7 +25,7 @@ These styles are locale-sensitive. Do not rely on them for API parameters unless
 Apple's documented UNIX timestamp pattern is:
 
 1. Create a **Date** value set to `1970-01-01 00:00:00 UTC`.
-2. Use **Adjust Date** to add the UNIX timestamp value as seconds.
+2. Use **Adjust Date** to add the UNIX timestamp value as seconds. Put the timestamp reference in `WFDuration.Value.Magnitude` as a bare Variable/ActionOutput dict, not a `WFTextTokenAttachment` wrapper (see PARAMETER_TYPES.md "Variable Magnitude").
 3. Use **Format Date** only after the adjusted raw Date exists.
 
 UNIX time is seconds since `1970-01-01 00:00:00 UTC`. If an API returns milliseconds, divide by `1000` only when that API's documentation confirms milliseconds.

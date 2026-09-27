@@ -316,6 +316,34 @@ Used for measurements with units (duration, file size, etc.):
 </dict>
 ```
 
+### Variable Magnitude (Adjust Date)
+
+When an **Adjust Date** amount comes from a variable or action output, Shortcuts stores `Magnitude` as a **bare** reference dict, with no `Value`/`WFSerializationType` wrapper. Literal magnitudes stay plain strings.
+
+```xml
+<key>WFDuration</key>
+<dict>
+    <key>Value</key>
+    <dict>
+        <key>Magnitude</key>
+        <dict>
+            <key>Type</key>
+            <string>Variable</string>
+            <key>VariableName</key>
+            <string>Offset Days</string>
+        </dict>
+        <key>Unit</key>
+        <string>days</string>
+    </dict>
+    <key>WFSerializationType</key>
+    <string>WFQuantityFieldValue</string>
+</dict>
+```
+
+For an action output, use `Type` = `ActionOutput` with `OutputName` and `OutputUUID` in the same bare dict.
+
+Do **not** wrap the reference in `WFTextTokenAttachment` (`{Value: {Type: Variable, ...}, WFSerializationType: WFTextTokenAttachment}`). That form imports, but the Shortcuts editor shows the amount as **Unknown Variable**. The validator rejects it for Adjust Date. Verified against a Shortcuts-exported iPadOS sample.
+
 ### Common Units
 
 | Category | Units |

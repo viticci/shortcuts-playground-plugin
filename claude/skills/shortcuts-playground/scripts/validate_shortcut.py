@@ -4387,6 +4387,18 @@ def validate(
                         unit = dur_val.get("Unit")
                         if magnitude is None or (isinstance(magnitude, str) and magnitude.strip() == ""):
                             errors.append(f"Adjust Date WFDuration missing Magnitude at index {idx}")
+                        elif (
+                            isinstance(magnitude, dict)
+                            and magnitude.get("WFSerializationType") == "WFTextTokenAttachment"
+                        ):
+                            # Shortcuts saves a variable Magnitude as a bare
+                            # Variable/ActionOutput dict. The wrapped attachment
+                            # imports as "Unknown Variable" in the editor.
+                            errors.append(
+                                f"Adjust Date WFDuration Magnitude is a wrapped WFTextTokenAttachment at index {idx}; "
+                                "use the bare reference dict (Type=Variable + VariableName, or "
+                                "Type=ActionOutput + OutputName/OutputUUID) so the editor does not show Unknown Variable"
+                            )
                         if not isinstance(unit, str) or unit.strip() == "":
                             errors.append(f"Adjust Date WFDuration missing Unit at index {idx}")
                         elif unit.strip().lower() not in DATE_DELTA_UNITS:
