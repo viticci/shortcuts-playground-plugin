@@ -152,6 +152,70 @@ For **Find Calendar Events** date predicates, use the date-specific operator cod
 </dict>
 ```
 
+### Find Calendar Events: Calendar Filter
+
+To limit **Find Calendar Events** by calendar, add a `Calendar` row to `WFActionParameterFilterTemplates`. Shortcuts saves it after the date row, with operator `4` (`is`) or `5` (`is not`), `Values.Enumeration` as a `WFStringSubstitutableState`, and **no** `Bounded` key. Keep `WFActionParameterFilterPrefix` at `1` (All are true) so the calendar row narrows the date row.
+
+Calendar picked in the editor (the calendar name as a plain string):
+
+```xml
+<dict>
+    <key>Operator</key>
+    <integer>4</integer>
+    <key>Property</key>
+    <string>Calendar</string>
+    <key>Removable</key>
+    <true/>
+    <key>Values</key>
+    <dict>
+        <key>Enumeration</key>
+        <dict>
+            <key>Value</key>
+            <string>Home</string>
+            <key>WFSerializationType</key>
+            <string>WFStringSubstitutableState</string>
+        </dict>
+    </dict>
+</dict>
+```
+
+Calendar from a named variable that holds the calendar name:
+
+```xml
+<dict>
+    <key>Operator</key>
+    <integer>4</integer>
+    <key>Property</key>
+    <string>Calendar</string>
+    <key>Removable</key>
+    <true/>
+    <key>Values</key>
+    <dict>
+        <key>Enumeration</key>
+        <dict>
+            <key>Value</key>
+            <dict>
+                <key>Value</key>
+                <dict>
+                    <key>Type</key>
+                    <string>Variable</string>
+                    <key>VariableName</key>
+                    <string>Example Calendar</string>
+                </dict>
+                <key>WFSerializationType</key>
+                <string>WFTextTokenAttachment</string>
+            </dict>
+            <key>WFSerializationType</key>
+            <string>WFStringSubstitutableState</string>
+        </dict>
+    </dict>
+</dict>
+```
+
+- The variable samples use a named `Variable`. An `ActionOutput` reference (`OutputName` + `OutputUUID`) in the same inner `Value` slot should behave like other token attachments but was not observed.
+- Verified against Shortcuts-exported iPadOS samples.
+- The validator requires operator `4` or `5` and a non-empty `WFStringSubstitutableState` in `Values.Enumeration` on every `Calendar` row.
+
 ### Find Health Samples "Start Date Is Today" Filter
 
 Verified from a manually created iOS Shortcuts XML example and generated shortcut failures. **Find Health Samples** uses the same `WFContentPredicateTableTemplate` wrapper, but the Health sample kind is a locked `Type` predicate row backed by an enumeration state. Do not use top-level `WFHealthQuantityType`, and do not use a `Value` predicate row with `Values.String`; current iOS Shortcuts renders that as an editable text filter instead of the Health type picker.

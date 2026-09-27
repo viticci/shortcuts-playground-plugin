@@ -3879,6 +3879,28 @@ def validate(
                                 errors.append(
                                     f"Find Calendar Events {prop} 'is between' filter needs Values.Date and Values.AnotherDate at index {idx}"
                                 )
+                        if prop == "Calendar":
+                            # Shortcuts saves the Calendar row as an Enumeration
+                            # WFStringSubstitutableState, with no Bounded key.
+                            if op not in {4, 5}:
+                                errors.append(
+                                    f"Find Calendar Events Calendar filter operator must be 4 (is) or 5 (is not) at index {idx}"
+                                )
+                            values = template.get("Values")
+                            enum_state = values.get("Enumeration") if isinstance(values, dict) else None
+                            if not isinstance(enum_state, dict):
+                                errors.append(
+                                    f"Find Calendar Events Calendar filter missing Values.Enumeration at index {idx}"
+                                )
+                            elif enum_state.get("WFSerializationType") != "WFStringSubstitutableState":
+                                errors.append(
+                                    f"Find Calendar Events Calendar filter Enumeration must use "
+                                    f"WFStringSubstitutableState at index {idx}"
+                                )
+                            elif _token_param_is_empty(enum_state.get("Value")):
+                                errors.append(
+                                    f"Find Calendar Events Calendar filter Enumeration value is empty at index {idx}"
+                                )
 
         if ident == HEALTH_FIND_SAMPLES_ACTION:
             if "WFHealthQuantityType" in params:
